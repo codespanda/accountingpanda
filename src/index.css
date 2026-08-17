@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+
+  --color-brand-green: #2e8b3d;
+  --color-brand-green-dark: #227032;
+  --color-brand-green-light: #eaf5ec;
+  --color-brand-navy: #0b1b33;
+  --color-brand-navy-light: #12253f;
+  --color-brand-bg: #f7f8fa;
+  --color-brand-text: #4b5563;
+  --color-brand-heading: #0b1b33;
+
+  --breakpoint-xs: 420px;
+}
+
+@layer base {
+  * {
+    border-color: theme(--color-brand-green);
+    border-color: rgb(229 231 235);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-brand-text);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    /* "clip" (not "hidden") avoids the CSS rule that forces a mismatched
+       overflow-y to compute as "auto", which would turn body into its own
+       scroll container and break window-level scrollIntoView / scrollTo. */
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-brand-heading);
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .container-px {
+    @apply px-4 sm:px-6 lg:px-10 xl:px-16;
+  }
+}
