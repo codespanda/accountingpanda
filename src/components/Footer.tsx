@@ -37,11 +37,13 @@ const servicesLinks = [
   "All Services",
 ].map((label) => ({ label, href: "/#services" }))
 
-const countryLinks = ["USA", "Australia"].map((label) => ({ label, href: "#" }))
+const countryLinks = ["USA", "Australia"].map((label) => ({
+  label,
+  href: "/#countries",
+}))
 
 const resourceLinks = [
   { label: "Blog", href: "/blog" },
-  { label: "Guides", href: "#" },
   { label: "FAQs", href: "/faq" },
 ]
 
