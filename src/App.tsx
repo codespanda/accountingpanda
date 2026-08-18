@@ -10,6 +10,7 @@ import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
 import { Terms } from "@/pages/Terms"
 import { FinancialPlanningPost } from "@/pages/posts/FinancialPlanningPost"
 import { SalesTaxNexusPost } from "@/pages/posts/SalesTaxNexusPost"
+import { BASChecklistPost } from "@/pages/posts/BASChecklistPost"
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
             <Route
               path="/blog/us-sales-tax-nexus-in-2026"
               element={<SalesTaxNexusPost />}
+            />
+            <Route
+              path="/blog/bas-preparation-checklist-for-australian-businesses"
+              element={<BASChecklistPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

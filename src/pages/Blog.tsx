@@ -52,6 +52,8 @@ const posts: Post[] = [
     category: "Tax & Compliance",
     date: "Jul 27, 2026",
     readTime: "5 min read",
+    slug: "bas-preparation-checklist-for-australian-businesses",
+    image: asset("assets/blog-bas-checklist.png"),
   },
   {
     title: "Payroll & Superannuation: Common Compliance Traps in Australia",
