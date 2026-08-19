@@ -11,6 +11,7 @@ import { Terms } from "@/pages/Terms"
 import { FinancialPlanningPost } from "@/pages/posts/FinancialPlanningPost"
 import { SalesTaxNexusPost } from "@/pages/posts/SalesTaxNexusPost"
 import { BASChecklistPost } from "@/pages/posts/BASChecklistPost"
+import { PayrollCompliancePost } from "@/pages/posts/PayrollCompliancePost"
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
             <Route
               path="/blog/bas-preparation-checklist-for-australian-businesses"
               element={<BASChecklistPost />}
+            />
+            <Route
+              path="/blog/payroll-superannuation-common-compliance-traps-in-australia"
+              element={<PayrollCompliancePost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

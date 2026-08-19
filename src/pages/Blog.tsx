@@ -62,6 +62,8 @@ const posts: Post[] = [
     category: "Payroll",
     date: "Jul 18, 2026",
     readTime: "7 min read",
+    slug: "payroll-superannuation-common-compliance-traps-in-australia",
+    image: asset("assets/blog-payroll-superannuation.png"),
   },
   {
     title: "When Should a Growing Business Outsource Its Accounting?",
