@@ -48,8 +48,8 @@ const resourceLinks = [
 ]
 
 const socials = [
-  { icon: Facebook, href: "#" },
-  { icon: Linkedin, href: "#" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61592135561178" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/accountingpanda" },
   { icon: Mail, href: "mailto:contact@accountingpanda.com" },
   { icon: Instagram, href: "#" },
 ]
@@ -87,6 +87,8 @@ export function Footer() {
               <a
                 key={i}
                 href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white hover:bg-brand-green"
               >
                 <Icon className="h-4 w-4" />
