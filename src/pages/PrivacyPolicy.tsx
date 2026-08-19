@@ -1,3 +1,5 @@
+import { Seo } from "@/components/Seo"
+
 const sections = [
   {
     title: "1. Information We Collect",
@@ -31,7 +33,13 @@ const sections = [
 
 export function PrivacyPolicy() {
   return (
-    <section className="bg-white py-14 lg:py-20">
+    <>
+      <Seo
+        title="Privacy Policy"
+        description="How AccountingPanda collects, uses and protects your personal and financial information."
+        path="/privacy-policy"
+      />
+      <section className="bg-white py-14 lg:py-20">
       <div className="container-px mx-auto max-w-3xl">
         <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
           LEGAL
@@ -65,6 +73,7 @@ export function PrivacyPolicy() {
           .
         </p>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

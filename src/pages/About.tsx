@@ -9,6 +9,7 @@ import {
   Award,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
 
 const stats = [
@@ -43,6 +44,11 @@ const values = [
 export function About() {
   return (
     <>
+      <Seo
+        title="About Us"
+        description="AccountingPanda is an outsourced accounting and bookkeeping partner for businesses and CPA firms across the USA and Australia. Learn our story, mission and values."
+        path="/about"
+      />
       {/* Hero */}
       <section className="bg-brand-bg py-14 lg:py-20">
         <div className="container-px mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">

@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Newsletter } from "@/components/Newsletter"
+import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
 
 const planIncludes = [
@@ -166,6 +167,14 @@ const bottomLine = [
 export function FinancialPlanningPost() {
   return (
     <>
+      <Seo
+        title="How Financial Planning Helps Your Business Grow Faster"
+        description="A strong financial plan gives your business direction, control and confidence to scale sustainably and profitably — here are 8 ways it drives growth."
+        path="/blog/how-financial-planning-helps-your-business-grow-faster"
+        image={asset("assets/blog-financial-planning.jpg")}
+        type="article"
+        datePublished="2026-08-16"
+      />
       {/* Header */}
       <section className="bg-brand-bg py-14 lg:py-16">
         <div className="container-px mx-auto max-w-3xl">
@@ -205,7 +214,7 @@ export function FinancialPlanningPost() {
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
           <img
-            src={asset("assets/blog-financial-planning.png")}
+            src={asset("assets/blog-financial-planning.jpg")}
             alt="Infographic: How Financial Planning Helps Your Business Grow Faster"
             className="w-full rounded-2xl border border-gray-100 shadow-sm"
           />

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { ArrowRight, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
 
 type QA = { q: string; a: string }
@@ -91,6 +92,11 @@ export function FAQ() {
 
   return (
     <>
+      <Seo
+        title="Frequently Asked Questions"
+        description="Answers to common questions about AccountingPanda's outsourced bookkeeping, tax compliance, onboarding, pricing and security."
+        path="/faq"
+      />
       {/* Hero */}
       <section className="bg-brand-bg py-14 lg:py-20">
         <div className="container-px mx-auto max-w-3xl text-center">

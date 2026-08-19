@@ -27,6 +27,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Newsletter } from "@/components/Newsletter"
+import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
 
 const nexusActivities = [
@@ -157,6 +158,14 @@ const automationList = [
 export function SalesTaxNexusPost() {
   return (
     <>
+      <Seo
+        title="US Sales Tax Nexus in 2026: What Every Growing Business Needs to Know"
+        description="Economic nexus thresholds vary by state. We break down how to track exposure and stay compliant as you scale across the US."
+        path="/blog/us-sales-tax-nexus-in-2026"
+        image={asset("assets/blog-sales-tax-nexus.jpg")}
+        type="article"
+        datePublished="2026-08-03"
+      />
       {/* Header */}
       <section className="bg-brand-bg py-14 lg:py-16">
         <div className="container-px mx-auto max-w-3xl">
@@ -198,7 +207,7 @@ export function SalesTaxNexusPost() {
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
           <img
-            src={asset("assets/blog-sales-tax-nexus.png")}
+            src={asset("assets/blog-sales-tax-nexus.jpg")}
             alt="Infographic: US Sales Tax Nexus in 2026 — What Every Growing Business Needs to Know"
             className="w-full rounded-2xl border border-gray-100 shadow-sm"
           />

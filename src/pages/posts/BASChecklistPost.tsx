@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Newsletter } from "@/components/Newsletter"
+import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
 
 const basIncludes = [
@@ -175,6 +176,14 @@ const finalChecklist = [
 export function BASChecklistPost() {
   return (
     <>
+      <Seo
+        title="BAS Preparation Checklist for Australian Businesses"
+        description="A step-by-step checklist to get your Business Activity Statement filed accurately and on time, every quarter."
+        path="/blog/bas-preparation-checklist-for-australian-businesses"
+        image={asset("assets/blog-bas-checklist.jpg")}
+        type="article"
+        datePublished="2026-07-27"
+      />
       {/* Header */}
       <section className="bg-brand-bg py-14 lg:py-16">
         <div className="container-px mx-auto max-w-3xl">
@@ -214,7 +223,7 @@ export function BASChecklistPost() {
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
           <img
-            src={asset("assets/blog-bas-checklist.png")}
+            src={asset("assets/blog-bas-checklist.jpg")}
             alt="Infographic: BAS Preparation Checklist for Australian Businesses"
             className="w-full rounded-2xl border border-gray-100 shadow-sm"
           />

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, CalendarDays, Clock3 } from "lucide-react"
 import { Newsletter } from "@/components/Newsletter"
+import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
 
 type Post = {
@@ -33,7 +34,7 @@ const posts: Post[] = [
     readTime: "10 min read",
     featured: true,
     slug: "how-financial-planning-helps-your-business-grow-faster",
-    image: asset("assets/blog-financial-planning.png"),
+    image: asset("assets/blog-financial-planning.jpg"),
   },
   {
     title: "US Sales Tax Nexus in 2026: What Every Growing Business Needs to Know",
@@ -43,7 +44,7 @@ const posts: Post[] = [
     date: "Aug 3, 2026",
     readTime: "8 min read",
     slug: "us-sales-tax-nexus-in-2026",
-    image: asset("assets/blog-sales-tax-nexus.png"),
+    image: asset("assets/blog-sales-tax-nexus.jpg"),
   },
   {
     title: "BAS Preparation Checklist for Australian Businesses",
@@ -53,7 +54,7 @@ const posts: Post[] = [
     date: "Jul 27, 2026",
     readTime: "5 min read",
     slug: "bas-preparation-checklist-for-australian-businesses",
-    image: asset("assets/blog-bas-checklist.png"),
+    image: asset("assets/blog-bas-checklist.jpg"),
   },
   {
     title: "Payroll & Superannuation: Common Compliance Traps in Australia",
@@ -63,7 +64,7 @@ const posts: Post[] = [
     date: "Jul 18, 2026",
     readTime: "7 min read",
     slug: "payroll-superannuation-common-compliance-traps-in-australia",
-    image: asset("assets/blog-payroll-superannuation.png"),
+    image: asset("assets/blog-payroll-superannuation.jpg"),
   },
   {
     title: "When Should a Growing Business Outsource Its Accounting?",
@@ -148,6 +149,11 @@ export function Blog() {
 
   return (
     <>
+      <Seo
+        title="Accounting Insights & Resources"
+        description="Practical guidance on bookkeeping, tax compliance, payroll and growing your business — from our outsourced accounting team."
+        path="/blog"
+      />
       {/* Header */}
       <section className="bg-brand-bg py-14 lg:py-20">
         <div className="container-px mx-auto max-w-7xl text-center">

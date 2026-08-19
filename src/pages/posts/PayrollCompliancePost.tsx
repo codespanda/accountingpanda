@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Newsletter } from "@/components/Newsletter"
+import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
 
 const traps = [
@@ -118,6 +119,14 @@ const routine = [
 export function PayrollCompliancePost() {
   return (
     <>
+      <Seo
+        title="Payroll & Superannuation: Common Compliance Traps in Australia"
+        description="Superannuation guarantee changes catch many employers off guard. Here's what to check before your next pay run."
+        path="/blog/payroll-superannuation-common-compliance-traps-in-australia"
+        image={asset("assets/blog-payroll-superannuation.jpg")}
+        type="article"
+        datePublished="2026-07-18"
+      />
       {/* Header */}
       <section className="bg-brand-bg py-14 lg:py-16">
         <div className="container-px mx-auto max-w-3xl">
@@ -159,7 +168,7 @@ export function PayrollCompliancePost() {
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
           <img
-            src={asset("assets/blog-payroll-superannuation.png")}
+            src={asset("assets/blog-payroll-superannuation.jpg")}
             alt="Infographic: Payroll & Superannuation — Common Compliance Traps in Australia"
             className="w-full rounded-2xl border border-gray-100 shadow-sm"
           />

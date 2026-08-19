@@ -1,3 +1,5 @@
+import { Seo } from "@/components/Seo"
+
 const sections = [
   {
     title: "1. Acceptance of Terms",
@@ -35,7 +37,13 @@ const sections = [
 
 export function Terms() {
   return (
-    <section className="bg-white py-14 lg:py-20">
+    <>
+      <Seo
+        title="Terms & Conditions"
+        description="The terms and conditions governing AccountingPanda's outsourced accounting and bookkeeping services."
+        path="/terms"
+      />
+      <section className="bg-white py-14 lg:py-20">
       <div className="container-px mx-auto max-w-3xl">
         <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
           LEGAL
@@ -69,6 +77,7 @@ export function Terms() {
           .
         </p>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

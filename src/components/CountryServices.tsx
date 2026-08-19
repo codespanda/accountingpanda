@@ -115,7 +115,7 @@ export function CountryServices() {
               },
               { src: asset("assets/xero_logo_icon.webp"), alt: "Xero", className: "h-4 w-auto" },
             ]}
-            image={asset("assets/usa.png")}
+            image={asset("assets/usa.jpg")}
             accent="#1d4ed8"
           />
           <CountryCard
@@ -125,7 +125,7 @@ export function CountryServices() {
             brands={[
               { src: asset("assets/xero_logo_icon.webp"), alt: "Xero", className: "h-4 w-auto" },
             ]}
-            image={asset("assets/australia.png")}
+            image={asset("assets/australia.jpg")}
             accent="#2e8b3d"
           />
         </div>
