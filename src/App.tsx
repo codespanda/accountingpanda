@@ -12,6 +12,7 @@ import { FinancialPlanningPost } from "@/pages/posts/FinancialPlanningPost"
 import { SalesTaxNexusPost } from "@/pages/posts/SalesTaxNexusPost"
 import { BASChecklistPost } from "@/pages/posts/BASChecklistPost"
 import { PayrollCompliancePost } from "@/pages/posts/PayrollCompliancePost"
+import { OutsourceAccountingPost } from "@/pages/posts/OutsourceAccountingPost"
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
             <Route
               path="/blog/payroll-superannuation-common-compliance-traps-in-australia"
               element={<PayrollCompliancePost />}
+            />
+            <Route
+              path="/blog/when-should-a-growing-business-outsource-its-accounting"
+              element={<OutsourceAccountingPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

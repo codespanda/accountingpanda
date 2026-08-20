@@ -73,6 +73,8 @@ const posts: Post[] = [
     category: "Business Growth",
     date: "Jul 9, 2026",
     readTime: "4 min read",
+    slug: "when-should-a-growing-business-outsource-its-accounting",
+    image: asset("assets/blog-when-to-outsource.jpg"),
   },
   {
     title: "QuickBooks vs Xero: Which Fits Your Business in 2026?",

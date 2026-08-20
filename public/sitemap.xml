@@ -36,6 +36,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/blog/when-should-a-growing-business-outsource-its-accounting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/faq</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
