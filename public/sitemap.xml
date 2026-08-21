@@ -41,6 +41,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/blog/quickbooks-vs-xero-which-fits-your-business-in-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/faq</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

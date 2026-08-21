@@ -83,6 +83,8 @@ const posts: Post[] = [
     category: "Bookkeeping",
     date: "Jun 30, 2026",
     readTime: "9 min read",
+    slug: "quickbooks-vs-xero-which-fits-your-business-in-2026",
+    image: asset("assets/blog-quickbooks-vs-xero.jpg"),
   },
   {
     title: "1099 Reporting Deadlines You Can't Afford to Miss",

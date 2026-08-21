@@ -13,6 +13,7 @@ import { SalesTaxNexusPost } from "@/pages/posts/SalesTaxNexusPost"
 import { BASChecklistPost } from "@/pages/posts/BASChecklistPost"
 import { PayrollCompliancePost } from "@/pages/posts/PayrollCompliancePost"
 import { OutsourceAccountingPost } from "@/pages/posts/OutsourceAccountingPost"
+import { QuickBooksVsXeroPost } from "@/pages/posts/QuickBooksVsXeroPost"
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
             <Route
               path="/blog/when-should-a-growing-business-outsource-its-accounting"
               element={<OutsourceAccountingPost />}
+            />
+            <Route
+              path="/blog/quickbooks-vs-xero-which-fits-your-business-in-2026"
+              element={<QuickBooksVsXeroPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
