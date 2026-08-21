@@ -67,7 +67,12 @@ export function Seo({
 }: SeoProps) {
   useEffect(() => {
     const fullTitle = `${title} | ${SITE_NAME}`
-    const url = `${SITE_URL}${path}`
+    // GitHub Pages 301-redirects a directory request without a trailing
+    // slash (e.g. /blog) to the canonical form (/blog/) — that's the URL a
+    // fresh crawl actually lands on with a 200, so declare it here too
+    // rather than pointing canonical at a URL that itself redirects.
+    const normalizedPath = path === "/" || path.endsWith("/") ? path : `${path}/`
+    const url = `${SITE_URL}${normalizedPath}`
     const img = new URL(image ?? DEFAULT_IMAGE, SITE_URL).toString()
 
     document.title = fullTitle
