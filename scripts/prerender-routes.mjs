@@ -18,6 +18,7 @@ const routes = [
   "blog/payroll-superannuation-common-compliance-traps-in-australia",
   "blog/when-should-a-growing-business-outsource-its-accounting",
   "blog/quickbooks-vs-xero-which-fits-your-business-in-2026",
+  "blog/1099-reporting-deadlines-you-cant-afford-to-miss",
   "about",
   "faq",
   "privacy-policy",

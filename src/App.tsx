@@ -14,6 +14,7 @@ import { BASChecklistPost } from "@/pages/posts/BASChecklistPost"
 import { PayrollCompliancePost } from "@/pages/posts/PayrollCompliancePost"
 import { OutsourceAccountingPost } from "@/pages/posts/OutsourceAccountingPost"
 import { QuickBooksVsXeroPost } from "@/pages/posts/QuickBooksVsXeroPost"
+import { Form1099Post } from "@/pages/posts/Form1099Post"
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
             <Route
               path="/blog/quickbooks-vs-xero-which-fits-your-business-in-2026"
               element={<QuickBooksVsXeroPost />}
+            />
+            <Route
+              path="/blog/1099-reporting-deadlines-you-cant-afford-to-miss"
+              element={<Form1099Post />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

@@ -93,6 +93,8 @@ const posts: Post[] = [
     category: "Tax & Compliance",
     date: "Jun 21, 2026",
     readTime: "5 min read",
+    slug: "1099-reporting-deadlines-you-cant-afford-to-miss",
+    image: asset("assets/blog-1099-deadlines.jpg"),
   },
   {
     title: "How CPA Firms Use Outsourced Support During Tax Season",
