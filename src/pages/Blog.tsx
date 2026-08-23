@@ -103,6 +103,8 @@ const posts: Post[] = [
     category: "Business Growth",
     date: "Jun 12, 2026",
     readTime: "6 min read",
+    slug: "how-cpa-firms-use-outsourced-support-during-tax-season",
+    image: asset("assets/blog-cpa-outsourced-support.jpg"),
   },
 ]
 

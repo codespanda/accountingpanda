@@ -15,6 +15,7 @@ import { PayrollCompliancePost } from "@/pages/posts/PayrollCompliancePost"
 import { OutsourceAccountingPost } from "@/pages/posts/OutsourceAccountingPost"
 import { QuickBooksVsXeroPost } from "@/pages/posts/QuickBooksVsXeroPost"
 import { Form1099Post } from "@/pages/posts/Form1099Post"
+import { CPAOutsourcedSupportPost } from "@/pages/posts/CPAOutsourcedSupportPost"
 
 function App() {
   return (
@@ -53,6 +54,10 @@ function App() {
             <Route
               path="/blog/1099-reporting-deadlines-you-cant-afford-to-miss"
               element={<Form1099Post />}
+            />
+            <Route
+              path="/blog/how-cpa-firms-use-outsourced-support-during-tax-season"
+              element={<CPAOutsourcedSupportPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
