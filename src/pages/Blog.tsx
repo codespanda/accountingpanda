@@ -22,9 +22,21 @@ const categories = [
   "Tax & Compliance",
   "Payroll",
   "Business Growth",
+  "AI & Automation",
 ]
 
 const posts: Post[] = [
+  {
+    title: "Will AI Replace Accountants in 2026?",
+    excerpt:
+      "AI is replacing accounting tasks—but it is not replacing the accountant. Here's what the future accountant needs to know.",
+    category: "AI & Automation",
+    date: "Aug 24, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "will-ai-replace-accountants-in-2026",
+    image: asset("assets/blog-ai-replace-accountants.jpg"),
+  },
   {
     title: "How Financial Planning Helps Your Business Grow Faster",
     excerpt:
@@ -32,7 +44,6 @@ const posts: Post[] = [
     category: "Business Growth",
     date: "Aug 16, 2026",
     readTime: "10 min read",
-    featured: true,
     slug: "how-financial-planning-helps-your-business-grow-faster",
     image: asset("assets/blog-financial-planning.jpg"),
   },
@@ -113,6 +124,7 @@ const categoryColors: Record<string, string> = {
   "Tax & Compliance": "#1d4ed8",
   Payroll: "#c026d3",
   "Business Growth": "#ea580c",
+  "AI & Automation": "#7c3aed",
 }
 
 function PostImage({ category, className }: { category: string; className?: string }) {

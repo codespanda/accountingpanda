@@ -20,6 +20,7 @@ const routes = [
   "blog/quickbooks-vs-xero-which-fits-your-business-in-2026",
   "blog/1099-reporting-deadlines-you-cant-afford-to-miss",
   "blog/how-cpa-firms-use-outsourced-support-during-tax-season",
+  "blog/will-ai-replace-accountants-in-2026",
   "about",
   "faq",
   "privacy-policy",

@@ -16,6 +16,7 @@ import { OutsourceAccountingPost } from "@/pages/posts/OutsourceAccountingPost"
 import { QuickBooksVsXeroPost } from "@/pages/posts/QuickBooksVsXeroPost"
 import { Form1099Post } from "@/pages/posts/Form1099Post"
 import { CPAOutsourcedSupportPost } from "@/pages/posts/CPAOutsourcedSupportPost"
+import { AIReplaceAccountantsPost } from "@/pages/posts/AIReplaceAccountantsPost"
 
 function App() {
   return (
@@ -58,6 +59,10 @@ function App() {
             <Route
               path="/blog/how-cpa-firms-use-outsourced-support-during-tax-season"
               element={<CPAOutsourcedSupportPost />}
+            />
+            <Route
+              path="/blog/will-ai-replace-accountants-in-2026"
+              element={<AIReplaceAccountantsPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
