@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
+import { CONSULTATION_MAILTO } from "@/lib/contact"
 
 const stats = [
   { value: "12+", label: "Years Experience" },
@@ -195,9 +196,11 @@ export function About() {
               Talk to us about your accounting needs — no obligation.
             </p>
           </div>
-          <Button size="lg" className="shrink-0">
-            Talk to an Expert
-            <ArrowRight className="h-4 w-4" />
+          <Button size="lg" className="shrink-0" asChild>
+            <a href={CONSULTATION_MAILTO}>
+              Talk to an Expert
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </Button>
         </div>
       </section>

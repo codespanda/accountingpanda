@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { ArrowRight, MessageCircle, ShieldCheck, BadgeCheck, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { asset } from "@/lib/asset"
+import { CONSULTATION_MAILTO } from "@/lib/contact"
 
 const trust = [
   { icon: ShieldCheck, label: "100% Data Security" },
@@ -44,9 +45,11 @@ export function Hero() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline">
-              Talk to an Expert
-              <MessageCircle className="h-4 w-4" />
+            <Button size="lg" variant="outline" asChild>
+              <a href={CONSULTATION_MAILTO}>
+                Talk to an Expert
+                <MessageCircle className="h-4 w-4" />
+              </a>
             </Button>
           </div>
         </div>

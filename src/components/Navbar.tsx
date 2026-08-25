@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { asset } from "@/lib/asset"
+import { CONSULTATION_MAILTO } from "@/lib/contact"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -12,10 +13,6 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
 ]
-
-const CONSULTATION_MAILTO = `mailto:contact@accountingpanda.com?subject=${encodeURIComponent(
-  "Free Consultation Request"
-)}`
 
 export function Navbar() {
   const [open, setOpen] = useState(false)

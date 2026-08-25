@@ -18,6 +18,7 @@ import {
   AlertTriangle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CONSULTATION_MAILTO } from "@/lib/contact"
 import { Newsletter } from "@/components/Newsletter"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
@@ -435,9 +436,11 @@ export function CPAAiTaxSeasonPost() {
                 AI-enabled workflows built for CPA firms.
               </p>
             </div>
-            <Button className="shrink-0">
-              Talk to an Expert
-              <ArrowRight className="h-4 w-4" />
+            <Button className="shrink-0" asChild>
+              <a href={CONSULTATION_MAILTO}>
+                Talk to an Expert
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </Button>
           </div>
         </div>

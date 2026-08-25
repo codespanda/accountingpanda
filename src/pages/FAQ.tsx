@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
+import { CONSULTATION_MAILTO } from "@/lib/contact"
 
 type QA = { q: string; a: string }
 type Group = { title: string; items: QA[] }
@@ -152,9 +153,11 @@ export function FAQ() {
               Talk to our team and we'll walk you through exactly how it works.
             </p>
           </div>
-          <Button size="lg" className="shrink-0">
-            Talk to an Expert
-            <ArrowRight className="h-4 w-4" />
+          <Button size="lg" className="shrink-0" asChild>
+            <a href={CONSULTATION_MAILTO}>
+              Talk to an Expert
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </Button>
         </div>
       </section>
