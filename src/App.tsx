@@ -17,6 +17,7 @@ import { QuickBooksVsXeroPost } from "@/pages/posts/QuickBooksVsXeroPost"
 import { Form1099Post } from "@/pages/posts/Form1099Post"
 import { CPAOutsourcedSupportPost } from "@/pages/posts/CPAOutsourcedSupportPost"
 import { AIReplaceAccountantsPost } from "@/pages/posts/AIReplaceAccountantsPost"
+import { CPAAiTaxSeasonPost } from "@/pages/posts/CPAAiTaxSeasonPost"
 
 function App() {
   return (
@@ -63,6 +64,10 @@ function App() {
             <Route
               path="/blog/will-ai-replace-accountants-in-2026"
               element={<AIReplaceAccountantsPost />}
+            />
+            <Route
+              path="/blog/how-cpa-firms-can-use-ai-during-tax-season"
+              element={<CPAAiTaxSeasonPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

@@ -61,6 +61,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/blog/how-cpa-firms-can-use-ai-during-tax-season/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/faq/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -21,6 +21,7 @@ const routes = [
   "blog/1099-reporting-deadlines-you-cant-afford-to-miss",
   "blog/how-cpa-firms-use-outsourced-support-during-tax-season",
   "blog/will-ai-replace-accountants-in-2026",
+  "blog/how-cpa-firms-can-use-ai-during-tax-season",
   "about",
   "faq",
   "privacy-policy",

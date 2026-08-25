@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "How CPA Firms Can Use AI During Tax Season",
+    excerpt:
+      "Practical ways CPA firms can use AI to handle tax-season workload more efficiently — while keeping professional judgment firmly in the loop.",
+    category: "AI & Automation",
+    date: "Aug 25, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "how-cpa-firms-can-use-ai-during-tax-season",
+    image: asset("assets/blog-cpa-ai-tax-season.jpg"),
+  },
+  {
     title: "Will AI Replace Accountants in 2026?",
     excerpt:
       "AI is replacing accounting tasks—but it is not replacing the accountant. Here's what the future accountant needs to know.",
     category: "AI & Automation",
     date: "Aug 24, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "will-ai-replace-accountants-in-2026",
     image: asset("assets/blog-ai-replace-accountants.jpg"),
   },
