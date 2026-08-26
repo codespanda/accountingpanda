@@ -413,7 +413,7 @@ export function BASChecklistPost() {
             </div>
             <Button className="shrink-0" asChild>
               <a href={CONSULTATION_MAILTO}>
-                Talk to an Expert
+                Chat to an Expert
                 <ArrowRight className="h-4 w-4" />
               </a>
             </Button>

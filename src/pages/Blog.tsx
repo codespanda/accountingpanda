@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "AI Agents vs. Accounting Software: What's the Difference?",
+    excerpt:
+      "Accounting software executes processes. AI agents coordinate processes. Here's how the two actually differ, and why they work together rather than compete.",
+    category: "AI & Automation",
+    date: "Aug 26, 2026",
+    readTime: "8 min read",
+    featured: true,
+    slug: "ai-agents-vs-accounting-software-whats-the-difference",
+    image: asset("assets/blog-ai-agents-vs-accounting-software.jpg"),
+  },
+  {
     title: "How CPA Firms Can Use AI During Tax Season",
     excerpt:
       "Practical ways CPA firms can use AI to handle tax-season workload more efficiently — while keeping professional judgment firmly in the loop.",
     category: "AI & Automation",
     date: "Aug 25, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "how-cpa-firms-can-use-ai-during-tax-season",
     image: asset("assets/blog-cpa-ai-tax-season.jpg"),
   },

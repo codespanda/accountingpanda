@@ -47,7 +47,7 @@ export function Hero() {
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a href={CONSULTATION_MAILTO}>
-                Talk to an Expert
+                Chat to an Expert
                 <MessageCircle className="h-4 w-4" />
               </a>
             </Button>

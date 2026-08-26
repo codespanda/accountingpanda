@@ -22,6 +22,7 @@ const routes = [
   "blog/how-cpa-firms-use-outsourced-support-during-tax-season",
   "blog/will-ai-replace-accountants-in-2026",
   "blog/how-cpa-firms-can-use-ai-during-tax-season",
+  "blog/ai-agents-vs-accounting-software-whats-the-difference",
   "about",
   "faq",
   "privacy-policy",
