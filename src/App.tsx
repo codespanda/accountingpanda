@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer"
 import { ScrollToHash } from "@/components/ScrollToHash"
 import { Home } from "@/pages/Home"
 import { Blog } from "@/pages/Blog"
+import { Products } from "@/pages/Products"
 import { About } from "@/pages/About"
 import { FAQ } from "@/pages/FAQ"
 import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/products" element={<Products />} />
             <Route
               path="/blog/how-financial-planning-helps-your-business-grow-faster"
               element={<FinancialPlanningPost />}

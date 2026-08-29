@@ -14,6 +14,8 @@ interface SeoProps {
   type?: "website" | "article"
   /** ISO date string — set for blog posts to emit Article structured data. */
   datePublished?: string
+  /** Set true for pages not ready to be indexed yet (e.g. placeholders). */
+  noIndex?: boolean
 }
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
@@ -64,6 +66,7 @@ export function Seo({
   image,
   type = "website",
   datePublished,
+  noIndex = false,
 }: SeoProps) {
   useEffect(() => {
     const fullTitle = `${title} | ${SITE_NAME}`
@@ -77,6 +80,7 @@ export function Seo({
 
     document.title = fullTitle
     setMeta("name", "description", description)
+    setMeta("name", "robots", noIndex ? "noindex, nofollow" : "index, follow")
     setCanonical(url)
 
     setMeta("property", "og:site_name", SITE_NAME)
@@ -115,7 +119,7 @@ export function Seo({
     }
 
     return () => setJsonLd(null)
-  }, [title, description, path, image, type, datePublished])
+  }, [title, description, path, image, type, datePublished, noIndex])
 
   return null
 }

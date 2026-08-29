@@ -24,6 +24,7 @@ const routes = [
   "blog/how-cpa-firms-can-use-ai-during-tax-season",
   "blog/ai-agents-vs-accounting-software-whats-the-difference",
   "blog/ai-powered-bank-reconciliation-how-it-works",
+  "products",
   "about",
   "faq",
   "privacy-policy",
