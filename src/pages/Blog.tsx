@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "AI-Powered Bank Reconciliation: How It Works and Why It Matters",
+    excerpt:
+      "Bank reconciliation has always been essential — and time-consuming. Here's how AI-powered matching, confidence scores and exception detection are changing that.",
+    category: "AI & Automation",
+    date: "Aug 29, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "ai-powered-bank-reconciliation-how-it-works",
+    image: asset("assets/blog-ai-bank-reconciliation.jpg"),
+  },
+  {
     title: "AI Agents vs. Accounting Software: What's the Difference?",
     excerpt:
       "Accounting software executes processes. AI agents coordinate processes. Here's how the two actually differ, and why they work together rather than compete.",
     category: "AI & Automation",
     date: "Aug 26, 2026",
     readTime: "8 min read",
-    featured: true,
     slug: "ai-agents-vs-accounting-software-whats-the-difference",
     image: asset("assets/blog-ai-agents-vs-accounting-software.jpg"),
   },

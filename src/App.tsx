@@ -19,6 +19,7 @@ import { CPAOutsourcedSupportPost } from "@/pages/posts/CPAOutsourcedSupportPost
 import { AIReplaceAccountantsPost } from "@/pages/posts/AIReplaceAccountantsPost"
 import { CPAAiTaxSeasonPost } from "@/pages/posts/CPAAiTaxSeasonPost"
 import { AIAgentsVsSoftwarePost } from "@/pages/posts/AIAgentsVsSoftwarePost"
+import { AIBankReconciliationPost } from "@/pages/posts/AIBankReconciliationPost"
 
 function App() {
   return (
@@ -73,6 +74,10 @@ function App() {
             <Route
               path="/blog/ai-agents-vs-accounting-software-whats-the-difference"
               element={<AIAgentsVsSoftwarePost />}
+            />
+            <Route
+              path="/blog/ai-powered-bank-reconciliation-how-it-works"
+              element={<AIBankReconciliationPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

@@ -23,6 +23,7 @@ const routes = [
   "blog/will-ai-replace-accountants-in-2026",
   "blog/how-cpa-firms-can-use-ai-during-tax-season",
   "blog/ai-agents-vs-accounting-software-whats-the-difference",
+  "blog/ai-powered-bank-reconciliation-how-it-works",
   "about",
   "faq",
   "privacy-policy",
