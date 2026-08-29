@@ -12,7 +12,6 @@ const navLinks = [
   { label: "Countries", href: "/#countries" },
   {
     label: "Products",
-    href: "/products",
     dropdown: [
       { label: "AI Invoice", href: "https://ai-invoice.accountingpanda.com/", external: true },
     ],
@@ -49,16 +48,16 @@ export function Navbar() {
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-                <Link
-                  to={link.href}
+                <button
+                  type="button"
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-brand-green transition-colors",
-                    (link.href === pathname || productsOpen) && "text-brand-green"
+                    productsOpen && "text-brand-green"
                   )}
                 >
                   {link.label}
                   <ChevronDown className="h-3.5 w-3.5" />
-                </Link>
+                </button>
                 {productsOpen && (
                   <div className="absolute left-0 top-full pt-3">
                     <div className="w-48 rounded-xl border border-gray-100 bg-white p-2 shadow-lg">
@@ -114,30 +113,19 @@ export function Navbar() {
             {navLinks.map((link) =>
               link.dropdown ? (
                 <div key={link.label}>
-                  <div className="flex items-center justify-between rounded-lg pr-1">
-                    <Link
-                      to={link.href}
-                      onClick={() => setOpen(false)}
+                  <button
+                    type="button"
+                    onClick={() => setMobileProductsOpen((o) => !o)}
+                    className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-brand-green-light hover:text-brand-green"
+                  >
+                    {link.label}
+                    <ChevronDown
                       className={cn(
-                        "flex-1 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-brand-green-light hover:text-brand-green",
-                        link.href === pathname && "text-brand-green"
+                        "h-4 w-4 transition-transform",
+                        mobileProductsOpen && "rotate-180"
                       )}
-                    >
-                      {link.label}
-                    </Link>
-                    <button
-                      onClick={() => setMobileProductsOpen((o) => !o)}
-                      aria-label="Toggle Products submenu"
-                      className="p-2 text-gray-500"
-                    >
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 transition-transform",
-                          mobileProductsOpen && "rotate-180"
-                        )}
-                      />
-                    </button>
-                  </div>
+                    />
+                  </button>
                   {mobileProductsOpen && (
                     <div className="ml-3 flex flex-col gap-1 border-l border-gray-100 pl-3">
                       {link.dropdown.map((item) => (
