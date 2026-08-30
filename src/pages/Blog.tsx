@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "How AI Can Detect Accounting Errors and Fraud",
+    excerpt:
+      "AI can analyze 100% of transactions to catch duplicate payments, unusual journal entries, expense anomalies, and vendor fraud — while accountants still make the final call.",
+    category: "AI & Automation",
+    date: "Aug 30, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "how-ai-can-detect-accounting-errors-and-fraud",
+    image: asset("assets/blog-ai-fraud-detection.jpg"),
+  },
+  {
     title: "AI-Powered Bank Reconciliation: How It Works and Why It Matters",
     excerpt:
       "Bank reconciliation has always been essential — and time-consuming. Here's how AI-powered matching, confidence scores and exception detection are changing that.",
     category: "AI & Automation",
     date: "Aug 29, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "ai-powered-bank-reconciliation-how-it-works",
     image: asset("assets/blog-ai-bank-reconciliation.jpg"),
   },

@@ -20,6 +20,7 @@ import { AIReplaceAccountantsPost } from "@/pages/posts/AIReplaceAccountantsPost
 import { CPAAiTaxSeasonPost } from "@/pages/posts/CPAAiTaxSeasonPost"
 import { AIAgentsVsSoftwarePost } from "@/pages/posts/AIAgentsVsSoftwarePost"
 import { AIBankReconciliationPost } from "@/pages/posts/AIBankReconciliationPost"
+import { AIFraudDetectionPost } from "@/pages/posts/AIFraudDetectionPost"
 
 function App() {
   return (
@@ -78,6 +79,10 @@ function App() {
             <Route
               path="/blog/ai-powered-bank-reconciliation-how-it-works"
               element={<AIBankReconciliationPost />}
+            />
+            <Route
+              path="/blog/how-ai-can-detect-accounting-errors-and-fraud"
+              element={<AIFraudDetectionPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
