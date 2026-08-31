@@ -21,6 +21,7 @@ import { CPAAiTaxSeasonPost } from "@/pages/posts/CPAAiTaxSeasonPost"
 import { AIAgentsVsSoftwarePost } from "@/pages/posts/AIAgentsVsSoftwarePost"
 import { AIBankReconciliationPost } from "@/pages/posts/AIBankReconciliationPost"
 import { AIFraudDetectionPost } from "@/pages/posts/AIFraudDetectionPost"
+import { YearEndChecklistPost } from "@/pages/posts/YearEndChecklistPost"
 
 function App() {
   return (
@@ -83,6 +84,10 @@ function App() {
             <Route
               path="/blog/how-ai-can-detect-accounting-errors-and-fraud"
               element={<AIFraudDetectionPost />}
+            />
+            <Route
+              path="/blog/year-end-accounting-checklist-for-small-businesses"
+              element={<YearEndChecklistPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

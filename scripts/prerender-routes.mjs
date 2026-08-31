@@ -25,6 +25,7 @@ const routes = [
   "blog/ai-agents-vs-accounting-software-whats-the-difference",
   "blog/ai-powered-bank-reconciliation-how-it-works",
   "blog/how-ai-can-detect-accounting-errors-and-fraud",
+  "blog/year-end-accounting-checklist-for-small-businesses",
   "about",
   "faq",
   "privacy-policy",

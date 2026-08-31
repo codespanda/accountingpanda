@@ -81,6 +81,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/blog/year-end-accounting-checklist-for-small-businesses/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/faq/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

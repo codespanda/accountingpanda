@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "Year-End Accounting Checklist for Small Businesses",
+    excerpt:
+      "A practical, step-by-step checklist to reconcile accounts, verify payroll and fixed assets, prepare for tax filing, and close the books with confidence.",
+    category: "Bookkeeping",
+    date: "Aug 31, 2026",
+    readTime: "8 min read",
+    featured: true,
+    slug: "year-end-accounting-checklist-for-small-businesses",
+    image: asset("assets/blog-year-end-checklist.jpg"),
+  },
+  {
     title: "How AI Can Detect Accounting Errors and Fraud",
     excerpt:
       "AI can analyze 100% of transactions to catch duplicate payments, unusual journal entries, expense anomalies, and vendor fraud — while accountants still make the final call.",
     category: "AI & Automation",
     date: "Aug 30, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "how-ai-can-detect-accounting-errors-and-fraud",
     image: asset("assets/blog-ai-fraud-detection.jpg"),
   },
