@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "AI vs. Traditional Bookkeeping: Which Is Better for Small Businesses?",
+    excerpt:
+      "A practical comparison of AI-powered and traditional bookkeeping — where each wins, what a hybrid approach looks like, and what to consider before choosing.",
+    category: "AI & Automation",
+    date: "Sep 1, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses",
+    image: asset("assets/blog-ai-vs-traditional-bookkeeping.jpg"),
+  },
+  {
     title: "Year-End Accounting Checklist for Small Businesses",
     excerpt:
       "A practical, step-by-step checklist to reconcile accounts, verify payroll and fixed assets, prepare for tax filing, and close the books with confidence.",
     category: "Bookkeeping",
     date: "Aug 31, 2026",
     readTime: "8 min read",
-    featured: true,
     slug: "year-end-accounting-checklist-for-small-businesses",
     image: asset("assets/blog-year-end-checklist.jpg"),
   },

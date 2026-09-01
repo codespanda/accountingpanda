@@ -22,6 +22,7 @@ import { AIAgentsVsSoftwarePost } from "@/pages/posts/AIAgentsVsSoftwarePost"
 import { AIBankReconciliationPost } from "@/pages/posts/AIBankReconciliationPost"
 import { AIFraudDetectionPost } from "@/pages/posts/AIFraudDetectionPost"
 import { YearEndChecklistPost } from "@/pages/posts/YearEndChecklistPost"
+import { AIVsTraditionalBookkeepingPost } from "@/pages/posts/AIVsTraditionalBookkeepingPost"
 
 function App() {
   return (
@@ -88,6 +89,10 @@ function App() {
             <Route
               path="/blog/year-end-accounting-checklist-for-small-businesses"
               element={<YearEndChecklistPost />}
+            />
+            <Route
+              path="/blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses"
+              element={<AIVsTraditionalBookkeepingPost />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

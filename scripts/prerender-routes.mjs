@@ -26,6 +26,7 @@ const routes = [
   "blog/ai-powered-bank-reconciliation-how-it-works",
   "blog/how-ai-can-detect-accounting-errors-and-fraud",
   "blog/year-end-accounting-checklist-for-small-businesses",
+  "blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses",
   "about",
   "faq",
   "privacy-policy",

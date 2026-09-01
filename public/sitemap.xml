@@ -86,6 +86,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/faq/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
