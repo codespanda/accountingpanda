@@ -183,6 +183,11 @@ export function BookkeepingBasicsModuleLesson() {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
   }
 
+  const handleMoveBack = () => {
+    setPageIndex((p) => Math.max(p - 1, 0))
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+  }
+
   const handleComplete = () => {
     completeModule(COURSE_SLUG, moduleIndex)
     navigate(`${COURSE_PATH}/progress`)
@@ -276,7 +281,16 @@ export function BookkeepingBasicsModuleLesson() {
             </div>
           )}
 
-          <div className="mt-10 flex justify-end border-t border-gray-100 pt-6">
+          <div className="mt-10 flex items-center justify-between border-t border-gray-100 pt-6">
+            {lessons && safePageIndex > 0 ? (
+              <Button variant="outline" onClick={handleMoveBack}>
+                <ArrowLeft className="h-4 w-4" />
+                Back
+              </Button>
+            ) : (
+              <span />
+            )}
+
             {lessons && !isLastPage ? (
               <Button onClick={handleMoveNext}>
                 Move Next
