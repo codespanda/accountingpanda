@@ -1,5 +1,19 @@
 import { asset } from "@/lib/asset"
 
+export type EntryRow = {
+  account: string
+  side: "debit" | "credit"
+  amount: string
+  color: "blue" | "green" | "amber"
+}
+
+export type DoubleEntryTransaction = {
+  label: string
+  assets: EntryRow[]
+  liabEquity: EntryRow[]
+  equation: { assets: string; liabilities: string; equity: string }
+}
+
 export type LessonBlock =
   | { type: "h3"; text: string }
   | { type: "p"; text: string }
@@ -10,6 +24,7 @@ export type LessonBlock =
   | { type: "steps"; items: { title: string; body?: string; list?: string[] }[] }
   | { type: "term"; term: string; definition: string; example?: string; examples?: string[] }
   | { type: "quiz"; question: string; options: string[]; answer: string }
+  | { type: "double-entry-demo"; transactions: DoubleEntryTransaction[] }
 
 export type LessonPage = { title: string; blocks: LessonBlock[] }
 
@@ -406,18 +421,48 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
           items: ["Equipment increases by ₹50,000", "Cash decreases by ₹50,000"],
         },
         { type: "p", text: "The transaction therefore has two sides." },
-        { type: "h3", text: "Worked Example: Owner Invests Cash in the Business" },
+        { type: "h3", text: "Worked Example: See How a Transaction Balances" },
         {
-          type: "table",
-          headers: ["Account", "Debit", "Credit"],
-          rows: [
-            ["Cash (Asset)", "$10,000", "—"],
-            ["Owner's Capital (Equity)", "—", "$10,000"],
-          ],
+          type: "p",
+          text: "Use the selector below to see how different transactions affect Assets, Liabilities, and Owner's equity — the two sides always balance.",
         },
         {
-          type: "note",
-          text: "Assets +$10,000 = Liabilities $0 + Owner's Equity +$10,000",
+          type: "double-entry-demo",
+          transactions: [
+            {
+              label: "Owner invests cash in the business",
+              assets: [{ account: "Cash", side: "debit", amount: "$10,000", color: "blue" }],
+              liabEquity: [
+                { account: "Owner's Capital", side: "credit", amount: "$10,000", color: "green" },
+              ],
+              equation: { assets: "+$10,000", liabilities: "$0", equity: "+$10,000" },
+            },
+            {
+              label: "Buy equipment with cash",
+              assets: [
+                { account: "Equipment", side: "debit", amount: "$4,000", color: "blue" },
+                { account: "Cash", side: "credit", amount: "$4,000", color: "blue" },
+              ],
+              liabEquity: [],
+              equation: { assets: "$0", liabilities: "$0", equity: "$0" },
+            },
+            {
+              label: "Buy supplies on account",
+              assets: [{ account: "Supplies", side: "debit", amount: "$1,200", color: "blue" }],
+              liabEquity: [
+                { account: "Accounts Payable", side: "credit", amount: "$1,200", color: "amber" },
+              ],
+              equation: { assets: "+$1,200", liabilities: "+$1,200", equity: "$0" },
+            },
+            {
+              label: "Pay accounts payable with cash",
+              assets: [{ account: "Cash", side: "credit", amount: "$1,200", color: "blue" }],
+              liabEquity: [
+                { account: "Accounts Payable", side: "debit", amount: "$1,200", color: "amber" },
+              ],
+              equation: { assets: "-$1,200", liabilities: "-$1,200", equity: "$0" },
+            },
+          ],
         },
         {
           type: "p",

@@ -6,6 +6,7 @@ import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
 import { bookkeepingBasicsLessons, type LessonBlock } from "@/pages/courses/bookkeepingBasicsLessons"
+import { DoubleEntryDemo } from "@/pages/courses/DoubleEntryDemo"
 import { getCompletedModules, completeModule, isModuleUnlocked } from "@/lib/courseProgress"
 
 const COURSE_SLUG = "bookkeeping-basics-for-beginners"
@@ -139,6 +140,8 @@ function LessonBlockView({ block }: { block: LessonBlock }) {
           </p>
         </div>
       )
+    case "double-entry-demo":
+      return <DoubleEntryDemo transactions={block.transactions} />
   }
 }
 
