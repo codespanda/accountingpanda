@@ -49,6 +49,19 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
           type: "p",
           text: "In this module, you will build a strong understanding of the purpose, principles, processes, and terminology of bookkeeping before moving into journal entries, ledgers, reconciliations, and financial statements in later modules.",
         },
+        { type: "h3", text: "By the End of This Module" },
+        { type: "p", text: "Check these off as you go — you'll be able to:" },
+        {
+          type: "list",
+          items: [
+            "Explain what bookkeeping is and why it matters",
+            "Describe the difference between bookkeeping and accounting",
+            "Walk through the bookkeeping cycle",
+            "Explain what a bookkeeper does day-to-day",
+            "Tell single-entry and double-entry bookkeeping apart",
+            "Spot common beginner bookkeeping mistakes",
+          ],
+        },
       ],
     },
     {
@@ -261,6 +274,18 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
         { type: "h3", text: "Easy Way to Remember" },
         { type: "note", text: "Bookkeeping = Recording the financial story" },
         { type: "note", text: "Accounting = Understanding and interpreting the financial story" },
+        { type: "h3", text: "Quick Check" },
+        {
+          type: "quiz",
+          question: "Which of these is a bookkeeping task rather than an accounting task?",
+          options: [
+            "A. Analyzing profitability trends",
+            "B. Reconciling a bank statement",
+            "C. Preparing a financial forecast",
+            "D. Advising on tax strategy",
+          ],
+          answer: "B",
+        },
       ],
     },
     {
