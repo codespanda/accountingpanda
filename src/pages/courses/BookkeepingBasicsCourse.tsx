@@ -570,18 +570,10 @@ function ModuleAccordion({
 }
 
 export function BookkeepingBasicsCourse() {
-  const [openModules, setOpenModules] = useState<Set<number>>(new Set([0]))
+  const [openModule, setOpenModule] = useState<number | null>(0)
 
   const toggleModule = (index: number) => {
-    setOpenModules((prev) => {
-      const next = new Set(prev)
-      if (next.has(index)) {
-        next.delete(index)
-      } else {
-        next.add(index)
-      }
-      return next
-    })
+    setOpenModule((prev) => (prev === index ? null : index))
   }
 
   return (
@@ -654,11 +646,19 @@ export function BookkeepingBasicsCourse() {
 
           {/* Curriculum */}
           <div className="mt-10">
-            <div className="flex items-center gap-2">
-              <Layers className="h-5 w-5 text-brand-green" />
-              <h2 className="text-xl font-bold text-brand-heading sm:text-2xl">
-                Course Curriculum
-              </h2>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <Layers className="h-5 w-5 text-brand-green" />
+                <h2 className="text-xl font-bold text-brand-heading sm:text-2xl">
+                  Course Curriculum
+                </h2>
+              </div>
+              <Button asChild>
+                <Link to="/learning">
+                  Start Course
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
             <p className="mt-2 text-sm text-gray-500">
               {modules.length} modules covering everything from bookkeeping
@@ -671,7 +671,7 @@ export function BookkeepingBasicsCourse() {
                   key={module.title}
                   module={module}
                   index={index}
-                  open={openModules.has(index)}
+                  open={openModule === index}
                   onToggle={() => toggleModule(index)}
                 />
               ))}
