@@ -29,6 +29,7 @@ const routes = [
   "blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses",
   "learning",
   "learning/bookkeeping",
+  "learning/bookkeeping/bookkeeping-basics-for-beginners",
   "about",
   "faq",
   "privacy-policy",

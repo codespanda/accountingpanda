@@ -101,6 +101,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/bookkeeping-basics-for-beginners/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/faq/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -18,6 +18,7 @@ const courses = [
     duration: "2.5 Hours",
     level: "Beginner",
     badge: "Bestseller",
+    href: "/learning/bookkeeping/bookkeeping-basics-for-beginners",
   },
   {
     title: "Double-Entry Bookkeeping Explained",
@@ -127,39 +128,50 @@ export function BookkeepingCourses() {
       <section className="bg-white py-14 lg:py-16">
         <div className="container-px mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map(({ title, body, duration, level, badge }) => (
-              <div
-                key={title}
-                className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
-              >
-                <div className="relative flex h-32 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
-                  {badge && (
-                    <span className="absolute right-3 top-3 rounded-full bg-brand-green px-3 py-1 text-[11px] font-semibold text-white">
-                      {badge}
-                    </span>
-                  )}
-                  <BookOpenCheck className="h-10 w-10 text-brand-green/70" />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-base font-semibold leading-snug text-brand-heading">
-                    {title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
-                    {body}
-                  </p>
-                  <div className="mt-4 flex items-center gap-4 text-xs text-gray-400">
-                    <span className="flex items-center gap-1.5">
-                      <Clock3 className="h-3.5 w-3.5" />
-                      {duration}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <BarChart3 className="h-3.5 w-3.5" />
-                      {level}
-                    </span>
+            {courses.map(({ title, body, duration, level, badge, href }) => {
+              const cardClass =
+                "group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
+              const content = (
+                <>
+                  <div className="relative flex h-32 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
+                    {badge && (
+                      <span className="absolute right-3 top-3 rounded-full bg-brand-green px-3 py-1 text-[11px] font-semibold text-white">
+                        {badge}
+                      </span>
+                    )}
+                    <BookOpenCheck className="h-10 w-10 text-brand-green/70" />
                   </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="text-base font-semibold leading-snug text-brand-heading group-hover:text-brand-green">
+                      {title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+                      {body}
+                    </p>
+                    <div className="mt-4 flex items-center gap-4 text-xs text-gray-400">
+                      <span className="flex items-center gap-1.5">
+                        <Clock3 className="h-3.5 w-3.5" />
+                        {duration}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <BarChart3 className="h-3.5 w-3.5" />
+                        {level}
+                      </span>
+                    </div>
+                  </div>
+                </>
+              )
+
+              return href ? (
+                <Link key={title} to={href} className={cardClass}>
+                  {content}
+                </Link>
+              ) : (
+                <div key={title} className={cardClass}>
+                  {content}
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
