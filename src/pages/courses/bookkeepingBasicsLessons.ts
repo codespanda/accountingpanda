@@ -168,6 +168,11 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
           ],
         },
         { type: "note", text: "Accurate bookkeeping answers these questions." },
+        {
+          type: "image",
+          src: asset("assets/lesson-importance-of-bookkeeping.jpg"),
+          alt: "Infographic: transaction types (sales, expenses, payments) and a bookkeeping dashboard recording and organizing transactions",
+        },
         { type: "h3", text: "Major Benefits of Bookkeeping" },
         {
           type: "steps",

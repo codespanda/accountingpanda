@@ -258,11 +258,13 @@ function LessonBlockView({
       )
     case "image":
       return (
-        <img
-          src={block.src}
-          alt={block.alt}
-          className="mt-4 w-full rounded-2xl border border-gray-100 shadow-sm"
-        />
+        <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <img
+            src={block.src}
+            alt={block.alt}
+            className="w-full transition-transform duration-300 ease-out hover:scale-105"
+          />
+        </div>
       )
     case "table":
       return (
