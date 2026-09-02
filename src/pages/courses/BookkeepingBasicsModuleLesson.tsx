@@ -46,6 +46,99 @@ function LessonBlockView({ block }: { block: LessonBlock }) {
           className="mt-4 w-full rounded-2xl border border-gray-100 shadow-sm"
         />
       )
+    case "table":
+      return (
+        <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[420px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-brand-bg text-left">
+                  {block.headers.map((header) => (
+                    <th key={header} className="px-4 py-3 font-semibold text-brand-heading">
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, i) => (
+                  <tr key={i} className="border-t border-gray-100">
+                    {row.map((cell, j) => (
+                      <td key={j} className="px-4 py-3 text-gray-600">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )
+    case "steps":
+      return (
+        <ol className="mt-4 space-y-3">
+          {block.items.map((item, i) => (
+            <li key={item.title} className="flex items-start gap-3">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green-light text-xs font-bold text-brand-green">
+                {i + 1}
+              </span>
+              <div className="pt-0.5">
+                <p className="text-sm font-semibold text-brand-heading">{item.title}</p>
+                {item.body && (
+                  <p className="mt-0.5 text-sm leading-relaxed text-gray-600">{item.body}</p>
+                )}
+                {item.list && (
+                  <ul className="mt-1.5 space-y-1">
+                    {item.list.map((li) => (
+                      <li key={li} className="flex items-start gap-2 text-sm text-gray-600">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green/60" />
+                        {li}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )
+    case "term":
+      return (
+        <div className="mt-3 border-b border-gray-100 pb-3">
+          <p className="text-sm font-semibold text-brand-heading">{block.term}</p>
+          <p className="mt-0.5 text-sm leading-relaxed text-gray-600">{block.definition}</p>
+          {block.example && (
+            <p className="mt-1 text-xs text-gray-500">Example: {block.example}</p>
+          )}
+          {block.examples && (
+            <ul className="mt-1.5 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
+              {block.examples.map((ex) => (
+                <li key={ex} className="flex items-start gap-2 text-xs text-gray-500">
+                  <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-brand-green/60" />
+                  {ex}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )
+    case "quiz":
+      return (
+        <div className="mt-4 rounded-2xl border border-gray-100 p-5">
+          <p className="text-sm font-semibold text-brand-heading">{block.question}</p>
+          <ul className="mt-2 space-y-1">
+            {block.options.map((option) => (
+              <li key={option} className="text-sm text-gray-600">
+                {option}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 inline-block rounded-full bg-brand-green-light px-3 py-1 text-xs font-semibold text-brand-green">
+            Answer: {block.answer}
+          </p>
+        </div>
+      )
   }
 }
 
@@ -78,11 +171,12 @@ export function BookkeepingBasicsModuleLesson() {
   if (!courseModule || completed === null) return null
 
   const totalPages = lessons ? lessons.length : 1
-  const isLastPage = pageIndex === totalPages - 1
-  const currentLesson = lessons?.[pageIndex]
+  const safePageIndex = Math.min(pageIndex, totalPages - 1)
+  const isLastPage = safePageIndex === totalPages - 1
+  const currentLesson = lessons?.[safePageIndex]
 
   const handleMoveNext = () => {
-    setPageIndex((p) => p + 1)
+    setPageIndex((p) => Math.min(p + 1, totalPages - 1))
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
   }
 
@@ -126,7 +220,7 @@ export function BookkeepingBasicsModuleLesson() {
                   key={lesson.title}
                   className={cn(
                     "h-1.5 flex-1 rounded-full transition-colors",
-                    i <= pageIndex ? "bg-white" : "bg-white/25"
+                    i <= safePageIndex ? "bg-white" : "bg-white/25"
                   )}
                 />
               ))}

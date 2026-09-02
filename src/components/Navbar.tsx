@@ -17,7 +17,6 @@ const navLinks = [
   },
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
-  { label: "Learning", href: "/learning" },
 ]
 
 export function Navbar() {
