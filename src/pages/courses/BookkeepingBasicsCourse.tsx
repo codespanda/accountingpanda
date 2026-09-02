@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils"
 type Section = { heading?: string; intro?: string; numbered?: boolean; items: string[] }
 type Module = { title: string; sections: Section[] }
 
-const modules: Module[] = [
+export const bookkeepingBasicsModules: Module[] = [
   {
     title: "Module 1 — Introduction to Bookkeeping",
     sections: [
@@ -618,7 +618,7 @@ export function BookkeepingBasicsCourse() {
             </span>
             <span className="flex items-center gap-1.5">
               <Layers className="h-4 w-4" />
-              {modules.length} Modules
+              {bookkeepingBasicsModules.length} Modules
             </span>
           </div>
         </div>
@@ -654,19 +654,19 @@ export function BookkeepingBasicsCourse() {
                 </h2>
               </div>
               <Button asChild>
-                <Link to="/learning">
+                <Link to="/learning/bookkeeping/bookkeeping-basics-for-beginners/progress">
                   Start Course
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
             <p className="mt-2 text-sm text-gray-500">
-              {modules.length} modules covering everything from bookkeeping
+              {bookkeepingBasicsModules.length} modules covering everything from bookkeeping
               basics to AI-enabled tools and a final capstone project.
             </p>
 
             <div className="mt-6 space-y-3">
-              {modules.map((module, index) => (
+              {bookkeepingBasicsModules.map((module, index) => (
                 <ModuleAccordion
                   key={module.title}
                   module={module}

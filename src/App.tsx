@@ -7,6 +7,7 @@ import { Blog } from "@/pages/Blog"
 import { Learning } from "@/pages/Learning"
 import { BookkeepingCourses } from "@/pages/BookkeepingCourses"
 import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse"
+import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { About } from "@/pages/About"
 import { FAQ } from "@/pages/FAQ"
 import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
@@ -102,6 +103,10 @@ function App() {
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners"
               element={<BookkeepingBasicsCourse />}
+            />
+            <Route
+              path="/learning/bookkeeping/bookkeeping-basics-for-beginners/progress"
+              element={<BookkeepingBasicsProgress />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

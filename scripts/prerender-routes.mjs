@@ -30,6 +30,7 @@ const routes = [
   "learning",
   "learning/bookkeeping",
   "learning/bookkeeping/bookkeeping-basics-for-beginners",
+  "learning/bookkeeping/bookkeeping-basics-for-beginners/progress",
   "about",
   "faq",
   "privacy-policy",
