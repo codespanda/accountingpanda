@@ -9,7 +9,6 @@ import { CONSULTATION_MAILTO } from "@/lib/contact"
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
-  { label: "Countries", href: "/#countries" },
   {
     label: "Products",
     dropdown: [
@@ -18,6 +17,7 @@ const navLinks = [
   },
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
+  { label: "Learning", href: "/learning" },
 ]
 
 export function Navbar() {

@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer"
 import { ScrollToHash } from "@/components/ScrollToHash"
 import { Home } from "@/pages/Home"
 import { Blog } from "@/pages/Blog"
+import { Learning } from "@/pages/Learning"
 import { About } from "@/pages/About"
 import { FAQ } from "@/pages/FAQ"
 import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
@@ -94,6 +95,7 @@ function App() {
               path="/blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses"
               element={<AIVsTraditionalBookkeepingPost />}
             />
+            <Route path="/learning" element={<Learning />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
