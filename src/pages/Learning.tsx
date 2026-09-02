@@ -17,7 +17,6 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
-import { CONSULTATION_MAILTO } from "@/lib/contact"
 import { asset } from "@/lib/asset"
 
 const trustBadges = [
@@ -295,10 +294,10 @@ export function Learning() {
               className="bg-white text-brand-green-dark hover:bg-white/90"
               asChild
             >
-              <a href={CONSULTATION_MAILTO}>
+              <Link to="/learning">
                 Start Learning Free
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </Button>
             <span className="text-xs text-white/70">No credit card required</span>
           </div>
