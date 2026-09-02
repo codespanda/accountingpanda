@@ -7,6 +7,10 @@ function storageKey(courseSlug: string) {
   return `course-progress:${courseSlug}`
 }
 
+function pageStorageKey(courseSlug: string) {
+  return `course-progress:${courseSlug}:pages`
+}
+
 function safeParse(json: string | null): number[] {
   if (!json) return []
   try {
@@ -47,4 +51,32 @@ export function isModuleUnlocked(index: number, completed: number[]): boolean {
 
 export function isModuleCompleted(index: number, completed: number[]): boolean {
   return completed.includes(index)
+}
+
+/** Remembers which lesson page a learner was last on within a module,
+ * so reloading (or coming back later) resumes there instead of
+ * bouncing back to page 1. */
+export function getLessonPage(courseSlug: string, moduleIndex: number): number {
+  if (typeof window === "undefined") return 0
+  try {
+    const raw = window.localStorage.getItem(pageStorageKey(courseSlug))
+    if (!raw) return 0
+    const parsed = JSON.parse(raw)
+    const value = parsed?.[moduleIndex]
+    return typeof value === "number" && value >= 0 ? value : 0
+  } catch {
+    return 0
+  }
+}
+
+export function setLessonPage(courseSlug: string, moduleIndex: number, pageIndex: number): void {
+  if (typeof window === "undefined") return
+  try {
+    const raw = window.localStorage.getItem(pageStorageKey(courseSlug))
+    const parsed = raw ? JSON.parse(raw) : {}
+    parsed[moduleIndex] = pageIndex
+    window.localStorage.setItem(pageStorageKey(courseSlug), JSON.stringify(parsed))
+  } catch {
+    // Ignore storage errors — position just won't persist for this viewer.
+  }
 }

@@ -8,7 +8,13 @@ import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCours
 import { bookkeepingBasicsLessons, type LessonBlock } from "@/pages/courses/bookkeepingBasicsLessons"
 import { DoubleEntryDemo } from "@/pages/courses/DoubleEntryDemo"
 import { KnowledgeCheckQuiz } from "@/pages/courses/KnowledgeCheckQuiz"
-import { getCompletedModules, completeModule, isModuleUnlocked } from "@/lib/courseProgress"
+import {
+  getCompletedModules,
+  completeModule,
+  isModuleUnlocked,
+  getLessonPage,
+  setLessonPage,
+} from "@/lib/courseProgress"
 
 const COURSE_SLUG = "bookkeeping-basics-for-beginners"
 const COURSE_PATH = "/learning/bookkeeping/bookkeeping-basics-for-beginners"
@@ -339,10 +345,19 @@ export function BookkeepingBasicsModuleLesson() {
       return
     }
     setCompleted(current)
-    setPageIndex(0)
+    const totalPages = bookkeepingBasicsLessons[moduleIndex]?.length ?? 1
+    const resumeAt = Math.min(getLessonPage(COURSE_SLUG, moduleIndex), totalPages - 1)
+    setPageIndex(resumeAt)
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [moduleIndex])
+
+  // Remember the current page so a reload (or coming back later)
+  // resumes here instead of restarting at page 1.
+  useEffect(() => {
+    if (completed === null) return
+    setLessonPage(COURSE_SLUG, moduleIndex, pageIndex)
+  }, [moduleIndex, pageIndex, completed])
 
   if (!courseModule || completed === null) return null
 
