@@ -32,6 +32,7 @@ const categories = [
     title: "Bookkeeping",
     body: "Basics to advanced bookkeeping",
     count: "12 Courses",
+    href: "/learning/bookkeeping",
   },
   {
     icon: FileText,
@@ -185,19 +186,32 @@ export function Learning() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map(({ icon: Icon, title, body, count }) => (
-              <div
-                key={title}
-                className="rounded-2xl border border-gray-100 p-6 shadow-sm transition-shadow hover:shadow-md"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-green-light">
-                  <Icon className="h-5 w-5 text-brand-green" />
+            {categories.map(({ icon: Icon, title, body, count, href }) => {
+              const cardClass =
+                "group rounded-2xl border border-gray-100 p-6 shadow-sm transition-shadow hover:shadow-md"
+              const content = (
+                <>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-green-light">
+                    <Icon className="h-5 w-5 text-brand-green" />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-brand-heading group-hover:text-brand-green">
+                    {title}
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">{body}</p>
+                  <p className="mt-3 text-xs font-semibold text-brand-green">{count}</p>
+                </>
+              )
+
+              return href ? (
+                <Link key={title} to={href} className={cardClass}>
+                  {content}
+                </Link>
+              ) : (
+                <div key={title} className={cardClass}>
+                  {content}
                 </div>
-                <h3 className="mt-4 text-base font-semibold text-brand-heading">{title}</h3>
-                <p className="mt-1 text-sm text-gray-500">{body}</p>
-                <p className="mt-3 text-xs font-semibold text-brand-green">{count}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
