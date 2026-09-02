@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
 import { bookkeepingBasicsLessons, type LessonBlock } from "@/pages/courses/bookkeepingBasicsLessons"
 import { DoubleEntryDemo } from "@/pages/courses/DoubleEntryDemo"
+import { KnowledgeCheckQuiz } from "@/pages/courses/KnowledgeCheckQuiz"
 import { getCompletedModules, completeModule, isModuleUnlocked } from "@/lib/courseProgress"
 
 const COURSE_SLUG = "bookkeeping-basics-for-beginners"
@@ -225,7 +226,13 @@ function InteractiveQuiz({
   )
 }
 
-function LessonBlockView({ block }: { block: LessonBlock }) {
+function LessonBlockView({
+  block,
+  onKnowledgeCheckPass,
+}: {
+  block: LessonBlock
+  onKnowledgeCheckPass?: () => void
+}) {
   switch (block.type) {
     case "h3":
       return (
@@ -295,6 +302,14 @@ function LessonBlockView({ block }: { block: LessonBlock }) {
       return <InteractiveQuiz question={block.question} options={block.options} answer={block.answer} />
     case "double-entry-demo":
       return <DoubleEntryDemo transactions={block.transactions} />
+    case "knowledge-check":
+      return (
+        <KnowledgeCheckQuiz
+          questions={block.questions}
+          passPct={block.passPct}
+          onPass={() => onKnowledgeCheckPass?.()}
+        />
+      )
   }
 }
 
@@ -307,6 +322,11 @@ export function BookkeepingBasicsModuleLesson() {
 
   const [completed, setCompleted] = useState<number[] | null>(null)
   const [pageIndex, setPageIndex] = useState(0)
+  const [knowledgeCheckPassed, setKnowledgeCheckPassed] = useState(false)
+
+  useEffect(() => {
+    setKnowledgeCheckPassed(false)
+  }, [pageIndex, moduleIndex])
 
   useEffect(() => {
     if (!courseModule) {
@@ -330,6 +350,8 @@ export function BookkeepingBasicsModuleLesson() {
   const safePageIndex = Math.min(pageIndex, totalPages - 1)
   const isLastPage = safePageIndex === totalPages - 1
   const currentLesson = lessons?.[safePageIndex]
+  const knowledgeCheckBlock = currentLesson?.blocks.find((b) => b.type === "knowledge-check")
+  const isGated = !!knowledgeCheckBlock && !knowledgeCheckPassed
 
   const handleMoveNext = () => {
     setPageIndex((p) => Math.min(p + 1, totalPages - 1))
@@ -396,7 +418,11 @@ export function BookkeepingBasicsModuleLesson() {
           {lessons ? (
             <div>
               {currentLesson!.blocks.map((block, i) => (
-                <LessonBlockView key={`${safePageIndex}-${i}`} block={block} />
+                <LessonBlockView
+                  key={`${safePageIndex}-${i}`}
+                  block={block}
+                  onKnowledgeCheckPass={() => setKnowledgeCheckPassed(true)}
+                />
               ))}
             </div>
           ) : (
@@ -425,27 +451,34 @@ export function BookkeepingBasicsModuleLesson() {
             </div>
           )}
 
-          <div className="mt-10 flex items-center justify-between border-t border-gray-100 pt-6">
-            {lessons && safePageIndex > 0 ? (
-              <Button variant="outline" onClick={handleMoveBack}>
-                <ArrowLeft className="h-4 w-4" />
-                Back
-              </Button>
-            ) : (
-              <span />
+          <div className="mt-10 border-t border-gray-100 pt-6">
+            {isGated && knowledgeCheckBlock?.type === "knowledge-check" && (
+              <p className="mb-3 text-right text-xs font-medium text-gray-500">
+                Score at least {knowledgeCheckBlock.passPct}% on the Knowledge Check above to continue.
+              </p>
             )}
+            <div className="flex items-center justify-between">
+              {lessons && safePageIndex > 0 ? (
+                <Button variant="outline" onClick={handleMoveBack}>
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
+              ) : (
+                <span />
+              )}
 
-            {lessons && !isLastPage ? (
-              <Button onClick={handleMoveNext}>
-                Move Next
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            ) : (
-              <Button onClick={handleComplete}>
-                Complete Module
-                <CheckCircle2 className="h-4 w-4" />
-              </Button>
-            )}
+              {lessons && !isLastPage ? (
+                <Button onClick={handleMoveNext} disabled={isGated}>
+                  Move Next
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              ) : (
+                <Button onClick={handleComplete} disabled={isGated}>
+                  Complete Module
+                  <CheckCircle2 className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </section>

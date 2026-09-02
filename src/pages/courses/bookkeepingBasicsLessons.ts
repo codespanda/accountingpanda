@@ -25,6 +25,11 @@ export type LessonBlock =
   | { type: "term"; term: string; definition: string; example?: string; examples?: string[] }
   | { type: "quiz"; question: string; options: string[]; answer: string }
   | { type: "double-entry-demo"; transactions: DoubleEntryTransaction[] }
+  | {
+      type: "knowledge-check"
+      passPct: number
+      questions: { question: string; options: string[]; answer: string }[]
+    }
 
 export type LessonPage = { title: string; blocks: LessonBlock[] }
 
@@ -858,54 +863,59 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
       title: "Knowledge Check",
       blocks: [
         {
-          type: "quiz",
-          question: "What is bookkeeping?",
-          options: [
-            "A. Preparing business advertisements",
-            "B. Recording and organizing financial transactions",
-            "C. Hiring employees",
-            "D. Selling products",
-          ],
-          answer: "B",
+          type: "p",
+          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
         },
         {
-          type: "quiz",
-          question: "Which is an example of an asset?",
-          options: ["A. Bank loan", "B. Rent expense", "C. Office equipment", "D. Supplier payable"],
-          answer: "C",
-        },
-        {
-          type: "quiz",
-          question: "What is accounts receivable?",
-          options: [
-            "A. Money the business owes suppliers",
-            "B. Money customers owe the business",
-            "C. Employee salaries",
-            "D. Business expenses",
+          type: "knowledge-check",
+          passPct: 80,
+          questions: [
+            {
+              question: "What is bookkeeping?",
+              options: [
+                "A. Preparing business advertisements",
+                "B. Recording and organizing financial transactions",
+                "C. Hiring employees",
+                "D. Selling products",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Which is an example of an asset?",
+              options: ["A. Bank loan", "B. Rent expense", "C. Office equipment", "D. Supplier payable"],
+              answer: "C",
+            },
+            {
+              question: "What is accounts receivable?",
+              options: [
+                "A. Money the business owes suppliers",
+                "B. Money customers owe the business",
+                "C. Employee salaries",
+                "D. Business expenses",
+              ],
+              answer: "B",
+            },
+            {
+              question: "What is accounts payable?",
+              options: [
+                "A. Money customers owe the business",
+                "B. Business revenue",
+                "C. Money the business owes suppliers",
+                "D. Owner investment",
+              ],
+              answer: "C",
+            },
+            {
+              question: "Which system records the two sides of a transaction?",
+              options: [
+                "A. Single-entry bookkeeping",
+                "B. Double-entry bookkeeping",
+                "C. Cash-only bookkeeping",
+                "D. Personal bookkeeping",
+              ],
+              answer: "B",
+            },
           ],
-          answer: "B",
-        },
-        {
-          type: "quiz",
-          question: "What is accounts payable?",
-          options: [
-            "A. Money customers owe the business",
-            "B. Business revenue",
-            "C. Money the business owes suppliers",
-            "D. Owner investment",
-          ],
-          answer: "C",
-        },
-        {
-          type: "quiz",
-          question: "Which system records the two sides of a transaction?",
-          options: [
-            "A. Single-entry bookkeeping",
-            "B. Double-entry bookkeeping",
-            "C. Cash-only bookkeeping",
-            "D. Personal bookkeeping",
-          ],
-          answer: "B",
         },
       ],
     },
