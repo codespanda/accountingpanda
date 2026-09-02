@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import {
   ArrowLeft,
   ArrowRight,
   CalendarClock,
   CheckCircle2,
-  Circle,
   Lock,
+  PlayCircle,
   Layers,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,9 +14,16 @@ import { Seo } from "@/components/Seo"
 import { CONSULTATION_MAILTO } from "@/lib/contact"
 import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
+import {
+  getCompletedModules,
+  isModuleCompleted,
+  isModuleUnlocked,
+} from "@/lib/courseProgress"
+
+const COURSE_SLUG = "bookkeeping-basics-for-beginners"
+const COURSE_PATH = "/learning/bookkeeping/bookkeeping-basics-for-beginners"
 
 const totalModules = bookkeepingBasicsModules.length
-const completedModules = 0
 
 function getNextCourseStartDate() {
   const now = new Date()
@@ -32,8 +40,15 @@ function getNextCourseStartDate() {
 }
 
 export function BookkeepingBasicsProgress() {
+  const [completed, setCompleted] = useState<number[]>([])
   const startDate = getNextCourseStartDate()
-  const progressPct = Math.round((completedModules / totalModules) * 100)
+
+  useEffect(() => {
+    setCompleted(getCompletedModules(COURSE_SLUG))
+  }, [])
+
+  const completedCount = completed.length
+  const progressPct = Math.round((completedCount / totalModules) * 100)
 
   return (
     <>
@@ -48,7 +63,7 @@ export function BookkeepingBasicsProgress() {
       <section className="bg-gradient-to-br from-brand-green to-brand-green-dark py-14 lg:py-16">
         <div className="container-px mx-auto max-w-4xl">
           <Link
-            to="/learning/bookkeeping/bookkeeping-basics-for-beginners"
+            to={COURSE_PATH}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -81,7 +96,7 @@ export function BookkeepingBasicsProgress() {
                 Overall Progress
               </h2>
               <span className="text-sm font-semibold text-brand-green">
-                {completedModules} of {totalModules} modules complete
+                {completedCount} of {totalModules} modules complete
               </span>
             </div>
             <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-brand-bg">
@@ -102,53 +117,63 @@ export function BookkeepingBasicsProgress() {
               </h2>
             </div>
             <p className="mt-2 text-sm text-gray-500">
-              Module 1 unlocks on {startDate}. The rest of the course
-              unlocks progressively as you complete each module.
+              Complete a module to unlock the next one. Module 1 is
+              unlocked now — the rest of the course unlocks progressively
+              as you go.
             </p>
 
             <div className="mt-6 space-y-2.5">
               {bookkeepingBasicsModules.map((module, index) => {
-                const isFirst = index === 0
-                const status = isFirst ? "Starts " + startDate : "Locked"
-                const StatusIcon = isFirst ? Circle : Lock
+                const done = isModuleCompleted(index, completed)
+                const unlocked = isModuleUnlocked(index, completed)
 
-                return (
-                  <div
-                    key={module.title}
-                    className={cn(
-                      "flex items-center gap-4 rounded-xl border border-gray-100 p-4",
-                      isFirst && "border-brand-green/30 bg-brand-green-light/40"
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
-                        isFirst
-                          ? "bg-brand-green text-white"
-                          : "bg-gray-100 text-gray-400"
-                      )}
-                    >
-                      {index + 1}
+                const status = done ? "Completed" : unlocked ? "Unlocked" : "Locked"
+                const StatusIcon = done ? CheckCircle2 : unlocked ? PlayCircle : Lock
+
+                const rowClass = cn(
+                  "flex items-center gap-4 rounded-xl border p-4 transition-colors",
+                  done && "border-brand-green/30 bg-brand-green-light/40",
+                  !done && unlocked && "border-brand-green/30 bg-white hover:shadow-sm",
+                  !unlocked && "border-gray-100 bg-white"
+                )
+
+                const badgeClass = cn(
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
+                  (done || unlocked) ? "bg-brand-green text-white" : "bg-gray-100 text-gray-400"
+                )
+
+                const titleClass = cn(
+                  "text-sm font-medium",
+                  unlocked ? "text-brand-heading" : "text-gray-500"
+                )
+
+                const statusClass = cn(
+                  "flex shrink-0 items-center gap-1.5 text-xs font-semibold",
+                  unlocked ? "text-brand-green" : "text-gray-400"
+                )
+
+                const rowContent = (
+                  <>
+                    <span className={badgeClass}>
+                      {done ? <CheckCircle2 className="h-4 w-4" /> : index + 1}
                     </span>
                     <div className="flex-1">
-                      <p
-                        className={cn(
-                          "text-sm font-medium",
-                          isFirst ? "text-brand-heading" : "text-gray-500"
-                        )}
-                      >
-                        {module.title}
-                      </p>
+                      <p className={titleClass}>{module.title}</p>
                     </div>
-                    <span
-                      className={cn(
-                        "flex shrink-0 items-center gap-1.5 text-xs font-semibold",
-                        isFirst ? "text-brand-green" : "text-gray-400"
-                      )}
-                    >
+                    <span className={statusClass}>
                       <StatusIcon className="h-3.5 w-3.5" />
                       {status}
                     </span>
+                  </>
+                )
+
+                return unlocked ? (
+                  <Link key={module.title} to={`${COURSE_PATH}/modules/${index + 1}`} className={rowClass}>
+                    {rowContent}
+                  </Link>
+                ) : (
+                  <div key={module.title} className={rowClass}>
+                    {rowContent}
                   </div>
                 )
               })}
