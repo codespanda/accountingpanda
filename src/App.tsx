@@ -28,6 +28,7 @@ import { AIBankReconciliationPost } from "@/pages/posts/AIBankReconciliationPost
 import { AIFraudDetectionPost } from "@/pages/posts/AIFraudDetectionPost"
 import { YearEndChecklistPost } from "@/pages/posts/YearEndChecklistPost"
 import { AIVsTraditionalBookkeepingPost } from "@/pages/posts/AIVsTraditionalBookkeepingPost"
+import { CashFlowManagementPost } from "@/pages/posts/CashFlowManagementPost"
 
 function App() {
   return (
@@ -98,6 +99,10 @@ function App() {
             <Route
               path="/blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses"
               element={<AIVsTraditionalBookkeepingPost />}
+            />
+            <Route
+              path="/blog/how-to-improve-cash-flow-management-practical-strategies-for-business-growth"
+              element={<CashFlowManagementPost />}
             />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/bookkeeping" element={<BookkeepingCourses />} />

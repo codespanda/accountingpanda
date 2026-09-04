@@ -27,6 +27,7 @@ const routes = [
   "blog/how-ai-can-detect-accounting-errors-and-fraud",
   "blog/year-end-accounting-checklist-for-small-businesses",
   "blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses",
+  "blog/how-to-improve-cash-flow-management-practical-strategies-for-business-growth",
   "learning",
   "learning/bookkeeping",
   "learning/bookkeeping/bookkeeping-basics-for-beginners",

@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "How to Improve Cash Flow Management: Practical Strategies for Business Growth",
+    excerpt:
+      "Cash flow is the lifeblood of every business. 10 practical strategies — forecasting, receivables, expenses, payables, inventory, reserves, KPIs and automation.",
+    category: "Business Growth",
+    date: "Sep 4, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "how-to-improve-cash-flow-management-practical-strategies-for-business-growth",
+    image: asset("assets/blog-cash-flow-management.jpg"),
+  },
+  {
     title: "AI vs. Traditional Bookkeeping: Which Is Better for Small Businesses?",
     excerpt:
       "A practical comparison of AI-powered and traditional bookkeeping — where each wins, what a hybrid approach looks like, and what to consider before choosing.",
     category: "AI & Automation",
     date: "Sep 1, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses",
     image: asset("assets/blog-ai-vs-traditional-bookkeeping.jpg"),
   },
