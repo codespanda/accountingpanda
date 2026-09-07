@@ -28,6 +28,7 @@ const routes = [
   "blog/year-end-accounting-checklist-for-small-businesses",
   "blog/ai-vs-traditional-bookkeeping-which-is-better-for-small-businesses",
   "blog/how-to-improve-cash-flow-management-practical-strategies-for-business-growth",
+  "blog/1099-reporting-deadlines-rules-and-common-mistakes-businesses-should-know",
   "learning",
   "learning/bookkeeping",
   "learning/bookkeeping/bookkeeping-basics-for-beginners",

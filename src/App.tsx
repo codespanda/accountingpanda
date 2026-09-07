@@ -29,6 +29,7 @@ import { AIFraudDetectionPost } from "@/pages/posts/AIFraudDetectionPost"
 import { YearEndChecklistPost } from "@/pages/posts/YearEndChecklistPost"
 import { AIVsTraditionalBookkeepingPost } from "@/pages/posts/AIVsTraditionalBookkeepingPost"
 import { CashFlowManagementPost } from "@/pages/posts/CashFlowManagementPost"
+import { Form1099RulesMistakesPost } from "@/pages/posts/Form1099RulesMistakesPost"
 
 function App() {
   return (
@@ -103,6 +104,10 @@ function App() {
             <Route
               path="/blog/how-to-improve-cash-flow-management-practical-strategies-for-business-growth"
               element={<CashFlowManagementPost />}
+            />
+            <Route
+              path="/blog/1099-reporting-deadlines-rules-and-common-mistakes-businesses-should-know"
+              element={<Form1099RulesMistakesPost />}
             />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/bookkeeping" element={<BookkeepingCourses />} />

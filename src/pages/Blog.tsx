@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "1099 Reporting: Deadlines, Rules, and Common Mistakes Businesses Should Know",
+    excerpt:
+      "A practical guide to 1099-NEC and 1099-MISC rules, 2027 filing deadlines for 2026 payments, the most common mistakes, penalty amounts, and a year-end checklist.",
+    category: "Tax & Compliance",
+    date: "Sep 7, 2026",
+    readTime: "9 min read",
+    featured: true,
+    slug: "1099-reporting-deadlines-rules-and-common-mistakes-businesses-should-know",
+    image: asset("assets/blog-1099-rules-mistakes.jpg"),
+  },
+  {
     title: "How to Improve Cash Flow Management: Practical Strategies for Business Growth",
     excerpt:
       "Cash flow is the lifeblood of every business. 10 practical strategies — forecasting, receivables, expenses, payables, inventory, reserves, KPIs and automation.",
     category: "Business Growth",
     date: "Sep 4, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "how-to-improve-cash-flow-management-practical-strategies-for-business-growth",
     image: asset("assets/blog-cash-flow-management.jpg"),
   },
