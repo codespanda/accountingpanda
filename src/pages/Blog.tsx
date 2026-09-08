@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "Monthly Closing Process: A Complete Guide for Businesses with AccountingPanda AI Accountant",
+    excerpt:
+      "An 11-step month-end close process, a full closing checklist, where an AI accountant fits in, and best practices for a successful close.",
+    category: "Bookkeeping",
+    date: "Sep 8, 2026",
+    readTime: "11 min read",
+    featured: true,
+    slug: "monthly-closing-process-a-complete-guide-for-businesses",
+    image: asset("assets/blog-monthly-closing-process.jpg"),
+  },
+  {
     title: "1099 Reporting: Deadlines, Rules, and Common Mistakes Businesses Should Know",
     excerpt:
       "A practical guide to 1099-NEC and 1099-MISC rules, 2027 filing deadlines for 2026 payments, the most common mistakes, penalty amounts, and a year-end checklist.",
     category: "Tax & Compliance",
     date: "Sep 7, 2026",
     readTime: "9 min read",
-    featured: true,
     slug: "1099-reporting-deadlines-rules-and-common-mistakes-businesses-should-know",
     image: asset("assets/blog-1099-rules-mistakes.jpg"),
   },

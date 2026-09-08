@@ -30,6 +30,7 @@ import { YearEndChecklistPost } from "@/pages/posts/YearEndChecklistPost"
 import { AIVsTraditionalBookkeepingPost } from "@/pages/posts/AIVsTraditionalBookkeepingPost"
 import { CashFlowManagementPost } from "@/pages/posts/CashFlowManagementPost"
 import { Form1099RulesMistakesPost } from "@/pages/posts/Form1099RulesMistakesPost"
+import { MonthlyClosingProcessPost } from "@/pages/posts/MonthlyClosingProcessPost"
 
 function App() {
   return (
@@ -108,6 +109,10 @@ function App() {
             <Route
               path="/blog/1099-reporting-deadlines-rules-and-common-mistakes-businesses-should-know"
               element={<Form1099RulesMistakesPost />}
+            />
+            <Route
+              path="/blog/monthly-closing-process-a-complete-guide-for-businesses"
+              element={<MonthlyClosingProcessPost />}
             />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/bookkeeping" element={<BookkeepingCourses />} />
