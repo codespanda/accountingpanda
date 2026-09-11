@@ -318,6 +318,12 @@ function LessonBlockView({
           onPass={() => onKnowledgeCheckPass?.()}
         />
       )
+    case "ascii":
+      return (
+        <pre className="mt-4 overflow-x-auto rounded-xl bg-brand-navy p-4 font-mono text-xs leading-relaxed text-gray-200">
+          {block.text}
+        </pre>
+      )
   }
 }
 
