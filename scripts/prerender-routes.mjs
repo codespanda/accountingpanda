@@ -30,6 +30,7 @@ const routes = [
   "blog/how-to-improve-cash-flow-management-practical-strategies-for-business-growth",
   "blog/1099-reporting-deadlines-rules-and-common-mistakes-businesses-should-know",
   "blog/monthly-closing-process-a-complete-guide-for-businesses",
+  "blog/why-your-bank-reconciliation-doesnt-match-and-what-its-really-telling-you",
   "learning",
   "learning/bookkeeping",
   "learning/bookkeeping/bookkeeping-basics-for-beginners",

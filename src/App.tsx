@@ -31,6 +31,7 @@ import { AIVsTraditionalBookkeepingPost } from "@/pages/posts/AIVsTraditionalBoo
 import { CashFlowManagementPost } from "@/pages/posts/CashFlowManagementPost"
 import { Form1099RulesMistakesPost } from "@/pages/posts/Form1099RulesMistakesPost"
 import { MonthlyClosingProcessPost } from "@/pages/posts/MonthlyClosingProcessPost"
+import { BankReconciliationMismatchPost } from "@/pages/posts/BankReconciliationMismatchPost"
 
 function App() {
   return (
@@ -113,6 +114,10 @@ function App() {
             <Route
               path="/blog/monthly-closing-process-a-complete-guide-for-businesses"
               element={<MonthlyClosingProcessPost />}
+            />
+            <Route
+              path="/blog/why-your-bank-reconciliation-doesnt-match-and-what-its-really-telling-you"
+              element={<BankReconciliationMismatchPost />}
             />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/bookkeeping" element={<BookkeepingCourses />} />

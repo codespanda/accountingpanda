@@ -27,13 +27,23 @@ const categories = [
 
 const posts: Post[] = [
   {
+    title: "Why Your Bank Reconciliation Doesn't Match — And What It's Really Telling You",
+    excerpt:
+      "10 common reasons a bank reconciliation won't balance, a step-by-step process to investigate the difference, and why chasing zero isn't the same as getting it right.",
+    category: "Bookkeeping",
+    date: "Sep 11, 2026",
+    readTime: "10 min read",
+    featured: true,
+    slug: "why-your-bank-reconciliation-doesnt-match-and-what-its-really-telling-you",
+    image: asset("assets/blog-bank-reconciliation-doesnt-match.jpg"),
+  },
+  {
     title: "Monthly Closing Process: A Complete Guide for Businesses with AccountingPanda AI Accountant",
     excerpt:
       "An 11-step month-end close process, a full closing checklist, where an AI accountant fits in, and best practices for a successful close.",
     category: "Bookkeeping",
     date: "Sep 8, 2026",
     readTime: "11 min read",
-    featured: true,
     slug: "monthly-closing-process-a-complete-guide-for-businesses",
     image: asset("assets/blog-monthly-closing-process.jpg"),
   },
