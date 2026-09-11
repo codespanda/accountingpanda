@@ -970,6 +970,23 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
           type: "p",
           text: "Learn the foundation behind every accounting transaction and understand how each transaction changes a business's financial position.",
         },
+        { type: "h3", text: "What You'll Cover" },
+        {
+          type: "list",
+          items: [
+            "Assets",
+            "Liabilities",
+            "Owner's equity",
+            "The accounting equation",
+            "Current assets",
+            "Fixed assets",
+            "Current liabilities",
+            "Long-term liabilities",
+            "Owner's capital",
+            "Drawings",
+            "How transactions affect the accounting equation",
+          ],
+        },
       ],
     },
     {
@@ -1099,6 +1116,41 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
         { type: "p", text: "The business now owes the supplier $100,000." },
         { type: "p", text: "Therefore:" },
         { type: "note", text: "Liability = $100,000" },
+      ],
+    },
+    {
+      title: "Current Liabilities",
+      blocks: [
+        {
+          type: "p",
+          text: "Current liabilities are obligations that are generally expected to be paid within one year or the normal operating cycle.",
+        },
+        { type: "h3", text: "Examples" },
+        {
+          type: "list",
+          items: ["Accounts payable", "Short-term loans", "Salaries payable", "Taxes payable", "Rent payable", "Accrued expenses"],
+        },
+        { type: "h3", text: "Example" },
+        { type: "p", text: "A business owes a supplier $25,000 for inventory purchased on credit." },
+        { type: "note", text: "Accounts Payable = $25,000" },
+        { type: "p", text: "This is a current liability." },
+      ],
+    },
+    {
+      title: "Long-Term Liabilities",
+      blocks: [
+        {
+          type: "p",
+          text: "Long-term liabilities are obligations that are generally payable beyond one year.",
+        },
+        { type: "h3", text: "Examples" },
+        {
+          type: "list",
+          items: ["Long-term bank loans", "Mortgage loans", "Long-term notes payable", "Certain lease obligations"],
+        },
+        { type: "h3", text: "Example" },
+        { type: "p", text: "A business takes a five-year bank loan of $500,000." },
+        { type: "note", text: "The loan represents a long-term liability." },
       ],
     },
   ],
