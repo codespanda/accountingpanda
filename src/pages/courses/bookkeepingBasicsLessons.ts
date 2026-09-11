@@ -1506,5 +1506,82 @@ Total Assets   No Change`,
         },
       ],
     },
+    {
+      title: "Knowledge Check",
+      blocks: [
+        {
+          type: "p",
+          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
+        },
+        {
+          type: "knowledge-check",
+          passPct: 80,
+          questions: [
+            {
+              question: "What is the accounting equation?",
+              options: [
+                "A. Assets = Liabilities − Owner's Equity",
+                "B. Assets = Liabilities + Owner's Equity",
+                "C. Liabilities = Assets + Owner's Equity",
+                "D. Owner's Equity = Assets + Liabilities",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Which of these is a current asset?",
+              options: ["A. Land", "B. Building", "C. Accounts Receivable", "D. Machinery"],
+              answer: "C",
+            },
+            {
+              question: "Which of these is a fixed asset?",
+              options: ["A. Cash", "B. Inventory", "C. Office Equipment", "D. Accounts Receivable"],
+              answer: "C",
+            },
+            {
+              question: "What does a drawing do to owner's equity?",
+              options: [
+                "A. Increases it",
+                "B. Decreases it",
+                "C. Has no effect on it",
+                "D. Converts it to a liability",
+              ],
+              answer: "B",
+            },
+            {
+              question: "If Assets = $500,000 and Liabilities = $180,000, what is Owner's Equity?",
+              options: ["A. $680,000", "B. $320,000", "C. $180,000", "D. $500,000"],
+              answer: "B",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  2: [
+    {
+      title: "Module 3 — Understanding Accounts",
+      blocks: [
+        { type: "h3", text: "Goal" },
+        {
+          type: "p",
+          text: "Learn how financial transactions are categorized, organized, and recorded using different types of accounts.",
+        },
+        { type: "h3", text: "What You'll Cover" },
+        {
+          type: "list",
+          items: [
+            "Chart of accounts",
+            "Account types",
+            "Asset accounts",
+            "Liability accounts",
+            "Equity accounts",
+            "Revenue accounts",
+            "Expense accounts",
+            "Personal vs. business expenses",
+            "Creating a simple chart of accounts",
+          ],
+        },
+      ],
+    },
   ],
 }
