@@ -961,4 +961,37 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
       ],
     },
   ],
+  1: [
+    {
+      title: "Module 2 — Understanding the Accounting Equation",
+      blocks: [
+        { type: "h3", text: "Goal" },
+        {
+          type: "p",
+          text: "Learn the foundation behind every accounting transaction and understand how each transaction changes a business's financial position.",
+        },
+      ],
+    },
+    {
+      title: "What You'll Cover",
+      blocks: [
+        {
+          type: "list",
+          items: [
+            "Assets",
+            "Liabilities",
+            "Owner's equity",
+            "The accounting equation",
+            "Current assets",
+            "Fixed assets",
+            "Current liabilities",
+            "Long-term liabilities",
+            "Owner's capital",
+            "Drawings",
+            "How transactions affect the accounting equation",
+          ],
+        },
+      ],
+    },
+  ],
 }
