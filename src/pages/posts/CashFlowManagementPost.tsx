@@ -195,11 +195,13 @@ export function CashFlowManagementPost() {
       {/* Cover image */}
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
-          <img
-            src={asset("assets/blog-cash-flow-management.jpg")}
-            alt="Infographic: How to Improve Cash Flow Management — Practical Strategies for Business Growth"
-            className="w-full rounded-2xl border border-gray-100 shadow-sm"
-          />
+          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+            <img
+              src={asset("assets/blog-cash-flow-management.jpg")}
+              alt="Infographic: How to Improve Cash Flow Management — Practical Strategies for Business Growth"
+              className="w-full transition-transform duration-300 ease-out hover:scale-105"
+            />
+          </div>
         </div>
       </section>
 

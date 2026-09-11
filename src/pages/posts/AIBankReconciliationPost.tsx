@@ -178,11 +178,13 @@ export function AIBankReconciliationPost() {
       {/* Cover image */}
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
-          <img
-            src={asset("assets/blog-ai-bank-reconciliation.jpg")}
-            alt="Infographic: AI-Powered Bank Reconciliation — How It Works and Why It Matters"
-            className="w-full rounded-2xl border border-gray-100 shadow-sm"
-          />
+          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+            <img
+              src={asset("assets/blog-ai-bank-reconciliation.jpg")}
+              alt="Infographic: AI-Powered Bank Reconciliation — How It Works and Why It Matters"
+              className="w-full transition-transform duration-300 ease-out hover:scale-105"
+            />
+          </div>
         </div>
       </section>
 

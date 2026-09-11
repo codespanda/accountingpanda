@@ -215,11 +215,13 @@ export function CPAAiTaxSeasonPost() {
       {/* Cover image */}
       <section className="bg-white pt-10">
         <div className="container-px mx-auto max-w-4xl">
-          <img
-            src={asset("assets/blog-cpa-ai-tax-season.jpg")}
-            alt="Infographic: How CPA Firms Can Use AI During Tax Season"
-            className="w-full rounded-2xl border border-gray-100 shadow-sm"
-          />
+          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+            <img
+              src={asset("assets/blog-cpa-ai-tax-season.jpg")}
+              alt="Infographic: How CPA Firms Can Use AI During Tax Season"
+              className="w-full transition-transform duration-300 ease-out hover:scale-105"
+            />
+          </div>
         </div>
       </section>
 
