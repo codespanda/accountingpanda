@@ -1499,10 +1499,11 @@ Total Assets   No Change`,
     {
       title: "Quick Test",
       blocks: [
-        { type: "h3", text: "Question" },
         {
-          type: "p",
-          text: "A business has assets of $500,000 and liabilities of $180,000. What is the owner's equity?",
+          type: "quiz",
+          question: "A business has assets of $500,000 and liabilities of $180,000. What is the owner's equity?",
+          options: ["A. $680,000", "B. $320,000", "C. $180,000", "D. $500,000"],
+          answer: "B",
         },
       ],
     },
