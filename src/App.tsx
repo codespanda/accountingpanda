@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import { ScrollToHash } from "@/components/ScrollToHash"
+import { ConsultationProvider } from "@/components/ConsultationDialog"
 import { Home } from "@/pages/Home"
 import { Blog } from "@/pages/Blog"
 import { Learning } from "@/pages/Learning"
@@ -36,6 +37,7 @@ import { BankReconciliationMismatchPost } from "@/pages/posts/BankReconciliation
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ConsultationProvider>
       <div className="min-h-screen bg-bento-canvas">
         <ScrollToHash />
         <Navbar />
@@ -141,6 +143,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      </ConsultationProvider>
     </BrowserRouter>
   )
 }

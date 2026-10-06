@@ -18,7 +18,7 @@ import {
   AlertTriangle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { CONSULTATION_MAILTO } from "@/lib/contact"
+import { ConsultationLink } from "@/components/ConsultationDialog"
 import { Newsletter } from "@/components/Newsletter"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
@@ -439,10 +439,10 @@ export function CPAAiTaxSeasonPost() {
               </p>
             </div>
             <Button className="shrink-0" asChild>
-              <a href={CONSULTATION_MAILTO}>
+              <ConsultationLink>
                 Chat to an Expert
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </ConsultationLink>
             </Button>
           </div>
         </div>

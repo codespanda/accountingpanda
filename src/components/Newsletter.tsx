@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
-import { CONSULTATION_MAILTO } from "@/lib/contact"
+import { ConsultationLink } from "@/components/ConsultationDialog"
 import { cn } from "@/lib/utils"
 
 const CONTACT_EMAIL = "contact@accountingpanda.com"
@@ -34,15 +34,14 @@ export function Newsletter({ contained = true }: { contained?: boolean }) {
             Ready to hand off the books?
           </h2>
           <div className="flex flex-wrap gap-3">
-            <a
-              href={CONSULTATION_MAILTO}
+            <ConsultationLink
               className="flex h-14 items-center gap-2.5 rounded-full bg-white pl-6 pr-2 text-base font-bold text-bento-forest"
             >
               Get a free consultation
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-bento-forest text-white">
                 <ArrowRight className="h-[18px] w-[18px]" strokeWidth={2.25} />
               </span>
-            </a>
+            </ConsultationLink>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="flex h-14 items-center rounded-full border border-white/45 px-6 text-base font-bold text-white"

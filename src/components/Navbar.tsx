@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { ArrowUpRight, Menu, X } from "lucide-react"
 import { asset } from "@/lib/asset"
-import { CONSULTATION_MAILTO } from "@/lib/contact"
+import { ConsultationLink } from "@/components/ConsultationDialog"
 
 const navLinks = [
   { label: "Services", href: "/#services" },
@@ -49,12 +49,11 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={CONSULTATION_MAILTO}
+          <ConsultationLink
             className="hidden h-12 items-center whitespace-nowrap rounded-full bg-bento-forest px-[22px] text-[15px] font-bold text-white transition-colors hover:bg-bento-ink sm:flex"
           >
             Free consultation
-          </a>
+          </ConsultationLink>
           <button
             className="flex h-12 w-12 items-center justify-center rounded-full bg-bento-canvas text-bento-ink lg:hidden"
             onClick={() => setOpen((o) => !o)}
@@ -90,13 +89,12 @@ export function Navbar() {
               AI Invoice
               <ArrowUpRight className="h-4 w-4 text-bento-forest" aria-hidden="true" />
             </a>
-            <a
-              href={CONSULTATION_MAILTO}
+            <ConsultationLink
               onClick={() => setOpen(false)}
               className="mt-2 flex h-12 items-center justify-center rounded-full bg-bento-forest text-[15px] font-bold text-white sm:hidden"
             >
               Free consultation
-            </a>
+            </ConsultationLink>
           </nav>
         )}
       </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { ArrowRight, ShieldCheck, CircleCheck, Clock } from "lucide-react"
 import { asset } from "@/lib/asset"
-import { CONSULTATION_MAILTO } from "@/lib/contact"
+import { ConsultationLink } from "@/components/ConsultationDialog"
 
 const trust = [
   { icon: ShieldCheck, label: "100% data security", tint: "bg-bento-sky", ink: "text-bento-sky-ink" },
@@ -35,12 +35,11 @@ export function Hero() {
               <ArrowRight className="h-[18px] w-[18px]" strokeWidth={2.25} />
             </span>
           </Link>
-          <a
-            href={CONSULTATION_MAILTO}
+          <ConsultationLink
             className="flex h-14 items-center rounded-full bg-bento-canvas px-6 text-base font-bold text-bento-ink"
           >
             Chat to an expert
-          </a>
+          </ConsultationLink>
         </div>
       </div>
 

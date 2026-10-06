@@ -11,7 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
-import { CONSULTATION_MAILTO } from "@/lib/contact"
+import { ConsultationLink } from "@/components/ConsultationDialog"
 import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
 import {
@@ -203,10 +203,10 @@ export function BookkeepingBasicsProgress() {
               </p>
             </div>
             <Button className="shrink-0" asChild>
-              <a href={CONSULTATION_MAILTO}>
+              <ConsultationLink>
                 Chat to an Expert
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </ConsultationLink>
             </Button>
           </div>
         </div>
