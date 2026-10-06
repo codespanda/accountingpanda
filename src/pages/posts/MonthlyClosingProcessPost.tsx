@@ -233,8 +233,8 @@ export function MonthlyClosingProcessPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -243,7 +243,7 @@ export function MonthlyClosingProcessPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BOOKKEEPING
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -270,9 +270,9 @@ export function MonthlyClosingProcessPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-monthly-closing-process.jpg")}
               alt="Infographic: Monthly Closing Process — A Complete Guide for Businesses with AccountingPanda AI Accountant"
@@ -282,8 +282,8 @@ export function MonthlyClosingProcessPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             The monthly closing process is one of the most important
             routines in business accounting.
@@ -302,7 +302,7 @@ export function MonthlyClosingProcessPost() {
           </p>
 
           {/* What is monthly closing */}
-          <div className="mt-10 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <ClipboardList className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -332,7 +332,7 @@ export function MonthlyClosingProcessPost() {
           {/* Steps */}
           <div className="mt-8 space-y-4">
             {steps.map(({ icon: Icon, title, body, points, sections, close, ai, note }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -353,7 +353,7 @@ export function MonthlyClosingProcessPost() {
                 {sections && (
                   <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {sections.map((s) => (
-                      <div key={s.heading} className="rounded-xl bg-brand-bg p-4">
+                      <div key={s.heading} className="rounded-xl bg-white p-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">
                           {s.heading}
                         </p>
@@ -391,7 +391,7 @@ export function MonthlyClosingProcessPost() {
           </div>
 
           {/* Checklist */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-center gap-2">
               <ListChecks className="h-5 w-5 text-white" />
               <h2 className="text-lg font-bold text-white">Monthly Closing Checklist</h2>
@@ -420,7 +420,7 @@ export function MonthlyClosingProcessPost() {
           </p>
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {aiFits.map((item, i) => (
-              <div key={item.title} className="rounded-2xl border border-gray-100 p-5">
+              <div key={item.title} className="rounded-[22px] bg-brand-bg p-5">
                 <div className="flex items-center gap-2">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green-light text-xs font-bold text-brand-green">
                     {i + 1}
@@ -436,7 +436,7 @@ export function MonthlyClosingProcessPost() {
           <h2 className="mt-12 text-xl font-bold text-brand-heading sm:text-2xl">
             Traditional Close vs. AI-Assisted Close
           </h2>
-          <div className="mt-5 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <div className="mt-5 overflow-hidden rounded-[22px]">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[520px] border-collapse text-sm">
                 <thead>
@@ -484,7 +484,7 @@ export function MonthlyClosingProcessPost() {
           </ol>
 
           {/* Future of close */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-6">
             <Rocket className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-lg font-bold text-brand-heading">
@@ -527,7 +527,7 @@ export function MonthlyClosingProcessPost() {
             while maintaining appropriate human oversight.
           </p>
 
-          <div className="mt-6 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-6 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-start gap-3">
               <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-white" />
               <p className="text-base font-semibold leading-relaxed text-white">
@@ -537,7 +537,7 @@ export function MonthlyClosingProcessPost() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want a faster, more organized month-end close?

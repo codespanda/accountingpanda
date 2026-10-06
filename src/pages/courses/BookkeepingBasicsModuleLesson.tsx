@@ -186,7 +186,7 @@ function InteractiveQuiz({
   const optionLetter = (option: string) => option.trim().charAt(0)
 
   return (
-    <div className="mt-4 rounded-2xl border border-gray-100 p-5">
+    <div className="mt-4 rounded-[22px] bg-brand-bg p-5">
       <p className="text-sm font-semibold text-brand-heading">{question}</p>
       <div className="mt-3 space-y-1.5">
         {options.map((option) => {
@@ -258,7 +258,7 @@ function LessonBlockView({
       )
     case "image":
       return (
-        <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+        <div className="mt-4 overflow-hidden rounded-[22px]">
           <img
             src={block.src}
             alt={block.alt}
@@ -268,7 +268,7 @@ function LessonBlockView({
       )
     case "table":
       return (
-        <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+        <div className="mt-4 overflow-hidden rounded-[22px]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[420px] border-collapse text-sm">
               <thead>
@@ -403,8 +403,8 @@ export function BookkeepingBasicsModuleLesson() {
       />
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-green to-brand-green-dark py-10 lg:py-12">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-10 lg:py-12">
           <Link
             to={`${COURSE_PATH}/progress`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
@@ -436,8 +436,8 @@ export function BookkeepingBasicsModuleLesson() {
       </section>
 
       {/* Content */}
-      <section className="bg-white py-12 lg:py-14">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-14">
           {lessons ? (
             <div>
               {currentLesson!.blocks.map((block, i) => (

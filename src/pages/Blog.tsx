@@ -275,9 +275,9 @@ export function Blog() {
         path="/blog"
       />
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-20">
-        <div className="container-px mx-auto max-w-7xl text-center">
-          <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl text-center rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-20">
+          <span className="inline-block rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             RESOURCES
           </span>
           <h1 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-tight text-brand-heading sm:text-5xl">
@@ -291,8 +291,8 @@ export function Blog() {
       </section>
 
       {/* Category filters */}
-      <section className="border-b border-gray-100 bg-white py-5">
-        <div className="container-px mx-auto flex max-w-7xl flex-wrap justify-center gap-2">
+      <section className="container-px pt-4">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-5">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -311,11 +311,11 @@ export function Blog() {
 
       {/* Featured post */}
       {featured && (active === "All" || active === featured.category) && (
-        <section className="bg-white pt-12">
-          <div className="container-px mx-auto max-w-7xl">
+        <section className="container-px pt-4">
+          <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 pt-12">
             <Link
               to={featured.slug ? `/blog/${featured.slug}` : "#"}
-              className="group grid grid-cols-1 overflow-hidden rounded-2xl border border-gray-100 shadow-sm transition-shadow hover:shadow-md lg:grid-cols-2"
+              className="group grid grid-cols-1 overflow-hidden rounded-[22px] transition-shadow lg:grid-cols-2"
             >
               {featured.image ? (
                 <img
@@ -360,8 +360,8 @@ export function Blog() {
       )}
 
       {/* Post grid */}
-      <section className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           {filtered.length === 0 ? (
             <p className="py-16 text-center text-sm text-gray-500">
               No articles in this category yet — check back soon.
@@ -372,7 +372,7 @@ export function Blog() {
                 <Link
                   key={post.title}
                   to={post.slug ? `/blog/${post.slug}` : "#"}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 shadow-sm transition-shadow hover:shadow-md"
+                  className="group flex flex-col overflow-hidden rounded-[22px] transition-shadow"
                 >
                   {post.image ? (
                     <img src={post.image} alt={post.title} className="block h-auto w-full" />

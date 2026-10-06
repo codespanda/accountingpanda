@@ -36,7 +36,7 @@ import { BankReconciliationMismatchPost } from "@/pages/posts/BankReconciliation
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-bento-canvas">
         <ScrollToHash />
         <Navbar />
         <main>

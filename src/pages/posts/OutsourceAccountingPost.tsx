@@ -77,8 +77,8 @@ export function OutsourceAccountingPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -87,7 +87,7 @@ export function OutsourceAccountingPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BUSINESS GROWTH
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -112,9 +112,9 @@ export function OutsourceAccountingPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-when-to-outsource.jpg")}
               alt="Infographic: When Should a Growing Business Outsource Its Accounting?"
@@ -124,8 +124,8 @@ export function OutsourceAccountingPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             As a business grows, accounting can quickly move beyond basic
             bookkeeping. Invoices increase, payroll becomes more
@@ -142,7 +142,7 @@ export function OutsourceAccountingPost() {
             {signs.map(({ icon: Icon, title, body }, i) => (
               <div
                 key={title}
-                className="rounded-2xl border border-gray-100 p-6 shadow-sm"
+                className="rounded-[22px] bg-brand-bg p-6"
               >
                 <div className="flex items-start gap-4">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-green-light text-sm font-bold text-brand-green">
@@ -174,7 +174,7 @@ export function OutsourceAccountingPost() {
                     )}
 
                     {title === "You Need Better Financial Visibility" && (
-                      <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl bg-brand-bg p-4">
+                      <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl bg-white p-4">
                         {visibilityFlow.map((step, idx) => (
                           <span key={step} className="flex items-center gap-2">
                             <span className="rounded-full border border-brand-green/40 bg-white px-3 py-1.5 text-xs font-semibold text-brand-heading">
@@ -201,7 +201,7 @@ export function OutsourceAccountingPost() {
             There isn't one revenue number that determines when a business
             should outsource. A better question is:
           </p>
-          <div className="mt-5 flex items-start gap-3 rounded-2xl bg-brand-navy p-6">
+          <div className="mt-5 flex items-start gap-3 rounded-[22px] bg-brand-navy p-6">
             <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <p className="text-base font-medium leading-relaxed text-white">
               "Is accounting becoming a distraction, a bottleneck, or a
@@ -224,7 +224,7 @@ export function OutsourceAccountingPost() {
             time building the company.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Is accounting becoming a bottleneck for your business?

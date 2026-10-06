@@ -129,8 +129,8 @@ export function PayrollCompliancePost() {
         datePublished="2026-07-18"
       />
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -139,7 +139,7 @@ export function PayrollCompliancePost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             PAYROLL
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -166,9 +166,9 @@ export function PayrollCompliancePost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-payroll-superannuation.jpg")}
               alt="Infographic: Payroll & Superannuation — Common Compliance Traps in Australia"
@@ -178,8 +178,8 @@ export function PayrollCompliancePost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Payroll is more than simply calculating salaries and paying
             employees. For Australian businesses, payroll involves a range
@@ -198,7 +198,7 @@ export function PayrollCompliancePost() {
             {traps.map(({ icon: Icon, title, intro, points, close }, i) => (
               <div
                 key={title}
-                className="rounded-2xl border border-gray-100 p-6 shadow-sm"
+                className="rounded-[22px] bg-brand-bg p-6"
               >
                 <div className="flex items-start gap-4">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-green-light text-sm font-bold text-brand-green">
@@ -250,7 +250,7 @@ export function PayrollCompliancePost() {
             {routine.map(({ time, desc }) => (
               <div
                 key={time}
-                className="rounded-2xl border border-gray-100 bg-brand-bg p-5"
+                className="rounded-[22px] bg-brand-bg p-5"
               >
                 <p className="text-sm font-semibold text-brand-green">
                   {time}
@@ -279,7 +279,7 @@ export function PayrollCompliancePost() {
           </p>
 
           {/* Tip banner */}
-          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-brand-green-light p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-5">
             <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <p className="text-sm leading-relaxed text-brand-heading">
               At AccountingPanda, we help businesses simplify their numbers,
@@ -287,7 +287,7 @@ export function PayrollCompliancePost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-navy p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-navy p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-white">
                 Need help with payroll, bookkeeping or Australian accounting

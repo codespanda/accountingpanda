@@ -177,8 +177,8 @@ export function FinancialPlanningPost() {
         datePublished="2026-08-16"
       />
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -187,7 +187,7 @@ export function FinancialPlanningPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BUSINESS GROWTH
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.6rem]">
@@ -212,9 +212,9 @@ export function FinancialPlanningPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-financial-planning.jpg")}
               alt="Infographic: How Financial Planning Helps Your Business Grow Faster"
@@ -225,8 +225,8 @@ export function FinancialPlanningPost() {
       </section>
 
       {/* Article body */}
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Every successful business, whether a startup or an established
             company, relies on one critical factor for sustainable growth:
@@ -276,7 +276,7 @@ export function FinancialPlanningPost() {
             {ways.map(({ icon: Icon, title, intro, points, close }, i) => (
               <div
                 key={title}
-                className="rounded-2xl border border-gray-100 p-6 shadow-sm sm:p-7"
+                className="rounded-[22px] bg-brand-bg p-6 sm:p-7"
               >
                 <div className="flex items-start gap-4">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-green-light text-sm font-bold text-brand-green">
@@ -349,7 +349,7 @@ export function FinancialPlanningPost() {
           </p>
 
           {/* Bottom line banner */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">
               The Bottom Line
             </p>
@@ -380,7 +380,7 @@ export function FinancialPlanningPost() {
             solutions for modern businesses.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want a financial plan built for your business?

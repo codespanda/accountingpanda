@@ -97,8 +97,8 @@ export function BookkeepingCourses() {
       />
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-green to-brand-green-dark py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/learning"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
@@ -124,12 +124,12 @@ export function BookkeepingCourses() {
       </section>
 
       {/* Course list */}
-      <section className="bg-white py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {courses.map(({ title, body, duration, level, badge, href }) => {
               const cardClass =
-                "group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
+                "group flex flex-col overflow-hidden rounded-[22px] bg-brand-bg transition-shadow"
               const content = (
                 <>
                   <div className="relative flex h-32 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
@@ -176,8 +176,8 @@ export function BookkeepingCourses() {
       </section>
 
       {/* CTA banner */}
-      <section className="bg-brand-green-dark py-12 lg:py-14">
-        <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
+      <section className="container-px pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-12 lg:py-14">
           <div>
             <h2 className="text-2xl font-bold text-white sm:text-[1.7rem]">
               Ready to Master Bookkeeping?

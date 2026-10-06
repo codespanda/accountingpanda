@@ -51,10 +51,10 @@ export function About() {
         path="/about"
       />
       {/* Hero */}
-      <section className="bg-brand-bg py-14 lg:py-20">
-        <div className="container-px mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+      <section className="container-px pt-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12 rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-20">
           <div className="text-center lg:text-left">
-            <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+            <span className="inline-block rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
               ABOUT US
             </span>
             <h1 className="mt-5 text-4xl font-bold leading-tight text-brand-heading sm:text-5xl">
@@ -79,15 +79,15 @@ export function About() {
           <img
             src={asset("assets/panda-hero.png")}
             alt="AccountingPanda mascot working on bookkeeping and financial reports"
-            className="mx-auto w-full max-w-md rounded-2xl"
+            className="mx-auto w-full max-w-md rounded-[22px]"
           />
         </div>
       </section>
 
       {/* Story */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="container-px mx-auto max-w-3xl text-center">
-          <span className="inline-block rounded-full border border-brand-green/30 bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl text-center rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-16 lg:py-20 [&>*]:mx-auto [&>*]:max-w-3xl">
+          <span className="inline-block rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             OUR STORY
           </span>
           <h2 className="mt-4 text-2xl font-bold text-brand-heading sm:text-3xl">
@@ -106,9 +106,9 @@ export function About() {
       </section>
 
       {/* Mission / Vision */}
-      <section className="bg-white pb-16 lg:pb-20">
-        <div className="container-px mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2">
-          <div className="rounded-2xl border border-gray-100 bg-brand-bg p-8">
+      <section className="container-px pt-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 pb-16 lg:pb-20">
+          <div className="rounded-[22px] bg-brand-bg p-8">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green-light">
               <Target className="h-6 w-6 text-brand-green" />
             </div>
@@ -121,7 +121,7 @@ export function About() {
               overhead of building an in-house accounting team.
             </p>
           </div>
-          <div className="rounded-2xl border border-gray-100 bg-brand-bg p-8">
+          <div className="rounded-[22px] bg-brand-bg p-8">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green-light">
               <Eye className="h-6 w-6 text-brand-green" />
             </div>
@@ -137,8 +137,8 @@ export function About() {
       </section>
 
       {/* Stats */}
-      <section className="bg-brand-navy py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-bento-ink px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <div className="grid grid-cols-3 gap-8">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
@@ -153,10 +153,10 @@ export function About() {
       </section>
 
       {/* Values */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-16 lg:py-20">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-block rounded-full border border-brand-green/30 bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+            <span className="inline-block rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
               WHAT DRIVES US
             </span>
             <h2 className="mt-4 text-2xl font-bold text-brand-heading sm:text-3xl">
@@ -168,7 +168,7 @@ export function About() {
             {values.map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="rounded-2xl border border-gray-100 p-6 text-center shadow-sm transition-shadow hover:shadow-md"
+                className="rounded-[22px] bg-brand-bg p-6 text-center transition-shadow"
               >
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green-light">
                   <Icon className="h-6 w-6 text-brand-green" />
@@ -186,8 +186,8 @@ export function About() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-green-light py-14">
-        <div className="container-px mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+      <section className="container-px pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left rounded-[28px] bg-bento-mint px-6 sm:px-10 lg:px-14 py-14">
           <div>
             <h3 className="text-xl font-bold text-brand-heading sm:text-2xl">
               Ready to work with a team that treats your books like their own?

@@ -93,8 +93,8 @@ export function Form1099RulesMistakesPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -103,7 +103,7 @@ export function Form1099RulesMistakesPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             TAX &amp; COMPLIANCE
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -131,9 +131,9 @@ export function Form1099RulesMistakesPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-1099-rules-mistakes.jpg")}
               alt="Infographic: 1099 Reporting — Deadlines, Rules, and Common Mistakes Businesses Should Know"
@@ -143,8 +143,8 @@ export function Form1099RulesMistakesPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             1099 reporting is one of those year-end accounting tasks that
             looks simple — until missing information, incorrect vendor
@@ -160,7 +160,7 @@ export function Form1099RulesMistakesPost() {
           </p>
 
           {/* What is 1099 reporting */}
-          <div className="mt-10 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <FileQuestion className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -173,14 +173,14 @@ export function Form1099RulesMistakesPost() {
               forms are:
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-brand-bg p-4">
+              <div className="rounded-xl bg-white p-4">
                 <p className="text-sm font-semibold text-brand-heading">1099-NEC</p>
                 <p className="mt-1 text-sm text-gray-600">
                   Used primarily for reportable nonemployee compensation,
                   such as payments to independent contractors.
                 </p>
               </div>
-              <div className="rounded-xl bg-brand-bg p-4">
+              <div className="rounded-xl bg-white p-4">
                 <p className="text-sm font-semibold text-brand-heading">1099-MISC</p>
                 <p className="mt-1 text-sm text-gray-600">
                   Used for certain payments such as qualifying rents,
@@ -196,7 +196,7 @@ export function Form1099RulesMistakesPost() {
           </div>
 
           {/* Deadlines */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <CalendarClock className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -225,7 +225,7 @@ export function Form1099RulesMistakesPost() {
             </p>
             <div className="mt-4 space-y-2.5">
               {workflowSteps.map((step) => (
-                <div key={step.period} className="flex items-start gap-3 rounded-xl bg-brand-bg p-3">
+                <div key={step.period} className="flex items-start gap-3 rounded-xl bg-white p-3">
                   <span className="shrink-0 rounded-full bg-brand-green-light px-2.5 py-1 text-xs font-semibold text-brand-green">
                     {step.period}
                   </span>
@@ -245,7 +245,7 @@ export function Form1099RulesMistakesPost() {
           </h2>
           <div className="mt-6 space-y-4">
             {mistakes.map((m) => (
-              <div key={m.title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={m.title} className="rounded-[22px] bg-brand-bg p-6">
                 <h3 className="text-base font-semibold text-brand-heading">{m.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-gray-600">{m.body}</p>
                 {m.fix && (
@@ -258,7 +258,7 @@ export function Form1099RulesMistakesPost() {
           </div>
 
           {/* Penalties */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-white" />
               <h2 className="text-lg font-bold text-white">
@@ -285,7 +285,7 @@ export function Form1099RulesMistakesPost() {
           </div>
 
           {/* Checklist */}
-          <div className="mt-8 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-8 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <ListChecks className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -306,7 +306,7 @@ export function Form1099RulesMistakesPost() {
           </div>
 
           {/* Process starts in bookkeeping */}
-          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-6">
             <Workflow className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-lg font-bold text-brand-heading">
@@ -343,7 +343,7 @@ export function Form1099RulesMistakesPost() {
             starts months before the filing deadline.
           </p>
 
-          <div className="mt-8 flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-bg p-5">
             <AlertTriangle className="mt-0.5 h-4.5 w-4.5 shrink-0 text-gray-400" />
             <p className="text-xs leading-relaxed text-gray-500">
               This article provides general information and is not a
@@ -353,7 +353,7 @@ export function Form1099RulesMistakesPost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want help staying ahead of 1099 deadlines?

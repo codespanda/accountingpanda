@@ -10,7 +10,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-brand-green text-white hover:bg-brand-green-dark shadow-sm",
+          "bg-bento-forest text-white hover:bg-bento-ink",
+        dark: "bg-bento-ink text-white hover:bg-bento-forest",
+        soft: "bg-bento-canvas text-bento-ink hover:bg-gray-200",
         outline:
           "border border-brand-green text-brand-green bg-transparent hover:bg-brand-green-light",
         ghost: "hover:bg-black/5",

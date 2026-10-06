@@ -64,7 +64,7 @@ const groups: Group[] = [
 
 function AccordionItem({ item, open, onToggle }: { item: QA; open: boolean; onToggle: () => void }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white shadow-sm">
+    <div className="rounded-[22px] bg-brand-bg">
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
@@ -99,9 +99,9 @@ export function FAQ() {
         path="/faq"
       />
       {/* Hero */}
-      <section className="bg-brand-bg py-14 lg:py-20">
-        <div className="container-px mx-auto max-w-3xl text-center">
-          <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl text-center rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-20 [&>*]:mx-auto [&>*]:max-w-3xl">
+          <span className="inline-block rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             FAQS
           </span>
           <h1 className="mt-5 text-4xl font-bold leading-tight text-brand-heading sm:text-5xl">
@@ -115,8 +115,8 @@ export function FAQ() {
       </section>
 
       {/* FAQ groups */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="container-px mx-auto max-w-3xl space-y-12">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl space-y-12 rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-16 lg:py-20 [&>*]:mx-auto [&>*]:max-w-3xl">
           {groups.map((group) => (
             <div key={group.title}>
               <h2 className="text-lg font-bold text-brand-heading sm:text-xl">
@@ -143,8 +143,8 @@ export function FAQ() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-green-light py-14">
-        <div className="container-px mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+      <section className="container-px pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left rounded-[28px] bg-bento-mint px-6 sm:px-10 lg:px-14 py-14">
           <div>
             <h3 className="text-xl font-bold text-brand-heading sm:text-2xl">
               Still have questions?

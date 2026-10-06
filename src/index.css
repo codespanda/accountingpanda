@@ -1,23 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Sora", "Manrope", system-ui, sans-serif;
 
-  --color-brand-green: #2e8b3d;
-  --color-brand-green-dark: #227032;
-  --color-brand-green-light: #eaf5ec;
-  --color-brand-navy: #0b1b33;
-  --color-brand-navy-light: #12253f;
-  --color-brand-bg: #f7f8fa;
+  /* Shared brand tokens, used across every page. */
+  --color-brand-green: #15803d;
+  --color-brand-green-dark: #14532d;
+  --color-brand-green-light: #d9f2e0;
+  --color-brand-navy: #111827;
+  --color-brand-navy-light: #1f2937;
+  --color-brand-bg: #eef1f4;
   --color-brand-text: #4b5563;
-  --color-brand-heading: #0b1b33;
+  --color-brand-heading: #111827;
+
+  /* Bento tile palette. */
+  --color-bento-canvas: #eef1f4;
+  --color-bento-ink: #111827;
+  --color-bento-forest: #14532d;
+  --color-bento-mint: #d9f2e0;
+  --color-bento-mint-strong: #a7e3b5;
+  --color-bento-sky: #dbeafe;
+  --color-bento-sky-ink: #1e3a8a;
+  --color-bento-butter: #fdf0c4;
+  --color-bento-butter-ink: #854d0e;
+  --color-bento-butter-text: #3f3417;
+
+  --radius-tile: 28px;
 
   --breakpoint-xs: 420px;
 }
 
 @layer base {
   * {
-    border-color: theme(--color-brand-green);
     border-color: rgb(229 231 235);
   }
   html {
@@ -35,13 +50,19 @@
     overflow-x: clip;
   }
   h1, h2, h3, h4 {
+    font-family: var(--font-display);
     color: var(--color-brand-heading);
     font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
   .container-px {
-    @apply px-4 sm:px-6 lg:px-10 xl:px-16;
+    @apply px-4 sm:px-5;
+  }
+  /* The Bento page frame: 1280px of content with a 20px gutter. */
+  .bento-container {
+    @apply mx-auto w-full max-w-[1320px] px-4 sm:px-5;
   }
 }

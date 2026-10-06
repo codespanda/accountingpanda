@@ -511,7 +511,7 @@ function ModuleAccordion({
   onToggle: () => void
 }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white shadow-sm">
+    <div className="rounded-[22px] bg-brand-bg">
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
@@ -585,8 +585,8 @@ export function BookkeepingBasicsCourse() {
       />
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-green to-brand-green-dark py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-4xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-5xl rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/learning/bookkeeping"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
@@ -624,10 +624,10 @@ export function BookkeepingBasicsCourse() {
         </div>
       </section>
 
-      <div className="bg-white py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-4xl">
+      <div className="container-px pt-4">
+        <div className="mx-auto max-w-5xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           {/* Course objective */}
-          <div className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-6 shadow-sm">
+          <div className="flex items-start gap-3 rounded-[22px] bg-brand-bg p-6">
             <Target className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-base font-bold text-brand-heading">
@@ -679,7 +679,7 @@ export function BookkeepingBasicsCourse() {
           </div>
 
           {/* Assessment */}
-          <div className="mt-12 rounded-2xl border border-gray-100 p-6 shadow-sm sm:p-8">
+          <div className="mt-12 rounded-[22px] bg-brand-bg p-6 sm:p-8">
             <div className="flex items-center gap-2">
               <ClipboardCheck className="h-5 w-5 text-brand-green" />
               <h2 className="text-xl font-bold text-brand-heading sm:text-2xl">
@@ -715,14 +715,14 @@ export function BookkeepingBasicsCourse() {
                 </ul>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="rounded-xl bg-brand-bg p-4">
+                <div className="rounded-xl bg-white p-4">
                   <h3 className="text-sm font-semibold text-brand-heading">Final Exam</h3>
                   <p className="mt-1 text-sm text-gray-600">50 questions</p>
                   <p className="text-sm text-gray-600">
                     Suggested passing score: 70%
                   </p>
                 </div>
-                <div className="rounded-xl bg-brand-bg p-4">
+                <div className="rounded-xl bg-white p-4">
                   <h3 className="text-sm font-semibold text-brand-heading">
                     Final Practical Test
                   </h3>
@@ -738,8 +738,8 @@ export function BookkeepingBasicsCourse() {
       </div>
 
       {/* CTA banner */}
-      <section className="bg-brand-green-dark py-12 lg:py-14">
-        <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
+      <section className="container-px pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-12 lg:py-14">
           <div>
             <h2 className="text-2xl font-bold text-white sm:text-[1.7rem]">
               Ready to Start Learning Bookkeeping?

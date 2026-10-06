@@ -54,7 +54,7 @@ export function KnowledgeCheckQuiz({
       {questions.map((q, qIndex) => {
         const selected = answers[qIndex]
         return (
-          <div key={q.question} className="rounded-2xl border border-gray-100 p-5">
+          <div key={q.question} className="rounded-[22px] bg-brand-bg p-5">
             <p className="text-sm font-semibold text-brand-heading">
               {qIndex + 1}. {q.question}
             </p>
@@ -111,7 +111,7 @@ export function KnowledgeCheckQuiz({
       {showResult &&
         createPortal(
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-            <div className="w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl">
+            <div className="w-full max-w-sm rounded-[22px] bg-white p-6 text-center shadow-xl">
               <div
                 className={cn(
                   "mx-auto flex h-14 w-14 items-center justify-center rounded-full",

@@ -139,8 +139,8 @@ export function AIBankReconciliationPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -149,7 +149,7 @@ export function AIBankReconciliationPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             AI &amp; AUTOMATION
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -176,9 +176,9 @@ export function AIBankReconciliationPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-ai-bank-reconciliation.jpg")}
               alt="Infographic: AI-Powered Bank Reconciliation — How It Works and Why It Matters"
@@ -188,8 +188,8 @@ export function AIBankReconciliationPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Bank reconciliation has always been an essential accounting
             process — but it has also been one of the most time-consuming.
@@ -240,7 +240,7 @@ export function AIBankReconciliationPost() {
 
           <div className="mt-6 space-y-4">
             {workflowSteps.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -251,13 +251,13 @@ export function AIBankReconciliationPost() {
           </div>
 
           {/* Confidence scores visual */}
-          <div className="mt-6 rounded-2xl bg-brand-bg p-6">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <p className="text-sm font-semibold text-brand-heading">
               Example confidence-score thresholds
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
               {confidenceScores.map((c) => (
-                <div key={c.pct} className="rounded-xl bg-white p-4 text-center shadow-sm">
+                <div key={c.pct} className="rounded-xl bg-white p-4 text-center">
                   <p className="text-2xl font-bold" style={{ color: c.color }}>
                     {c.pct}
                   </p>
@@ -281,7 +281,7 @@ export function AIBankReconciliationPost() {
           <h2 className="mt-12 text-xl font-bold text-brand-heading sm:text-2xl">
             Traditional vs. AI-Powered Reconciliation
           </h2>
-          <div className="mt-5 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <div className="mt-5 overflow-hidden rounded-[22px]">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[520px] border-collapse text-sm">
                 <thead>
@@ -316,7 +316,7 @@ export function AIBankReconciliationPost() {
           </h2>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {benefits.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-5 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-5">
                 <div className="flex items-center gap-2">
                   <Icon className="h-4.5 w-4.5 text-brand-green" />
                   <h3 className="text-sm font-semibold text-brand-heading">{title}</h3>
@@ -327,7 +327,7 @@ export function AIBankReconciliationPost() {
           </div>
 
           {/* Where humans matter */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-6">
             <Users className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-lg font-bold text-brand-heading">
@@ -390,7 +390,7 @@ export function AIBankReconciliationPost() {
             into reliable information for better decisions.
           </p>
 
-          <div className="mt-6 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-6 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <p className="text-sm leading-relaxed text-gray-300">
               AI can take care of more of the repetitive work while
               accountants focus on the work that requires judgment,
@@ -422,7 +422,7 @@ export function AIBankReconciliationPost() {
             higher-value financial work.
           </p>
 
-          <div className="mt-8 flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-bg p-5">
             <AlertTriangle className="mt-0.5 h-4.5 w-4.5 shrink-0 text-gray-400" />
             <p className="text-xs leading-relaxed text-gray-500">
               This article provides general information and is not a
@@ -431,7 +431,7 @@ export function AIBankReconciliationPost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want faster, more accurate reconciliations?

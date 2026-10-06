@@ -126,8 +126,8 @@ export function AIReplaceAccountantsPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -136,7 +136,7 @@ export function AIReplaceAccountantsPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             FUTURE OF ACCOUNTING
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -161,9 +161,9 @@ export function AIReplaceAccountantsPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-ai-replace-accountants.jpg")}
               alt="Infographic: Will AI Replace Accountants in 2026?"
@@ -173,8 +173,8 @@ export function AIReplaceAccountantsPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             For years, accountants have been told that automation will
             eliminate their jobs. In 2026, that question feels more
@@ -191,7 +191,7 @@ export function AIReplaceAccountantsPost() {
           <p className="mt-4 text-base leading-relaxed text-gray-600">
             So, will AI replace accountants in 2026? The better answer is:
           </p>
-          <div className="mt-5 rounded-2xl bg-brand-navy p-6">
+          <div className="mt-5 rounded-[22px] bg-brand-navy p-6">
             <p className="text-base font-semibold leading-relaxed text-white">
               AI is replacing accounting tasks — but it is not replacing
               the accountant.
@@ -244,7 +244,7 @@ export function AIReplaceAccountantsPost() {
             significantly more value in an AI-driven business.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <p className="text-sm font-semibold text-brand-heading">
               The profession is moving from:
             </p>
@@ -274,7 +274,7 @@ export function AIReplaceAccountantsPost() {
             must often answer questions such as:
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-5 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Scale className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -302,7 +302,7 @@ export function AIReplaceAccountantsPost() {
           </p>
 
           {/* Biggest risk */}
-          <div className="mt-8 flex items-start gap-3 rounded-2xl border border-amber-100 bg-amber-50/50 p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] border border-amber-100 bg-amber-50/50 p-5">
             <TrendingDown className="mt-0.5 h-4.5 w-4.5 shrink-0 text-amber-500" />
             <div>
               <p className="text-sm font-semibold text-brand-heading">
@@ -331,7 +331,7 @@ export function AIReplaceAccountantsPost() {
             {futureSkills.map(({ icon: Icon, title, desc }, i) => (
               <div
                 key={title}
-                className="flex items-start gap-4 rounded-2xl border border-gray-100 p-5 shadow-sm"
+                className="flex items-start gap-4 rounded-[22px] bg-brand-bg p-5"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-green-light text-sm font-bold text-brand-green">
                   {i + 1}
@@ -406,7 +406,7 @@ export function AIReplaceAccountantsPost() {
           </p>
 
           {/* Real question */}
-          <div className="mt-10 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -438,7 +438,7 @@ export function AIReplaceAccountantsPost() {
           </div>
 
           {/* Final thought */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-green">
               <Lightbulb className="h-4 w-4" />
               Final Thought
@@ -461,7 +461,7 @@ export function AIReplaceAccountantsPost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want an AI-enabled accounting partner?

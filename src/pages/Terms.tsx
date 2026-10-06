@@ -43,9 +43,9 @@ export function Terms() {
         description="The terms and conditions governing AccountingPanda's outsourced accounting and bookkeeping services."
         path="/terms"
       />
-      <section className="bg-white py-14 lg:py-20">
-      <div className="container-px mx-auto max-w-3xl">
-        <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+      <section className="container-px pt-4">
+      <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-20 [&>*]:mx-auto [&>*]:max-w-3xl">
+        <span className="inline-block rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
           LEGAL
         </span>
         <h1 className="mt-5 text-3xl font-bold text-brand-heading sm:text-4xl">

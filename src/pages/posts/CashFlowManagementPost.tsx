@@ -156,8 +156,8 @@ export function CashFlowManagementPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -166,7 +166,7 @@ export function CashFlowManagementPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BUSINESS GROWTH
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -193,9 +193,9 @@ export function CashFlowManagementPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-cash-flow-management.jpg")}
               alt="Infographic: How to Improve Cash Flow Management — Practical Strategies for Business Growth"
@@ -205,8 +205,8 @@ export function CashFlowManagementPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Cash flow is the lifeblood of every business.
           </p>
@@ -229,7 +229,7 @@ export function CashFlowManagementPost() {
           {/* Strategies 1-5 */}
           <div className="mt-8 space-y-4">
             {strategies.map(({ icon: Icon, title, body, points, close }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -249,7 +249,7 @@ export function CashFlowManagementPost() {
           </div>
 
           {/* Separate profit from cash flow */}
-          <div className="mt-6 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-6 rounded-[22px] bg-brand-green-light p-6">
             <div className="flex items-center gap-2">
               <Scale className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -280,7 +280,7 @@ export function CashFlowManagementPost() {
           </div>
 
           {/* Build a cash reserve */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -306,7 +306,7 @@ export function CashFlowManagementPost() {
           </div>
 
           {/* Monitor KPIs */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Gauge className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -332,7 +332,7 @@ export function CashFlowManagementPost() {
           </div>
 
           {/* Automation */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Cpu className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -360,7 +360,7 @@ export function CashFlowManagementPost() {
           </div>
 
           {/* Every decision */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Compass className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -403,7 +403,7 @@ export function CashFlowManagementPost() {
             the bank. It's to create a system where the business can:
           </p>
 
-          <div className="mt-4 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-4 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <p className="text-center text-sm font-semibold leading-relaxed text-white sm:text-base">
               Collect faster → Spend smarter → Forecast better → Maintain
               reserves → Invest confidently
@@ -420,7 +420,7 @@ export function CashFlowManagementPost() {
             business advantage.
           </p>
 
-          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-brand-green-light p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-5">
             <MessageCircleQuestion className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <p className="text-sm leading-relaxed text-brand-heading">
               What is one cash flow challenge your business faces
@@ -429,7 +429,7 @@ export function CashFlowManagementPost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-bg p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-bg p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want help managing your cash flow?

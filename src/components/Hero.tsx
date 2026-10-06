@@ -1,67 +1,75 @@
 import { Link } from "react-router-dom"
-import { ArrowRight, MessageCircle, ShieldCheck, BadgeCheck, Clock } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowRight, ShieldCheck, CircleCheck, Clock } from "lucide-react"
 import { asset } from "@/lib/asset"
 import { CONSULTATION_MAILTO } from "@/lib/contact"
 
 const trust = [
-  { icon: ShieldCheck, label: "100% Data Security" },
-  { icon: BadgeCheck, label: "CPA Approved Processes" },
-  { icon: Clock, label: "On-Time Delivery" },
+  { icon: ShieldCheck, label: "100% data security", tint: "bg-bento-sky", ink: "text-bento-sky-ink" },
+  { icon: CircleCheck, label: "CPA-approved processes", tint: "bg-bento-butter", ink: "text-bento-butter-ink" },
+  { icon: Clock, label: "On-time delivery", tint: "bg-bento-mint", ink: "text-bento-forest" },
 ]
 
 export function Hero() {
   return (
-    <section className="bg-brand-bg">
-      <div className="container-px mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 py-14 lg:grid-cols-2 lg:gap-8 lg:py-20">
-        <div className="text-center lg:text-left">
-          <span className="inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
-            OUTSOURCED ACCOUNTING EXPERTS
+    <section id="top" className="grid grid-cols-12 gap-4">
+      <div className="col-span-12 flex min-h-[520px] flex-col justify-between gap-10 rounded-[28px] bg-white p-[clamp(28px,4vw,56px)] lg:col-span-7 lg:row-span-2">
+        <div className="flex flex-col gap-6">
+          <span className="self-start rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold leading-4 text-bento-forest">
+            Outsourced accounting experts
           </span>
-          <h1 className="mt-5 text-4xl font-bold leading-tight text-brand-heading sm:text-5xl lg:text-[3.2rem] lg:leading-[1.1]">
-            Your Trusted Outsourcing Partner For{" "}
-            <span className="text-brand-heading">USA</span> &{" "}
-            <span className="text-brand-green">Australia</span>
+          <h1 className="m-0 text-[clamp(40px,5vw,72px)] font-bold leading-[1.02] tracking-[-0.04em] text-balance">
+            Your trusted outsourcing partner for USA &amp; Australia
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base text-gray-500 lg:mx-0">
-            We deliver accurate, compliant and scalable outsourced accounting
-            &amp; bookkeeping services for businesses and CPA firms across the
-            USA and Australia.
+          <p className="max-w-[520px] text-lg leading-[1.6] text-gray-600">
+            Accurate, compliant and scalable accounting and bookkeeping for
+            businesses and CPA firms.
           </p>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
-            {trust.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2 text-sm text-gray-600">
-                <Icon className="h-4 w-4 text-brand-green" />
-                {label}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-            <Button size="lg" asChild>
-              <Link to="/#services">
-                Our Services
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href={CONSULTATION_MAILTO}>
-                Chat to an Expert
-                <MessageCircle className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
         </div>
-
-        <div>
-          <img
-            src={asset("assets/panda-hero.png")}
-            alt="AccountingPanda mascot working on bookkeeping and financial reports"
-            className="mx-auto w-full max-w-[560px]"
-          />
+        <div className="flex flex-wrap gap-3">
+          <Link
+            to="/#services"
+            className="flex h-14 items-center gap-2.5 rounded-full bg-bento-ink pl-6 pr-2 text-base font-bold text-white"
+          >
+            Explore services
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-bento-mint-strong text-bento-forest">
+              <ArrowRight className="h-[18px] w-[18px]" strokeWidth={2.25} />
+            </span>
+          </Link>
+          <a
+            href={CONSULTATION_MAILTO}
+            className="flex h-14 items-center rounded-full bg-bento-canvas px-6 text-base font-bold text-bento-ink"
+          >
+            Chat to an expert
+          </a>
         </div>
       </div>
+
+      <div className="col-span-12 flex min-h-[520px] flex-col justify-between gap-4 overflow-hidden rounded-[28px] bg-bento-mint px-6 pt-8 lg:col-span-5 lg:row-span-2">
+        <div className="flex items-center justify-between gap-3">
+          <span className="font-display text-[15px] font-semibold text-bento-forest">Meet the panda</span>
+          <span className="flex items-center gap-2 rounded-full bg-white px-3 py-2">
+            <img src={asset("assets/Intuit_QuickBooks_logo.svg.webp")} alt="Intuit QuickBooks" className="h-3.5 w-auto" />
+            <img src={asset("assets/xero_logo_icon.webp")} alt="Xero" className="h-4 w-auto" />
+          </span>
+        </div>
+        <img
+          src={asset("assets/panda-hero.png")}
+          alt="AccountingPanda mascot working on bookkeeping and financial reports"
+          className="-mx-[4%] block h-auto w-[108%] max-w-none"
+        />
+      </div>
+
+      {trust.map(({ icon: Icon, label, tint, ink }) => (
+        <div
+          key={label}
+          className="col-span-12 flex items-center gap-4 rounded-[28px] bg-white p-6 sm:col-span-6 lg:col-span-4"
+        >
+          <span className={`flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl ${tint}`}>
+            <Icon className={`h-6 w-6 ${ink}`} strokeWidth={2} />
+          </span>
+          <span className="font-display text-lg font-semibold leading-6 text-bento-ink">{label}</span>
+        </div>
+      ))}
     </section>
   )
 }

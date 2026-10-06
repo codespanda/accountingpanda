@@ -107,8 +107,8 @@ export function Learning() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-green to-brand-green-dark">
-        <div className="container-px relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 py-16 lg:grid-cols-2 lg:gap-8 lg:py-24">
+      <section className="container-px pt-4">
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 py-16 lg:grid-cols-2 lg:gap-8 lg:py-24 rounded-[28px] bg-bento-forest relative overflow-hidden px-6 sm:px-10 lg:px-14">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-white">
               <GraduationCap className="h-3.5 w-3.5" />
@@ -162,8 +162,8 @@ export function Learning() {
       </section>
 
       {/* Browse by category */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-16 lg:py-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wide text-brand-green">
@@ -187,7 +187,7 @@ export function Learning() {
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map(({ icon: Icon, title, body, count, href }) => {
               const cardClass =
-                "group rounded-2xl border border-gray-100 p-6 shadow-sm transition-shadow hover:shadow-md"
+                "group rounded-[22px] bg-brand-bg p-6"
               const content = (
                 <>
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-green-light">
@@ -216,8 +216,8 @@ export function Learning() {
       </section>
 
       {/* Featured courses */}
-      <section className="bg-brand-bg py-16 lg:py-20">
-        <div className="container-px mx-auto max-w-7xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-16 lg:py-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wide text-brand-green">
@@ -242,7 +242,7 @@ export function Learning() {
             {courses.map(({ icon: Icon, title, body, duration, level, badge }) => (
               <div
                 key={title}
-                className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
+                className="flex flex-col overflow-hidden rounded-[22px] bg-brand-bg transition-shadow"
               >
                 <div className="relative flex h-36 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
                   {badge && (
@@ -277,8 +277,8 @@ export function Learning() {
       </section>
 
       {/* CTA banner */}
-      <section className="bg-brand-green-dark py-12 lg:py-14">
-        <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
+      <section className="container-px pt-4">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-12 lg:py-14">
           <div>
             <h2 className="text-2xl font-bold text-white sm:text-[1.7rem]">
               Ready to Accelerate Your Accounting Skills?

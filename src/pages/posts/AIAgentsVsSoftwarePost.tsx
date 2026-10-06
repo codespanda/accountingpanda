@@ -84,8 +84,8 @@ export function AIAgentsVsSoftwarePost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -94,7 +94,7 @@ export function AIAgentsVsSoftwarePost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             AI &amp; AUTOMATION
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -119,9 +119,9 @@ export function AIAgentsVsSoftwarePost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-ai-agents-vs-accounting-software.jpg")}
               alt="Infographic: AI Agents vs. Accounting Software — What's the Difference?"
@@ -131,8 +131,8 @@ export function AIAgentsVsSoftwarePost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             For decades, accounting software has helped businesses record
             transactions, manage invoices, reconcile accounts, prepare
@@ -154,7 +154,7 @@ export function AIAgentsVsSoftwarePost() {
           </p>
 
           {/* Accounting software */}
-          <div className="mt-10 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Database className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -189,7 +189,7 @@ export function AIAgentsVsSoftwarePost() {
           </div>
 
           {/* AI agents */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -202,7 +202,7 @@ export function AIAgentsVsSoftwarePost() {
               goal and work through multiple steps to achieve it. For
               example:
             </p>
-            <div className="mt-3 flex items-start gap-2.5 rounded-xl bg-brand-bg p-4">
+            <div className="mt-3 flex items-start gap-2.5 rounded-xl bg-white p-4">
               <Quote className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
               <p className="text-sm italic text-gray-600">
                 "Prepare the month-end reconciliation and identify
@@ -231,7 +231,7 @@ export function AIAgentsVsSoftwarePost() {
           </div>
 
           {/* One sentence */}
-          <div className="mt-8 rounded-2xl bg-brand-navy p-6">
+          <div className="mt-8 rounded-[22px] bg-brand-navy p-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">
               The Difference in One Sentence
             </p>
@@ -245,7 +245,7 @@ export function AIAgentsVsSoftwarePost() {
           <h2 className="mt-10 text-xl font-bold text-brand-heading sm:text-2xl">
             A Simple Comparison
           </h2>
-          <div className="mt-5 overflow-x-auto rounded-2xl border border-gray-100">
+          <div className="mt-5 overflow-x-auto rounded-[22px] border border-gray-100">
             <table className="w-full min-w-[500px] text-sm">
               <thead>
                 <tr className="bg-brand-navy text-left text-white">
@@ -275,7 +275,7 @@ export function AIAgentsVsSoftwarePost() {
           </p>
 
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <h3 className="text-sm font-semibold text-brand-heading">
                 Traditional accounting software
               </h3>
@@ -291,7 +291,7 @@ export function AIAgentsVsSoftwarePost() {
                 someone may still need to move the workflow forward.
               </p>
             </div>
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <h3 className="text-sm font-semibold text-brand-heading">
                 AI agent
               </h3>
@@ -319,7 +319,7 @@ export function AIAgentsVsSoftwarePost() {
           </p>
 
           {/* Not alternatives */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] bg-brand-bg p-6">
             <Layers className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-lg font-bold text-brand-heading">
@@ -363,7 +363,7 @@ export function AIAgentsVsSoftwarePost() {
           </p>
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <h3 className="text-sm font-semibold text-brand-heading">
                 Less time on
               </h3>
@@ -376,7 +376,7 @@ export function AIAgentsVsSoftwarePost() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <h3 className="text-sm font-semibold text-brand-heading">
                 More time for
               </h3>
@@ -425,7 +425,7 @@ export function AIAgentsVsSoftwarePost() {
           </p>
 
           {/* Real question */}
-          <div className="mt-10 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <HelpCircle className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -456,7 +456,7 @@ export function AIAgentsVsSoftwarePost() {
           </div>
 
           {/* Final thought */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-green">
               <Lightbulb className="h-4 w-4" />
               Final Thought
@@ -478,7 +478,7 @@ export function AIAgentsVsSoftwarePost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Ready to redesign your accounting workflows?

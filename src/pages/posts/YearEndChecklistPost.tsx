@@ -154,8 +154,8 @@ export function YearEndChecklistPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -164,7 +164,7 @@ export function YearEndChecklistPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BOOKKEEPING
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -191,9 +191,9 @@ export function YearEndChecklistPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-year-end-checklist.jpg")}
               alt="Infographic: Year-End Accounting Checklist for Small Businesses"
@@ -203,8 +203,8 @@ export function YearEndChecklistPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Year-end accounting doesn't have to be stressful.
           </p>
@@ -222,7 +222,7 @@ export function YearEndChecklistPost() {
           {/* Checklist sections */}
           <div className="mt-8 space-y-4">
             {checklistSections.map(({ icon: Icon, title, body, points }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -244,7 +244,7 @@ export function YearEndChecklistPost() {
           </div>
 
           {/* Financial statements */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -268,7 +268,7 @@ export function YearEndChecklistPost() {
           </div>
 
           {/* Year-end adjustments */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <ClipboardEdit className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -290,7 +290,7 @@ export function YearEndChecklistPost() {
           </div>
 
           {/* Loans & credit */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <CreditCard className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -305,7 +305,7 @@ export function YearEndChecklistPost() {
           </div>
 
           {/* Tax filing prep */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <FolderCheck className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -327,7 +327,7 @@ export function YearEndChecklistPost() {
           </div>
 
           {/* Business performance */}
-          <div className="mt-6 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-6 rounded-[22px] bg-brand-green-light p-6">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -349,7 +349,7 @@ export function YearEndChecklistPost() {
           </div>
 
           {/* Backup */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-5 w-5 text-brand-green" />
               <h3 className="text-base font-semibold text-brand-heading">
@@ -372,7 +372,7 @@ export function YearEndChecklistPost() {
             picture of profitability, cash flow, liabilities, and
             financial performance.
           </p>
-          <div className="mt-4 flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-5">
+          <div className="mt-4 flex items-start gap-3 rounded-[22px] bg-brand-bg p-5">
             <Sparkles className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-green" />
             <p className="text-sm leading-relaxed text-gray-600">
               With modern accounting software and AI-powered tools,
@@ -387,7 +387,7 @@ export function YearEndChecklistPost() {
           </p>
 
           {/* Final checklist */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-center gap-2">
               <ListChecks className="h-5 w-5 text-white" />
               <h2 className="text-lg font-bold text-white">Final Checklist</h2>
@@ -407,7 +407,7 @@ export function YearEndChecklistPost() {
             decisions tomorrow.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want help closing your books this year?

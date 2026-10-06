@@ -119,8 +119,8 @@ export function QuickBooksVsXeroPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -129,7 +129,7 @@ export function QuickBooksVsXeroPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BOOKKEEPING
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -155,9 +155,9 @@ export function QuickBooksVsXeroPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-quickbooks-vs-xero.jpg")}
               alt="Infographic: QuickBooks vs Xero — Which Fits Your Business in 2026?"
@@ -167,8 +167,8 @@ export function QuickBooksVsXeroPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Choosing the right accounting software can have a major impact
             on how efficiently your business manages invoicing, expenses,
@@ -191,7 +191,7 @@ export function QuickBooksVsXeroPost() {
           <h2 className="mt-10 text-xl font-bold text-brand-heading sm:text-2xl">
             QuickBooks vs Xero at a Glance
           </h2>
-          <div className="mt-5 overflow-x-auto rounded-2xl border border-gray-100">
+          <div className="mt-5 overflow-x-auto rounded-[22px] border border-gray-100">
             <table className="w-full min-w-[500px] text-sm">
               <thead>
                 <tr className="bg-brand-navy text-left text-white">
@@ -249,7 +249,7 @@ export function QuickBooksVsXeroPost() {
             provide business insights.
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-5 rounded-[22px] bg-brand-bg p-6">
             <p className="text-sm font-semibold text-brand-heading">
               QuickBooks may be a good fit if:
             </p>
@@ -293,7 +293,7 @@ export function QuickBooksVsXeroPost() {
             visibility.
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-5 rounded-[22px] bg-brand-bg p-6">
             <p className="text-sm font-semibold text-brand-heading">
               Xero may be a good fit if:
             </p>
@@ -324,7 +324,7 @@ export function QuickBooksVsXeroPost() {
             different plans designed for businesses at different stages.
           </p>
 
-          <div className="mt-5 rounded-2xl bg-brand-navy p-6">
+          <div className="mt-5 rounded-[22px] bg-brand-navy p-6">
             <p className="flex items-start gap-2.5 text-sm text-gray-400">
               <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
               Instead of asking "Which software is cheaper?" —
@@ -409,7 +409,7 @@ export function QuickBooksVsXeroPost() {
           </p>
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <h3 className="text-base font-semibold text-brand-heading">
                 Choose QuickBooks Online if:
               </h3>
@@ -428,7 +428,7 @@ export function QuickBooksVsXeroPost() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <h3 className="text-base font-semibold text-brand-heading">
                 Choose Xero if:
               </h3>
@@ -464,7 +464,7 @@ export function QuickBooksVsXeroPost() {
             business, the decision should go deeper:
           </p>
 
-          <div className="mt-5 rounded-2xl border border-gray-100 bg-brand-bg p-6">
+          <div className="mt-5 rounded-[22px] bg-brand-bg p-6">
             <ul className="space-y-2">
               {chooseQuestions.map((q) => (
                 <li key={q} className="flex items-start gap-2.5 text-sm font-medium text-brand-heading">
@@ -480,7 +480,7 @@ export function QuickBooksVsXeroPost() {
             business countless hours of manual work tomorrow.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Need help with QuickBooks or Xero?

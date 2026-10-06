@@ -108,8 +108,8 @@ export function AIVsTraditionalBookkeepingPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -118,7 +118,7 @@ export function AIVsTraditionalBookkeepingPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             AI &amp; AUTOMATION
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -145,9 +145,9 @@ export function AIVsTraditionalBookkeepingPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-ai-vs-traditional-bookkeeping.jpg")}
               alt="Infographic: AI vs. Traditional Bookkeeping — Which Is Better for Small Businesses?"
@@ -157,8 +157,8 @@ export function AIVsTraditionalBookkeepingPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Bookkeeping is changing.
           </p>
@@ -177,7 +177,7 @@ export function AIVsTraditionalBookkeepingPost() {
           </p>
 
           {/* What is AI bookkeeping */}
-          <div className="mt-10 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -204,7 +204,7 @@ export function AIVsTraditionalBookkeepingPost() {
           </div>
 
           {/* What is traditional bookkeeping */}
-          <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-6 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -236,7 +236,7 @@ export function AIVsTraditionalBookkeepingPost() {
           <h2 className="mt-12 text-xl font-bold text-brand-heading sm:text-2xl">
             AI vs. Traditional Bookkeeping
           </h2>
-          <div className="mt-5 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <div className="mt-5 overflow-hidden rounded-[22px]">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] border-collapse text-sm">
                 <thead>
@@ -260,7 +260,7 @@ export function AIVsTraditionalBookkeepingPost() {
           </div>
 
           {/* Cost effectiveness */}
-          <div className="mt-8 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-8 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -285,7 +285,7 @@ export function AIVsTraditionalBookkeepingPost() {
 
           {/* Biggest advantages */}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <div className="flex items-center gap-2">
                 <BrainCircuit className="h-5 w-5 text-brand-green" />
                 <h3 className="text-base font-semibold text-brand-heading">
@@ -310,7 +310,7 @@ export function AIVsTraditionalBookkeepingPost() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <div className="flex items-center gap-2">
                 <Rocket className="h-5 w-5 text-brand-green" />
                 <h3 className="text-base font-semibold text-brand-heading">
@@ -335,7 +335,7 @@ export function AIVsTraditionalBookkeepingPost() {
           </div>
 
           {/* Human + AI */}
-          <div className="mt-10 rounded-2xl bg-brand-green-light p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-green-light p-6 sm:p-8">
             <div className="flex items-center gap-2">
               <Handshake className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -383,7 +383,7 @@ export function AIVsTraditionalBookkeepingPost() {
           </div>
 
           {/* What businesses should consider */}
-          <div className="mt-10 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <ListChecks className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -409,7 +409,7 @@ export function AIVsTraditionalBookkeepingPost() {
           </div>
 
           {/* So which is better */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <Trophy className="mt-0.5 h-5 w-5 shrink-0 text-white" />
             <div>
               <h2 className="text-lg font-bold text-white">So, Which Is Better?</h2>
@@ -450,13 +450,13 @@ export function AIVsTraditionalBookkeepingPost() {
             with human expertise.
           </p>
 
-          <div className="mt-6 rounded-2xl bg-brand-green-light p-6 text-center">
+          <div className="mt-6 rounded-[22px] bg-brand-green-light p-6 text-center">
             <p className="text-base font-bold text-brand-heading">
               AI + Human Expertise = Smarter Bookkeeping.
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-bg p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-bg p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want the best of both worlds?

@@ -136,8 +136,8 @@ export function AIFraudDetectionPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -146,7 +146,7 @@ export function AIFraudDetectionPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             AI &amp; AUTOMATION
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -172,9 +172,9 @@ export function AIFraudDetectionPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-ai-fraud-detection.jpg")}
               alt="Infographic: How AI Can Detect Accounting Errors and Fraud"
@@ -184,8 +184,8 @@ export function AIFraudDetectionPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Accounting teams process thousands of transactions every
             month — from invoices and payroll to expenses, payments, and
@@ -211,7 +211,7 @@ export function AIFraudDetectionPost() {
 
           <div className="mt-6 space-y-4">
             {errorSections.map(({ icon: Icon, title, body, points, example, close }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -219,7 +219,7 @@ export function AIFraudDetectionPost() {
                 <p className="mt-2 text-sm leading-relaxed text-gray-600">{body}</p>
 
                 {example && (
-                  <div className="mt-3 rounded-xl bg-brand-bg p-4 text-sm font-medium text-brand-heading">
+                  <div className="mt-3 rounded-xl bg-white p-4 text-sm font-medium text-brand-heading">
                     {example}
                   </div>
                 )}
@@ -255,7 +255,7 @@ export function AIFraudDetectionPost() {
 
           <div className="mt-6 space-y-4">
             {fraudSections.map(({ icon: Icon, title, body, points, payment, procureToPay, close }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -275,7 +275,7 @@ export function AIFraudDetectionPost() {
 
                 {payment && (
                   <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <div className="rounded-xl bg-brand-bg p-4 text-sm">
+                    <div className="rounded-xl bg-white p-4 text-sm">
                       <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Normal</p>
                       <p className="mt-1 text-gray-600">{payment.normal}</p>
                     </div>
@@ -287,7 +287,7 @@ export function AIFraudDetectionPost() {
                 )}
 
                 {procureToPay && (
-                  <div className="mt-3 grid grid-cols-1 gap-2 rounded-xl bg-brand-bg p-4 text-sm sm:grid-cols-3">
+                  <div className="mt-3 grid grid-cols-1 gap-2 rounded-xl bg-white p-4 text-sm sm:grid-cols-3">
                     <p className="text-gray-600">
                       <span className="font-semibold text-brand-heading">Purchase Order:</span> {procureToPay.po}
                     </p>
@@ -308,7 +308,7 @@ export function AIFraudDetectionPost() {
           </div>
 
           {/* Beyond simple rules */}
-          <div className="mt-10 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-10 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <BrainCircuit className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -318,7 +318,7 @@ export function AIFraudDetectionPost() {
             <p className="mt-3 text-sm leading-relaxed text-gray-600">
               Traditional accounting controls often use predefined rules:
             </p>
-            <div className="mt-3 rounded-xl bg-brand-bg p-4 font-mono text-sm text-gray-600">
+            <div className="mt-3 rounded-xl bg-white p-4 font-mono text-sm text-gray-600">
               IF invoice amount &gt; $10,000 → Flag
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-600">
@@ -359,7 +359,7 @@ export function AIFraudDetectionPost() {
           </div>
 
           {/* Continuous auditing */}
-          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-6">
             <RadioTower className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-lg font-bold text-brand-heading">
@@ -391,7 +391,7 @@ export function AIFraudDetectionPost() {
           </div>
 
           {/* AI doesn't replace accountants */}
-          <div className="mt-8 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-8 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -404,13 +404,13 @@ export function AIFraudDetectionPost() {
               teams.
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-brand-bg p-4 text-sm">
+              <div className="rounded-xl bg-white p-4 text-sm">
                 <p className="font-semibold text-brand-heading">AI</p>
                 <p className="mt-1 text-gray-600">
                   Finds patterns, anomalies, and high-risk transactions.
                 </p>
               </div>
-              <div className="rounded-xl bg-brand-bg p-4 text-sm">
+              <div className="rounded-xl bg-white p-4 text-sm">
                 <p className="font-semibold text-brand-heading">Accountant</p>
                 <p className="mt-1 text-gray-600">
                   Reviews evidence, understands the business context, and
@@ -452,7 +452,7 @@ export function AIFraudDetectionPost() {
             data, and strengthen financial controls.
           </p>
 
-          <div className="mt-6 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-6 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <p className="text-sm leading-relaxed text-gray-300">
               The real opportunity isn't AI replacing accountants.
             </p>
@@ -462,7 +462,7 @@ export function AIFraudDetectionPost() {
             </p>
           </div>
 
-          <div className="mt-8 flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] bg-brand-bg p-5">
             <AlertTriangle className="mt-0.5 h-4.5 w-4.5 shrink-0 text-gray-400" />
             <p className="text-xs leading-relaxed text-gray-500">
               This article provides general information and is not a
@@ -471,7 +471,7 @@ export function AIFraudDetectionPost() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want stronger financial controls?

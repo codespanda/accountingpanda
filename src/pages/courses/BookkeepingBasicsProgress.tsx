@@ -60,8 +60,8 @@ export function BookkeepingBasicsProgress() {
       />
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-green to-brand-green-dark py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-4xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-5xl rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to={COURSE_PATH}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
@@ -78,7 +78,7 @@ export function BookkeepingBasicsProgress() {
           </p>
 
           {/* Course start banner */}
-          <div className="mt-6 flex items-center gap-3 rounded-2xl bg-white/15 p-4">
+          <div className="mt-6 flex items-center gap-3 rounded-[22px] bg-white/15 p-4">
             <CalendarClock className="h-5 w-5 shrink-0 text-white" />
             <p className="text-sm font-medium text-white">
               Your course starts <span className="font-bold">{startDate}</span>
@@ -87,10 +87,10 @@ export function BookkeepingBasicsProgress() {
         </div>
       </section>
 
-      <div className="bg-white py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-4xl">
+      <div className="container-px pt-4">
+        <div className="mx-auto max-w-5xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           {/* Overall progress */}
-          <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center justify-between">
               <h2 className="text-base font-bold text-brand-heading">
                 Overall Progress
@@ -192,7 +192,7 @@ export function BookkeepingBasicsProgress() {
           </div>
 
           {/* CTA */}
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Questions before you begin?

@@ -76,7 +76,7 @@ export function DoubleEntryDemo({ transactions }: { transactions: DoubleEntryTra
   const txn = transactions[index]
 
   return (
-    <div className="mt-4 rounded-2xl bg-brand-navy p-5 sm:p-6">
+    <div className="mt-4 rounded-[22px] bg-brand-navy p-5 sm:p-6">
       {/* Transaction banner */}
       <div className="flex flex-wrap items-center gap-3 rounded-xl border border-white/15 px-4 py-3">
         <span className="text-xs font-semibold uppercase tracking-wide text-blue-300">

@@ -8,7 +8,7 @@ import { Newsletter } from "@/components/Newsletter"
 
 export function Home() {
   return (
-    <>
+    <div className="bento-container pt-4">
       <Seo
         title="Outsourced Accounting & Bookkeeping Services for USA & Australia"
         description="AccountingPanda delivers accurate, compliant and scalable outsourced accounting & bookkeeping services for businesses and CPA firms across the USA and Australia."
@@ -17,9 +17,11 @@ export function Home() {
       <Hero />
       <Services />
       <CountryServices />
-      <WhyChooseUs />
-      <Process />
-      <Newsletter />
-    </>
+      <section className="mt-12 grid grid-cols-12 gap-4">
+        <Process />
+        <WhyChooseUs />
+      </section>
+      <Newsletter contained={false} />
+    </div>
   )
 }

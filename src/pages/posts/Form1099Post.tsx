@@ -87,8 +87,8 @@ export function Form1099Post() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -97,7 +97,7 @@ export function Form1099Post() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             TAX &amp; COMPLIANCE
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -122,9 +122,9 @@ export function Form1099Post() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-1099-deadlines.jpg")}
               alt="Infographic: 1099 Reporting Deadlines You Can't Afford to Miss"
@@ -134,8 +134,8 @@ export function Form1099Post() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             Missing a 1099 deadline can create unnecessary penalties,
             corrections, and headaches for your business.
@@ -152,7 +152,7 @@ export function Form1099Post() {
           </h2>
 
           <div className="mt-6 space-y-4">
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <div className="flex items-center gap-2">
                 <FileText className="h-5 w-5 text-brand-green" />
                 <h3 className="text-base font-semibold text-brand-heading">
@@ -173,7 +173,7 @@ export function Form1099Post() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+            <div className="rounded-[22px] bg-brand-bg p-6">
               <div className="flex items-center gap-2">
                 <FileText className="h-5 w-5 text-brand-green" />
                 <h3 className="text-base font-semibold text-brand-heading">
@@ -201,7 +201,7 @@ export function Form1099Post() {
           </div>
 
           {/* Don't confuse */}
-          <div className="mt-8 flex items-start gap-3 rounded-2xl border border-amber-100 bg-amber-50/50 p-5">
+          <div className="mt-8 flex items-start gap-3 rounded-[22px] border border-amber-100 bg-amber-50/50 p-5">
             <AlertTriangle className="mt-0.5 h-4.5 w-4.5 shrink-0 text-amber-500" />
             <div>
               <p className="text-sm font-semibold text-brand-heading">
@@ -227,7 +227,7 @@ export function Form1099Post() {
           </div>
 
           {/* Filing method */}
-          <div className="mt-6 flex items-start gap-3 rounded-2xl border border-gray-100 bg-brand-bg p-5">
+          <div className="mt-6 flex items-start gap-3 rounded-[22px] bg-brand-bg p-5">
             <Monitor className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-green" />
             <div>
               <p className="text-sm font-semibold text-brand-heading">
@@ -255,7 +255,7 @@ export function Form1099Post() {
             {workflowSteps.map(({ icon: Icon, title, desc }, i) => (
               <div
                 key={title}
-                className="flex items-start gap-4 rounded-2xl border border-gray-100 p-5 shadow-sm"
+                className="flex items-start gap-4 rounded-[22px] bg-brand-bg p-5"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-green-light text-sm font-bold text-brand-green">
                   {i + 1}
@@ -276,7 +276,7 @@ export function Form1099Post() {
           </div>
 
           {/* Missed deadline */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl border border-red-100 bg-red-50/50 p-5">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] border border-red-100 bg-red-50/50 p-5">
             <AlertTriangle className="mt-0.5 h-4.5 w-4.5 shrink-0 text-red-500" />
             <div>
               <p className="text-sm font-semibold text-brand-heading">
@@ -297,7 +297,7 @@ export function Form1099Post() {
           </div>
 
           {/* Final takeaway */}
-          <div className="mt-10 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-green">
               <Lightbulb className="h-4 w-4" />
               Final Takeaway
@@ -314,7 +314,7 @@ export function Form1099Post() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Want help staying on top of 1099 filings?

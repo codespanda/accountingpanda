@@ -129,8 +129,8 @@ export function BankReconciliationMismatchPost() {
       />
 
       {/* Header */}
-      <section className="bg-brand-bg py-14 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <Link
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-green"
@@ -139,7 +139,7 @@ export function BankReconciliationMismatchPost() {
             Back to Blog
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-brand-green-light px-4 py-1.5 text-xs font-semibold tracking-wide text-brand-green">
+          <span className="mt-6 block w-fit rounded-full bg-bento-mint px-3.5 py-2 text-[13px] font-bold text-bento-forest">
             BOOKKEEPING
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-brand-heading sm:text-4xl lg:text-[2.4rem]">
@@ -166,9 +166,9 @@ export function BankReconciliationMismatchPost() {
       </section>
 
       {/* Cover image */}
-      <section className="bg-white pt-10">
-        <div className="container-px mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <section className="container-px pt-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-[22px]">
             <img
               src={asset("assets/blog-bank-reconciliation-doesnt-match.jpg")}
               alt="Infographic: Why Your Bank Reconciliation Doesn't Match — And What It's Really Telling You"
@@ -178,8 +178,8 @@ export function BankReconciliationMismatchPost() {
         </div>
       </section>
 
-      <article className="bg-white py-12 lg:py-16">
-        <div className="container-px mx-auto max-w-3xl">
+      <article className="container-px pt-4">
+        <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <p className="text-base leading-relaxed text-gray-600">
             You've reconciled the bank statement. You've checked the
             transactions. You've reviewed the opening balance. And
@@ -209,7 +209,7 @@ export function BankReconciliationMismatchPost() {
           {/* 10 reasons */}
           <div className="mt-8 space-y-4">
             {reasons.map(({ icon: Icon, title, body, close }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div key={title} className="rounded-[22px] bg-brand-bg p-6">
                 <div className="flex items-center gap-2">
                   <Icon className="h-5 w-5 text-brand-green" />
                   <h3 className="text-base font-semibold text-brand-heading">{title}</h3>
@@ -224,7 +224,7 @@ export function BankReconciliationMismatchPost() {
           <h2 className="mt-12 text-xl font-bold text-brand-heading sm:text-2xl">
             So What Should You Do When It Doesn't Match?
           </h2>
-          <div className="mt-4 flex items-start gap-3 rounded-2xl border border-amber-100 bg-amber-50/50 p-5">
+          <div className="mt-4 flex items-start gap-3 rounded-[22px] border border-amber-100 bg-amber-50/50 p-5">
             <Search className="mt-0.5 h-4.5 w-4.5 shrink-0 text-amber-500" />
             <p className="text-sm leading-relaxed text-gray-700">
               Don't immediately create a "plug" entry. Don't force the
@@ -236,7 +236,7 @@ export function BankReconciliationMismatchPost() {
 
           <div className="mt-6 space-y-3">
             {investigationSteps.map((step, i) => (
-              <div key={step.title} className="rounded-2xl border border-gray-100 p-5">
+              <div key={step.title} className="rounded-[22px] bg-brand-bg p-5">
                 <div className="flex items-start gap-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green-light text-xs font-bold text-brand-green">
                     {i + 1}
@@ -263,7 +263,7 @@ export function BankReconciliationMismatchPost() {
           </div>
 
           {/* Bigger lesson */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl bg-brand-green-light p-6">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] bg-brand-green-light p-6">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
             <div>
               <h2 className="text-lg font-bold text-brand-heading">The Bigger Lesson</h2>
@@ -294,7 +294,7 @@ export function BankReconciliationMismatchPost() {
           </div>
 
           {/* Future of reconciliation */}
-          <div className="mt-8 rounded-2xl border border-gray-100 p-6 shadow-sm">
+          <div className="mt-8 rounded-[22px] bg-brand-bg p-6">
             <div className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-brand-green" />
               <h2 className="text-lg font-bold text-brand-heading">
@@ -325,7 +325,7 @@ export function BankReconciliationMismatchPost() {
           </div>
 
           {/* Final thought */}
-          <div className="mt-10 flex items-start gap-3 rounded-2xl bg-brand-navy p-6 sm:p-8">
+          <div className="mt-10 flex items-start gap-3 rounded-[22px] bg-brand-navy p-6 sm:p-8">
             <HelpCircle className="mt-0.5 h-5 w-5 shrink-0 text-white" />
             <div>
               <h2 className="text-lg font-bold text-white">Final Thought</h2>
@@ -344,7 +344,7 @@ export function BankReconciliationMismatchPost() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-[22px] bg-brand-green-light p-6 text-center sm:flex-row sm:text-left">
             <div>
               <h3 className="text-lg font-bold text-brand-heading">
                 Reconciliation never quite balancing?
