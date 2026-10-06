@@ -5,7 +5,8 @@ const countries = [
     label: "USA",
     title: "US accounting services",
     image: "assets/usa.jpg",
-    alt: "USA city skyline",
+    alt: "Statue of Liberty with the New York skyline",
+    imagePosition: "object-[50%_15%]",
     items: [
       "Bookkeeping and write-up",
       "Financial statements (GAAP)",
@@ -20,6 +21,7 @@ const countries = [
     title: "Australian accounting services",
     image: "assets/australia.jpg",
     alt: "Sydney skyline",
+    imagePosition: "object-center",
     items: [
       "Bookkeeping and BAS",
       "Financial statements (AASB)",
@@ -37,7 +39,7 @@ export function CountryServices() {
       {countries.map((c) => (
         <div key={c.label} className="col-span-12 flex flex-col overflow-hidden rounded-[28px] bg-white lg:col-span-6">
           <div className="relative">
-            <img src={asset(c.image)} alt={c.alt} className="block h-[220px] w-full object-cover" />
+            <img src={asset(c.image)} alt={c.alt} className={`block h-[220px] w-full object-cover ${c.imagePosition}`} />
             <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-2 font-display text-sm font-bold text-bento-ink">
               {c.label}
             </span>
