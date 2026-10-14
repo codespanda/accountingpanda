@@ -818,4 +818,75 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "This course explains the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 and its rules for compliance training. It is not legal advice for individual cases. Complaints can also be lodged on the government's SHe-Box portal. Always refer to the Act, the rules and the Ministry of Women and Child Development for current requirements.",
   },
+  {
+    slug: "statutory-compliance-contract-labour",
+    title: "Statutory Compliance: Contract Labour",
+    image: "assets/course-contract-labour.jpg",
+    summary:
+      "Engage contract labour correctly under the OSH Code, 2020 — when contractors need a licence, core-activity rules, principal employer duties, wages, welfare and records.",
+    intro:
+      "Many businesses rely on contractors for security, housekeeping, construction, logistics and more. Under the OSH Code, 2020, both the contractor and the principal employer have duties. Learn when a licence is needed, what the principal employer is liable for, and how to manage contract workers compliantly.",
+    objective:
+      "By the end of this course, learners will decide when the contract labour rules apply, check a contractor's licence and compliance, apply the rules on core activities, meet the principal employer's duties for wages and welfare, and keep the records and agreements that protect the business.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Contract Labour and the OSH Code", [
+        "What contract labour is — contractors, principal employers and contract workers",
+        "From the Contract Labour (Regulation and Abolition) Act, 1970 to the OSH Code, 2020",
+        "The Code in force from 21 November 2025",
+        "Registering the establishment",
+        "Common uses — security, housekeeping, construction and logistics",
+      ]),
+      mod(2, "Contractor Licensing", [
+        "Licence needed for contractors engaging 50 or more contract workers",
+        "All-India licence valid for five years, replacing work-order licences",
+        "Contractors working across several states",
+        "Deemed licences after the prescribed period",
+        "Checking a contractor's licence before engagement",
+      ]),
+      mod(3, "Core and Non-Core Activities", [
+        "What counts as a core activity",
+        "When contract labour can be used for core activities",
+        "The designated authority that advises on core and non-core work",
+        "Avoiding sham contracts and misclassification",
+      ]),
+      mod(4, "Principal Employer Duties", [
+        "Welfare facilities for contract workers — health and safety measures",
+        "Paying unpaid wages when the contractor fails to pay",
+        "Recovering amounts paid from the contractor",
+        "Checking contractors' EPF, ESI and other statutory payments",
+        "Working hours, overtime and minimum wages for contract workers",
+      ]),
+      mod(5, "Contractor Obligations", [
+        "Paying wages on time and in full",
+        "Wage slips, registers and records",
+        "Experience certificates for contract workers on request",
+        "Statutory contributions for contract workers",
+        "Safety training and equipment",
+      ]),
+      mod(6, "Contracts, Records and Audits", [
+        "Drafting a compliant contractor agreement",
+        "Indemnities and compliance clauses",
+        "Monthly contractor compliance checks",
+        "Inspections and penalties",
+        "Contract labour compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide whether a contractor needs a licence",
+      "Classify activities as core or non-core",
+      "Build a monthly contractor compliance checklist",
+      "Review a contractor agreement for compliance clauses",
+      "Calculate the principal employer's exposure for unpaid wages",
+    ],
+    exercises: "Worked scenarios after each module for security, housekeeping and construction contracts.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Set up contract labour compliance for a company engaging two contractors — licences, agreements, monthly checks and records.",
+    note:
+      "Contract labour is governed by the Occupational Safety, Health and Working Conditions Code, 2020 and the central and state rules made under it, which can add detail or differ between states. Always confirm current requirements with the Ministry of Labour and Employment or your state labour department.",
+  },
 ]

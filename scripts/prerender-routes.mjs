@@ -64,6 +64,7 @@ const routes = [
   "learning/payroll/statutory-compliance-shops-and-establishments",
   "learning/payroll/statutory-compliance-maternity-benefit",
   "learning/payroll/statutory-compliance-posh",
+  "learning/payroll/statutory-compliance-contract-labour",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "about",
