@@ -38,7 +38,7 @@ const categories = [
     icon: FileText,
     title: "Financial Accounting",
     body: "Understand financial statements",
-    count: "1 Course",
+    count: "2 Courses",
     href: "/learning/financial-accounting",
   },
   {
@@ -105,8 +105,9 @@ const courses = [
     title: "Financial Statement Analysis",
     image: "assets/course-financial-statement-analysis.jpg",
     body: "Analyze financial statements and make informed decisions.",
-    duration: "3.0 Hours",
+    duration: "3 Hours",
     level: "Advanced",
+    href: "/learning/financial-accounting/financial-statement-analysis",
   },
 ]
 

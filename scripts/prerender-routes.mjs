@@ -70,6 +70,7 @@ const routes = [
   "learning/excel-for-accountants/excel-mastery-for-accountants",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
+  "learning/financial-accounting/financial-statement-analysis",
   "about",
   "faq",
   "privacy-policy",

@@ -85,4 +85,72 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Prepare a full set of year-end financial statements, with notes and a management summary, for a fictional business.",
   },
+  {
+    slug: "financial-statement-analysis",
+    title: "Financial Statement Analysis",
+    image: "assets/course-financial-statement-analysis.jpg",
+    summary:
+      "Analyse financial statements and make informed decisions — horizontal and vertical analysis, ratios, cash flow quality, red flags and clear reporting.",
+    intro:
+      "Financial statements tell a story about performance, health and risk — if you know how to read them. Learn the techniques analysts, lenders and managers use to assess a business and turn numbers into decisions.",
+    objective:
+      "By the end of this course, learners will analyse financial statements with trend and common-size analysis, calculate and interpret profitability, liquidity, efficiency and solvency ratios, judge the quality of earnings and cash flow, spot warning signs, and present clear conclusions to decision-makers.",
+    level: "Advanced",
+    duration: "3 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Reading Financial Statements with Purpose", [
+        "Who analyses statements — owners, lenders, investors and managers",
+        "How the income statement, balance sheet and cash flow statement connect",
+        "Accounting policies and notes that affect comparisons",
+        "Gathering and preparing data for analysis",
+      ]),
+      mod(2, "Trend and Common-Size Analysis", [
+        "Horizontal analysis — year-on-year changes",
+        "Vertical analysis — common-size statements",
+        "Comparing against competitors and industry benchmarks",
+        "Presenting trends clearly",
+      ]),
+      mod(3, "Profitability and Return Ratios", [
+        "Gross, operating and net margins",
+        "Return on assets and return on equity",
+        "Breaking down return on equity — the DuPont analysis",
+        "Earnings per share and what drives it",
+      ]),
+      mod(4, "Liquidity, Efficiency and Solvency", [
+        "Current and quick ratios",
+        "Receivable, payable and inventory days",
+        "The cash conversion cycle",
+        "Debt-to-equity and interest cover",
+        "Covenants lenders watch",
+      ]),
+      mod(5, "Cash Flow and Earnings Quality", [
+        "Operating cash flow vs. reported profit",
+        "Free cash flow",
+        "Working capital swings",
+        "Red flags — unusual accruals, revenue timing and one-off items",
+      ]),
+      mod(6, "From Analysis to Decisions", [
+        "Building an analysis workbook",
+        "Writing a short financial health report",
+        "Credit, investment and budgeting decisions",
+        "Limitations of ratio analysis",
+        "Analysis checklist",
+      ]),
+    ],
+    assignments: [
+      "Prepare common-size statements for two years",
+      "Calculate and interpret a full set of ratios",
+      "Run a DuPont analysis",
+      "Calculate the cash conversion cycle",
+      "Compare profit with operating cash flow and explain the gap",
+      "Write a one-page financial health report",
+    ],
+    exercises:
+      "Worked analysis exercises after each module, using two years of statements for a sample company.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Analyse three years of financial statements for a fictional business and present a recommendation to a lender.",
+  },
 ]
