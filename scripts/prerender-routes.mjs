@@ -56,6 +56,7 @@ const routes = [
   "learning/payroll/statutory-compliance-esi",
   "learning/payroll/statutory-compliance-professional-tax",
   "learning/payroll/statutory-compliance-gratuity",
+  "learning/payroll/statutory-compliance-bonus",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "about",

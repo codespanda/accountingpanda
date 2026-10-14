@@ -304,4 +304,78 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Gratuity is governed by Chapter V of the Code on Social Security, 2020, under which the maximum gratuity is whatever the Central Government notifies. ₹20 lakh is the limit last notified (in 2018, under the Payment of Gratuity Act) and the current income-tax exemption limit for non-government employees; central government employees have a separate ₹25 lakh ceiling. Ceilings, the fixed-term employee rules and tax exemptions can change by notification, so always confirm current requirements with the Ministry of Labour and Employment and the Income Tax Department.",
   },
+  {
+    slug: "statutory-compliance-bonus",
+    title: "Statutory Compliance: Bonus",
+    image: "assets/course-bonus.jpg",
+    summary:
+      "Pay statutory bonus correctly under the Code on Wages — eligibility, the 8.33%–20% range, wage limits, allocable surplus, set-on and set-off, payment and records.",
+    intro:
+      "Statutory bonus now sits in the Code on Wages, 2019 instead of the Payment of Bonus Act. Learn who is entitled, how much to pay, how to work out the bonus pool from profits, and how to pay and record it on time.",
+    objective:
+      "By the end of this course, learners will identify employees entitled to bonus, calculate the minimum and maximum bonus using the applicable wage limits, compute the allocable surplus and apply set-on and set-off, pay bonus on time, and keep the records and returns required.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Bonus and the Code on Wages", [
+        "What statutory bonus is and why it exists",
+        "From the Payment of Bonus Act, 1965 to the Code on Wages, 2019",
+        "The Code in force from 21 November 2025 — and old rules that continue until new ones are notified",
+        "Which establishments must pay bonus",
+        "Employer obligations at a glance",
+      ]),
+      mod(2, "Eligibility", [
+        "At least 30 days' work in the accounting year",
+        "Wage limit for eligibility — set by government notification",
+        "₹21,000 a month — the limit under the 2015 amendment, still applied until a new notification",
+        "Employees who are disqualified",
+        "Part-year employees and leavers",
+      ]),
+      mod(3, "Calculating Bonus", [
+        "Minimum bonus — 8.33% of wages or ₹100, whichever is higher",
+        "Maximum bonus — 20% of wages",
+        "Calculation ceiling — ₹7,000 or the minimum wage, whichever is higher, until a new notification",
+        "“Wages” for bonus under the Code",
+        "Proportionate bonus for part of the year",
+        "Worked examples",
+      ]),
+      mod(4, "Allocable Surplus, Set-On and Set-Off", [
+        "Gross profit, available surplus and allocable surplus",
+        "When bonus above the minimum is payable",
+        "Carrying forward surplus — set-on",
+        "Carrying forward a shortfall — set-off",
+        "Bonus linked to production or productivity",
+      ]),
+      mod(5, "Payment and Deductions", [
+        "Paying within eight months of the end of the accounting year",
+        "Crediting bonus to the employee's bank account",
+        "Adjusting customary or interim bonus already paid",
+        "Deductions allowed from bonus",
+        "Tax treatment of bonus as salary",
+      ]),
+      mod(6, "Records, Returns and Accounting", [
+        "Registers and records to keep",
+        "Annual returns and inspections",
+        "Disputes and claims",
+        "Recording the bonus provision in the books",
+        "Bonus compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide bonus eligibility for a list of employees",
+      "Calculate minimum bonus using the calculation ceiling",
+      "Compute allocable surplus from a profit statement",
+      "Apply set-on and set-off over two years",
+      "Plan bonus payment dates",
+      "Record a year-end bonus provision",
+    ],
+    exercises: "Worked bonus calculations after each module, from single employees to a full bonus pool.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Calculate, pay and record statutory bonus for a fictional company for one accounting year.",
+    note:
+      "Under Section 26 of the Code on Wages, 2019, the eligibility wage limit and the calculation ceiling are set by government notification. Until new amounts are notified, the figures from the Payment of Bonus Act (₹21,000 eligibility limit; ₹7,000 or the minimum wage, whichever is higher, as the calculation ceiling) continue to be used. Always confirm current limits with the Ministry of Labour and Employment or your state labour department.",
+  },
 ]
