@@ -38,7 +38,8 @@ const categories = [
     icon: FileText,
     title: "Financial Accounting",
     body: "Understand financial statements",
-    count: "15 Courses",
+    count: "1 Course",
+    href: "/learning/financial-accounting",
   },
   {
     icon: Users,
@@ -50,7 +51,7 @@ const categories = [
     icon: Receipt,
     title: "Taxation",
     body: "Learn tax rules & compliance",
-    count: "1 Course",
+    count: "3 Courses",
     href: "/learning/taxation",
   },
   {

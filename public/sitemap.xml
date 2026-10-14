@@ -171,6 +171,26 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/learning/taxation/gst-compliance-in-india/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/taxation/tds-compliance-in-india/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/financial-accounting/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/financial-accounting/financial-reporting/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/blog/how-to-improve-cash-flow-management-practical-strategies-for-business-growth/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

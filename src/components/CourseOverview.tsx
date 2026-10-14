@@ -21,6 +21,8 @@ export type CourseDetails = {
   title: string
   /** One sentence for SEO and the course card. */
   summary: string
+  /** Card photo under public/, e.g. "assets/course-xyz.jpg". */
+  image?: string
   /** Longer intro shown under the title. */
   intro: string
   objective: string

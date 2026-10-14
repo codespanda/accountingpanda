@@ -673,7 +673,3 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
     finalPractical: "Make all year-end adjustments for a small business and prepare its financial statements.",
   },
 ]
-
-export function findBookkeepingCourse(slug: string | undefined) {
-  return bookkeepingCourseCatalog.find((c) => c.slug === slug)
-}
