@@ -666,4 +666,81 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Maternity benefit is governed by Chapter VI of the Code on Social Security, 2020 and its rules. The medical bonus amount, crèche rules and procedures can change by notification, and employees covered by ESI receive maternity benefit from ESIC instead. Always confirm current requirements with the Ministry of Labour and Employment and ESIC.",
   },
+  {
+    slug: "statutory-compliance-posh",
+    title: "Statutory Compliance: POSH",
+    image: "assets/course-posh.jpg",
+    summary:
+      "Prevent and handle sexual harassment at work under the POSH Act, 2013 — the Internal Committee, complaints, inquiry timelines, employer duties, the SHe-Box portal and annual reporting.",
+    intro:
+      "The Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 — the POSH Act — requires every employer to prevent harassment and handle complaints fairly and on time. Learn how to set up the Internal Committee, run the complaint process and meet every employer duty.",
+    objective:
+      "By the end of this course, learners will explain what counts as sexual harassment at the workplace, constitute an Internal Committee correctly, guide a complaint from filing to action within the legal timelines, meet the employer's duties under the Act, and prepare the records and annual report required.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Understanding the POSH Act", [
+        "Purpose of the Sexual Harassment of Women at Workplace Act, 2013",
+        "What counts as sexual harassment",
+        "What counts as a “workplace” — including travel and work-related visits",
+        "Who is protected — employees, interns, visitors and others",
+        "Every employer's obligations, whatever its size",
+      ]),
+      mod(2, "The Internal Committee", [
+        "When an Internal Committee is required — 10 or more employees",
+        "Presiding officer — a woman employed at a senior level",
+        "At least two employee members and one external member",
+        "At least half the members must be women",
+        "Term of up to three years and fees for the external member",
+        "The district Local Committee for smaller workplaces and complaints against the employer",
+      ]),
+      mod(3, "Complaints and Conciliation", [
+        "Filing a complaint within three months — extendable by up to three months",
+        "Helping a complainant put the complaint in writing",
+        "Complaints through the SHe-Box portal",
+        "Conciliation at the complainant's request",
+        "Interim relief during the inquiry",
+      ]),
+      mod(4, "Inquiry and Action", [
+        "Conducting a fair inquiry",
+        "Completing the inquiry within 90 days",
+        "Inquiry report to the employer within 10 days of completion",
+        "Employer action on the report within 60 days",
+        "False or malicious complaints — only after an inquiry proves malice",
+        "Appeals against the committee's recommendations",
+        "Confidentiality throughout",
+      ]),
+      mod(5, "Employer Duties", [
+        "A safe working environment",
+        "Displaying the consequences of harassment and the committee's details",
+        "Regular awareness workshops and committee training",
+        "Facilities for the committee to work",
+        "Treating sexual harassment as misconduct under service rules",
+        "Penalties — ₹50,000 for non-compliance, higher for repeat offences",
+      ]),
+      mod(6, "Policy, Records and Annual Report", [
+        "Writing a POSH policy",
+        "Records of complaints and inquiries",
+        "The committee's annual report",
+        "Disclosures in company reports",
+        "POSH compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Identify whether a scenario counts as workplace sexual harassment",
+      "Constitute an Internal Committee for a sample company",
+      "Draft a complaint-handling timeline",
+      "Plan an annual awareness programme",
+      "Draft a POSH policy",
+      "Prepare a committee annual report",
+    ],
+    exercises: "Case-based scenarios after each module, handled with the confidentiality the Act requires.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Set up POSH compliance for a new company — policy, Internal Committee, awareness plan and records.",
+    note:
+      "This course explains the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 and its rules for compliance training. It is not legal advice for individual cases. Complaints can also be lodged on the government's SHe-Box portal. Always refer to the Act, the rules and the Ministry of Women and Child Development for current requirements.",
+  },
 ]
