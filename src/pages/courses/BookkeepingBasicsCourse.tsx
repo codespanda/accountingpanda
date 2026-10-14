@@ -595,7 +595,7 @@ export function BookkeepingBasicsCourse() {
             Back to Bookkeeping Courses
           </Link>
 
-          <span className="mt-6 inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-white">
+          <span className="mt-6 block w-fit rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-white">
             BESTSELLER
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.4rem]">
