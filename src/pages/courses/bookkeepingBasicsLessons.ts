@@ -1560,12 +1560,12 @@ Total Assets   No Change`,
   ],
   2: [
     {
-      title: "Module 3 — Understanding Accounts",
+      title: "Module 3 — Accounts, Debits and Credits",
       blocks: [
         { type: "h3", text: "Goal" },
         {
           type: "p",
-          text: "Learn how financial transactions are categorized, organized, and recorded using different types of accounts.",
+          text: "Learn how financial transactions are categorized into different types of accounts, and how debits and credits record them.",
         },
         { type: "h3", text: "What You'll Cover" },
         {
@@ -1580,6 +1580,9 @@ Total Assets   No Change`,
             "Expense accounts",
             "Personal vs. business expenses",
             "Creating a simple chart of accounts",
+            "Debits and credits",
+            "Normal balances",
+            "T-accounts and double-entry bookkeeping",
           ],
         },
       ],

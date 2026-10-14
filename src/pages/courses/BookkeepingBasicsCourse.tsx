@@ -44,431 +44,64 @@ export const bookkeepingBasicsModules: CourseModule[] = [
     ],
   },
   {
-    title: "Module 3 — Understanding Accounts",
+    title: "Module 3 — Accounts, Debits and Credits",
     sections: [
       {
         items: [
           "Chart of accounts",
-          "Account types",
-          "Asset accounts",
-          "Liability accounts",
-          "Equity accounts",
-          "Revenue accounts",
-          "Expense accounts",
+          "Account types — assets, liabilities, equity, revenue and expenses",
           "Personal vs. business expenses",
           "Creating a simple chart of accounts",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 4 — Debits and Credits",
-    sections: [
-      {
-        items: [
-          "What is a debit?",
-          "What is a credit?",
+          "What debits and credits are",
           "Debit and credit rules",
           "Normal balances",
-          "T-accounts",
-          "Double-entry bookkeeping",
-          "Debit/credit examples",
+          "T-accounts and double-entry bookkeeping",
         ],
       },
     ],
   },
   {
-    title: "Module 5 — Recording Business Transactions",
+    title: "Module 4 — Recording Transactions",
     sections: [
       {
         items: [
-          "Sales transactions",
-          "Purchase transactions",
-          "Cash transactions",
-          "Credit transactions",
-          "Expense transactions",
-          "Owner investment",
-          "Owner withdrawals",
-          "Loan transactions",
-          "Asset purchases",
-          "Customer payments",
-          "Supplier payments",
+          "Source documents — invoices, receipts, bills and bank statements",
+          "Recording sales and purchases",
+          "Cash and credit transactions",
+          "Owner investments and withdrawals",
+          "Writing journal entries",
+          "Posting to the general ledger",
+          "Keeping supporting documentation",
         ],
       },
     ],
   },
   {
-    title: "Module 6 — Source Documents & Bookkeeping Records",
+    title: "Module 5 — Cash, Receivables, Payables and Reconciliation",
     sections: [
       {
         items: [
-          "Sales invoices",
-          "Purchase invoices",
-          "Receipts",
-          "Credit notes",
-          "Debit notes",
-          "Bank statements",
-          "Expense receipts",
-          "Payment records",
-          "Payroll documents",
-          "Purchase orders",
-          "Importance of supporting documentation",
+          "Recording cash and bank transactions",
+          "Accounts receivable — invoicing and customer payments",
+          "Accounts payable — supplier bills and payments",
+          "Reading a bank statement",
+          "Preparing a bank reconciliation",
+          "Fixing common reconciliation differences",
         ],
       },
     ],
   },
   {
-    title: "Module 7 — Journal Entries",
+    title: "Module 6 — Trial Balance, Adjustments and Financial Statements",
     sections: [
       {
         items: [
-          "What is a journal?",
-          "Journal entry structure",
-          "Simple journal entries",
-          "Compound journal entries",
-          "Cash transactions",
-          "Credit transactions",
-          "Expense entries",
-          "Revenue entries",
-          "Adjusting entries",
-          "Common journal-entry mistakes",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 8 — Ledger & Posting",
-    sections: [
-      {
-        items: [
-          "What is a ledger?",
-          "General ledger",
-          "Subsidiary ledger",
-          "Posting from journal to ledger",
-          "T-accounts",
-          "Account balances",
-          "Debit and credit totals",
-          "Closing ledger balances",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 9 — Cash & Bank Bookkeeping",
-    sections: [
-      {
-        items: [
-          "Cash book",
-          "Bank book",
-          "Cash receipts",
-          "Cash payments",
-          "Petty cash",
-          "Cash controls",
-          "Bank transactions",
-          "Deposits",
-          "Withdrawals",
-          "Bank charges",
-          "Interest received",
-          "Maintaining cash records",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 10 — Accounts Receivable",
-    sections: [
-      {
-        items: [
-          "What are accounts receivable?",
-          "Credit sales",
-          "Customer invoices",
-          "Customer payments",
-          "Customer statements",
-          "Outstanding invoices",
-          "Aging reports",
-          "Bad debts",
-          "Credit notes",
-          "Customer reconciliation",
-          "Collection process",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 11 — Accounts Payable",
-    sections: [
-      {
-        items: [
-          "What are accounts payable?",
-          "Supplier invoices",
-          "Purchase transactions",
-          "Supplier payments",
-          "Supplier statements",
-          "Outstanding bills",
-          "Payment schedules",
-          "Vendor reconciliation",
-          "Credit notes",
-          "Duplicate invoice prevention",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 12 — Bank Reconciliation",
-    sections: [
-      {
-        items: [
-          "What is bank reconciliation?",
-          "Why reconciliation is important",
-          "Bank statement",
-          "Book balance",
-          "Outstanding checks/payments",
-          "Deposits in transit",
-          "Bank charges",
-          "Interest",
-          "Errors",
-          "Reconciliation adjustments",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 13 — Trial Balance",
-    sections: [
-      {
-        items: [
-          "What is a trial balance?",
-          "Purpose of a trial balance",
           "Preparing a trial balance",
-          "Debit balances",
-          "Credit balances",
-          "Identifying errors",
-          "Correcting errors",
-          "Trial balance limitations",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 14 — Adjusting Entries",
-    sections: [
-      {
-        items: [
-          "Accrued expenses",
-          "Accrued income",
-          "Prepaid expenses",
-          "Unearned revenue",
-          "Depreciation",
-          "Bad debt adjustments",
-          "Inventory adjustments",
-          "Month-end adjustments",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 15 — Financial Statements",
-    sections: [
-      {
-        heading: "Income Statement",
-        items: ["Revenue", "Cost of sales", "Gross profit", "Operating expenses", "Net profit/loss"],
-      },
-      {
-        heading: "Balance Sheet",
-        items: ["Assets", "Liabilities", "Equity"],
-      },
-      {
-        heading: "Cash Flow Statement",
-        items: ["Operating activities", "Investing activities", "Financing activities"],
-      },
-    ],
-  },
-  {
-    title: "Module 16 — Payroll Bookkeeping",
-    sections: [
-      {
-        items: [
-          "Gross salary",
-          "Deductions",
-          "Net salary",
-          "Employer costs",
-          "Payroll journal entries",
-          "Salary payable",
-          "Payroll reconciliation",
-          "Payroll records",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 17 — Inventory Bookkeeping",
-    sections: [
-      {
-        items: [
-          "What is inventory?",
-          "Inventory purchases",
-          "Inventory sales",
-          "Cost of goods sold",
-          "Beginning inventory",
-          "Ending inventory",
-          "Stock counts",
-          "Inventory adjustments",
-          "Inventory reconciliation",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 18 — Month-End Bookkeeping",
-    sections: [
-      {
-        heading: "Month-End Checklist",
-        items: [
-          "Record all sales",
-          "Record all purchases",
-          "Enter expenses",
-          "Reconcile bank accounts",
-          "Reconcile credit cards",
-          "Review accounts receivable",
-          "Review accounts payable",
-          "Record payroll",
-          "Record depreciation",
-          "Post adjustments",
-          "Review trial balance",
-          "Review financial statements",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 19 — Bookkeeping Software",
-    sections: [
-      {
-        items: [
-          "Introduction to accounting software",
-          "Setting up a company",
-          "Chart of accounts",
-          "Customers",
-          "Vendors",
-          "Invoices",
-          "Bills",
-          "Expenses",
-          "Bank feeds",
-          "Bank reconciliation",
-          "Financial reports",
-          "User permissions",
-          "Data backup",
-        ],
-      },
-      {
-        heading: "Software Examples",
-        items: ["QuickBooks", "Xero", "Zoho Books", "Wave", "Sage"],
-      },
-    ],
-  },
-  {
-    title: "Module 20 — AI & Modern Bookkeeping",
-    sections: [
-      {
-        items: [
-          "AI invoice processing",
-          "OCR document extraction",
-          "Automated transaction categorization",
-          "AI bank reconciliation",
-          "Automated journal entries",
-          "Expense classification",
-          "Accounts receivable automation",
-          "Accounts payable automation",
-          "AI financial reporting",
-          "Fraud/error detection",
-          "Human review and controls",
-          "Limitations of AI bookkeeping",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 21 — Bookkeeping Errors & Internal Controls",
-    sections: [
-      {
-        heading: "Common Errors",
-        items: [
-          "Duplicate transactions",
-          "Incorrect account classification",
-          "Missing transactions",
-          "Wrong amounts",
-          "Wrong dates",
-          "Duplicate invoices",
-          "Personal expenses recorded as business expenses",
-          "Unreconciled bank accounts",
-          "Incorrect journal entries",
-        ],
-      },
-      {
-        heading: "Internal Controls",
-        items: [
-          "Approval procedures",
-          "Segregation of duties",
-          "Bank reconciliation",
-          "Document verification",
-          "User permissions",
-          "Regular review",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 22 — Bookkeeping for a Small Business",
-    sections: [
-      {
-        heading: "Case Study",
-        intro:
-          "Learners operate the books of a fictional small business for one complete month. They will:",
-        numbered: true,
-        items: [
-          "Set up the chart of accounts",
-          "Enter opening balances",
-          "Record sales",
-          "Record purchases",
-          "Enter expenses",
-          "Issue customer invoices",
-          "Record supplier bills",
-          "Record customer payments",
-          "Record supplier payments",
-          "Reconcile the bank",
-          "Record payroll",
-          "Make adjustments",
-          "Prepare the trial balance",
-          "Prepare financial statements",
-          "Review the business results",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Module 23 — Final Bookkeeping Project",
-    sections: [
-      {
-        heading: "Capstone Project",
-        intro:
-          "Scenario: A fictional company has 30 days of financial transactions. The learner must complete the entire bookkeeping cycle: Source Documents → Journal → Ledger → Trial Balance → Adjustments → Reconciliation → Financial Statements.",
-        items: [],
-      },
-      {
-        heading: "Final Deliverables",
-        items: [
-          "Chart of Accounts",
-          "General Journal",
-          "General Ledger",
-          "Accounts Receivable",
-          "Accounts Payable",
-          "Bank Reconciliation",
-          "Trial Balance",
-          "Adjusting Entries",
-          "Income Statement",
-          "Balance Sheet",
-          "Cash Flow Summary",
-          "Month-End Checklist",
+          "Finding and correcting errors",
+          "Basic adjusting entries — accruals, prepayments and depreciation",
+          "The income statement",
+          "The balance sheet",
+          "The cash flow statement",
         ],
       },
     ],
@@ -489,19 +122,19 @@ const course: CourseDetails = {
   slug: "bookkeeping-basics-for-beginners",
   title: "Bookkeeping Basics for Beginners",
   summary:
-    "A 23-module bookkeeping course covering the accounting equation, journal entries, ledgers, reconciliation, financial statements, payroll, inventory, software and AI — plus a capstone project.",
+    "A 6-module beginner bookkeeping course covering the accounting equation, debits and credits, journal entries, ledgers, reconciliation and financial statements — plus a practical project.",
   intro:
-    "Learn the fundamentals of bookkeeping step by step — from the accounting equation to financial statements, payroll, inventory, and modern AI-enabled bookkeeping tools.",
+    "Learn the fundamentals of bookkeeping step by step — from the accounting equation and debits and credits to recording transactions, reconciling the bank and preparing financial statements.",
   objective:
-    "By the end of this course, learners will understand the fundamentals of bookkeeping, record day-to-day financial transactions, manage accounts payable and receivable, reconcile bank accounts, prepare basic financial statements, and understand how accounting software is used in modern bookkeeping.",
+    "By the end of this course, learners will understand the fundamentals of bookkeeping, record day-to-day financial transactions, manage accounts payable and receivable, reconcile bank accounts, and prepare basic financial statements.",
   level: "Beginner",
-  duration: "6–8 weeks",
+  duration: "4 Hours",
   badge: "Bestseller",
   category: { label: "Bookkeeping", href: "/learning/bookkeeping" },
   modules: bookkeepingBasicsModules,
   assignments,
   exercises: "Learners should complete transaction-recording exercises after each major module.",
-  finalExam: "50 questions",
+  finalExam: "30 questions",
   finalPractical: "Complete bookkeeping for one fictional business for one month.",
   startHref: `${COURSE_PATH}/progress`,
 }

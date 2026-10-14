@@ -16,7 +16,7 @@ const courses = [
     title: "Bookkeeping Basics for Beginners",
     image: "assets/course-bookkeeping-basics.jpg",
     body: "Learn the fundamentals of bookkeeping step by step.",
-    duration: "6–8 weeks",
+    duration: "4 Hours",
     level: "Beginner",
     badge: "Bestseller",
     href: "/learning/bookkeeping/bookkeeping-basics-for-beginners",

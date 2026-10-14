@@ -54,7 +54,7 @@ export function BookkeepingBasicsProgress() {
     <>
       <Seo
         title="Your Course Progress"
-        description="Track your progress through Bookkeeping Basics for Beginners — all 23 modules, and when your course starts."
+        description="Track your progress through Bookkeeping Basics for Beginners — all 6 modules, and when your course starts."
         path="/learning/bookkeeping/bookkeeping-basics-for-beginners/progress"
         noIndex
       />
