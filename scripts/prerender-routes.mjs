@@ -68,6 +68,8 @@ const routes = [
   "learning/payroll/statutory-compliance-employees-compensation",
   "learning/excel-for-accountants",
   "learning/excel-for-accountants/excel-mastery-for-accountants",
+  "learning/business-finance",
+  "learning/business-finance/budgeting-and-cash-flow-forecasting",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "learning/financial-accounting/financial-statement-analysis",
