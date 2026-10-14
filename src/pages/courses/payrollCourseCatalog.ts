@@ -889,4 +889,78 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Contract labour is governed by the Occupational Safety, Health and Working Conditions Code, 2020 and the central and state rules made under it, which can add detail or differ between states. Always confirm current requirements with the Ministry of Labour and Employment or your state labour department.",
   },
+  {
+    slug: "statutory-compliance-employees-compensation",
+    title: "Statutory Compliance: Employee's Compensation",
+    image: "assets/course-employees-compensation.jpg",
+    summary:
+      "Handle workplace injury and death compensation under the Code on Social Security — employer liability, commuting accidents, the compensation formula, deposits, reporting and insurance.",
+    intro:
+      "When an employee is injured or dies because of work, the employer must pay compensation. The Employee's Compensation Act, 1923 now sits in Chapter VII of the Code on Social Security, 2020, which also covers accidents while commuting. Learn when compensation is payable, how it is calculated and how to report and pay it.",
+    objective:
+      "By the end of this course, learners will decide when the employer is liable for compensation, apply the rules on commuting accidents and occupational diseases, calculate compensation for death and each type of disablement, deposit and pay compensation correctly, and meet reporting and insurance requirements.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Employee's Compensation and the Code", [
+        "Purpose of employee's compensation",
+        "From the Employee's Compensation Act, 1923 to Chapter VII of the Code on Social Security, 2020",
+        "The Code in force from 21 November 2025",
+        "Employees covered and the employments listed in the Code",
+        "How it works alongside ESI — no double claims",
+      ]),
+      mod(2, "When the Employer Is Liable", [
+        "Injury by accident arising out of and in the course of employment",
+        "Accidents while commuting between home and work",
+        "Occupational diseases",
+        "When the employer is not liable",
+        "Contractors' workers and the principal employer",
+      ]),
+      mod(3, "Types of Injury", [
+        "Death",
+        "Permanent total disablement",
+        "Permanent partial disablement and loss of earning capacity",
+        "Temporary disablement",
+        "Medical evidence and assessments",
+      ]),
+      mod(4, "Calculating Compensation", [
+        "Monthly wages for compensation",
+        "Death — 50% of monthly wages × the relevant factor, subject to a minimum amount",
+        "Permanent total disablement — 60% of monthly wages × the relevant factor, subject to a minimum amount",
+        "The relevant factor — based on the employee's age",
+        "Permanent partial disablement — a share of the total disablement amount",
+        "Half-monthly payments for temporary disablement",
+        "Worked examples",
+      ]),
+      mod(5, "Paying Compensation", [
+        "Paying as soon as compensation falls due",
+        "Depositing compensation with the competent authority — deaths and minor dependants",
+        "Interest and penalty for late payment",
+        "Medical expenses",
+        "Disputes and claims before the competent authority",
+      ]),
+      mod(6, "Reporting, Records and Insurance", [
+        "Reporting fatal and serious accidents",
+        "Accident registers and records",
+        "Insuring the employer's liability",
+        "Preventing accidents — the link to the OSH Code",
+        "Employee's compensation checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide whether an accident is covered, including commuting cases",
+      "Calculate compensation for death and permanent total disablement",
+      "Calculate permanent partial disablement compensation",
+      "Plan the payment and deposit steps after a fatal accident",
+      "Build an accident reporting procedure",
+    ],
+    exercises: "Worked compensation calculations and case scenarios after each module.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Handle an employee's compensation case end to end — liability, calculation, deposit, payment and reporting — for a fictional company.",
+    note:
+      "Employee's compensation is governed by Chapter VII of the Code on Social Security, 2020 and its rules. The minimum amounts, the relevant factor table and procedures are set by the Code and notifications, and employees covered by ESI claim through ESIC instead. Always confirm current amounts and procedures with the Ministry of Labour and Employment or your state labour department.",
+  },
 ]
