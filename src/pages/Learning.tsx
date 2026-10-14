@@ -59,7 +59,8 @@ const categories = [
     icon: FileSpreadsheet,
     title: "Excel for Accountants",
     body: "Master Excel skills for accounting",
-    count: "11 Courses",
+    count: "1 Course",
+    href: "/learning/excel-for-accountants",
   },
   {
     icon: TrendingUp,
@@ -95,8 +96,9 @@ const courses = [
     title: "Excel Mastery for Accountants",
     image: "assets/course-excel-mastery.jpg",
     body: "Advanced Excel techniques for accounting and reporting.",
-    duration: "4.1 Hours",
+    duration: "4 Hours",
     level: "Intermediate",
+    href: "/learning/excel-for-accountants/excel-mastery-for-accountants",
   },
   {
     icon: BarChart3,

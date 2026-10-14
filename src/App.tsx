@@ -10,12 +10,14 @@ import { BookkeepingCourses } from "@/pages/BookkeepingCourses"
 import { TaxationCourses } from "@/pages/TaxationCourses"
 import { FinancialAccountingCourses } from "@/pages/FinancialAccountingCourses"
 import { PayrollCourses } from "@/pages/PayrollCourses"
+import { ExcelCourses } from "@/pages/ExcelCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 import { taxationCourseCatalog } from "@/pages/courses/taxationCourseCatalog"
 import { financialAccountingCourseCatalog } from "@/pages/courses/financialAccountingCourseCatalog"
 import { payrollCourseCatalog } from "@/pages/courses/payrollCourseCatalog"
+import { excelCourseCatalog } from "@/pages/courses/excelCourseCatalog"
 import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse"
 import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { BookkeepingBasicsModuleLesson } from "@/pages/courses/BookkeepingBasicsModuleLesson"
@@ -143,6 +145,13 @@ function App() {
             <Route
               path="/learning/payroll/:courseSlug"
               element={<CatalogCourseDetail catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
+            />
+            <Route path="/learning/excel-for-accountants" element={<ExcelCourses />} />
+            <Route
+              path="/learning/excel-for-accountants/:courseSlug"
+              element={
+                <CatalogCourseDetail catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />
+              }
             />
             <Route path="/learning/financial-accounting" element={<FinancialAccountingCourses />} />
             <Route
