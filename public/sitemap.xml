@@ -216,6 +216,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/learning/payroll/statutory-compliance-minimum-wages/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/learning/financial-accounting/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

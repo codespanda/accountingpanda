@@ -449,4 +449,78 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Labour Welfare Fund amounts, thresholds and due dates are set by each state's Act and welfare board and are revised from time to time. The state examples in this course show how the different systems work — always confirm current amounts and deadlines on the relevant state welfare board's website.",
   },
+  {
+    slug: "statutory-compliance-minimum-wages",
+    title: "Statutory Compliance: Minimum Wages",
+    image: "assets/course-minimum-wages.jpg",
+    summary:
+      "Pay at least the legal minimum under the Code on Wages — floor wage, central and state rates, VDA revisions, skill categories, overtime, payment timelines, deductions and records.",
+    intro:
+      "Minimum wages now sit in the Code on Wages, 2019, alongside the rules on when and how wages are paid. Learn how to find the right rate for each worker, keep up with twice-yearly revisions, and pay wages on time and in full.",
+    objective:
+      "By the end of this course, learners will find the applicable minimum wage for any worker by employment, skill level and area, apply dearness allowance revisions, calculate overtime, pay wages within the Code's timelines, keep deductions within the legal limits, and maintain the records inspectors expect.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Minimum Wages and the Code on Wages", [
+        "Why minimum wages exist",
+        "From the Minimum Wages Act, 1948 to the Code on Wages, 2019",
+        "The Code in force from 21 November 2025",
+        "Coverage — now extended to all employees",
+        "Central and state governments as “appropriate government”",
+      ]),
+      mod(2, "The Floor Wage and How Rates Are Fixed", [
+        "The national floor wage under Section 9 of the Code",
+        "States cannot fix minimum wages below the floor wage",
+        "Factors used to fix minimum wages — skill, difficulty and geography",
+        "Review of minimum wages at least every five years",
+        "Where to find central and state wage notifications",
+      ]),
+      mod(3, "Reading a Minimum Wage Notification", [
+        "Skill categories — unskilled, semi-skilled, skilled and highly skilled",
+        "Area classification — A, B and C",
+        "Basic rate plus variable dearness allowance (VDA)",
+        "VDA revisions on 1 April and 1 October in line with CPI-IW",
+        "Daily, monthly and piece-rate wages",
+        "Worked examples",
+      ]),
+      mod(4, "Working Hours and Overtime", [
+        "Normal working hours and rest days",
+        "Overtime — work beyond 8 hours a day or 48 hours a week",
+        "Overtime paid at twice the normal rate, at the end of the wage period",
+        "Calculating overtime for daily and monthly-rated workers",
+        "Wages for workers on a rest day",
+      ]),
+      mod(5, "Paying Wages Correctly", [
+        "Wage periods — daily, weekly, fortnightly and monthly",
+        "Payment deadlines, including by the 7th of the following month for monthly wages",
+        "Paying within two working days when an employee leaves",
+        "Permitted deductions and the 50% limit",
+        "Equal remuneration — no discrimination on the basis of gender",
+      ]),
+      mod(6, "Records, Inspections and Claims", [
+        "Registers and wage slips to maintain",
+        "Inspector-cum-facilitators and inspections",
+        "Claims for underpayment and the limitation period",
+        "Penalties and compounding of offences",
+        "Minimum wages compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Find the applicable minimum wage for workers in different states and skill levels",
+      "Apply a VDA revision to a wage register",
+      "Calculate overtime for daily and monthly-rated workers",
+      "Check deductions against the 50% limit",
+      "Plan wage payment dates for each wage period",
+      "Build a minimum wages compliance checklist",
+    ],
+    exercises: "Worked rate look-ups and wage calculations after each module, using sample notifications.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Check one month's wage register for a fictional company against the applicable minimum wages and payment rules.",
+    note:
+      "Minimum wage rates are notified by the central government and each state, and the variable dearness allowance is revised every April and October. The Code on Wages provides for a national floor wage; check whether one has been notified. Always confirm current rates on the Chief Labour Commissioner (Central) website or the relevant state labour department before paying.",
+  },
 ]
