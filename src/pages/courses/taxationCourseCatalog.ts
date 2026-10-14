@@ -171,4 +171,77 @@ export const taxationCourseCatalog: CourseDetails[] = [
     note:
       "TDS sections, rates, thresholds, form numbers and due dates are set by the Income-tax Act, 2025 and its rules, and can change. The new forms apply from the first quarter of 2026–27; earlier periods use the old forms. Always confirm current requirements with the Income Tax Department and TRACES before filing.",
   },
+  {
+    slug: "income-tax-for-salaried-employees",
+    title: "Income Tax for Salaried Employees",
+    image: "assets/course-income-tax-salaried.jpg",
+    summary:
+      "Understand how salary is taxed under the Income-tax Act, 2025 — the tax year, salary components, new vs. old regime, deductions and rebates, salary TDS and filing your return.",
+    intro:
+      "From 1 April 2026 the Income-tax Act, 2025 governs how salaries are taxed in India. Learn how your salary is taxed, how to choose between the new and old regimes, how employers deduct tax, and how to file your return with confidence.",
+    objective:
+      "By the end of this course, learners will work out taxable salary from a pay structure, compare the new and old regimes for an employee, apply the standard deduction, rebates and other deductions correctly, read Form 130 and the annual tax statement, and prepare a salaried employee's income tax return.",
+    level: "Beginner",
+    duration: "3 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Income Tax and the Income-tax Act, 2025", [
+        "How income tax works in India",
+        "The Income-tax Act, 2025 — in force from 1 April 2026",
+        "The “tax year” replaces the previous year and assessment year",
+        "Income up to 31 March 2026 stays under the 1961 Act",
+        "Residential status and the heads of income",
+      ]),
+      mod(2, "Salary Income", [
+        "What counts as salary",
+        "Basic pay, dearness allowance and bonus",
+        "Allowances — HRA, leave travel and others",
+        "Perquisites — benefits provided by the employer",
+        "Arrears, advance salary and profits in lieu of salary",
+      ]),
+      mod(3, "Choosing a Tax Regime", [
+        "The new tax regime — the default for individuals",
+        "New regime slabs — nil up to ₹4 lakh, rising to 30% above ₹24 lakh",
+        "The old tax regime and when it can still help",
+        "Telling your employer which regime you choose",
+        "Worked comparisons for different salaries",
+      ]),
+      mod(4, "Deductions, Exemptions and Rebates", [
+        "Standard deduction — ₹75,000 (new regime) or ₹50,000 (old regime)",
+        "HRA exemption — the least of three amounts, old regime only",
+        "Investment, insurance and home-loan deductions in the old regime",
+        "Deductions still available in the new regime",
+        "Rebate — no tax on income up to ₹12 lakh (new) or ₹5 lakh (old)",
+        "Surcharge and cess on higher incomes",
+      ]),
+      mod(5, "Salary TDS and Your Documents", [
+        "How your employer deducts tax each month",
+        "Investment declarations and proofs",
+        "Form 130 — your annual salary certificate (formerly Form 16)",
+        "Form 168 — your annual tax statement (formerly Form 26AS)",
+        "Checking that TDS matches your records",
+      ]),
+      mod(6, "Filing Your Return", [
+        "Which return form a salaried employee uses",
+        "Due dates and what happens if you file late",
+        "Claiming refunds",
+        "Responding to notices",
+        "Salaried taxpayer's year-end checklist",
+      ]),
+    ],
+    assignments: [
+      "Work out taxable salary from a salary structure",
+      "Compare tax under the new and old regimes",
+      "Calculate the HRA exemption",
+      "Check Form 130 against Form 168",
+      "Prepare a salaried return summary",
+    ],
+    exercises: "Worked tax calculations after each module for employees at different salary levels.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Calculate the tax for a salaried employee under both regimes, check the TDS documents and prepare the return.",
+    note:
+      "Figures in this course reflect tax year 2026–27. Tax slabs, deductions, rebates and due dates are set each year by the Finance Act, and section numbers changed under the Income-tax Act, 2025. This course is for learning, not personal tax advice — always confirm current rules with the Income Tax Department.",
+  },
 ]
