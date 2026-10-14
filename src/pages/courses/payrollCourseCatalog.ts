@@ -378,4 +378,75 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Under Section 26 of the Code on Wages, 2019, the eligibility wage limit and the calculation ceiling are set by government notification. Until new amounts are notified, the figures from the Payment of Bonus Act (₹21,000 eligibility limit; ₹7,000 or the minimum wage, whichever is higher, as the calculation ceiling) continue to be used. Always confirm current limits with the Ministry of Labour and Employment or your state labour department.",
   },
+  {
+    slug: "statutory-compliance-labour-welfare-fund",
+    title: "Statutory Compliance: Labour Welfare Fund",
+    image: "assets/course-labour-welfare-fund.jpg",
+    summary:
+      "Manage Labour Welfare Fund contributions across Indian states — applicability, half-yearly and annual cycles, deductions, payment, returns and records.",
+    intro:
+      "The Labour Welfare Fund is a state levy that pays for welfare facilities for workers. Each state has its own Act, amounts and due dates — and some states have no fund at all. Learn how to work out where it applies and run it correctly.",
+    objective:
+      "By the end of this course, learners will identify which states and employees the Labour Welfare Fund applies to, calculate employee and employer contributions for each state's cycle, deduct the employee share correctly, pay and file on time, and keep the records each welfare board requires.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "What the Labour Welfare Fund Is", [
+        "Purpose — welfare facilities for workers and their families",
+        "State Labour Welfare Fund Acts and welfare boards",
+        "Contributions from employees, employers and the state",
+        "States that operate a fund and states that don't",
+        "How LWF differs from EPF, ESI and professional tax",
+      ]),
+      mod(2, "Applicability", [
+        "Establishments covered — factories, shops and others",
+        "Employee-count thresholds in each state",
+        "Which employees are covered — wage and role limits",
+        "Registering with the state welfare board",
+        "Employers with staff in several states",
+      ]),
+      mod(3, "Contribution Cycles and Amounts", [
+        "Fixed amounts per employee vs. wage-linked contributions",
+        "Half-yearly cycles — Maharashtra, based on the register on 30 June and 31 December",
+        "Annual cycles — Karnataka, for the calendar year",
+        "Wage-linked contributions — Haryana",
+        "The employer's matching share",
+        "Finding the current amounts on each board's website",
+      ]),
+      mod(4, "Deductions and Payment", [
+        "Deducting the employee share from the right month's wages",
+        "Why the employer's share can never be recovered from employees",
+        "Due dates — for example, Karnataka's 15 January deadline",
+        "Paying online through state board portals",
+        "Interest and penalties for late payment",
+      ]),
+      mod(5, "Returns and Records", [
+        "Contribution statements and returns",
+        "Registers to maintain",
+        "Unpaid accumulations and unclaimed wages",
+        "Inspections and notices from welfare boards",
+      ]),
+      mod(6, "LWF in Payroll", [
+        "Setting up LWF in payroll software by state",
+        "Showing LWF on payslips",
+        "Recording LWF in the books",
+        "Annual LWF compliance calendar and checklist",
+      ]),
+    ],
+    assignments: [
+      "Check whether LWF applies in a list of states",
+      "Calculate half-yearly contributions for a Maharashtra establishment",
+      "Calculate annual contributions for a Karnataka establishment",
+      "Calculate wage-linked contributions for a Haryana employee",
+      "Build an LWF compliance calendar for a multi-state employer",
+    ],
+    exercises: "Worked contribution examples for different states after each module.",
+    finalExam: "20 questions",
+    finalPractical:
+      "Run one year of Labour Welfare Fund compliance for a fictional company with employees in three states.",
+    note:
+      "Labour Welfare Fund amounts, thresholds and due dates are set by each state's Act and welfare board and are revised from time to time. The state examples in this course show how the different systems work — always confirm current amounts and deadlines on the relevant state welfare board's website.",
+  },
 ]
