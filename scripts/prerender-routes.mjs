@@ -36,6 +36,8 @@ const routes = [
   "learning/bookkeeping/bookkeeping-basics-for-beginners",
   "learning/bookkeeping/bookkeeping-basics-for-beginners/progress",
   "learning/bookkeeping/bookkeeping-basics-for-beginners/modules/1",
+  "learning/taxation",
+  "learning/taxation/learn-gst-in-india",
   "about",
   "faq",
   "privacy-policy",

@@ -7,6 +7,8 @@ import { Home } from "@/pages/Home"
 import { Blog } from "@/pages/Blog"
 import { Learning } from "@/pages/Learning"
 import { BookkeepingCourses } from "@/pages/BookkeepingCourses"
+import { TaxationCourses } from "@/pages/TaxationCourses"
+import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
 import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse"
 import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { BookkeepingBasicsModuleLesson } from "@/pages/courses/BookkeepingBasicsModuleLesson"
@@ -123,6 +125,11 @@ function App() {
             />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/bookkeeping" element={<BookkeepingCourses />} />
+            <Route path="/learning/taxation" element={<TaxationCourses />} />
+            <Route
+              path="/learning/taxation/learn-gst-in-india"
+              element={<GstIndiaCourse />}
+            />
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners"
               element={<BookkeepingBasicsCourse />}

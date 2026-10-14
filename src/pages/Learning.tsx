@@ -49,7 +49,8 @@ const categories = [
     icon: Receipt,
     title: "Taxation",
     body: "Learn tax rules & compliance",
-    count: "14 Courses",
+    count: "1 Course",
+    href: "/learning/taxation",
   },
   {
     icon: FileSpreadsheet,
@@ -73,13 +74,16 @@ const courses = [
     duration: "2.5 Hours",
     level: "Beginner",
     badge: "Bestseller",
+    href: "/learning/bookkeeping/bookkeeping-basics-for-beginners",
   },
   {
     icon: Receipt,
-    title: "Tax Preparation Essentials",
-    body: "Understand tax preparation process and best practices.",
-    duration: "3.2 Hours",
-    level: "Intermediate",
+    title: "Learn GST in India — Beginner to Practical Level",
+    body: "Understand India's GST step by step, from registration to filing returns.",
+    duration: "4–6 weeks",
+    level: "Beginner",
+    badge: "New",
+    href: "/learning/taxation/learn-gst-in-india",
   },
   {
     icon: FileSpreadsheet,
@@ -96,6 +100,25 @@ const courses = [
     level: "Advanced",
   },
 ]
+
+/** A featured course card: a link when the course has its own page. */
+function CourseCard({
+  href,
+  className,
+  children,
+}: {
+  href?: string
+  className: string
+  children: React.ReactNode
+}) {
+  return href ? (
+    <Link to={href} className={className}>
+      {children}
+    </Link>
+  ) : (
+    <div className={className}>{children}</div>
+  )
+}
 
 export function Learning() {
   return (
@@ -239,10 +262,11 @@ export function Learning() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {courses.map(({ icon: Icon, title, body, duration, level, badge }) => (
-              <div
+            {courses.map(({ icon: Icon, title, body, duration, level, badge, href }) => (
+              <CourseCard
                 key={title}
-                className="flex flex-col overflow-hidden rounded-[22px] bg-brand-bg transition-shadow"
+                href={href}
+                className="group flex flex-col overflow-hidden rounded-[22px] bg-brand-bg transition-shadow"
               >
                 <div className="relative flex h-36 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
                   {badge && (
@@ -253,7 +277,7 @@ export function Learning() {
                   <Icon className="h-12 w-12 text-brand-green/70" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-base font-semibold leading-snug text-brand-heading">
+                  <h3 className="text-base font-semibold leading-snug text-brand-heading group-hover:text-brand-green">
                     {title}
                   </h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
@@ -270,7 +294,7 @@ export function Learning() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </CourseCard>
             ))}
           </div>
         </div>
