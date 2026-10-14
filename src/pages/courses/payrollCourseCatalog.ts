@@ -11,6 +11,81 @@ const mod = (n: number, title: string, items: string[]): CourseModule => ({
 /** Course pages for the Payroll category (Indian statutory payroll compliance). */
 export const payrollCourseCatalog: CourseDetails[] = [
   {
+    slug: "payroll-processing-in-india",
+    title: "Payroll Processing in India",
+    image: "assets/course-payroll-processing.jpg",
+    summary:
+      "Run a complete monthly payroll in India — salary structure, attendance inputs, statutory deductions, salary TDS, payslips, payments, filings, accounting and full and final settlement.",
+    intro:
+      "Bring every piece of Indian payroll together into one monthly cycle — from setting up salary structures and collecting inputs to calculating deductions and tax, paying employees, filing statutory returns and closing the books.",
+    objective:
+      "By the end of this course, learners will design compliant salary structures, process a full monthly payroll with EPF, ESI, professional tax, LWF and salary TDS, issue payslips and pay on time, meet each statutory payment and filing deadline, record payroll in the books, and handle joiners, leavers and year-end tasks.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Payroll Foundations", [
+        "What a payroll cycle covers, from inputs to filings",
+        "Employee master data, documents and onboarding",
+        "Pay periods and payroll calendars",
+        "The Labour Codes and other laws that shape payroll",
+        "Choosing payroll software or outsourcing",
+      ]),
+      mod(2, "Salary Structure and CTC", [
+        "Cost to company — fixed pay, variable pay and employer costs",
+        "Basic pay, HRA and common allowances",
+        "“Wages” under the Labour Codes — the 50% rule and why it matters",
+        "Reimbursements and benefits",
+        "Designing structures that meet minimum wage and Code requirements",
+      ]),
+      mod(3, "Monthly Inputs and Gross Pay", [
+        "Attendance, leave and loss of pay",
+        "Overtime, arrears and bonuses",
+        "Joiners, leavers and pro-rata pay",
+        "Calculating gross pay",
+        "Pre-payroll checks and approvals",
+      ]),
+      mod(4, "Statutory Deductions and Salary TDS", [
+        "EPF and ESI deductions and employer contributions",
+        "Professional tax and Labour Welfare Fund by state",
+        "Salary TDS — the default new tax regime and opting for the old regime",
+        "Standard deduction of ₹75,000 and no tax up to ₹12 lakh of income under the new regime",
+        "Employee investment declarations and proofs",
+        "Calculating net pay",
+      ]),
+      mod(5, "Payslips, Payment and Filings", [
+        "Payslips and what they must show",
+        "Paying salaries — by the 7th of the following month for monthly wages",
+        "Statutory payment calendar — TDS by the 7th, EPF and ESI by the 15th, PT and LWF by state",
+        "Monthly and quarterly returns — ECR, ESI, Form 138 and state returns",
+        "Payroll journal entries and reconciliations",
+      ]),
+      mod(6, "Exits and Year-End", [
+        "Full and final settlement — within two working days of leaving",
+        "Leave encashment, gratuity and bonus at exit",
+        "Form 130 annual salary certificates",
+        "Year-end reconciliation of salary, TDS and statutory contributions",
+        "Payroll audit and monthly checklist",
+      ]),
+    ],
+    assignments: [
+      "Design a salary structure that meets the 50% wages rule",
+      "Process one month of payroll for ten employees",
+      "Calculate salary TDS under the new and old regimes",
+      "Build a statutory payment and filing calendar",
+      "Record payroll journal entries",
+      "Prepare a full and final settlement",
+    ],
+    exercises:
+      "A running case study — the same fictional company's payroll, built up step by step through each module.",
+    finalExam: "40 questions",
+    finalPractical:
+      "Run a complete month of payroll for a fictional 25-employee company — inputs, deductions, TDS, payslips, payments, filings and accounting.",
+    note:
+      "Payroll draws on many laws that change often — tax slabs and deductions in each year's Finance Act, contribution ceilings under the Code on Social Security, and state rules for professional tax and LWF. The figures in this course reflect tax year 2026–27 and current notifications; always confirm current rates with the Income Tax Department, EPFO, ESIC and state authorities.",
+  },
+  {
     slug: "statutory-compliance-epf",
     title: "Statutory Compliance: EPF",
     image: "assets/course-epf.jpg",
