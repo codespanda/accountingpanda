@@ -45,7 +45,7 @@ const categories = [
     icon: Users,
     title: "Payroll",
     body: "Payroll processing & compliance",
-    count: "3 Courses",
+    count: "4 Courses",
     href: "/learning/payroll",
   },
   {

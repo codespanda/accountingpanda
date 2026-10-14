@@ -134,7 +134,7 @@ export const payrollCourseCatalog: CourseDetails[] = [
       mod(5, "Monthly Contributions and Filing", [
         "Filing monthly contributions online",
         "Paying through the ESIC portal",
-        "Due dates — checking the current ESIC circular",
+        "Due date — within 15 days of the end of the month",
         "Interest and damages for late payment",
         "Correcting contribution errors",
       ]),
@@ -231,5 +231,77 @@ export const payrollCourseCatalog: CourseDetails[] = [
       "Set up and run one month of professional tax for a fictional company with employees in three states.",
     note:
       "Professional tax slabs, exemptions and due dates are set by each state and change from time to time. The examples in this course are for learning only — always confirm the current rules on the relevant state's tax portal.",
+  },
+  {
+    slug: "statutory-compliance-gratuity",
+    title: "Statutory Compliance: Gratuity",
+    image: "assets/course-gratuity.jpg",
+    summary:
+      "Get gratuity right under the Code on Social Security — eligibility, fixed-term employees, wages, the calculation, the ceiling, payment, tax and provisioning.",
+    intro:
+      "Gratuity rewards long service, and since the Code on Social Security, 2020 replaced the Payment of Gratuity Act, the rules on who qualifies and how wages are counted have changed. Learn how to calculate, pay, provide for and record it correctly.",
+    objective:
+      "By the end of this course, learners will decide when an employee is entitled to gratuity, calculate it using the Code's definition of wages, apply the statutory ceiling, pay it on time, explain its tax treatment, and account for the employer's gratuity liability.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Gratuity and the Code on Social Security", [
+        "What gratuity is and why it exists",
+        "From the Payment of Gratuity Act, 1972 to Chapter V of the Code on Social Security, 2020",
+        "The Code in force from 21 November 2025",
+        "Which establishments it applies to",
+        "Employer obligations at a glance",
+      ]),
+      mod(2, "Eligibility", [
+        "Five years of continuous service for regular employees",
+        "Death or disablement — no minimum service needed",
+        "Fixed-term employees — pro-rata gratuity after one year",
+        "What counts as continuous service",
+        "Resignation, retirement, termination and forfeiture",
+      ]),
+      mod(3, "Calculating Gratuity", [
+        "“Wages” for gratuity — and the 50% rule for excluded allowances",
+        "The formula — 15 days' wages for each completed year of service",
+        "Rounding part-years of service",
+        "Seasonal and piece-rated employees",
+        "Worked examples for regular and fixed-term employees",
+      ]),
+      mod(4, "The Ceiling, Payment and Nomination", [
+        "The maximum gratuity — as notified by the Central Government under the Code",
+        "₹20 lakh — the limit last notified (2018) and the tax-free limit",
+        "Paying more than the ceiling under a contract or policy",
+        "Paying within 30 days of gratuity becoming payable, and interest on delay",
+        "Nominations and paying nominees or legal heirs",
+        "Disputes and the role of the controlling authority",
+      ]),
+      mod(5, "Tax Treatment", [
+        "When gratuity is tax-exempt and how much",
+        "Government vs. private-sector employees",
+        "Gratuity above the exempt limit",
+        "Showing gratuity on the salary certificate",
+      ]),
+      mod(6, "Funding, Provisioning and Accounting", [
+        "Funding through an approved gratuity trust or group insurance",
+        "Actuarial valuation of the gratuity liability",
+        "Accounting under AS 15 and Ind AS 19 — an overview",
+        "Recording the provision and payments in the books",
+        "Gratuity compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide gratuity eligibility for a set of employees",
+      "Calculate gratuity wages using the 50% rule",
+      "Calculate gratuity for regular and fixed-term employees",
+      "Apply the ceiling and work out the taxable portion",
+      "Record a year-end gratuity provision",
+    ],
+    exercises: "Worked gratuity calculations after each module, from simple cases to fixed-term contracts.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Calculate, pay and record gratuity for a group of leaving employees at a fictional company.",
+    note:
+      "Gratuity is governed by Chapter V of the Code on Social Security, 2020, under which the maximum gratuity is whatever the Central Government notifies. ₹20 lakh is the limit last notified (in 2018, under the Payment of Gratuity Act) and the current income-tax exemption limit for non-government employees; central government employees have a separate ₹25 lakh ceiling. Ceilings, the fixed-term employee rules and tax exemptions can change by notification, so always confirm current requirements with the Ministry of Labour and Employment and the Income Tax Department.",
   },
 ]

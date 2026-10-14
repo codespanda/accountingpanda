@@ -147,7 +147,7 @@ export const taxationCourseCatalog: CourseDetails[] = [
         "Returns and corrections for periods before April 2026",
       ]),
       mod(6, "Reconciliation, Corrections and Notices", [
-        "Annual tax statement — Form 168 (formerly 26AS) and the AIS",
+        "Annual tax statement — Form 168 (formerly Form 26AS)",
         "Using the TRACES portal",
         "Short deduction, late payment and late deduction defaults",
         "Filing correction statements",
