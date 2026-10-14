@@ -594,4 +594,76 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Shops and Establishments law is made by each state, so registration thresholds, working hours, leave entitlements and renewal rules differ between states and change over time. The Model Bill, 2016 is a template, not a national law. Always check your state's current Act, rules and labour department portal.",
   },
+  {
+    slug: "statutory-compliance-maternity-benefit",
+    title: "Statutory Compliance: Maternity Benefit",
+    image: "assets/course-maternity-benefit.jpg",
+    summary:
+      "Provide maternity benefit correctly under the Code on Social Security — eligibility, 26 weeks' paid leave, adoption and commissioning mothers, medical bonus, crèche and payroll.",
+    intro:
+      "Maternity benefit now sits in the Code on Social Security, 2020. Learn who is eligible, how much leave and pay to give, how it works alongside ESI, and the employer's duties on crèches, work from home and job protection.",
+    objective:
+      "By the end of this course, learners will decide whether an employee is eligible for maternity benefit, calculate the leave and payment due, handle adoption and commissioning-mother cases, apply the medical bonus and crèche rules, and process maternity benefit through payroll and records.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Maternity Benefit and the Code on Social Security", [
+        "Purpose of maternity benefit",
+        "From the Maternity Benefit Act, 1961 to Chapter VI of the Code on Social Security, 2020",
+        "The Code in force from 21 November 2025",
+        "Establishments covered",
+        "How it works for employees covered by ESI",
+      ]),
+      mod(2, "Eligibility and Leave", [
+        "Eligibility — at least 80 days' work in the 12 months before the expected delivery",
+        "26 weeks' leave, with up to 8 weeks before delivery",
+        "12 weeks for women with two or more surviving children",
+        "12 weeks for adopting mothers of a child under 3 months, and for commissioning mothers",
+        "Six weeks' leave with wages after a miscarriage or medical termination of pregnancy",
+      ]),
+      mod(3, "Calculating Maternity Pay", [
+        "Paying at the average daily wage",
+        "Working out the average daily wage",
+        "Medical bonus — ₹3,500 or a higher notified amount, where free care isn't provided",
+        "Paying the pre-delivery amount in advance, and the balance within 48 hours of proof of delivery",
+        "If the employee dies — paying her nominee or legal representative",
+        "Worked examples",
+      ]),
+      mod(4, "Workplace Support", [
+        "Crèche facility for establishments with 50 or more employees",
+        "Crèche visits during the working day",
+        "Two nursing breaks a day until the child is 15 months old",
+        "Work from home after maternity leave, where the work allows",
+        "No arduous work or long hours of standing during pregnancy, on request",
+      ]),
+      mod(5, "Job Protection", [
+        "No dismissal or discharge during maternity leave",
+        "No change to service conditions to the employee's disadvantage",
+        "Wages and benefits during absence",
+        "Complaints, inspections and penalties",
+      ]),
+      mod(6, "Maternity Benefit in Payroll", [
+        "Notices and claim documents",
+        "Medical certification — including ASHA workers and midwives",
+        "Recording maternity leave and payments in payroll",
+        "Coordinating with ESIC for ESI-covered employees",
+        "Maternity benefit compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide maternity benefit eligibility for a set of employees",
+      "Calculate the leave entitlement in different scenarios",
+      "Calculate maternity pay and the medical bonus",
+      "Plan crèche arrangements for a 60-employee establishment",
+      "Process maternity benefit through payroll",
+    ],
+    exercises: "Worked eligibility and pay calculations after each module, including adoption and ESI-covered cases.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Handle a maternity benefit claim end to end — eligibility, leave, pay, medical bonus and records — for an employee of a fictional company.",
+    note:
+      "Maternity benefit is governed by Chapter VI of the Code on Social Security, 2020 and its rules. The medical bonus amount, crèche rules and procedures can change by notification, and employees covered by ESI receive maternity benefit from ESIC instead. Always confirm current requirements with the Ministry of Labour and Employment and ESIC.",
+  },
 ]
