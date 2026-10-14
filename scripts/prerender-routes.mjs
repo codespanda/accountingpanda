@@ -59,6 +59,7 @@ const routes = [
   "learning/payroll/statutory-compliance-bonus",
   "learning/payroll/statutory-compliance-labour-welfare-fund",
   "learning/payroll/statutory-compliance-minimum-wages",
+  "learning/payroll/statutory-compliance-shops-and-establishments",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "about",

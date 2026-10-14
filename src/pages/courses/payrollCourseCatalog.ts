@@ -523,4 +523,75 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Minimum wage rates are notified by the central government and each state, and the variable dearness allowance is revised every April and October. The Code on Wages provides for a national floor wage; check whether one has been notified. Always confirm current rates on the Chief Labour Commissioner (Central) website or the relevant state labour department before paying.",
   },
+  {
+    slug: "statutory-compliance-shops-and-establishments",
+    title: "Statutory Compliance: Shops and Establishments",
+    image: "assets/course-shops-and-establishments.jpg",
+    summary:
+      "Register and run shops, offices and other establishments under state Shops and Establishments Acts — registration, working hours, leave, night work, records and inspections.",
+    intro:
+      "Almost every shop, office, restaurant and service business in India falls under a state Shops and Establishments Act. Learn how these laws work, how states differ, and how to register and stay compliant with working-hour, leave and record-keeping rules.",
+    objective:
+      "By the end of this course, learners will decide which Shops and Establishments Act applies, register or notify an establishment, set working hours, rest, weekly holidays and leave within the law, apply the rules on night work and women's employment, and keep the registers and notices inspectors expect.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Shops and Establishments Law in India", [
+        "What a Shops and Establishments Act covers",
+        "State laws — each state has its own Act and rules",
+        "The Model Shops and Establishments Bill, 2016 and how states use it",
+        "Where shops law meets the Labour Codes, including the OSH Code",
+        "Shops, commercial establishments, offices, restaurants and IT firms",
+      ]),
+      mod(2, "Registration", [
+        "Which establishments must register — employee thresholds by state",
+        "Registration within six months and the Labour Identification Number (Model Bill)",
+        "Smaller establishments — intimation instead of registration in some states",
+        "Online registration through state labour portals",
+        "Renewal, amendments, displaying the certificate and closure",
+      ]),
+      mod(3, "Working Hours, Rest and Opening Times", [
+        "Daily and weekly hour limits",
+        "Rest intervals and spread-over",
+        "Overtime and its limits",
+        "Weekly holidays and compensatory off",
+        "Opening and closing hours, and operating 365 days a year",
+      ]),
+      mod(4, "Leave and Holidays", [
+        "Earned or privilege leave",
+        "Casual and sick leave",
+        "National and festival holidays",
+        "Leave encashment and carry-forward",
+        "Leave records",
+      ]),
+      mod(5, "Women's Employment and Night Work", [
+        "No discrimination in recruitment, training, promotion or wages",
+        "Night shifts for women — consent and safety safeguards",
+        "Transport, rest rooms and crèche facilities",
+        "Prevention of sexual harassment at the workplace",
+      ]),
+      mod(6, "Records, Notices and Inspections", [
+        "Registers of employment, wages and leave",
+        "Notices to display at the workplace",
+        "Inspections and facilitation visits",
+        "Penalties and how to avoid them",
+        "Shops and Establishments compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide which state Act applies to a list of businesses",
+      "Prepare a registration application",
+      "Design a shift roster within the hour and rest limits",
+      "Build a leave policy that meets the state Act",
+      "Prepare the registers and notices for an inspection",
+    ],
+    exercises: "Worked scenarios after each module for shops, offices and restaurants in different states.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Set up a new retail outlet's Shops and Establishments compliance — registration, rosters, leave and records.",
+    note:
+      "Shops and Establishments law is made by each state, so registration thresholds, working hours, leave entitlements and renewal rules differ between states and change over time. The Model Bill, 2016 is a template, not a national law. Always check your state's current Act, rules and labour department portal.",
+  },
 ]
