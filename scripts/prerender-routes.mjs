@@ -75,6 +75,7 @@ const routes = [
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "learning/financial-accounting/financial-statement-analysis",
+  "learning/financial-accounting/bank-reconciliation-and-month-end-close",
   "about",
   "faq",
   "privacy-policy",

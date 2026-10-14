@@ -153,4 +153,75 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Analyse three years of financial statements for a fictional business and present a recommendation to a lender.",
   },
+  {
+    slug: "bank-reconciliation-and-month-end-close",
+    title: "Bank Reconciliation & Month-End Close",
+    image: "assets/course-bank-reconciliation-close.jpg",
+    summary:
+      "Close the books accurately every month — reconcile bank and balance sheet accounts, post accruals and prepayments, review results and follow a repeatable close checklist.",
+    intro:
+      "Reliable monthly numbers start with a disciplined close. Learn how to reconcile bank accounts, clear differences, post period-end adjustments and review the results before reports go out — on time, every month.",
+    objective:
+      "By the end of this course, learners will prepare bank reconciliations, reconcile key balance sheet accounts, post accruals, prepayments, depreciation and other period-end entries, review the trial balance for errors, and run a month-end close to a checklist and timetable.",
+    level: "Intermediate",
+    duration: "3 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Why the Month-End Close Matters", [
+        "What a month-end close is and who relies on it",
+        "Cut-off and the accrual basis",
+        "Close timetables and responsibilities",
+        "Common causes of late or wrong numbers",
+      ]),
+      mod(2, "Bank Reconciliation", [
+        "Matching the bank statement to the cash book",
+        "Outstanding cheques and deposits in transit",
+        "Bank charges, interest and direct debits",
+        "Investigating and correcting errors",
+        "Bank feeds and reconciliation in accounting software",
+      ]),
+      mod(3, "Reconciling Balance Sheet Accounts", [
+        "Receivables and payables control accounts",
+        "Supplier statement reconciliations",
+        "Payroll, tax and statutory liability accounts",
+        "Suspense and clearing accounts",
+        "Fixed asset and loan accounts",
+      ]),
+      mod(4, "Period-End Adjustments", [
+        "Accrued expenses and accrued income",
+        "Prepayments and deferred income",
+        "Depreciation",
+        "Inventory adjustments",
+        "Provisions and reversing entries",
+      ]),
+      mod(5, "Review and Reporting", [
+        "Reviewing the trial balance for errors",
+        "Comparing results with last month and the budget",
+        "Investigating unusual balances and movements",
+        "Supporting schedules and documentation",
+        "Locking the period",
+      ]),
+      mod(6, "Running a Better Close", [
+        "Building a month-end close checklist",
+        "Approvals and segregation of duties",
+        "Shortening the close with automation",
+        "Year-end close considerations",
+        "Month-end close checklist",
+      ]),
+    ],
+    assignments: [
+      "Prepare a bank reconciliation",
+      "Reconcile a supplier statement",
+      "Clear a suspense account",
+      "Post month-end accruals and prepayments",
+      "Review a trial balance and explain unusual movements",
+      "Build a month-end close checklist and timetable",
+    ],
+    exercises:
+      "Worked reconciliation and journal exercises after each module, using one company's bank statements, ledgers and invoices.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Complete a full month-end close for a fictional business — bank and balance sheet reconciliations, adjusting entries and a reviewed trial balance.",
+  },
 ]
