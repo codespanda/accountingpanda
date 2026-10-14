@@ -5,87 +5,107 @@ import {
   Calculator,
   Clock3,
   BarChart3,
-  BookOpenCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
+import { CourseCardImage } from "@/components/CourseCardImage"
+import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 
 const courses = [
   {
     title: "Bookkeeping Basics for Beginners",
+    image: "assets/course-bookkeeping-basics.jpg",
     body: "Learn the fundamentals of bookkeeping step by step.",
-    duration: "2.5 Hours",
+    duration: "6–8 weeks",
     level: "Beginner",
     badge: "Bestseller",
     href: "/learning/bookkeeping/bookkeeping-basics-for-beginners",
   },
   {
     title: "Double-Entry Bookkeeping Explained",
+    image: "assets/course-double-entry.jpg",
     body: "Understand debits, credits, and how every transaction balances.",
     duration: "3.0 Hours",
     level: "Beginner",
   },
   {
     title: "Chart of Accounts Setup",
+    image: "assets/course-chart-of-accounts.jpg",
     body: "Build a chart of accounts that fits your business from day one.",
     duration: "2.0 Hours",
     level: "Beginner",
   },
   {
     title: "Recording Journal Entries",
+    image: "assets/course-journal-entries.jpg",
     body: "Practice recording common transactions accurately and consistently.",
     duration: "2.8 Hours",
     level: "Beginner",
   },
   {
     title: "Bank Reconciliation Fundamentals",
+    image: "assets/course-bank-reconciliation.jpg",
     body: "Match bank statements to your books and catch discrepancies early.",
     duration: "3.5 Hours",
     level: "Intermediate",
   },
   {
     title: "Accounts Payable Management",
+    image: "assets/course-accounts-payable.jpg",
     body: "Track vendor bills, due dates, and payments without missing a beat.",
     duration: "3.2 Hours",
     level: "Intermediate",
   },
   {
     title: "Accounts Receivable & Invoicing",
+    image: "assets/course-accounts-receivable.jpg",
     body: "Create invoices, track customer balances, and manage collections.",
     duration: "3.0 Hours",
     level: "Intermediate",
   },
   {
     title: "Month-End Close Process",
+    image: "assets/course-month-end-close.jpg",
     body: "A repeatable checklist for closing the books accurately every month.",
     duration: "4.0 Hours",
     level: "Intermediate",
   },
   {
     title: "QuickBooks for Bookkeepers",
+    image: "assets/course-quickbooks.jpg",
     body: "Hands-on training for day-to-day bookkeeping inside QuickBooks.",
     duration: "5.0 Hours",
     level: "Intermediate",
   },
   {
     title: "Xero for Bookkeepers",
+    image: "assets/course-xero.jpg",
     body: "Hands-on training for day-to-day bookkeeping inside Xero.",
     duration: "5.0 Hours",
     level: "Intermediate",
   },
   {
     title: "Payroll Basics for Bookkeepers",
+    image: "assets/course-payroll.jpg",
     body: "What bookkeepers need to know about processing payroll accurately.",
     duration: "3.5 Hours",
     level: "Advanced",
   },
   {
     title: "Advanced Bookkeeping & Adjusting Entries",
+    image: "assets/course-advanced-bookkeeping.jpg",
     body: "Accruals, prepayments, depreciation, and other period-end adjustments.",
     duration: "4.5 Hours",
     level: "Advanced",
   },
 ]
+
+/** Every course card links to its page: Basics has its own, the rest come from the catalog. */
+function courseHref(course: { title: string; href?: string }) {
+  if (course.href) return course.href
+  const detail = bookkeepingCourseCatalog.find((c) => c.title === course.title)
+  return detail ? `/learning/bookkeeping/${detail.slug}` : undefined
+}
 
 export function BookkeepingCourses() {
   return (
@@ -127,19 +147,14 @@ export function BookkeepingCourses() {
       <section className="container-px pt-4">
         <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map(({ title, body, duration, level, badge, href }) => {
+            {courses.map((course) => {
+              const { title, body, duration, level, badge, image } = course
+              const href = courseHref(course)
               const cardClass =
                 "group flex flex-col overflow-hidden rounded-[22px] bg-brand-bg transition-shadow"
               const content = (
                 <>
-                  <div className="relative flex h-32 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
-                    {badge && (
-                      <span className="absolute right-3 top-3 rounded-full bg-brand-green px-3 py-1 text-[11px] font-semibold text-white">
-                        {badge}
-                      </span>
-                    )}
-                    <BookOpenCheck className="h-10 w-10 text-brand-green/70" />
-                  </div>
+                  <CourseCardImage image={image} badge={badge} />
                   <div className="flex flex-1 flex-col p-5">
                     <h3 className="text-base font-semibold leading-snug text-brand-heading group-hover:text-brand-green">
                       {title}

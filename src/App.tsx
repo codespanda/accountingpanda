@@ -9,6 +9,7 @@ import { Learning } from "@/pages/Learning"
 import { BookkeepingCourses } from "@/pages/BookkeepingCourses"
 import { TaxationCourses } from "@/pages/TaxationCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
+import { BookkeepingCourseDetail } from "@/pages/courses/BookkeepingCourseDetail"
 import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse"
 import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { BookkeepingBasicsModuleLesson } from "@/pages/courses/BookkeepingBasicsModuleLesson"
@@ -125,6 +126,7 @@ function App() {
             />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/bookkeeping" element={<BookkeepingCourses />} />
+            <Route path="/learning/bookkeeping/:courseSlug" element={<BookkeepingCourseDetail />} />
             <Route path="/learning/taxation" element={<TaxationCourses />} />
             <Route
               path="/learning/taxation/learn-gst-in-india"

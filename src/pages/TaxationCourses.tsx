@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom"
-import { ArrowLeft, ArrowRight, Receipt, Clock3, BarChart3, BookOpenCheck } from "lucide-react"
+import { ArrowLeft, ArrowRight, Receipt, Clock3, BarChart3 } from "lucide-react"
 import { Seo } from "@/components/Seo"
+import { CourseCardImage } from "@/components/CourseCardImage"
 import { GST_INDIA_COURSE_PATH, gstIndiaModules } from "@/pages/courses/gstIndiaModules"
 
 const courses = [
   {
     title: "Learn GST in India — Beginner to Practical Level",
+    image: "assets/course-gst-india.jpg",
     body: "Understand India's GST step by step, from CGST, SGST and IGST to input tax credit and filing returns.",
     duration: "4–6 weeks",
     level: "Beginner",
@@ -54,18 +56,13 @@ export function TaxationCourses() {
       <section className="container-px pt-4">
         <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map(({ title, body, duration, level, badge, modules, href }) => (
+            {courses.map(({ title, body, duration, level, badge, modules, href, image }) => (
               <Link
                 key={title}
                 to={href}
                 className="group flex flex-col overflow-hidden rounded-[22px] bg-brand-bg"
               >
-                <div className="relative flex h-36 items-center justify-center bg-bento-mint">
-                  <span className="absolute right-3 top-3 rounded-full bg-bento-forest px-3 py-1 text-[11px] font-semibold text-white">
-                    {badge}
-                  </span>
-                  <BookOpenCheck className="h-12 w-12 text-bento-forest/70" />
-                </div>
+                <CourseCardImage image={image} badge={badge} />
                 <div className="flex flex-1 flex-col p-5">
                   <h2 className="text-base font-semibold leading-snug text-brand-heading group-hover:text-brand-green">
                     {title}

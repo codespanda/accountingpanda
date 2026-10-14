@@ -1,18 +1,7 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import {
-  ArrowLeft,
-  ArrowRight,
-  Clock3,
-  BarChart3,
-  Target,
-  Layers,
-  ClipboardCheck,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Seo } from "@/components/Seo"
-import { ModuleAccordion, type CourseModule } from "@/components/CourseModuleAccordion"
+import { CourseOverview, type CourseDetails } from "@/components/CourseOverview"
+import type { CourseModule } from "@/components/CourseModuleAccordion"
 
+const COURSE_PATH = "/learning/bookkeeping/bookkeeping-basics-for-beginners"
 
 export const bookkeepingBasicsModules: CourseModule[] = [
   {
@@ -496,201 +485,27 @@ const assignments = [
   "Prepare financial statements",
 ]
 
+const course: CourseDetails = {
+  slug: "bookkeeping-basics-for-beginners",
+  title: "Bookkeeping Basics for Beginners",
+  summary:
+    "A 23-module bookkeeping course covering the accounting equation, journal entries, ledgers, reconciliation, financial statements, payroll, inventory, software and AI — plus a capstone project.",
+  intro:
+    "Learn the fundamentals of bookkeeping step by step — from the accounting equation to financial statements, payroll, inventory, and modern AI-enabled bookkeeping tools.",
+  objective:
+    "By the end of this course, learners will understand the fundamentals of bookkeeping, record day-to-day financial transactions, manage accounts payable and receivable, reconcile bank accounts, prepare basic financial statements, and understand how accounting software is used in modern bookkeeping.",
+  level: "Beginner",
+  duration: "6–8 weeks",
+  badge: "Bestseller",
+  category: { label: "Bookkeeping", href: "/learning/bookkeeping" },
+  modules: bookkeepingBasicsModules,
+  assignments,
+  exercises: "Learners should complete transaction-recording exercises after each major module.",
+  finalExam: "50 questions",
+  finalPractical: "Complete bookkeeping for one fictional business for one month.",
+  startHref: `${COURSE_PATH}/progress`,
+}
+
 export function BookkeepingBasicsCourse() {
-  const [openModule, setOpenModule] = useState<number | null>(0)
-
-  const toggleModule = (index: number) => {
-    setOpenModule((prev) => (prev === index ? null : index))
-  }
-
-  return (
-    <>
-      <Seo
-        title="Bookkeeping Basics for Beginners"
-        description="A 23-module bookkeeping course covering the accounting equation, journal entries, ledgers, reconciliation, financial statements, payroll, inventory, software and AI — plus a capstone project."
-        path="/learning/bookkeeping/bookkeeping-basics-for-beginners"
-      />
-
-      {/* Header */}
-      <section className="container-px pt-4">
-        <div className="mx-auto max-w-5xl rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
-          <Link
-            to="/learning/bookkeeping"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Bookkeeping Courses
-          </Link>
-
-          <span className="mt-6 block w-fit rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-white">
-            BESTSELLER
-          </span>
-          <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.4rem]">
-            Bookkeeping Basics for Beginners
-          </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/85">
-            Learn the fundamentals of bookkeeping step by step — from the
-            accounting equation to financial statements, payroll,
-            inventory, and modern AI-enabled bookkeeping tools.
-          </p>
-
-          <div className="mt-6 flex flex-wrap items-center gap-5 text-sm text-white/90">
-            <span className="flex items-center gap-1.5">
-              <BarChart3 className="h-4 w-4" />
-              Beginner
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock3 className="h-4 w-4" />
-              6–8 weeks
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Layers className="h-4 w-4" />
-              {bookkeepingBasicsModules.length} Modules
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <div className="container-px pt-4">
-        <div className="mx-auto max-w-5xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-14 lg:py-16">
-          {/* Course objective */}
-          <div className="flex items-start gap-3 rounded-[22px] bg-brand-bg p-6">
-            <Target className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
-            <div>
-              <h2 className="text-base font-bold text-brand-heading">
-                Course Objective
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                By the end of this course, learners will understand the
-                fundamentals of bookkeeping, record day-to-day financial
-                transactions, manage accounts payable and receivable,
-                reconcile bank accounts, prepare basic financial
-                statements, and understand how accounting software is
-                used in modern bookkeeping.
-              </p>
-            </div>
-          </div>
-
-          {/* Curriculum */}
-          <div className="mt-10">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <Layers className="h-5 w-5 text-brand-green" />
-                <h2 className="text-xl font-bold text-brand-heading sm:text-2xl">
-                  Course Curriculum
-                </h2>
-              </div>
-              <Button asChild>
-                <Link to="/learning/bookkeeping/bookkeeping-basics-for-beginners/progress">
-                  Start Course
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-            <p className="mt-2 text-sm text-gray-500">
-              {bookkeepingBasicsModules.length} modules covering everything from bookkeeping
-              basics to AI-enabled tools and a final capstone project.
-            </p>
-
-            <div className="mt-6 space-y-3">
-              {bookkeepingBasicsModules.map((module, index) => (
-                <ModuleAccordion
-                  key={module.title}
-                  module={module}
-                  index={index}
-                  open={openModule === index}
-                  onToggle={() => toggleModule(index)}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Assessment */}
-          <div className="mt-12 rounded-[22px] bg-brand-bg p-6 sm:p-8">
-            <div className="flex items-center gap-2">
-              <ClipboardCheck className="h-5 w-5 text-brand-green" />
-              <h2 className="text-xl font-bold text-brand-heading sm:text-2xl">
-                Course Assessment
-              </h2>
-            </div>
-
-            <div className="mt-6 space-y-5">
-              <div>
-                <h3 className="text-sm font-semibold text-brand-heading">Quizzes</h3>
-                <p className="mt-1 text-sm leading-relaxed text-gray-500">
-                  Each module can have 5–10 questions.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-brand-heading">
-                  Practical Exercises
-                </h3>
-                <p className="mt-1 text-sm leading-relaxed text-gray-500">
-                  Learners should complete transaction-recording exercises
-                  after each major module.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-brand-heading">Assignments</h3>
-                <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
-                  {assignments.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green/60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="rounded-xl bg-white p-4">
-                  <h3 className="text-sm font-semibold text-brand-heading">Final Exam</h3>
-                  <p className="mt-1 text-sm text-gray-600">50 questions</p>
-                  <p className="text-sm text-gray-600">
-                    Suggested passing score: 70%
-                  </p>
-                </div>
-                <div className="rounded-xl bg-white p-4">
-                  <h3 className="text-sm font-semibold text-brand-heading">
-                    Final Practical Test
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Complete bookkeeping for one fictional business for one
-                    month.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA banner */}
-      <section className="container-px pt-4">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left rounded-[28px] bg-bento-forest px-6 sm:px-10 lg:px-14 py-12 lg:py-14">
-          <div>
-            <h2 className="text-2xl font-bold text-white sm:text-[1.7rem]">
-              Ready to Start Learning Bookkeeping?
-            </h2>
-            <p className="mt-2 text-sm text-white/80">
-              Join thousands of learners improving their skills and
-              advancing their careers.
-            </p>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <Button
-              size="lg"
-              className="bg-white text-brand-green-dark hover:bg-white/90"
-              asChild
-            >
-              <Link to="/learning">
-                Start Learning Free
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <span className="text-xs text-white/70">No credit card required</span>
-          </div>
-        </div>
-      </section>
-    </>
-  )
+  return <CourseOverview course={course} path={COURSE_PATH} />
 }

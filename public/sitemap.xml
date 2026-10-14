@@ -106,6 +106,61 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/double-entry-bookkeeping-explained/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/chart-of-accounts-setup/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/recording-journal-entries/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/bank-reconciliation-fundamentals/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/accounts-payable-management/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/accounts-receivable-and-invoicing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/month-end-close-process/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/quickbooks-for-bookkeepers/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/xero-for-bookkeepers/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/payroll-basics-for-bookkeepers/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://accountingpanda.com/learning/bookkeeping/advanced-bookkeeping-and-adjusting-entries/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/learning/taxation/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

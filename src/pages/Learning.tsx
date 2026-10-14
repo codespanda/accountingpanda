@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
+import { CourseCardImage } from "@/components/CourseCardImage"
 
 const trustBadges = [
   { icon: Award, label: "Expert Instructors" },
@@ -70,8 +71,9 @@ const courses = [
   {
     icon: Calculator,
     title: "Bookkeeping Basics for Beginners",
+    image: "assets/course-bookkeeping-basics.jpg",
     body: "Learn the fundamentals of bookkeeping step by step.",
-    duration: "2.5 Hours",
+    duration: "6–8 weeks",
     level: "Beginner",
     badge: "Bestseller",
     href: "/learning/bookkeeping/bookkeeping-basics-for-beginners",
@@ -79,6 +81,7 @@ const courses = [
   {
     icon: Receipt,
     title: "Learn GST in India — Beginner to Practical Level",
+    image: "assets/course-gst-india.jpg",
     body: "Understand India's GST step by step, from registration to filing returns.",
     duration: "4–6 weeks",
     level: "Beginner",
@@ -88,6 +91,7 @@ const courses = [
   {
     icon: FileSpreadsheet,
     title: "Excel Mastery for Accountants",
+    image: "assets/course-excel-mastery.jpg",
     body: "Advanced Excel techniques for accounting and reporting.",
     duration: "4.1 Hours",
     level: "Intermediate",
@@ -95,6 +99,7 @@ const courses = [
   {
     icon: BarChart3,
     title: "Financial Statement Analysis",
+    image: "assets/course-financial-statement-analysis.jpg",
     body: "Analyze financial statements and make informed decisions.",
     duration: "3.0 Hours",
     level: "Advanced",
@@ -262,20 +267,13 @@ export function Learning() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {courses.map(({ icon: Icon, title, body, duration, level, badge, href }) => (
+            {courses.map(({ title, body, duration, level, badge, href, image }) => (
               <CourseCard
                 key={title}
                 href={href}
                 className="group flex flex-col overflow-hidden rounded-[22px] bg-brand-bg transition-shadow"
               >
-                <div className="relative flex h-36 items-center justify-center bg-gradient-to-br from-brand-green-light to-brand-green/20">
-                  {badge && (
-                    <span className="absolute right-3 top-3 rounded-full bg-brand-green px-3 py-1 text-[11px] font-semibold text-white">
-                      {badge}
-                    </span>
-                  )}
-                  <Icon className="h-12 w-12 text-brand-green/70" />
-                </div>
+                <CourseCardImage image={image} badge={badge} />
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="text-base font-semibold leading-snug text-brand-heading group-hover:text-brand-green">
                     {title}
