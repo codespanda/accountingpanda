@@ -963,4 +963,74 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Employee's compensation is governed by Chapter VII of the Code on Social Security, 2020 and its rules. The minimum amounts, the relevant factor table and procedures are set by the Code and notifications, and employees covered by ESI claim through ESIC instead. Always confirm current amounts and procedures with the Ministry of Labour and Employment or your state labour department.",
   },
+  {
+    slug: "statutory-compliance-leave",
+    title: "Statutory Compliance: Leave",
+    image: "assets/course-leave.jpg",
+    summary:
+      "Get leave right under the OSH Code and state Shops Acts — annual leave eligibility, accrual, carry-forward, encashment, holidays, other leave types and leave records.",
+    intro:
+      "Leave rules come from more than one law: the OSH Code, 2020 for workers, state Shops and Establishments Acts for shops and offices, and other laws for maternity and holidays. Learn which rules apply, how much leave employees earn, and how to carry forward, encash and record it correctly.",
+    objective:
+      "By the end of this course, learners will decide which leave laws apply to each group of employees, calculate annual leave entitlement and balances, apply carry-forward and encashment rules, manage holidays and other leave types, and design a compliant leave policy and records.",
+    level: "Intermediate",
+    duration: "2 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Where Leave Rules Come From", [
+        "The OSH Code, 2020 — in force from 21 November 2025",
+        "State Shops and Establishments Acts for shops and offices",
+        "National and festival holidays laws",
+        "Maternity benefit under the Code on Social Security",
+        "Company policy on top of the legal minimum",
+      ]),
+      mod(2, "Annual Leave Under the OSH Code", [
+        "Who is covered — workers, and supervisors earning up to ₹18,000 a month",
+        "Eligibility — 180 days of work in a calendar year (down from 240)",
+        "How annual leave accrues for days worked",
+        "What counts as a day worked for leave purposes",
+        "Wages during leave",
+      ]),
+      mod(3, "Carry-Forward and Encashment", [
+        "Carrying forward up to 30 days to the next calendar year",
+        "Refused leave — carry-forward without a limit",
+        "Encashing refused leave above 30 days at the end of the year",
+        "Encashing the leave balance when an employee leaves",
+        "Calculating leave encashment",
+      ]),
+      mod(4, "Leave Under State Shops Acts", [
+        "Earned, casual and sick leave entitlements by state",
+        "Weekly holidays and compensatory off",
+        "National and festival holidays",
+        "Differences between states — how to find your state's rules",
+      ]),
+      mod(5, "Other Types of Leave", [
+        "Maternity leave — see the Maternity Benefit course",
+        "Paternity, bereavement and other policy-based leave",
+        "Leave without pay and its effect on payroll",
+        "Compensatory off for working on holidays",
+      ]),
+      mod(6, "Leave Policy, Records and Payroll", [
+        "Writing a leave policy that meets every applicable law",
+        "Leave registers and balances",
+        "Leave in payroll — loss of pay and encashment",
+        "Leave encashment in full and final settlement",
+        "Leave compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide which leave laws apply to different employees",
+      "Calculate annual leave eligibility and balances",
+      "Apply carry-forward and encashment rules at year end",
+      "Calculate leave encashment at exit",
+      "Draft a compliant leave policy",
+    ],
+    exercises: "Worked leave calculations after each module for factory workers, supervisors and office staff.",
+    finalExam: "20 questions",
+    finalPractical:
+      "Set up leave compliance for a company with a factory and an office in two states — policy, balances, year-end carry-forward and encashment.",
+    note:
+      "Annual leave rules in this course come from the Occupational Safety, Health and Working Conditions Code, 2020 and the Labour Ministry's guidance; leave for shop and office employees is set by each state's Shops and Establishments Act. Entitlements can differ by state and change through rules and notifications, so always confirm current requirements with the Ministry of Labour and Employment or your state labour department.",
+  },
 ]

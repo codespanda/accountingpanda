@@ -66,6 +66,7 @@ const routes = [
   "learning/payroll/statutory-compliance-posh",
   "learning/payroll/statutory-compliance-contract-labour",
   "learning/payroll/statutory-compliance-employees-compensation",
+  "learning/payroll/statutory-compliance-leave",
   "learning/excel-for-accountants",
   "learning/excel-for-accountants/excel-mastery-for-accountants",
   "learning/business-finance",
