@@ -71,6 +71,7 @@ const routes = [
   "learning/excel-for-accountants/excel-mastery-for-accountants",
   "learning/business-finance",
   "learning/business-finance/budgeting-and-cash-flow-forecasting",
+  "learning/business-finance/working-capital-management",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "learning/financial-accounting/financial-statement-analysis",

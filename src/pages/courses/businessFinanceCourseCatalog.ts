@@ -79,4 +79,76 @@ export const businessFinanceCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Build a full annual budget and rolling cash flow forecast for a growing small business and recommend how to fund its peak cash needs.",
   },
+  {
+    slug: "working-capital-management",
+    title: "Working Capital Management",
+    image: "assets/course-working-capital.jpg",
+    summary:
+      "Free up cash tied in day-to-day operations — manage receivables, payables and inventory, shorten the cash conversion cycle and choose the right short-term funding.",
+    intro:
+      "Working capital is the cash a business needs to keep running between paying suppliers and collecting from customers. Learn how to measure it, find where cash is stuck and put simple controls in place to release it.",
+    objective:
+      "By the end of this course, learners will measure working capital and the cash conversion cycle, improve collections, plan supplier payments, control inventory levels, compare short-term funding options, and build a monthly working capital dashboard.",
+    level: "Intermediate",
+    duration: "3 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Working Capital Fundamentals", [
+        "Current assets and current liabilities",
+        "Gross vs. net working capital",
+        "The operating cycle — from purchase to cash collection",
+        "Why growing businesses need more working capital",
+        "Current and quick ratios",
+      ]),
+      mod(2, "Managing Receivables", [
+        "Credit policy and customer credit checks",
+        "Invoicing promptly and accurately",
+        "Debtor days and the receivables aging report",
+        "Collection processes, reminders and follow-up",
+        "Early-payment discounts and bad debt provisions",
+      ]),
+      mod(3, "Managing Payables", [
+        "Negotiating supplier payment terms",
+        "Creditor days and payment scheduling",
+        "Early-payment discounts — when they are worth taking",
+        "Keeping supplier relationships strong",
+        "Approval controls and avoiding duplicate payments",
+      ]),
+      mod(4, "Managing Inventory", [
+        "Inventory days and stock turnover",
+        "Economic order quantity and reorder levels",
+        "ABC analysis — focusing on high-value items",
+        "Slow-moving and obsolete stock",
+        "Balancing stock-outs against excess stock",
+      ]),
+      mod(5, "The Cash Conversion Cycle and Funding", [
+        "Calculating the cash conversion cycle",
+        "Levers to shorten the cycle",
+        "Overdrafts and working capital loans",
+        "Invoice discounting and factoring",
+        "Supplier credit and trade finance",
+      ]),
+      mod(6, "Monitoring and Improving Working Capital", [
+        "A monthly working capital dashboard",
+        "Linking working capital to the cash flow forecast",
+        "Setting targets and owners for each lever",
+        "Common mistakes that tie up cash",
+        "Working capital review checklist",
+      ]),
+    ],
+    assignments: [
+      "Calculate working capital and liquidity ratios",
+      "Prepare a receivables aging report and collection plan",
+      "Build a supplier payment schedule",
+      "Run an ABC analysis of inventory",
+      "Calculate and improve the cash conversion cycle",
+      "Compare short-term funding options for a cash gap",
+    ],
+    exercises:
+      "Hands-on spreadsheet exercises after each module, using one trading company's ledgers and stock records.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Review the working capital of a fictional wholesaler, identify where cash is tied up and present an action plan to release it.",
+  },
 ]
