@@ -43,7 +43,16 @@ export type CourseDetails = {
 }
 
 /** Overview page for a course whose lessons aren't published yet. */
-export function CourseOverview({ course, path }: { course: CourseDetails; path: string }) {
+export function CourseOverview({
+  course,
+  path,
+  curriculum,
+}: {
+  course: CourseDetails
+  path: string
+  /** Replaces the module accordion, e.g. with a progress tracker. */
+  curriculum?: React.ReactNode
+}) {
   const [openModule, setOpenModule] = useState<number | null>(0)
 
   return (
@@ -113,7 +122,7 @@ export function CourseOverview({ course, path }: { course: CourseDetails; path: 
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-              ) : (
+              ) : curriculum ? null : (
                 <span className="inline-flex items-center gap-2 rounded-full bg-bento-butter px-4 py-2 text-sm font-semibold text-bento-butter-text">
                   <Hourglass className="h-4 w-4 text-bento-butter-ink" />
                   Lessons coming soon
@@ -121,19 +130,22 @@ export function CourseOverview({ course, path }: { course: CourseDetails; path: 
               )}
             </div>
             <p className="mt-2 text-sm text-gray-500">
-              {course.modules.length} modules, each with practical examples and a short quiz.
+              {curriculum
+                ? "Tick off each module as you complete it — your progress is saved in this browser."
+                : `${course.modules.length} modules, each with practical examples and a short quiz.`}
             </p>
 
             <div className="mt-6 space-y-3">
-              {course.modules.map((module, index) => (
-                <ModuleAccordion
-                  key={module.title}
-                  module={module}
-                  index={index}
-                  open={openModule === index}
-                  onToggle={() => setOpenModule((prev) => (prev === index ? null : index))}
-                />
-              ))}
+              {curriculum ??
+                course.modules.map((module, index) => (
+                  <ModuleAccordion
+                    key={module.title}
+                    module={module}
+                    index={index}
+                    open={openModule === index}
+                    onToggle={() => setOpenModule((prev) => (prev === index ? null : index))}
+                  />
+                ))}
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import { ScrollToHash } from "@/components/ScrollToHash"
@@ -13,7 +13,6 @@ import { PayrollCourses } from "@/pages/PayrollCourses"
 import { ExcelCourses } from "@/pages/ExcelCourses"
 import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
-import { GstIndiaProgress } from "@/pages/courses/GstIndiaProgress"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 import { taxationCourseCatalog } from "@/pages/courses/taxationCourseCatalog"
@@ -179,7 +178,7 @@ function App() {
             />
             <Route
               path="/learning/taxation/learn-gst-in-india/progress"
-              element={<GstIndiaProgress />}
+              element={<Navigate to="/learning/taxation/learn-gst-in-india" replace />}
             />
             <Route
               path="/learning/taxation/:courseSlug"

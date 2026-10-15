@@ -1,4 +1,5 @@
 import { CourseOverview, type CourseDetails } from "@/components/CourseOverview"
+import { GstCourseTracker } from "@/pages/courses/GstCourseTracker"
 import { GST_INDIA_COURSE_PATH, gstIndiaModules } from "@/pages/courses/gstIndiaModules"
 
 const course: CourseDetails = {
@@ -28,11 +29,10 @@ const course: CourseDetails = {
     "Worked examples after each major module — calculating tax, claiming credit and preparing return data.",
   finalExam: "40 questions",
   finalPractical: "Handle one month of GST compliance for a fictional business.",
-  startHref: `${GST_INDIA_COURSE_PATH}/progress`,
   note:
     "GST rates, thresholds and due dates change through GST Council decisions and CBIC notifications. This course explains the rules as they stand, but always confirm the current position on the official GST portal before filing.",
 }
 
 export function GstIndiaCourse() {
-  return <CourseOverview course={course} path={GST_INDIA_COURSE_PATH} />
+  return <CourseOverview course={course} path={GST_INDIA_COURSE_PATH} curriculum={<GstCourseTracker />} />
 }
