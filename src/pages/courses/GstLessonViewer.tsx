@@ -138,6 +138,62 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
           <figcaption className="mt-3 text-center text-xs text-gray-500">{block.caption}</figcaption>
         </figure>
       )
+    case "gstin":
+      return (
+        <figure>
+          <div className="flex flex-wrap justify-center gap-2 rounded-xl border border-gray-200 bg-white p-4 sm:gap-3 sm:p-6">
+            {block.segments.map((seg, i) => (
+              <div key={seg.label} className="flex flex-col items-center">
+                <span
+                  className={cn(
+                    "rounded-lg px-2.5 py-2 font-mono text-lg font-bold tracking-wider sm:text-2xl",
+                    i % 2 === 0 ? "bg-bento-forest text-white" : "bg-bento-mint text-bento-forest"
+                  )}
+                >
+                  {seg.chars}
+                </span>
+                <span className="mt-1.5 text-center text-xs font-medium text-gray-600">{seg.label}</span>
+              </div>
+            ))}
+          </div>
+          <figcaption className="mt-3 text-center text-xs text-gray-500">{block.caption}</figcaption>
+        </figure>
+      )
+    case "compare":
+      return (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {block.items.map((item) => (
+            <div key={item.title} className="flex flex-col rounded-xl border border-gray-200 bg-white p-5">
+              <h3 className="text-lg font-bold text-brand-heading">{item.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600">{item.text}</p>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Examples</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {item.examples.map((ex) => (
+                  <span key={ex} className="rounded-full bg-bento-mint px-3 py-1 text-sm font-medium text-bento-forest">
+                    {ex}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    case "steps":
+      return (
+        <ol className="space-y-3">
+          {block.items.map((item, i) => (
+            <li key={item.title} className="flex gap-4 rounded-xl border border-gray-200 bg-white p-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-bento-forest text-sm font-bold text-white">
+                {i + 1}
+              </span>
+              <span>
+                <span className="block text-base font-bold text-brand-heading">{item.title}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-gray-600">{item.text}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      )
     case "scenarios":
       return (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -274,7 +330,7 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
       )
     case "cards":
       return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className={cn("grid grid-cols-1 gap-4", block.items.length > 1 && "sm:grid-cols-2")}>
           {block.items.map((item) => (
             <div key={item.title} className="flex flex-col rounded-xl border border-gray-200 bg-white p-5">
               <h3 className="text-base font-bold text-brand-heading">{item.title}</h3>

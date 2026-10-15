@@ -35,6 +35,9 @@ export type GstLessonBlock =
     }
   | { type: "tip"; title: string; text: string }
   | { type: "caution"; text: string }
+  | { type: "steps"; items: { title: string; text: string }[] }
+  | { type: "compare"; items: { title: string; text: string; examples: string[] }[] }
+  | { type: "gstin"; segments: { chars: string; label: string }[]; caption: string }
   | { type: "scenarios"; items: { title: string; text: string; badge: string; tax: string }[] }
   | {
       type: "calcs"
@@ -823,6 +826,643 @@ export const gstIndiaLessons: Record<number, GstLessonScreen[]> = {
                 "The supply is intra-state, so IGST is the wrong tax head.",
                 "The invoice should show CGST ₹4,500 + SGST ₹4,500 (9% + 9% of ₹50,000). The total tax of ₹9,000 is the same.",
                 "Tax paid under the wrong head isn't simply moved across — the law has a separate refund route (Section 77 of the CGST Act and Section 19 of the IGST Act). Getting the classification right first time matters.",
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  2: [
+    {
+      title: "Meaning and scope of “supply”",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Under Section 7 of the Central Goods and Services Tax Act, 2017 (CGST Act), the term supply broadly covers transactions such as the sale, transfer, barter, exchange, licence, rental, lease or disposal of goods or services made or agreed to be made for consideration in the course or furtherance of business, subject to the law.",
+        },
+        {
+          type: "paragraph",
+          text: "Certain activities can be treated as supply even without consideration, where the law specifically provides for this.",
+        },
+        { type: "heading", text: "Examples of supply" },
+        {
+          type: "table",
+          headers: ["Transaction", "GST concept"],
+          rows: [
+            ["A shop sells a laptop to a customer", "Sale of goods"],
+            ["A consultant charges a fee for accounting services", "Supply of services"],
+            ["A business rents out office computers", "Supply of services in the usual rental arrangement"],
+            ["A company transfers business assets to a related person", "Check the specific rules, including Schedule I"],
+            ["A person gives a personal gift to a friend", "Not automatically a supply merely because an item changes hands"],
+          ],
+        },
+        { type: "heading", text: "The four questions an accountant should ask" },
+        {
+          type: "steps",
+          items: [
+            {
+              title: "Is there a supply?",
+              text: "Identify the actual transaction: sale, rental, service, transfer or another activity.",
+            },
+            {
+              title: "Is it in the course or furtherance of business?",
+              text: "Business purpose matters, although specific provisions may cover transactions without consideration.",
+            },
+            {
+              title: "Is consideration involved?",
+              text: "Consideration commonly means payment or another form of value connected with the supply. The law provides specific exceptions.",
+            },
+            {
+              title: "Is the supply taxable, and what rules apply?",
+              text: "Check exemptions, place of supply, time of supply, valuation, rate notifications and any special provisions.",
+            },
+          ],
+        },
+        {
+          type: "tip",
+          title: "Remember",
+          text: "A transaction being a “supply” does not automatically mean that GST must be charged. You must also examine the applicable tax treatment.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Act, 2017 — Section 7 (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter3/section7_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "Goods vs. services",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The CGST Act defines goods and services separately under Section 2. This classification helps determine the applicable tax rate, place of supply, time of supply and invoice requirements.",
+        },
+        {
+          type: "compare",
+          items: [
+            {
+              title: "Goods",
+              text: "Movable property, subject to the statutory definition and exclusions.",
+              examples: ["Laptop", "Keyboard", "Computer monitor", "RAM or SSD"],
+            },
+            {
+              title: "Services",
+              text: "Activities other than goods, money and securities, with specific inclusions under the law.",
+              examples: ["Laptop repair", "Website development", "Bookkeeping", "Computer rental"],
+            },
+          ],
+        },
+        { type: "heading", text: "Business example" },
+        {
+          type: "paragraph",
+          text: "Suppose an IT business sells a laptop and charges separately for a repair service.",
+        },
+        {
+          type: "table",
+          headers: ["Item", "Assumed taxable value"],
+          rows: [
+            ["Laptop", "₹40,000"],
+            ["Repair service", "₹2,000"],
+          ],
+          footer: ["Total before GST", "₹42,000"],
+          numeric: [1],
+        },
+        {
+          type: "paragraph",
+          text: "For practice, assume both items attract 18% GST and are separate taxable supplies.",
+        },
+        {
+          type: "example",
+          rows: [
+            { label: "Total before GST", value: "₹42,000" },
+            { label: "GST = ₹42,000 × 18%", value: "₹7,560" },
+          ],
+          total: { label: "Total invoice", value: "₹49,560" },
+        },
+        {
+          type: "note",
+          text: "In actual accounting, check each item's classification, rate, place of supply and whether the items form a composite or mixed supply.",
+        },
+      ],
+    },
+    {
+      title: "Business, consideration and taxable person",
+      blocks: [
+        { type: "heading", text: "A. Business" },
+        {
+          type: "paragraph",
+          text: "The GST definition of business is broad. It can include trade, commerce, manufacture, profession, vocation, certain activities incidental to business and specified activities undertaken even without a profit motive.",
+        },
+        {
+          type: "paragraph",
+          text: "For example, a company selling computers, a consultant providing bookkeeping services and a business renting office equipment may all be carrying on business for GST purposes. The actual transaction must still be tested under the law.",
+        },
+        { type: "heading", text: "B. Consideration" },
+        {
+          type: "paragraph",
+          text: "Consideration is the payment or other value connected with a supply. It may be money or non-monetary value. Examples include:",
+        },
+        {
+          type: "bullets",
+          items: [
+            "A customer pays ₹50,000 for a laptop.",
+            "A client pays ₹10,000 for bookkeeping.",
+            "A customer exchanges an old phone and pays an additional amount for a new phone.",
+          ],
+        },
+        {
+          type: "note",
+          text: "A deposit is not automatically treated as payment for a supply when received; its treatment depends on the applicable provisions and whether it is applied as consideration.",
+        },
+        { type: "heading", text: "C. Taxable person" },
+        {
+          type: "paragraph",
+          text: "Under Section 2(107) of the CGST Act, a taxable person is generally a person registered or liable to be registered under Section 22 or Section 24.",
+        },
+        {
+          type: "tip",
+          title: "Keep in mind",
+          text: "This is different from saying that every person who makes a sale must automatically charge GST. Registration thresholds, compulsory-registration rules, exemptions and other conditions matter.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Act, 2017 — Section 2, definitions (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter1/section2_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "Aggregate turnover",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Aggregate turnover is a key GST concept used, among other things, when assessing registration thresholds and certain scheme eligibility requirements.",
+        },
+        {
+          type: "paragraph",
+          text: "Under Section 2(6) of the CGST Act, it is calculated on an all-India basis for persons having the same PAN. It broadly includes:",
+        },
+        {
+          type: "bullets",
+          items: ["Taxable supplies", "Exempt supplies", "Exports of goods or services", "Inter-state supplies"],
+        },
+        {
+          type: "note",
+          text: "It excludes GST taxes themselves and the value of inward supplies on which the person is liable to pay tax under reverse charge.",
+        },
+        { type: "heading", text: "Worked example" },
+        {
+          type: "paragraph",
+          text: "Imagine a business with the same PAN operating in Punjab and Haryana.",
+        },
+        {
+          type: "table",
+          headers: ["Transaction", "Value"],
+          rows: [
+            ["Taxable sales in Punjab", "₹18,00,000"],
+            ["Taxable sales in Haryana", "₹7,00,000"],
+            ["Exempt supplies", "₹2,00,000"],
+            ["Exports", "₹3,00,000"],
+            ["GST charged on invoices", "₹5,40,000"],
+          ],
+          numeric: [1],
+        },
+        {
+          type: "example",
+          rows: [
+            { label: "Taxable sales in Punjab", value: "₹18,00,000" },
+            { label: "Taxable sales in Haryana", value: "₹7,00,000" },
+            { label: "Exempt supplies", value: "₹2,00,000" },
+            { label: "Exports", value: "₹3,00,000" },
+          ],
+          total: { label: "Aggregate turnover", value: "₹30,00,000" },
+        },
+        {
+          type: "tip",
+          title: "Note",
+          text: "The ₹5,40,000 GST charged is not added to aggregate turnover.",
+        },
+        { type: "heading", text: "Important distinction" },
+        { type: "paragraph", text: "Aggregate turnover is not the same as:" },
+        {
+          type: "bullets",
+          items: ["Profit", "Bank deposits", "Net income", "Turnover of just one state registration"],
+        },
+        {
+          type: "note",
+          text: "The exact calculation can require additional adjustments depending on the transactions involved.",
+        },
+      ],
+    },
+    {
+      title: "Composite supply and mixed supply",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "These concepts are especially important when an invoice contains multiple items sold together.",
+        },
+        { type: "heading", text: "A. Composite supply" },
+        {
+          type: "paragraph",
+          text: "A composite supply consists of two or more taxable supplies that are naturally bundled and supplied together in the ordinary course of business, with one principal supply.",
+        },
+        {
+          type: "paragraph",
+          text: "Under Section 8 of the CGST Act, the composite supply is treated according to its principal supply.",
+        },
+        {
+          type: "cards",
+          items: [
+            {
+              title: "Example: Laptop delivered with ordinary packing and delivery",
+              text: "Suppose a business sells a laptop with normal packaging and delivery as part of the ordinary transaction. If the arrangement qualifies as a composite supply, with the laptop as the principal supply, the GST treatment generally follows that principal supply. The result depends on the actual contractual arrangement and whether the supplies are naturally bundled.",
+            },
+          ],
+        },
+        { type: "heading", text: "B. Mixed supply" },
+        {
+          type: "paragraph",
+          text: "A mixed supply consists of two or more individual supplies sold together for a single price, where the package does not qualify as a composite supply.",
+        },
+        {
+          type: "paragraph",
+          text: "Under Section 8, the mixed supply is generally taxed at the rate applicable to the individual supply attracting the highest rate.",
+        },
+        {
+          type: "cards",
+          items: [
+            {
+              title: "Example: A promotional gift hamper",
+              text: "A business sells chocolates, snacks, a drink and other independent products together in one hamper for a single price. Assume the items are not naturally bundled. This may qualify as a mixed supply. If the highest applicable rate among the items is 18%, the mixed supply would generally attract that rate, subject to the actual classification and applicable rules.",
+            },
+          ],
+        },
+        { type: "heading", text: "Compare the two" },
+        {
+          type: "table",
+          headers: ["Feature", "Composite supply", "Mixed supply"],
+          rows: [
+            ["Bundling", "Naturally bundled", "Not naturally bundled"],
+            ["Single price", "May be sold for one price", "Single price is a key condition"],
+            ["Tax treatment", "Follows principal supply", "Generally follows the highest-rate item"],
+            ["Example", "Goods with ordinary packing and delivery", "Independent products sold as one gift hamper"],
+          ],
+        },
+        {
+          type: "tip",
+          title: "Memory tip",
+          text: "Composite = principal supply. Mixed = highest rate.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Act, 2017 — Section 8 (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter3/section8_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "HSN codes and SAC codes",
+      blocks: [
+        { type: "paragraph", text: "Classification codes help identify what is being supplied." },
+        {
+          type: "list",
+          items: [
+            { term: "HSN", text: "means Harmonized System of Nomenclature and is used to classify goods." },
+            { term: "SAC", text: "means Services Accounting Code and is used to classify services." },
+          ],
+        },
+        {
+          type: "note",
+          text: "The applicable classification and the number of digits required on an invoice depend on the relevant rules, notifications and taxpayer category. Don't assume that one HSN or SAC code is correct merely because the product or service has a familiar name.",
+        },
+        { type: "heading", text: "Examples" },
+        {
+          type: "table",
+          headers: ["Business item", "Classification type"],
+          rows: [
+            ["Laptop computer", "HSN"],
+            ["Keyboard", "HSN"],
+            ["Computer repair", "SAC"],
+            ["Bookkeeping service", "SAC"],
+            ["Website development", "SAC"],
+          ],
+        },
+        {
+          type: "paragraph",
+          text: "These examples identify the type of code needed, not the exact classification number.",
+        },
+        { type: "heading", text: "How to check a code" },
+        {
+          type: "steps",
+          items: [
+            {
+              title: "Identify the exact item",
+              text: "Identify the exact product or service, including its specifications and intended use.",
+            },
+            {
+              title: "Search official sources",
+              text: "Search the official GST portal or applicable tariff/classification material.",
+            },
+            {
+              title: "Check the rate separately",
+              text: "Check the current rate notification and relevant conditions separately.",
+            },
+            {
+              title: "Document your reasoning",
+              text: "Record the classification and supporting reasoning in your accounting or tax working papers.",
+            },
+          ],
+        },
+        { type: "heading", text: "Official resources" },
+        {
+          type: "links",
+          items: [
+            {
+              label: "GST Portal — Search HSN/SAC code",
+              href: "https://services.gst.gov.in/services/searchhsnsac",
+              text: "look up codes and descriptions.",
+            },
+            {
+              label: "GST Portal — Registration tutorial",
+              href: "https://tutorial.gst.gov.in/userguide/registration/index.htm",
+              text: "step-by-step portal guidance.",
+            },
+            {
+              label: "CBIC — Tax invoice rules (Rule 46)",
+              href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter6/rule46_v1.00.html",
+              text: "what a tax invoice must show, including HSN/SAC.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Understanding the 15-digit GSTIN",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "A GSTIN is the Goods and Services Tax Identification Number assigned to a GST registration. It contains 15 characters.",
+        },
+        { type: "paragraph", text: "Here is an illustrative example of the structure:" },
+        {
+          type: "gstin",
+          segments: [
+            { chars: "27", label: "State code" },
+            { chars: "ABCDE1234F", label: "PAN" },
+            { chars: "1", label: "Entity number" },
+            { chars: "Z", label: "Default character" },
+            { chars: "5", label: "Checksum" },
+          ],
+          caption: "Illustrative format only; this example is not intended to represent a verified taxpayer registration.",
+        },
+        {
+          type: "table",
+          headers: ["Position", "Meaning"],
+          rows: [
+            ["1–2", "State or Union Territory code"],
+            ["3–12", "PAN of the taxpayer"],
+            ["13", "Entity number for that PAN within the State/UT"],
+            ["14", "Usually the letter Z in the standard format"],
+            ["15", "Checksum character"],
+          ],
+        },
+        { type: "heading", text: "Why accountants need to understand GSTINs" },
+        {
+          type: "paragraph",
+          text: "Before recording a purchase invoice or issuing a sales invoice, verify that:",
+        },
+        {
+          type: "bullets",
+          items: [
+            "The supplier's GSTIN is recorded correctly.",
+            "The registered business name and relevant address match the records.",
+            "The registration status and applicable details have been checked where necessary.",
+            "The invoice's tax treatment is consistent with the transaction.",
+          ],
+        },
+        {
+          type: "caution",
+          text: "A GSTIN format that looks valid does not by itself prove that a registration is active or that an invoice qualifies for input tax credit.",
+        },
+        {
+          type: "link",
+          label: "Check a GSTIN",
+          text: "GST Portal — Search Taxpayer",
+          href: "https://services.gst.gov.in/services/searchtp",
+        },
+      ],
+    },
+    {
+      title: "Exempt, nil-rated, zero-rated and non-GST supplies",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "These terms are not interchangeable. Correct classification affects invoicing, returns and input tax credit.",
+        },
+        {
+          type: "table",
+          headers: ["Category", "Meaning", "General ITC treatment"],
+          rows: [
+            ["Taxable supply", "A supply on which GST is leviable", "Eligible ITC may be available subject to conditions"],
+            [
+              "Nil-rated supply",
+              "A supply with a nil rate of GST under the applicable rate schedule",
+              "Generally treated as exempt supply; ITC attributable to exempt supplies is restricted",
+            ],
+            [
+              "Exempt supply",
+              "A supply exempted by notification or attracting a nil rate; the statutory definition also includes non-taxable supplies",
+              "ITC attributable to exempt supplies is generally restricted",
+            ],
+            [
+              "Zero-rated supply",
+              "Exports and qualifying supplies to SEZ developers or SEZ units under the IGST Act",
+              "Eligible ITC may be available, subject to statutory conditions",
+            ],
+            [
+              "Non-GST/non-taxable supply",
+              "A supply on which GST is not leviable under the GST Acts",
+              "Treatment differs from zero-rated supply; relevant ITC restrictions apply",
+            ],
+          ],
+        },
+        {
+          type: "note",
+          text: "The statutory definitions are found in the CGST Act and IGST Act. In particular, zero-rated supplies are dealt with under Section 16 of the IGST Act, while exempt supply is defined in Section 2(47) of the CGST Act.",
+        },
+        { type: "heading", text: "Example: Why zero-rated is different" },
+        {
+          type: "paragraph",
+          text: "Suppose an eligible Indian business exports a service that qualifies as a zero-rated supply.",
+        },
+        {
+          type: "paragraph",
+          text: "The supply can qualify for the zero-rating mechanism even though the customer is outside India. Subject to the applicable conditions, the exporter may be able to make the supply under a Letter of Undertaking without payment of IGST and claim a refund of eligible unutilised ITC.",
+        },
+        {
+          type: "caution",
+          text: "Zero-rated does not simply mean “exempt.” It has a specific legal meaning and a distinct ITC/refund framework. Always verify the current statutory provisions, documentation and refund conditions before applying this treatment.",
+        },
+        { type: "heading", text: "Official references" },
+        {
+          type: "links",
+          items: [
+            { label: "CBIC — CGST Act", href: "https://cbic-gst.gov.in/gst-acts.html", text: "GST Acts, including the CGST Act." },
+            {
+              label: "CBIC — IGST Act, Section 16",
+              href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_IGST_Act/active/chaptervii/section16_v1.00.html",
+              text: "zero-rated supply.",
+            },
+            {
+              label: "CBIC — Input Tax Credit rules (Rule 42)",
+              href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter5/rule42_v1.00.html",
+              text: "reversing credit attributable to exempt supplies.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Module 3 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions. Choose one answer for each, then press Check answers to see your score and explanations. Score at least 4 out of 5 to move on to the practical exercises.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "Which section of the CGST Act sets out the meaning and scope of “supply”?",
+              options: ["Section 2(6)", "Section 7", "Section 8", "Section 22"],
+              answer: 1,
+              explanation:
+                "Section 7 covers the scope of supply. Section 2(6) defines aggregate turnover, Section 8 deals with composite and mixed supplies, and Section 22 with registration.",
+            },
+            {
+              question: "How is a composite supply generally taxed?",
+              options: [
+                "At the rate of its principal supply",
+                "At the highest rate of any item in the bundle",
+                "At the lowest rate of any item in the bundle",
+                "Each item is always taxed separately",
+              ],
+              answer: 0,
+              explanation:
+                "A composite supply follows its principal supply. It is a mixed supply that generally takes the highest rate — remember: composite = principal, mixed = highest.",
+            },
+            {
+              question:
+                "A business (one PAN) has taxable supplies of ₹20,00,000, exempt supplies of ₹3,00,000, exports of ₹2,00,000 and charges GST of ₹3,60,000. What is its aggregate turnover in this simplified example?",
+              options: ["₹20,00,000", "₹22,00,000", "₹25,00,000", "₹28,60,000"],
+              answer: 2,
+              explanation:
+                "₹20,00,000 + ₹3,00,000 + ₹2,00,000 = ₹25,00,000. Exempt supplies and exports are included, but the GST charged is not.",
+            },
+            {
+              question: "In the illustrative GSTIN 27ABCDE1234F1Z5, what do characters 3 to 12 represent?",
+              options: ["The State code", "The PAN of the taxpayer", "The entity number", "The checksum"],
+              answer: 1,
+              explanation:
+                "Characters 3–12 are the taxpayer's PAN. Characters 1–2 are the State code, 13 is the entity number, 14 is usually Z and 15 is the checksum.",
+            },
+            {
+              question: "Which statement about a zero-rated supply, such as a qualifying export, is correct?",
+              options: [
+                "It is the same as an exempt supply, so ITC is always restricted",
+                "It has its own ITC and refund framework, and eligible ITC may be available",
+                "It means no GST compliance is needed at all",
+                "It applies only to supplies of goods, never services",
+              ],
+              answer: 1,
+              explanation:
+                "Zero-rated supplies (Section 16 of the IGST Act) have a distinct framework — eligible ITC may be available, for example through export under a Letter of Undertaking with a refund of unutilised ITC, subject to conditions. They cover goods and services.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical exercises",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Put Module 3 into practice. Work out each answer first, then press Show answer to check your working. These are simplified practice cases — in real work, test each transaction against the law, current notifications and the actual facts.",
+        },
+        {
+          type: "exercises",
+          items: [
+            {
+              title: "Exercise 1 — Is it a supply?",
+              task: [
+                "For each transaction, decide whether it is a supply for GST purposes, and if so whether it is a supply of goods or services.",
+                "(a) A bookkeeping firm charges a client ₹15,000 for monthly accounts.",
+                "(b) A person gives a friend a watch as a personal birthday gift.",
+                "(c) A business rents out office printers to another company every month.",
+                "(d) A computer shop sells a laptop to a customer.",
+              ],
+              answer: [
+                "(a) Supply of services — a fee for bookkeeping in the course of business.",
+                "(b) Not automatically a supply — a personal gift isn't a supply merely because an item changes hands.",
+                "(c) Supply of services — a usual rental arrangement.",
+                "(d) Supply of goods — a sale for consideration in the course of business.",
+              ],
+            },
+            {
+              title: "Exercise 2 — Goods or services, HSN or SAC?",
+              task: [
+                "Classify each item as goods or services, and say which type of code it needs:",
+                "(a) Computer monitor  (b) Website development  (c) RAM module  (d) Laptop repair",
+              ],
+              answer: [
+                "(a) Goods → HSN.",
+                "(b) Services → SAC.",
+                "(c) Goods → HSN.",
+                "(d) Services → SAC.",
+                "This tells you the type of code only — look up the exact code and rate in official sources.",
+              ],
+            },
+            {
+              title: "Exercise 3 — Composite or mixed?",
+              task: [
+                "(a) A shop sells a laptop with its normal packing and delivery included in the ordinary course of business.",
+                "(b) A store sells a festival hamper of sweets, dry fruits, a candle and a toy for one price. The items are not naturally bundled.",
+                "Decide whether each is likely to be a composite or a mixed supply, and how it is generally taxed.",
+              ],
+              answer: [
+                "(a) Likely a composite supply — naturally bundled, with the laptop as the principal supply. It generally takes the laptop's tax treatment.",
+                "(b) Likely a mixed supply — independent items sold for a single price. It is generally taxed at the rate of the highest-rated item.",
+                "In both cases, the actual contract and classification decide the final answer.",
+              ],
+            },
+            {
+              title: "Exercise 4 — Calculate aggregate turnover",
+              task: [
+                "A business with one PAN operates in Punjab and Delhi. For the year it has:",
+                "Taxable sales in Punjab ₹12,00,000 · Taxable sales in Delhi ₹6,50,000 · Exempt supplies ₹1,50,000 · Exports ₹2,00,000 · GST charged on invoices ₹3,24,000 · Purchases on which it paid tax under reverse charge ₹80,000.",
+                "Work out its aggregate turnover for this simplified example.",
+              ],
+              answer: [
+                "Include: ₹12,00,000 + ₹6,50,000 + ₹1,50,000 + ₹2,00,000 = ₹22,00,000.",
+                "Exclude the ₹3,24,000 GST charged and the ₹80,000 of inward supplies taxed under reverse charge.",
+                "Aggregate turnover = ₹22,00,000 — calculated across both States because they share one PAN.",
+              ],
+            },
+            {
+              title: "Exercise 5 — Read a GSTIN",
+              task: [
+                "A purchase invoice shows the illustrative GSTIN 07AAACX9999K1Z3.",
+                "Break it into its parts, and say what you should still check before recording the invoice and claiming credit.",
+              ],
+              answer: [
+                "07 → State code (Delhi) · AAACX9999K → PAN · 1 → entity number · Z → default character · 3 → checksum.",
+                "Still check, using the GST Portal's taxpayer search, that the registration is active and the name and address match the invoice, and that the tax charged suits the transaction.",
+                "A valid-looking format alone doesn't prove the registration is active or that the invoice qualifies for ITC.",
               ],
             },
           ],
