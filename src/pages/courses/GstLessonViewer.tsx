@@ -1,5 +1,6 @@
 import { useState } from "react"
 import {
+  ArrowDown,
   ArrowLeft,
   ArrowRight,
   Check,
@@ -14,6 +15,7 @@ import {
   User,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import type { GstLessonBlock, GstLessonScreen } from "@/pages/courses/gstIndiaLessons"
 import { GstKnowledgeCheck } from "@/pages/courses/GstKnowledgeCheck"
 
@@ -41,14 +43,15 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
           </div>
         </div>
       )
-    case "table":
+    case "table": {
+      const align = (i: number) => (block.numeric?.includes(i) ? "text-right tabular-nums" : "text-left")
       return (
-        <div className="overflow-hidden rounded-xl border border-gray-200">
-          <table className="w-full table-fixed text-left text-sm">
+        <div className="overflow-x-auto rounded-xl border border-gray-200">
+          <table className={cn("w-full text-sm", block.headers.length > 2 ? "min-w-[32rem]" : "table-fixed")}>
             <thead className="bg-brand-bg">
               <tr>
-                {block.headers.map((h) => (
-                  <th key={h} className="px-4 py-3 font-semibold text-brand-heading">
+                {block.headers.map((h, i) => (
+                  <th key={h} className={cn("px-4 py-3 font-semibold text-brand-heading", align(i))}>
                     {h}
                   </th>
                 ))}
@@ -57,17 +60,29 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
             <tbody>
               {block.rows.map((row) => (
                 <tr key={row[0]} className="border-t border-gray-100 align-top">
-                  {row.map((cell) => (
-                    <td key={cell} className="px-4 py-3 leading-relaxed text-gray-600">
+                  {row.map((cell, i) => (
+                    <td key={i} className={cn("px-4 py-3 leading-relaxed text-gray-600", align(i))}>
                       {cell}
                     </td>
                   ))}
                 </tr>
               ))}
             </tbody>
+            {block.footer && (
+              <tfoot>
+                <tr className="border-t border-gray-200 bg-bento-mint">
+                  {block.footer.map((cell, i) => (
+                    <td key={i} className={cn("px-4 py-3 font-bold text-bento-forest", align(i))}>
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              </tfoot>
+            )}
           </table>
         </div>
       )
+    }
     case "list":
       return (
         <ul className="space-y-2">
@@ -121,6 +136,83 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
             ))}
           </div>
           <figcaption className="mt-3 text-center text-xs text-gray-500">{block.caption}</figcaption>
+        </figure>
+      )
+    case "scenarios":
+      return (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {block.items.map((item) => (
+            <div key={item.title} className="flex flex-col rounded-xl border border-gray-200 bg-white p-5">
+              <h3 className="text-base font-bold text-brand-heading">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">{item.text}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-100 pt-3">
+                <span className="rounded-full bg-bento-mint px-2.5 py-1 text-xs font-semibold text-bento-forest">
+                  {item.badge}
+                </span>
+                <span className="text-sm text-gray-700">
+                  <span className="font-semibold text-brand-heading">Tax:</span> {item.tax}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    case "calcs":
+      return (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {block.items.map((item) => (
+            <div key={item.title} className="flex flex-col rounded-xl border border-gray-200 bg-white">
+              <p className="border-b border-gray-100 px-4 py-3 text-sm font-bold text-brand-heading">
+                {item.title}
+              </p>
+              <div className="flex-1">
+                {item.rows.map((row) => (
+                  <div
+                    key={row.label}
+                    className="flex items-center justify-between gap-4 border-b border-gray-100 px-4 py-2.5 text-sm"
+                  >
+                    <span className="text-gray-600">{row.label}</span>
+                    <span className="font-semibold tabular-nums text-brand-heading">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between gap-4 rounded-b-xl bg-bento-mint px-4 py-3 text-sm">
+                <span className="font-semibold text-bento-forest">{item.total.label}</span>
+                <span className="font-bold tabular-nums text-bento-forest">{item.total.value}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    case "branches":
+      return (
+        <figure>
+          <div className="mx-auto max-w-md rounded-xl bg-bento-forest px-5 py-4 text-center">
+            <p className="text-base font-bold text-white">{block.root.title}</p>
+            <p className="mt-0.5 text-sm text-white/80">{block.root.text}</p>
+          </div>
+          {/* Connector: a stem from the root, then a bar across to each branch */}
+          <div className="mx-auto h-5 w-px bg-gray-300" aria-hidden="true" />
+          <div className="mx-auto hidden h-px w-1/2 bg-gray-300 sm:block" aria-hidden="true" />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {block.items.map((item) => (
+              <div key={item.title} className="flex flex-col items-center">
+                <div className="hidden h-5 w-px bg-gray-300 sm:block" aria-hidden="true" />
+                <div className="flex w-full flex-1 flex-col rounded-xl border border-gray-200 bg-white p-4 text-center">
+                  <p className="text-base font-bold text-brand-heading">{item.title}</p>
+                  <p className="mt-1 flex-1 text-sm leading-relaxed text-gray-600">{item.text}</p>
+                  <ArrowDown className="mx-auto my-3 h-4 w-4 text-brand-green" />
+                  <div className="rounded-lg bg-bento-mint px-3 py-2.5">
+                    <p className="text-lg font-bold text-bento-forest">{item.result}</p>
+                    {item.resultNote && <p className="text-xs text-bento-forest/80">{item.resultNote}</p>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {block.caption && (
+            <figcaption className="mt-3 text-center text-xs text-gray-500">{block.caption}</figcaption>
+          )}
         </figure>
       )
     case "tip":
