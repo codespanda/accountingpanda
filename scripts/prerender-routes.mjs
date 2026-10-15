@@ -70,6 +70,7 @@ const routes = [
   "learning/excel-for-accountants",
   "learning/excel-for-accountants/excel-mastery-for-accountants",
   "learning/excel-for-accountants/financial-modelling-in-excel",
+  "learning/excel-for-accountants/power-query-and-power-bi-for-accountants",
   "learning/business-finance",
   "learning/business-finance/budgeting-and-cash-flow-forecasting",
   "learning/business-finance/working-capital-management",

@@ -152,4 +152,75 @@ export const excelCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Build a five-year three-statement model for a growing business, with scenarios, a valuation and a one-page summary for investors.",
   },
+  {
+    slug: "power-query-and-power-bi-for-accountants",
+    title: "Power Query & Power BI for Accountants",
+    image: "assets/course-power-query-bi.jpg",
+    summary:
+      "Automate data preparation with Power Query and build interactive finance dashboards in Power BI — from ledger exports to refreshable management reports.",
+    intro:
+      "Accountants spend hours copying, cleaning and re-pasting the same exports every month. Learn how Power Query does that work automatically, and how Power BI turns accounting data into dashboards that update with one click.",
+    objective:
+      "By the end of this course, learners will import and clean accounting data with Power Query, combine files and tables, build a data model with a date table, write core DAX measures for finance, design a profit and loss and cash dashboard in Power BI, and publish and refresh reports securely.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Why Power Query and Power BI", [
+        "Where Power Query, Power Pivot and Power BI fit",
+        "Manual reporting vs. refreshable reporting",
+        "Typical accounting data sources — ledgers, bank files and ERP exports",
+        "Planning a reporting workflow",
+      ]),
+      mod(2, "Getting and Cleaning Data with Power Query", [
+        "Connecting to Excel, CSV and folder sources",
+        "Promoting headers, changing types and removing rows",
+        "Splitting, merging and trimming columns",
+        "Unpivoting report-style layouts",
+        "Applied steps and refreshing queries",
+      ]),
+      mod(3, "Combining and Shaping Data", [
+        "Appending monthly files from a folder",
+        "Merging tables — lookups without XLOOKUP",
+        "Mapping accounts to report lines",
+        "Grouping and summarising",
+        "Handling errors and data quality checks",
+      ]),
+      mod(4, "Data Models and DAX", [
+        "Fact and dimension tables",
+        "Relationships and the star schema",
+        "Building a date table and financial year",
+        "Core DAX measures — SUM, CALCULATE and DIVIDE",
+        "Time intelligence — month-to-date, year-to-date and prior year",
+      ]),
+      mod(5, "Building Finance Dashboards in Power BI", [
+        "Profit and loss and balance sheet visuals",
+        "Budget vs. actual with variance measures",
+        "Cash and receivables dashboards",
+        "Slicers, drill-down and tooltips",
+        "Design tips for clear finance reports",
+      ]),
+      mod(6, "Publishing, Refresh and Governance", [
+        "Publishing to the Power BI service",
+        "Scheduled refresh and data gateways",
+        "Sharing with workspaces and apps",
+        "Row-level security for sensitive data",
+        "Documentation and handover checklist",
+      ]),
+    ],
+    assignments: [
+      "Clean a raw general ledger export with Power Query",
+      "Append twelve monthly files into one table",
+      "Map ledger accounts to profit and loss lines",
+      "Build a data model with a date table",
+      "Write year-to-date and prior-year DAX measures",
+      "Design a budget vs. actual dashboard",
+    ],
+    exercises:
+      "Hands-on practice files for every module, building one company's refreshable reporting pack from raw exports.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Build a refreshable monthly finance dashboard in Power BI — from raw ledger and budget files to a published profit and loss, cash and variance report.",
+  },
 ]
