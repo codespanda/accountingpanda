@@ -438,4 +438,75 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Complete the year-end inventory valuation for a fictional retailer — cost formulas, count reconciliation, write-downs and the inventory note.",
   },
+  {
+    slug: "internal-controls-and-fraud-prevention",
+    title: "Internal Controls & Fraud Prevention",
+    image: "assets/course-internal-controls.jpg",
+    summary:
+      "Protect a business's money and records — design practical controls, separate duties, spot fraud red flags and test whether controls are working.",
+    intro:
+      "Most frauds and costly errors happen because a simple control was missing or ignored. Learn how to map risks in the finance processes, design controls that fit a small or growing business, and recognise the warning signs of fraud early.",
+    objective:
+      "By the end of this course, learners will explain the COSO internal control framework, map risks in key finance processes, design preventive and detective controls, apply segregation of duties in small teams, recognise common fraud schemes and red flags, test and document controls, and respond appropriately when fraud is suspected.",
+    level: "Intermediate",
+    duration: "3.5 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Internal Control Foundations", [
+        "What internal control is and why it matters",
+        "The COSO framework — five components",
+        "Preventive, detective and corrective controls",
+        "Manual vs. automated controls",
+        "Regulatory context — SOX in the US and internal financial controls in India",
+      ]),
+      mod(2, "Risk Assessment and Process Mapping", [
+        "Identifying risks in finance processes",
+        "Mapping procure-to-pay, order-to-cash and payroll",
+        "Risk and control matrices",
+        "Prioritising high-risk areas",
+      ]),
+      mod(3, "Designing Key Controls", [
+        "Segregation of duties — and what to do in small teams",
+        "Authorisation limits and approvals",
+        "Reconciliations and independent reviews",
+        "Master data controls for vendors, customers and employees",
+        "System access and password controls",
+      ]),
+      mod(4, "Understanding Fraud", [
+        "The fraud triangle — pressure, opportunity and rationalisation",
+        "Asset misappropriation schemes",
+        "Financial statement fraud",
+        "Payment, invoice and payroll frauds",
+        "Phishing and fake bank-detail change requests",
+      ]),
+      mod(5, "Detecting Fraud and Red Flags", [
+        "Behavioural red flags",
+        "Transaction red flags — round amounts, duplicates and unusual timing",
+        "Data analytics for fraud detection",
+        "Whistleblowing channels",
+        "Responding when fraud is suspected",
+      ]),
+      mod(6, "Testing, Documenting and Improving Controls", [
+        "Walkthroughs and control testing",
+        "Sampling and evidence",
+        "Reporting control deficiencies",
+        "Remediation plans",
+        "Internal control checklist for small businesses",
+      ]),
+    ],
+    assignments: [
+      "Map the purchase-to-payment process and its risks",
+      "Build a risk and control matrix",
+      "Design segregation of duties for a three-person finance team",
+      "Identify red flags in a set of transactions",
+      "Test a control and document the results",
+      "Write a control improvement plan",
+    ],
+    exercises:
+      "Case-based exercises after each module, using one growing company's finance processes and transaction data.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Review the finance controls of a fictional small business, identify fraud risks and gaps, and present a prioritised control improvement plan.",
+  },
 ]
