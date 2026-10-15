@@ -52,6 +52,7 @@ const routes = [
   "learning/taxation/learn-gst-in-india/modules/1",
   "learning/taxation/learn-gst-in-india/modules/2",
   "learning/taxation/learn-gst-in-india/modules/3",
+  "learning/taxation/learn-gst-in-india/modules/4",
   "learning/taxation/gst-compliance-in-india",
   "learning/taxation/tds-compliance-in-india",
   "learning/taxation/income-tax-for-salaried-employees",

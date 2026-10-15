@@ -36,8 +36,10 @@ export type GstLessonBlock =
   | { type: "tip"; title: string; text: string }
   | { type: "caution"; text: string }
   | { type: "steps"; items: { title: string; text: string }[] }
+  | { type: "checklist"; title: string; items: { title: string; text: string }[] }
   | { type: "compare"; items: { title: string; text: string; examples: string[] }[] }
   | { type: "gstin"; segments: { chars: string; label: string }[]; caption: string }
+  | { type: "cases"; items: { title: string; stat: { label: string; value: string }; text: string }[] }
   | { type: "scenarios"; items: { title: string; text: string; badge: string; tax: string }[] }
   | {
       type: "calcs"
@@ -1463,6 +1465,613 @@ export const gstIndiaLessons: Record<number, GstLessonScreen[]> = {
                 "07 → State code (Delhi) · AAACX9999K → PAN · 1 → entity number · Z → default character · 3 → checksum.",
                 "Still check, using the GST Portal's taxpayer search, that the registration is active and the name and address match the invoice, and that the tax charged suits the transaction.",
                 "A valid-looking format alone doesn't prove the registration is active or that the invoice qualifies for ITC.",
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  3: [
+    {
+      title: "Who must register for GST?",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The first question is not simply, “How much did the business sell?” You must consider its aggregate turnover, state, type of supply and whether a compulsory-registration rule applies.",
+        },
+        {
+          type: "paragraph",
+          text: "Section 22 of the CGST Act deals with turnover-based registration. Section 24 lists categories that may require registration regardless of turnover, subject to applicable exemptions and notifications.",
+        },
+        { type: "paragraph", text: "A business should generally assess these factors:" },
+        {
+          type: "bullets",
+          items: [
+            "Its aggregate turnover across India for the same PAN.",
+            "Whether it supplies goods, services or both.",
+            "The State or Union Territory from which it makes taxable supplies.",
+            "Whether a compulsory-registration provision applies.",
+            "Whether an exemption or special notification applies.",
+          ],
+        },
+        { type: "heading", text: "Example" },
+        {
+          type: "paragraph",
+          text: "Suppose a sole proprietor operates a computer sales and repair business in Punjab.",
+        },
+        {
+          type: "bullets",
+          items: [
+            "Annual aggregate turnover: ₹18 lakh.",
+            "Activities: laptop sales and repair services.",
+            "No special compulsory-registration rule applies.",
+          ],
+        },
+        {
+          type: "paragraph",
+          text: "The proprietor must examine the applicable threshold for the business's actual activities. The ₹40 lakh threshold sometimes discussed for goods is not automatically available to a business supplying both goods and services.",
+        },
+        {
+          type: "tip",
+          title: "Watch out",
+          text: "This distinction is especially important for retailers who also provide repair, installation or IT support services.",
+        },
+        { type: "heading", text: "Official sources" },
+        {
+          type: "links",
+          items: [
+            {
+              label: "CGST Act — Section 22",
+              href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter6/section22_v1.00.html",
+              text: "persons liable for registration.",
+            },
+            {
+              label: "CGST Act — Section 24",
+              href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter6/section24_v1.00.html",
+              text: "compulsory registration in certain cases.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Turnover thresholds for GST registration",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The basic registration thresholds are based on aggregate turnover in a financial year, not monthly sales or profit.",
+        },
+        { type: "paragraph", text: "For an ordinary business in Punjab, the key reference points are:" },
+        {
+          type: "table",
+          headers: ["Type of business", "General threshold"],
+          rows: [
+            ["Services or a business supplying goods and services", "₹20 lakh"],
+            [
+              "Business engaged exclusively in supplying eligible goods",
+              "Up to ₹40 lakh, where the applicable exemption and its conditions are satisfied",
+            ],
+          ],
+        },
+        {
+          type: "note",
+          text: "The ₹40 lakh threshold comes from Notification No. 10/2019–Central Tax and applies subject to its conditions and exclusions. A business that also supplies taxable services should not automatically use it.",
+        },
+        { type: "heading", text: "What about special-category States?" },
+        {
+          type: "paragraph",
+          text: "The threshold can differ by State and by the type of supply. The original framework provides for lower thresholds in specified special-category States, with subsequent changes and exemptions applying to particular States. Therefore, there is no single lower threshold that should be assumed for every State.",
+        },
+        {
+          type: "paragraph",
+          text: "For a practical GST registration decision, verify the current applicable State notification rather than relying only on the term “special-category State.”",
+        },
+        { type: "heading", text: "Example: Three businesses" },
+        {
+          type: "cases",
+          items: [
+            {
+              title: "Business A — Goods only in Punjab",
+              stat: { label: "Annual aggregate turnover", value: "₹32 lakh" },
+              text: "May qualify for the goods threshold exemption up to ₹40 lakh if all notification conditions are satisfied and no compulsory-registration rule applies.",
+            },
+            {
+              title: "Business B — Bookkeeping services in Punjab",
+              stat: { label: "Annual aggregate turnover", value: "₹18 lakh" },
+              text: "Generally below the ₹20 lakh threshold, assuming no compulsory-registration rule or other special condition applies.",
+            },
+            {
+              title: "Business C — Laptop sales and repair",
+              stat: { label: "Annual aggregate turnover", value: "₹24 lakh" },
+              text: "The business supplies goods and services, so the ₹40 lakh exclusive-goods exemption should not be assumed to apply.",
+            },
+          ],
+        },
+        {
+          type: "tip",
+          title: "Remember",
+          text: "A business below its usual turnover threshold may still need registration if a compulsory-registration rule applies. Conversely, some categories of suppliers have specific exemptions from compulsory registration.",
+        },
+      ],
+    },
+    {
+      title: "Compulsory registration regardless of turnover",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Section 24 of the CGST Act lists categories that may require registration even when turnover is below the normal threshold. However, the section must be read alongside exemptions and later notifications.",
+        },
+        { type: "paragraph", text: "Important categories include:" },
+        {
+          type: "bullets",
+          items: [
+            "Certain persons making inter-state taxable supplies.",
+            "Casual taxable persons making taxable supplies.",
+            "Non-resident taxable persons making taxable supplies.",
+            "Persons liable to register as tax deductors or tax collectors under specified provisions.",
+            "Input Service Distributors (ISDs).",
+            "Certain agents supplying on behalf of other taxable persons.",
+            "Certain e-commerce operators and suppliers using e-commerce platforms.",
+            "Persons liable under specified reverse-charge provisions.",
+          ],
+        },
+        { type: "heading", text: "Important exceptions" },
+        {
+          type: "caution",
+          text: "Do not teach or apply the rule as “every inter-state seller must register.” For example, specified small suppliers of inter-state taxable services can qualify for an exemption, subject to the applicable conditions. Special exemptions also exist for certain other categories.",
+        },
+        {
+          type: "tip",
+          title: "Practical rule",
+          text: "Identify the exact business activity, then check Section 24 and the relevant notification before concluding that registration is compulsory.",
+        },
+        { type: "heading", text: "Official references" },
+        {
+          type: "links",
+          items: [
+            {
+              label: "CGST Act — Section 24 (CBIC)",
+              href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter6/section24_v1.00.html",
+              text: "compulsory registration in certain cases.",
+            },
+            {
+              label: "GST Council — Registration under GST law",
+              href: "https://gstcouncil.gov.in/sites/default/files/e-version-gst-flyers/Registration_under_GST_Law_new.pdf",
+              text: "official explainer flyer (PDF).",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Voluntary GST registration",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Section 25(3) permits a person who is not otherwise liable to register to obtain registration voluntarily. Once registered, the person generally has the obligations of a registered taxpayer.",
+        },
+        { type: "heading", text: "Why might a small business register voluntarily?" },
+        {
+          type: "bullets",
+          items: [
+            "Its business customers require GST-compliant invoices.",
+            "It expects to cross the registration threshold soon.",
+            "Eligible input tax credit is commercially useful.",
+            "It wants a formal GST registration for its business operations.",
+          ],
+        },
+        { type: "heading", text: "Example" },
+        {
+          type: "paragraph",
+          text: "A small IT business has turnover of ₹12 lakh and is not otherwise required to register.",
+        },
+        {
+          type: "paragraph",
+          text: "It voluntarily registers. It must then follow the applicable invoicing, return-filing, payment and record-keeping requirements. It cannot simply collect GST and ignore returns because its turnover is small.",
+        },
+        {
+          type: "tip",
+          title: "Before registering voluntarily",
+          text: "Compare the benefits of registration with the costs of ongoing compliance. Registration is not automatically advantageous for every small business.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Act — Section 25 (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter6/section25_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "Documents required for GST registration",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The documents depend on the business structure, address and type of registration. Prepare the following checklist before starting the application.",
+        },
+        {
+          type: "checklist",
+          title: "Registration document checklist",
+          items: [
+            { title: "PAN", text: "PAN of the proprietor or business entity, as applicable" },
+            {
+              title: "Identity and contact details",
+              text: "Details of the proprietor, partners, directors and authorised signatory, as applicable",
+            },
+            {
+              title: "Photograph",
+              text: "Photograph of the relevant proprietor, partners or authorised signatory where required",
+            },
+            {
+              title: "Business address proof",
+              text: "Ownership evidence, rent/lease agreement, or consent documentation with supporting proof, depending on the premises",
+            },
+            {
+              title: "Constitution documents",
+              text: "Partnership deed, certificate of incorporation, or other applicable business-constitution documents",
+            },
+            { title: "Authorisation", text: "Authorisation letter or board resolution where applicable" },
+            {
+              title: "Bank details",
+              text: "Bank account details and supporting evidence where required by the applicable process",
+            },
+            {
+              title: "Digital submission",
+              text: "Access to the registered email and mobile number for OTP verification; DSC where mandatory",
+            },
+          ],
+        },
+        {
+          type: "note",
+          text: "The GST Portal's registration manual explains the application fields and address-document requirements. Different entity types and premises arrangements may require different supporting documents.",
+        },
+        {
+          type: "link",
+          label: "Official guide",
+          text: "Apply for Registration — GST Portal",
+          href: "https://tutorial.gst.gov.in/userguide/registration/Apply_for_Registration_Normal_Taxpayer.htm",
+        },
+      ],
+    },
+    {
+      title: "Step-by-step registration on the GST Portal",
+      blocks: [
+        {
+          type: "link",
+          label: "Use the official website",
+          text: "www.gst.gov.in",
+          href: "https://www.gst.gov.in/",
+        },
+        {
+          type: "steps",
+          items: [
+            {
+              title: "Start a new registration",
+              text: "Open Services → Registration → New Registration. Select the appropriate taxpayer type, State/UT and district.",
+            },
+            {
+              title: "Complete Part A",
+              text: "Enter the legal name as recorded against the PAN, PAN, email address and mobile number. Verify the OTPs and obtain the Temporary Reference Number (TRN).",
+            },
+            {
+              title: "Complete Part B",
+              text: "Use the TRN to continue the application. Fill in business details, promoters/partners, authorised signatory, principal and additional places of business, and goods/services information.",
+            },
+            {
+              title: "Upload supporting documents",
+              text: "Upload the appropriate address and constitution evidence, photographs and other required information.",
+            },
+            {
+              title: "Verify and submit",
+              text: "Complete the declaration and submit using the permitted electronic verification method. A Digital Signature Certificate (DSC) is mandatory for certain applicants, including companies and LLPs under the applicable process.",
+            },
+            {
+              title: "Track the application",
+              text: "Save the Application Reference Number (ARN), monitor the status and respond to any clarification notice within the stated time. After approval, download the registration certificate.",
+            },
+          ],
+        },
+        {
+          type: "note",
+          text: "The official GST Portal guide describes the application process, OTP validation, TRN, supporting information and submission requirements.",
+        },
+        { type: "heading", text: "Time limit to apply" },
+        {
+          type: "paragraph",
+          text: "Section 25 generally requires a person liable to register to apply within 30 days of becoming liable. Casual taxable persons and non-resident taxable persons generally must apply at least five days before starting business. Specific cases can have different requirements.",
+        },
+        { type: "heading", text: "What happens after submission?" },
+        {
+          type: "paragraph",
+          text: "The application may be processed through the applicable verification route. A tax officer may request clarification or additional documents. A submitted application is not the same as an approved registration.",
+        },
+        {
+          type: "tip",
+          title: "Once registration is granted",
+          text: "Check the certificate, GSTIN, registered name, business address and applicable registration details carefully.",
+        },
+      ],
+    },
+    {
+      title: "Amending registration details",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "If your business information changes after registration, you may need to amend your GST registration rather than apply for a completely new GSTIN. Examples include:",
+        },
+        {
+          type: "bullets",
+          items: [
+            "A change to the legal name.",
+            "A change in business constitution.",
+            "A change in business address.",
+            "Addition or removal of an additional place of business.",
+            "A change in authorised signatory or contact details.",
+          ],
+        },
+        { type: "heading", text: "Important 2026 update — recommended, not yet in force" },
+        {
+          type: "paragraph",
+          text: "At its 57th meeting on 8 October 2026, the GST Council recommended amending rule 19 of the CGST Rules so that amendments to all registration particulars are accepted automatically on the portal, except those relating to the principal place of business. For taxpayers registered under rule 14A (the automatic route), amendments to all particulars, including the principal place of business, would be accepted automatically.",
+        },
+        {
+          type: "paragraph",
+          text: "The CBIC FAQs published on 9 October 2026 explain that this would turn changes to the legal name, constitution of business and additional places of business — currently core amendments needing officer approval — into automatically processed amendments.",
+        },
+        {
+          type: "caution",
+          text: "These are recommendations. They take effect only once the rule amendment is notified, so until then follow the current GST Portal workflow and check for the notification before filing.",
+        },
+        { type: "heading", text: "General process" },
+        {
+          type: "steps",
+          items: [
+            { title: "Log in", text: "Log in to the GST Portal." },
+            { title: "Open the amendment form", text: "Open Services → Registration → Amendment of Registration." },
+            { title: "Choose the amendment type", text: "Select the appropriate core or non-core amendment option." },
+            { title: "Update the details", text: "Update the relevant details and upload supporting evidence if required." },
+            { title: "Verify and submit", text: "Complete verification and submit." },
+            { title: "Track it", text: "Save the ARN and monitor the status." },
+          ],
+        },
+        {
+          type: "note",
+          text: "Non-core amendments generally do not require approval by a tax officer, while core amendments may require processing and approval under the applicable rules. The exact treatment depends on the field and current procedure.",
+        },
+        { type: "heading", text: "Official references" },
+        {
+          type: "links",
+          items: [
+            { label: "Amendment of Non-Core Fields", href: "https://tutorial.gst.gov.in/userguide/registration/Non-Core_Fields.htm", text: "GST Portal user guide." },
+            {
+              label: "Amendment of Core Fields",
+              href: "https://tutorial.gst.gov.in/userguide/registration/Amendment_of_Registration_-_Core_Fields.htm",
+              text: "GST Portal user guide.",
+            },
+            { label: "PIB — Recommendations of the 57th GST Council meeting", href: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2320934&reg=48&lang=1", text: "8 October 2026." },
+            { label: "GST Council — FAQs on the 57th meeting recommendations", href: "https://www.gstcouncil.gov.in/sites/default/files/2026-10/faqs_on_recommendations_made_in_57th_gst_council_meeting.pdf", text: "PDF, 9 October 2026." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Cancellation and revocation of GST registration",
+      blocks: [
+        { type: "paragraph", text: "Cancellation and revocation are different processes." },
+        {
+          type: "list",
+          items: [
+            {
+              term: "Cancellation",
+              text: "The GST registration is cancelled, either on the taxpayer's application or by the proper officer under the law.",
+            },
+            {
+              term: "Revocation",
+              text: "An application to restore a registration that was cancelled by the proper officer on their own motion, where revocation is legally available.",
+            },
+          ],
+        },
+        { type: "heading", text: "A. When can a business apply for cancellation?" },
+        { type: "paragraph", text: "Common situations include:" },
+        {
+          type: "bullets",
+          items: [
+            "The business has permanently closed.",
+            "The business has been transferred or disposed of.",
+            "A change in constitution results in a new PAN.",
+            "The business is no longer liable to be registered and qualifies for cancellation.",
+            "Other circumstances permitted under the applicable GST rules.",
+          ],
+        },
+        {
+          type: "tip",
+          title: "Don't cancel too quickly",
+          text: "A business should not cancel registration merely because sales have temporarily fallen. It must determine whether it is legally eligible for cancellation and whether any continuing registration obligation exists.",
+        },
+        { type: "heading", text: "B. How to apply for cancellation" },
+        {
+          type: "steps",
+          items: [
+            { title: "Log in", text: "Log in to the official GST Portal (www.gst.gov.in)." },
+            {
+              title: "Open the cancellation form",
+              text: "Navigate to Services → Registration → Application for Cancellation of Registration.",
+            },
+            { title: "Complete FORM GST REG-16", text: "Include the reason and relevant details." },
+            {
+              title: "Provide the particulars",
+              text: "Provide the required information about stock, liabilities and other particulars applicable to the case.",
+            },
+            { title: "Submit", text: "Submit the application and save the acknowledgement." },
+            { title: "Follow up", text: "Monitor the application and complete any required response or follow-up." },
+          ],
+        },
+        {
+          type: "note",
+          text: "The application in FORM GST REG-16 is made under rule 20 of the CGST Rules. At its 57th meeting, the GST Council also recommended automatic acceptance of REG-16 applications once all pending returns are filed and dues paid — a change that applies only after the law and rules are amended.",
+        },
+        {
+          type: "caution",
+          text: "Cancellation does not erase past obligations. The taxpayer may still need to file outstanding returns, pay tax and applicable interest or penalties, and comply with final-return requirements. A final return in FORM GSTR-10 is generally required where applicable, subject to the statutory exceptions.",
+        },
+        { type: "heading", text: "C. What is revocation of cancellation?" },
+        {
+          type: "paragraph",
+          text: "If the proper officer cancels a registration on their own motion, the taxpayer may be able to apply for revocation using FORM GST REG-21, subject to the statutory conditions.",
+        },
+        {
+          type: "paragraph",
+          text: "The current text of Rule 23 provides a general application period of 90 days from service of the cancellation order, which can be extended by up to 180 days on sufficient cause. Where cancellation resulted from failure to file returns, the required outstanding returns and applicable dues must be addressed before revocation can be sought.",
+        },
+        {
+          type: "note",
+          text: "Do not confuse revocation with a fresh registration application or assume that revocation is available for every cancellation. If registration was cancelled on the taxpayer's own application, the appropriate route may be different.",
+        },
+        { type: "heading", text: "Official references" },
+        {
+          type: "links",
+          items: [
+            { label: "CGST Rules — Rule 20", href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter3/rule20_v1.00.html", text: "application for cancellation (REG-16)." },
+            { label: "CGST Rules — Rule 23", href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter3/rule23_v1.00.html", text: "revocation of cancellation (REG-21)." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Module 4 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions. Choose one answer for each, then press Check answers to see your score and explanations. Score at least 4 out of 5 to move on to the practical exercises.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question:
+                "An ordinary business in Punjab sells laptops and also provides repair services. Which general registration threshold applies?",
+              options: ["₹10 lakh", "₹20 lakh", "₹40 lakh", "There is no threshold"],
+              answer: 1,
+              explanation:
+                "A business supplying both goods and services generally uses the ₹20 lakh threshold. The ₹40 lakh exemption is only for businesses exclusively supplying eligible goods, subject to its conditions.",
+            },
+            {
+              question:
+                "Under Section 25, how soon must a person who becomes liable to register generally apply?",
+              options: ["Within 5 days", "Within 15 days", "Within 30 days", "Within 90 days"],
+              answer: 2,
+              explanation:
+                "The general rule is within 30 days of becoming liable. Casual and non-resident taxable persons generally apply at least five days before starting business.",
+            },
+            {
+              question: "Which statement about voluntary GST registration is correct?",
+              options: [
+                "It lets a small business collect GST without filing returns",
+                "Once registered, the business must follow the usual invoicing, return, payment and record-keeping rules",
+                "It is only available once turnover crosses ₹20 lakh",
+                "It is always the best option for every small business",
+              ],
+              answer: 1,
+              explanation:
+                "Section 25(3) allows voluntary registration, but the business then has the full obligations of a registered taxpayer. Compare the benefits with the compliance costs first.",
+            },
+            {
+              question: "Which form does a taxpayer use to apply for cancellation of their own GST registration?",
+              options: ["FORM GST REG-01", "FORM GST REG-14", "FORM GST REG-16", "FORM GST REG-21"],
+              answer: 2,
+              explanation:
+                "REG-16 is the cancellation application. REG-01 is the registration application, REG-14 is used for amendments and REG-21 is for revocation of an officer's cancellation.",
+            },
+            {
+              question:
+                "A tax officer cancelled a registration on their own motion. Under the current Rule 23, how does the taxpayer seek to restore it?",
+              options: [
+                "Apply in FORM GST REG-16 within 30 days",
+                "Apply for revocation in FORM GST REG-21, generally within 90 days of service of the order",
+                "File FORM GSTR-10 at any time",
+                "Only a fresh registration is possible",
+              ],
+              answer: 1,
+              explanation:
+                "Revocation is sought in REG-21, generally within 90 days of service of the cancellation order, which can be extended by up to 180 days on sufficient cause. Pending returns and dues must be cleared first where cancellation was for non-filing.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical exercises",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Put Module 4 into practice. Work out each answer first, then press Show answer to check your working. These are simplified practice cases — in real work, check the current Act, rules and notifications for the exact facts.",
+        },
+        {
+          type: "exercises",
+          items: [
+            {
+              title: "Exercise 1 — Register or not?",
+              task: [
+                "Assume each business is in Punjab and no other special rule applies unless stated.",
+                "(a) A trader selling only eligible goods, aggregate turnover ₹35 lakh, meeting all conditions of the goods exemption.",
+                "(b) A consultant providing taxable services, aggregate turnover ₹22 lakh.",
+                "(c) A laptop sales-and-repair shop, aggregate turnover ₹19 lakh.",
+                "(d) A casual taxable person planning to make taxable supplies at a trade fair in Haryana, with small expected sales.",
+              ],
+              answer: [
+                "(a) Generally not required — below the ₹40 lakh goods-only threshold, if all its conditions are met.",
+                "(b) Required — above the ₹20 lakh threshold for services.",
+                "(c) Generally not required — goods and services, so the ₹20 lakh threshold applies and ₹19 lakh is below it.",
+                "(d) Generally required regardless of turnover under Section 24, unless a specific exemption applies — and the application is generally due at least five days before starting business.",
+              ],
+            },
+            {
+              title: "Exercise 2 — Work out the deadline",
+              task: [
+                "A services business crosses its registration threshold and becomes liable to register on 10 August 2026.",
+                "By when should it generally apply for registration?",
+              ],
+              answer: [
+                "Within 30 days of becoming liable — so by 9 September 2026.",
+                "Applying early leaves time to answer any clarification request before registration is granted.",
+              ],
+            },
+            {
+              title: "Exercise 3 — Prepare the documents",
+              task: [
+                "A private limited company is registering for GST from rented premises.",
+                "List the main documents and items it should prepare.",
+              ],
+              answer: [
+                "Company PAN and certificate of incorporation (constitution document).",
+                "Details and photographs of directors and the authorised signatory, plus a board resolution authorising the signatory.",
+                "Address proof for rented premises — the rent or lease agreement with supporting proof.",
+                "Bank account details where required.",
+                "Registered email and mobile for OTPs, and a Digital Signature Certificate — DSC is mandatory for companies.",
+              ],
+            },
+            {
+              title: "Exercise 4 — Which amendment route?",
+              task: [
+                "A registered business (not registered under rule 14A) needs to: (a) move its principal place of business to a new address, and (b) change its legal name after a restructuring that keeps the same PAN.",
+                "How should each change be approached today?",
+              ],
+              answer: [
+                "(a) A change of principal place of business is a core amendment needing officer approval — and stays core even under the 57th Council's recommendations for registrations outside rule 14A.",
+                "(b) A legal name change is currently a core amendment. The Council has recommended making it automatic, but until the rule 19 amendment is notified, follow the current core-amendment process and check for the notification.",
+              ],
+            },
+            {
+              title: "Exercise 5 — Cancellation or revocation?",
+              task: [
+                "(a) A proprietor permanently closes the business. What should they do about GST registration?",
+                "(b) Another business's registration was cancelled by the officer for not filing returns, and the order was served on 1 July 2026. What should it do?",
+              ],
+              answer: [
+                "(a) Apply for cancellation in FORM GST REG-16, clear any pending returns and dues, and file the final return in FORM GSTR-10 where applicable.",
+                "(b) File the pending returns and pay the tax, interest, penalty and late fees due, then apply for revocation in FORM GST REG-21 — generally within 90 days of service of the order, i.e. by 29 September 2026, extendable by up to 180 days on sufficient cause.",
               ],
             },
           ],

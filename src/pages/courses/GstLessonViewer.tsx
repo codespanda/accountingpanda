@@ -4,6 +4,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  Copy,
   ExternalLink,
   Eye,
   EyeOff,
@@ -137,6 +138,23 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
           </div>
           <figcaption className="mt-3 text-center text-xs text-gray-500">{block.caption}</figcaption>
         </figure>
+      )
+    case "checklist":
+      return <Checklist title={block.title} items={block.items} />
+    case "cases":
+      return (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {block.items.map((item) => (
+            <div key={item.title} className="flex flex-col rounded-xl border border-gray-200 bg-white p-5">
+              <h3 className="text-base font-bold leading-snug text-brand-heading">{item.title}</h3>
+              <div className="mt-3 rounded-lg bg-bento-mint px-3 py-2">
+                <p className="text-xs text-bento-forest/80">{item.stat.label}</p>
+                <p className="text-lg font-bold text-bento-forest">{item.stat.value}</p>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-gray-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
       )
     case "gstin":
       return (
@@ -368,6 +386,78 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
         </div>
       )
   }
+}
+
+/** A tick-off checklist with a running count and a copy-to-clipboard button. */
+function Checklist({ title, items }: { title: string; items: { title: string; text: string }[] }) {
+  const [done, setDone] = useState<Set<number>>(new Set())
+  const [copied, setCopied] = useState(false)
+
+  const toggle = (i: number) =>
+    setDone((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+
+  const copy = async () => {
+    const text = [title, ...items.map((item, i) => `[${done.has(i) ? "x" : " "}] ${item.title} — ${item.text}`)].join(
+      "\n"
+    )
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard unavailable (e.g. insecure context) — leave the button as is.
+    }
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white">
+      <div className="flex items-center justify-between gap-3 border-b border-gray-100 px-5 py-4">
+        <h3 className="text-base font-bold text-brand-heading">{title}</h3>
+        <span className="text-sm font-bold text-brand-heading">
+          {done.size}/{items.length}
+        </span>
+      </div>
+      <ul className="divide-y divide-gray-100">
+        {items.map((item, i) => {
+          const checked = done.has(i)
+          return (
+            <li key={item.title}>
+              <button
+                type="button"
+                onClick={() => toggle(i)}
+                aria-pressed={checked}
+                className="flex w-full items-start gap-3 px-5 py-3 text-left hover:bg-brand-bg"
+              >
+                <span
+                  className={cn(
+                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-colors",
+                    checked ? "border-brand-green bg-brand-green text-white" : "border-gray-300 bg-white"
+                  )}
+                >
+                  {checked && <Check className="h-3 w-3" strokeWidth={3} />}
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-brand-heading">{item.title}</span>
+                  <span className="block text-sm text-gray-500">{item.text}</span>
+                </span>
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+      <div className="border-t border-gray-100 px-5 py-3">
+        <Button variant="outline" size="sm" onClick={copy}>
+          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          {copied ? "Copied" : "Copy checklist"}
+        </Button>
+      </div>
+    </div>
+  )
 }
 
 /** A practice task whose worked answer is revealed on request. */
