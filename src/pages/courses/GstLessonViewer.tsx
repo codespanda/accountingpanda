@@ -4,6 +4,8 @@ import {
   ArrowRight,
   Check,
   ExternalLink,
+  Eye,
+  EyeOff,
   Factory,
   Info,
   Lightbulb,
@@ -15,7 +17,7 @@ import { Button } from "@/components/ui/button"
 import type { GstLessonBlock, GstLessonScreen } from "@/pages/courses/gstIndiaLessons"
 import { GstKnowledgeCheck } from "@/pages/courses/GstKnowledgeCheck"
 
-function Block({ block, onFinish }: { block: GstLessonBlock; onFinish?: () => void }) {
+function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }) {
   switch (block.type) {
     case "paragraph":
       return <p className="text-sm leading-relaxed text-gray-600 sm:text-[0.95rem]">{block.text}</p>
@@ -201,7 +203,15 @@ function Block({ block, onFinish }: { block: GstLessonBlock; onFinish?: () => vo
         </div>
       )
     case "knowledge-check":
-      return <GstKnowledgeCheck questions={block.questions} passCount={block.passCount} onPass={onFinish} />
+      return <GstKnowledgeCheck questions={block.questions} passCount={block.passCount} onPass={onPass} />
+    case "exercises":
+      return (
+        <div className="space-y-4">
+          {block.items.map((item) => (
+            <Exercise key={item.title} {...item} />
+          ))}
+        </div>
+      )
     case "note":
       return (
         <div className="flex items-start gap-3 rounded-xl bg-bento-sky p-4">
@@ -210,6 +220,42 @@ function Block({ block, onFinish }: { block: GstLessonBlock; onFinish?: () => vo
         </div>
       )
   }
+}
+
+/** A practice task whose worked answer is revealed on request. */
+function Exercise({ title, task, answer }: { title: string; task: string[]; answer: string[] }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5">
+      <h3 className="text-base font-bold text-brand-heading">{title}</h3>
+      <div className="mt-2 space-y-1.5">
+        {task.map((line) => (
+          <p key={line} className="text-sm leading-relaxed text-gray-600">
+            {line}
+          </p>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-green hover:underline"
+      >
+        {open ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+        {open ? "Hide answer" : "Show answer"}
+      </button>
+      {open && (
+        <div className="mt-3 space-y-1.5 rounded-lg bg-bento-mint px-4 py-3">
+          {answer.map((line) => (
+            <p key={line} className="text-sm leading-relaxed text-bento-forest">
+              {line}
+            </p>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 /** Steps through a module's lesson screens one at a time. */
@@ -222,14 +268,22 @@ export function GstLessonViewer({
   onFinish?: () => void
 }) {
   const [page, setPage] = useState(0)
+  const [passed, setPassed] = useState<Set<number>>(new Set())
   const screen = screens[page]
   const last = page === screens.length - 1
-  // A knowledge check finishes the module itself, once passed.
+  // A knowledge check must be passed before moving on.
   const hasCheck = screen.blocks.some((b) => b.type === "knowledge-check")
+  const locked = hasCheck && !passed.has(page)
 
   const go = (next: number) => {
     setPage(next)
     window.scrollTo({ top: 0 })
+  }
+
+  const handlePass = () => {
+    setPassed((prev) => new Set(prev).add(page))
+    if (last) onFinish?.()
+    else go(page + 1)
   }
 
   return (
@@ -240,7 +294,7 @@ export function GstLessonViewer({
       <h2 className="mt-1 text-2xl font-bold text-brand-heading sm:text-3xl">{screen.title}</h2>
       <div className="mt-6 space-y-5">
         {screen.blocks.map((block, i) => (
-          <Block key={`${page}-${i}`} block={block} onFinish={onFinish} />
+          <Block key={`${page}-${i}`} block={block} onPass={handlePass} />
         ))}
       </div>
 
@@ -249,14 +303,13 @@ export function GstLessonViewer({
           <ArrowLeft className="h-4 w-4" />
           Previous
         </Button>
-        {!last ? (
+        {locked ? null : !last ? (
           <Button onClick={() => go(page + 1)}>
             Next
             <ArrowRight className="h-4 w-4" />
           </Button>
         ) : (
-          onFinish &&
-          !hasCheck && (
+          onFinish && (
             <Button onClick={onFinish}>
               <Check className="h-4 w-4" />
               Mark complete

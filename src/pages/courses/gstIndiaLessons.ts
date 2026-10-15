@@ -28,6 +28,7 @@ export type GstLessonBlock =
   | { type: "tip"; title: string; text: string }
   | { type: "caution"; text: string }
   | { type: "knowledge-check"; passCount: number; questions: GstQuizQuestion[] }
+  | { type: "exercises"; items: { title: string; task: string[]; answer: string[] }[] }
   | { type: "links"; items: { label: string; href: string; text: string }[] }
   | { type: "link"; label: string; text: string; href: string }
   | {
@@ -315,7 +316,7 @@ export const gstIndiaLessons: Record<number, GstLessonScreen[]> = {
       blocks: [
         {
           type: "paragraph",
-          text: "Answer these five questions. Choose one answer for each, then press Check answers to see your score and explanations. Score at least 4 out of 5 to complete the module.",
+          text: "Answer these five questions. Choose one answer for each, then press Check answers to see your score and explanations. Score at least 4 out of 5 to move on to the practical exercises.",
         },
         {
           type: "knowledge-check",
@@ -362,6 +363,81 @@ export const gstIndiaLessons: Record<number, GstLessonScreen[]> = {
               answer: 1,
               explanation:
                 "IGST generally applies to inter-state supplies. The place-of-supply rules decide whether a supply is inter-state — the customer's location alone does not settle every case.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical exercises",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Put Module 1 into practice. Work out each answer on paper or in a spreadsheet first, then press Show answer to check your working. The GST rates used here are assumed for practice only — real rates depend on classification and the applicable notifications.",
+        },
+        {
+          type: "exercises",
+          items: [
+            {
+              title: "Exercise 1 — Split a GST-inclusive amount",
+              task: [
+                "A customer pays ₹11,800 for an item. The price includes GST at an assumed rate of 18%.",
+                "Work out the value before GST and the GST amount.",
+              ],
+              answer: [
+                "Value before GST = ₹11,800 ÷ 1.18 = ₹10,000.",
+                "GST = ₹11,800 − ₹10,000 = ₹1,800.",
+                "Check: 18% of ₹10,000 = ₹1,800 ✓",
+              ],
+            },
+            {
+              title: "Exercise 2 — Record a taxable sale",
+              task: [
+                "A shop makes a cash sale of goods for ₹20,000 plus GST at an assumed 18%.",
+                "Write the journal entry, treating GST as a single “Output GST payable” account. (You'll learn how it splits into CGST, SGST or IGST in Module 2.)",
+              ],
+              answer: [
+                "GST = 18% × ₹20,000 = ₹3,600. The customer pays ₹23,600.",
+                "Dr Cash ₹23,600",
+                "Cr Sales ₹20,000",
+                "Cr Output GST payable ₹3,600",
+                "Only ₹20,000 is revenue — the ₹3,600 is owed to the government.",
+              ],
+            },
+            {
+              title: "Exercise 3 — Direct or indirect?",
+              task: [
+                "Classify each tax as direct or indirect:",
+                "(a) Income tax on a person's salary  (b) GST on a restaurant bill  (c) Customs duty on imported goods  (d) Income tax on a company's profits",
+              ],
+              answer: [
+                "(a) Direct — charged on the person's own income.",
+                "(b) Indirect — collected by the restaurant from the customer.",
+                "(c) Indirect — a duty on goods that continues under customs law, outside GST.",
+                "(d) Direct — charged on the company's own income.",
+              ],
+            },
+            {
+              title: "Exercise 4 — See how input tax credit stops cascading",
+              task: [
+                "Assume a 10% tax. A manufacturer sells goods to a trader for ₹100 plus tax. The trader adds a ₹20 margin and sells to a consumer.",
+                "Work out the total tax collected (i) without any credit for earlier tax, and (ii) with input tax credit.",
+              ],
+              answer: [
+                "(i) Without credit: the manufacturer charges ₹10, so the trader's cost is ₹110. The trader sells for ₹130 + ₹13 tax. Total tax = ₹10 + ₹13 = ₹23 — tax was charged on tax.",
+                "(ii) With credit: the trader claims back the ₹10, so its cost is ₹100. It sells for ₹120 + ₹12 tax and pays ₹12 − ₹10 = ₹2. Total tax = ₹10 + ₹2 = ₹12, which is exactly 10% of the final ₹120 value.",
+              ],
+            },
+            {
+              title: "Exercise 5 — Find the official source",
+              task: [
+                "A colleague sends you a link to “gst-registration-fast.com”, which offers to issue a GST registration for a fee, and a news article saying a GST rate will change next month.",
+                "Where should you go to register, and what should you check before changing the rate on your invoices?",
+              ],
+              answer: [
+                "Register only through the official GST Portal at www.gst.gov.in — be cautious of third-party sites that claim to issue registrations.",
+                "Before changing any rate, check the official notification and its effective date (for example via CBIC or the GST Council), not just the news article.",
+              ],
             },
           ],
         },
