@@ -83,6 +83,7 @@ const routes = [
   "learning/financial-accounting/fixed-assets-and-depreciation",
   "learning/financial-accounting/inventory-accounting-and-valuation",
   "learning/financial-accounting/internal-controls-and-fraud-prevention",
+  "learning/financial-accounting/revenue-recognition",
   "about",
   "faq",
   "privacy-policy",

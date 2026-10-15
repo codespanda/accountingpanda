@@ -509,4 +509,74 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Review the finance controls of a fictional small business, identify fraud risks and gaps, and present a prioritised control improvement plan.",
   },
+  {
+    slug: "revenue-recognition",
+    title: "Revenue Recognition",
+    image: "assets/course-revenue-recognition.jpg",
+    summary:
+      "Recognise revenue correctly with the five-step model — contracts, performance obligations, transaction price, allocation and timing under IFRS 15, Ind AS 115 and ASC 606.",
+    intro:
+      "Revenue is the most important number in most financial statements — and one of the easiest to get wrong. Learn the five-step model used worldwide and how to apply it to everyday sales, subscriptions, projects and bundled offers.",
+    objective:
+      "By the end of this course, learners will apply the five-step revenue model, identify contracts and performance obligations, measure the transaction price including variable consideration, allocate it across obligations, decide whether revenue is recognised over time or at a point in time, record contract assets and liabilities, and prepare clear revenue disclosures.",
+    level: "Advanced",
+    duration: "3.5 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "The Five-Step Model", [
+        "Why a single revenue standard — IFRS 15, Ind AS 115 and ASC 606",
+        "Overview of the five steps",
+        "Step 1 — identifying the contract with a customer",
+        "Contract combinations and modifications",
+      ]),
+      mod(2, "Performance Obligations", [
+        "Step 2 — identifying performance obligations",
+        "Distinct goods and services",
+        "Bundles, installation and support",
+        "Warranties — assurance vs. service warranties",
+        "Principal vs. agent",
+      ]),
+      mod(3, "Transaction Price", [
+        "Step 3 — determining the transaction price",
+        "Variable consideration — discounts, rebates and bonuses",
+        "Constraining estimates",
+        "Significant financing components",
+        "Non-cash consideration and amounts payable to customers",
+      ]),
+      mod(4, "Allocation", [
+        "Step 4 — allocating the price to performance obligations",
+        "Stand-alone selling prices",
+        "Estimating prices — adjusted market, cost-plus and residual approaches",
+        "Allocating discounts and variable consideration",
+      ]),
+      mod(5, "Timing of Recognition", [
+        "Step 5 — recognising revenue when obligations are satisfied",
+        "Over time vs. at a point in time",
+        "Measuring progress — output and input methods",
+        "Transfer of control and bill-and-hold",
+        "Licences, subscriptions and software",
+      ]),
+      mod(6, "Accounting Entries and Disclosures", [
+        "Contract assets, receivables and contract liabilities",
+        "Costs of obtaining and fulfilling a contract",
+        "Revenue disaggregation and disclosures",
+        "Common errors and revenue red flags",
+        "Revenue recognition checklist",
+      ]),
+    ],
+    assignments: [
+      "Identify performance obligations in a bundled sale",
+      "Estimate variable consideration for a rebate scheme",
+      "Allocate a transaction price using stand-alone selling prices",
+      "Recognise revenue over time on a fixed-price project",
+      "Record contract assets and contract liabilities",
+      "Draft a revenue disclosure note",
+    ],
+    exercises:
+      "Worked case exercises after each module, covering product sales, software subscriptions and construction-style projects.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Apply the five-step model to a fictional company's customer contracts, prepare the revenue entries for the year and draft the revenue note.",
+  },
 ]
