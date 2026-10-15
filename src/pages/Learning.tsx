@@ -66,7 +66,7 @@ const categories = [
     icon: TrendingUp,
     title: "Business Finance",
     body: "Financial planning & analysis",
-    count: "2 Courses",
+    count: "3 Courses",
     href: "/learning/business-finance",
   },
 ]

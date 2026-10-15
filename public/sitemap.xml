@@ -296,6 +296,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://accountingpanda.com/learning/business-finance/cost-accounting-basics/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://accountingpanda.com/learning/financial-accounting/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

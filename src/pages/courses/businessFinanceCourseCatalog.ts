@@ -151,4 +151,76 @@ export const businessFinanceCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Review the working capital of a fictional wholesaler, identify where cash is tied up and present an action plan to release it.",
   },
+  {
+    slug: "cost-accounting-basics",
+    title: "Cost Accounting Basics",
+    image: "assets/course-cost-accounting.jpg",
+    summary:
+      "Understand what products and services really cost — cost classification, cost sheets, overhead absorption, marginal costing, break-even and standard costing variances.",
+    intro:
+      "Pricing, product mix and cost-cutting decisions all depend on knowing what things really cost. Learn how businesses collect, classify and allocate costs, and how to use the numbers to set prices and control spending.",
+    objective:
+      "By the end of this course, learners will classify costs by element and behaviour, prepare a cost sheet, absorb overheads into products, apply marginal costing and break-even analysis, set standard costs, calculate material, labour and overhead variances, and use cost information for pricing and make-or-buy decisions.",
+    level: "Beginner",
+    duration: "3.5 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Introduction to Cost Accounting", [
+        "Cost accounting vs. financial accounting",
+        "Cost units and cost centres",
+        "Direct and indirect costs",
+        "Fixed, variable and semi-variable costs",
+        "Separating semi-variable costs — the high-low method",
+      ]),
+      mod(2, "Materials and Labour", [
+        "Purchasing, receiving and issuing materials",
+        "Inventory valuation — FIFO and weighted average",
+        "Reorder levels and stock control",
+        "Labour cost, idle time and overtime",
+        "Labour efficiency and productivity",
+      ]),
+      mod(3, "Overheads and Cost Sheets", [
+        "Allocating and apportioning overheads",
+        "Overhead absorption rates",
+        "Under- and over-absorbed overheads",
+        "Preparing a cost sheet",
+        "Job, batch and process costing — an overview",
+      ]),
+      mod(4, "Marginal Costing and Break-Even", [
+        "Contribution and the contribution margin ratio",
+        "Marginal vs. absorption costing profits",
+        "Break-even point and margin of safety",
+        "Target profit and cost-volume-profit analysis",
+        "Break-even charts",
+      ]),
+      mod(5, "Standard Costing and Variances", [
+        "Setting standard costs",
+        "Material price and usage variances",
+        "Labour rate and efficiency variances",
+        "Overhead variances",
+        "Investigating and reporting variances",
+      ]),
+      mod(6, "Costing for Decisions", [
+        "Relevant costs and sunk costs",
+        "Cost-plus and contribution-based pricing",
+        "Make-or-buy decisions",
+        "Accepting a special order",
+        "Product mix with a limiting factor",
+      ]),
+    ],
+    assignments: [
+      "Classify a business's costs by element and behaviour",
+      "Value material issues using FIFO and weighted average",
+      "Calculate overhead absorption rates and prepare a cost sheet",
+      "Find the break-even point and margin of safety",
+      "Calculate material and labour variances",
+      "Recommend a make-or-buy decision",
+    ],
+    exercises:
+      "Worked costing exercises after each module, following one small manufacturer from raw materials to finished product.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Cost a product range for a fictional manufacturer — cost sheets, break-even analysis, variances and a pricing recommendation.",
+  },
 ]

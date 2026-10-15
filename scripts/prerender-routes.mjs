@@ -74,6 +74,7 @@ const routes = [
   "learning/business-finance",
   "learning/business-finance/budgeting-and-cash-flow-forecasting",
   "learning/business-finance/working-capital-management",
+  "learning/business-finance/cost-accounting-basics",
   "learning/financial-accounting",
   "learning/financial-accounting/financial-reporting",
   "learning/financial-accounting/financial-statement-analysis",
