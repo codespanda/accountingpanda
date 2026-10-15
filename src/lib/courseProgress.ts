@@ -43,6 +43,20 @@ export function completeModule(courseSlug: string, index: number): number[] {
   return next
 }
 
+/** Marks a module done, or un-marks it if it was already done. */
+export function toggleModule(courseSlug: string, index: number): number[] {
+  const completed = new Set(getCompletedModules(courseSlug))
+  if (completed.has(index)) completed.delete(index)
+  else completed.add(index)
+  const next = [...completed].sort((a, b) => a - b)
+  try {
+    window.localStorage.setItem(storageKey(courseSlug), JSON.stringify(next))
+  } catch {
+    // Ignore storage errors — progress just won't persist for this viewer.
+  }
+  return next
+}
+
 /** Module 0 (the first module) is always unlocked; every other module
  * unlocks once the module immediately before it is completed. */
 export function isModuleUnlocked(index: number, completed: number[]): boolean {

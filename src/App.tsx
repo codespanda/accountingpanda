@@ -13,6 +13,7 @@ import { PayrollCourses } from "@/pages/PayrollCourses"
 import { ExcelCourses } from "@/pages/ExcelCourses"
 import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
+import { GstIndiaProgress } from "@/pages/courses/GstIndiaProgress"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 import { taxationCourseCatalog } from "@/pages/courses/taxationCourseCatalog"
@@ -175,6 +176,10 @@ function App() {
             <Route
               path="/learning/taxation/learn-gst-in-india"
               element={<GstIndiaCourse />}
+            />
+            <Route
+              path="/learning/taxation/learn-gst-in-india/progress"
+              element={<GstIndiaProgress />}
             />
             <Route
               path="/learning/taxation/:courseSlug"

@@ -246,3 +246,22 @@ export const gstIndiaModules: CourseModule[] = [
     ],
   },
 ]
+
+/** Short titles and one-line summaries for the course progress tracker. */
+export const gstIndiaModuleSummaries: { title: string; summary: string }[] = [
+  { title: "Introduction to GST", summary: "Purpose, history and basic principles" },
+  { title: "GST Structure", summary: "CGST, SGST, UTGST and IGST" },
+  { title: "Key Concepts and Terminology", summary: "GSTIN, taxable supply, HSN, SAC and more" },
+  { title: "GST Registration", summary: "Eligibility, thresholds and registration process" },
+  { title: "GST Rates and Classification", summary: "Tax slabs, HSN and SAC" },
+  { title: "Time, Value and Place of Supply", summary: "Taxable value, timing and jurisdiction" },
+  { title: "Input Tax Credit (ITC)", summary: "Conditions, blocked credits and reversals" },
+  { title: "Tax Invoices and GST Documents", summary: "Invoices, credit and debit notes, e-way bills" },
+  { title: "Reverse Charge Mechanism (RCM)", summary: "When the buyer pays the tax" },
+  { title: "The Composition Scheme", summary: "Eligibility, rates and restrictions" },
+  { title: "GST Returns", summary: "GSTR-1, GSTR-3B, annual returns and due dates" },
+  { title: "Paying GST, Interest, Late Fees and Refunds", summary: "Ledgers, challans, interest and refund claims" },
+  { title: "GST on Exports and Imports", summary: "Zero-rated supplies, LUT and IGST on imports" },
+  { title: "GST in Practice: Accounting Software", summary: "Recording GST and preparing return data" },
+  { title: "Final Practical Project", summary: "One month of GST compliance for a business" },
+]

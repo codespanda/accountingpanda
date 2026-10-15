@@ -49,6 +49,7 @@ const routes = [
   "learning/bookkeeping/advanced-bookkeeping-and-adjusting-entries",
   "learning/taxation",
   "learning/taxation/learn-gst-in-india",
+  "learning/taxation/learn-gst-in-india/progress",
   "learning/taxation/gst-compliance-in-india",
   "learning/taxation/tds-compliance-in-india",
   "learning/taxation/income-tax-for-salaried-employees",
