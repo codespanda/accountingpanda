@@ -52,6 +52,7 @@ const routes = [
   "learning/taxation/gst-compliance-in-india",
   "learning/taxation/tds-compliance-in-india",
   "learning/taxation/income-tax-for-salaried-employees",
+  "learning/taxation/income-tax-for-business-and-professionals",
   "learning/payroll",
   "learning/payroll/payroll-processing-in-india",
   "learning/payroll/statutory-compliance-epf",

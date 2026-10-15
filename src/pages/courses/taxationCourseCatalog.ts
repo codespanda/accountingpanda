@@ -244,4 +244,82 @@ export const taxationCourseCatalog: CourseDetails[] = [
     note:
       "Figures in this course reflect tax year 2026–27. Tax slabs, deductions, rebates and due dates are set each year by the Finance Act, and section numbers changed under the Income-tax Act, 2025. This course is for learning, not personal tax advice — always confirm current rules with the Income Tax Department.",
   },
+  {
+    slug: "income-tax-for-business-and-professionals",
+    title: "Income Tax for Business & Professionals",
+    image: "assets/course-income-tax-business.jpg",
+    summary:
+      "Understand how business and professional income is taxed under the Income-tax Act, 2025 — computing profits, presumptive taxation, books of account, tax audit, advance tax and filing.",
+    intro:
+      "Shop owners, traders, doctors, consultants and freelancers all pay tax on business or professional income. Learn how that income is computed, when the simpler presumptive scheme can be used, when a tax audit is needed, and how to pay advance tax and file on time.",
+    objective:
+      "By the end of this course, learners will compute profits and gains of business or profession, identify allowable and disallowed expenses, decide whether presumptive taxation under section 58 applies, know when books must be kept and audited under sections 62 and 63, calculate and schedule advance tax, and prepare a business or professional return.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Business and Professional Income", [
+        "The head “Profits and gains of business or profession”",
+        "Business vs. profession — and what counts as a specified profession",
+        "The tax year under the Income-tax Act, 2025",
+        "Method of accounting — mercantile and cash",
+        "Choosing between the new and old tax regimes for business income",
+      ]),
+      mod(2, "Computing Taxable Profit", [
+        "Starting from the profit in the books",
+        "Allowable business expenses",
+        "Depreciation on business assets",
+        "Disallowed expenses — personal, capital and cash payments",
+        "Payments where TDS was not deducted",
+        "Setting off and carrying forward business losses",
+      ]),
+      mod(3, "Presumptive Taxation — Section 58", [
+        "Who can opt — resident individuals, HUFs and firms other than LLPs",
+        "Businesses — turnover up to ₹2 crore, or ₹3 crore if cash receipts are within 5%",
+        "Deemed profit — 6% of digital receipts and 8% of other receipts",
+        "Professionals — receipts up to ₹50 lakh, or ₹75 lakh if cash receipts are within 5%; deemed profit of 50%",
+        "Goods carriages — up to ten vehicles, at fixed monthly amounts",
+        "No further deductions, and the five-year lock-in for businesses",
+      ]),
+      mod(4, "Books of Account and Tax Audit", [
+        "Books of account under section 62",
+        "Tax audit under section 63 — business turnover above ₹1 crore",
+        "The ₹10 crore limit when cash receipts and cash payments are each within 5%",
+        "Professionals with gross receipts above ₹50 lakh",
+        "Declaring less than presumptive profit — when audit applies",
+        "The audit report in Form 26 and its due date",
+      ]),
+      mod(5, "Advance Tax", [
+        "Who pays — when tax for the year is ₹10,000 or more",
+        "Instalments — 15% by 15 June, 45% by 15 September, 75% by 15 December, 100% by 15 March",
+        "Presumptive businesses and professionals — one payment by 15 March",
+        "Estimating current-year income",
+        "Interest for short or late payment",
+      ]),
+      mod(6, "Filing and Compliance", [
+        "Choosing the right return form",
+        "Return due dates for audited and non-audited cases",
+        "TDS and TCS credits in Form 168",
+        "GST turnover and income tax turnover — reconciling the two",
+        "Notices, scrutiny and record keeping",
+        "Business taxpayer's year-end checklist",
+      ]),
+    ],
+    assignments: [
+      "Compute taxable business profit from a profit and loss account",
+      "Identify disallowed expenses",
+      "Decide whether presumptive taxation applies and calculate deemed profit",
+      "Check whether a business or professional needs a tax audit",
+      "Prepare an advance tax schedule",
+      "Prepare a return summary for a professional",
+    ],
+    exercises:
+      "Worked tax calculations after each module for a trader, a consultant and a small manufacturing business.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Compute the tax for a fictional business owner — taxable profit, the presumptive option, audit check, advance tax and a return summary — and recommend the better approach.",
+    note:
+      "Figures in this course reflect tax year 2026–27 under the Income-tax Act, 2025, as amended by the Finance Act, 2026. Limits, rates and due dates can change each year. This course is for learning, not personal tax advice — always confirm current rules with the Income Tax Department.",
+  },
 ]
