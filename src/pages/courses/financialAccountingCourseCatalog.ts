@@ -368,4 +368,74 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Maintain a full year's fixed asset register for a fictional business — additions, depreciation, an impairment and disposals — and prepare the year-end note.",
   },
+  {
+    slug: "inventory-accounting-and-valuation",
+    title: "Inventory Accounting & Valuation",
+    image: "assets/course-inventory-valuation.jpg",
+    summary:
+      "Account for inventory accurately — perpetual and periodic systems, cost formulas, lower of cost and net realisable value, stock counts, write-downs and reporting.",
+    intro:
+      "Inventory links purchasing, production, sales and profit. Learn how to measure what stock costs, value it correctly at period end, reconcile counts to the books and spot the errors that distort gross margin.",
+    objective:
+      "By the end of this course, learners will record inventory under perpetual and periodic systems, measure cost including conversion costs, apply FIFO, weighted average and specific identification, value stock at the lower of cost and net realisable value, run and reconcile stock counts, account for write-downs and losses, and report inventory clearly.",
+    level: "Intermediate",
+    duration: "3.5 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Inventory in the Financial Statements", [
+        "Types of inventory — raw materials, work in progress and finished goods",
+        "How inventory drives cost of goods sold and gross profit",
+        "Perpetual vs. periodic inventory systems",
+        "Ownership and cut-off — goods in transit and on consignment",
+      ]),
+      mod(2, "Measuring the Cost of Inventory", [
+        "Purchase costs — price, freight, duties and discounts",
+        "Conversion costs — direct labour and production overheads",
+        "Costs that must be expensed",
+        "Standard cost and retail methods",
+      ]),
+      mod(3, "Cost Formulas", [
+        "First-in, first-out (FIFO)",
+        "Weighted average cost",
+        "Specific identification",
+        "LIFO — allowed under US GAAP but not under IFRS or Ind AS",
+        "How each formula affects profit and tax",
+      ]),
+      mod(4, "Valuation at Period End", [
+        "Lower of cost and net realisable value",
+        "Estimating net realisable value",
+        "Slow-moving, damaged and obsolete stock",
+        "Inventory provisions and write-downs",
+        "Reversing write-downs",
+      ]),
+      mod(5, "Stock Counts and Reconciliation", [
+        "Planning a stock count",
+        "Count procedures and test counts",
+        "Cycle counting",
+        "Reconciling counts to the ledger",
+        "Investigating shrinkage and losses",
+      ]),
+      mod(6, "Controls, Analysis and Reporting", [
+        "Inventory controls — receiving, issuing and access",
+        "Inventory turnover and days in inventory",
+        "Gross margin analysis",
+        "Inventory disclosures in the financial statements",
+        "Period-end inventory checklist",
+      ]),
+    ],
+    assignments: [
+      "Record purchases and sales under perpetual and periodic systems",
+      "Calculate the cost of inventory including freight and conversion costs",
+      "Value closing stock using FIFO and weighted average",
+      "Apply the lower of cost and net realisable value",
+      "Reconcile a stock count to the ledger",
+      "Prepare an inventory analysis and disclosure note",
+    ],
+    exercises:
+      "Worked inventory exercises after each module, using one wholesaler's purchase, sales and stock records.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Complete the year-end inventory valuation for a fictional retailer — cost formulas, count reconciliation, write-downs and the inventory note.",
+  },
 ]
