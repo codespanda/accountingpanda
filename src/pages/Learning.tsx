@@ -59,7 +59,7 @@ const categories = [
     icon: FileSpreadsheet,
     title: "Excel for Accountants",
     body: "Master Excel skills for accounting",
-    count: "1 Course",
+    count: "2 Courses",
     href: "/learning/excel-for-accountants",
   },
   {

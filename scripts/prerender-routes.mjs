@@ -69,6 +69,7 @@ const routes = [
   "learning/payroll/statutory-compliance-leave",
   "learning/excel-for-accountants",
   "learning/excel-for-accountants/excel-mastery-for-accountants",
+  "learning/excel-for-accountants/financial-modelling-in-excel",
   "learning/business-finance",
   "learning/business-finance/budgeting-and-cash-flow-forecasting",
   "learning/business-finance/working-capital-management",
