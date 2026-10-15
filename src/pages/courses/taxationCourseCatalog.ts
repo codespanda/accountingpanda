@@ -322,4 +322,79 @@ export const taxationCourseCatalog: CourseDetails[] = [
     note:
       "Figures in this course reflect tax year 2026–27 under the Income-tax Act, 2025, as amended by the Finance Act, 2026. Limits, rates and due dates can change each year. This course is for learning, not personal tax advice — always confirm current rules with the Income Tax Department.",
   },
+  {
+    slug: "gst-input-tax-credit-and-reconciliation",
+    title: "GST Input Tax Credit & Reconciliation",
+    image: "assets/course-gst-itc.jpg",
+    summary:
+      "Claim every rupee of eligible GST credit and nothing more — ITC conditions, blocked credits, IMS actions, GSTR-2B matching, reversals, time limits and annual reconciliation.",
+    intro:
+      "Input tax credit is where most GST cash is won or lost, and where most notices begin. Go beyond the basics to master the conditions, the Invoice Management System, reversals and time limits, and build a reconciliation routine that stands up to scrutiny.",
+    objective:
+      "By the end of this course, learners will test ITC claims against the section 16 conditions, identify blocked credits under section 17(5), act on supplier records in IMS, reconcile the purchase register with GSTR-2B, apply the 180-day payment rule, rule 37A and common-credit reversals, meet the section 16(4) time limit, and reconcile ITC for the annual return.",
+    level: "Advanced",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Conditions for Claiming ITC — Section 16", [
+        "Possession of a tax invoice or debit note",
+        "Supplier's details furnished in GSTR-1 and shown in GSTR-2B",
+        "Receipt of goods or services — including bill-to ship-to supplies",
+        "Tax actually paid by the supplier",
+        "Filing your own GSTR-3B",
+        "Goods received in lots, and no ITC where depreciation is claimed on the tax",
+      ]),
+      mod(2, "Blocked and Restricted Credits", [
+        "Section 17(5) blocked credits — vehicles, food, memberships and personal use",
+        "Works contracts and construction of immovable property",
+        "“Plant and machinery” — the 2025 amendment, effective retrospectively",
+        "Common credit for exempt and taxable supplies — rules 42 and 43",
+        "Input Service Distributor rules for multi-state businesses from 1 April 2025",
+      ]),
+      mod(3, "The Invoice Management System (IMS)", [
+        "Accept, reject or keep pending — and what each action does",
+        "Records with no action are treated as accepted",
+        "Recomputing GSTR-2B before filing GSTR-3B",
+        "Keeping credit notes pending and declaring the ITC to reverse",
+        "Adding remarks and working with suppliers to correct records",
+      ]),
+      mod(4, "Monthly ITC Reconciliation", [
+        "Matching the purchase register with GSTR-2B",
+        "Missing, mismatched and duplicate invoices",
+        "Reverse charge and import of goods credits",
+        "Following up suppliers who have not filed",
+        "A monthly reconciliation workbook",
+      ]),
+      mod(5, "Reversals, Re-claims and Time Limits", [
+        "The 180-day rule — reversing credit when suppliers are not paid, with interest",
+        "Re-claiming credit once payment is made",
+        "Rule 37A — reversal when a supplier has not filed GSTR-3B by 30 September",
+        "Section 16(4) — the 30 November deadline or annual return date, whichever is earlier",
+        "Interest on credit wrongly availed and used",
+      ]),
+      mod(6, "Annual Reconciliation and Notices", [
+        "Reconciling ITC in books, GSTR-3B and GSTR-2B for the year",
+        "Reporting ITC in GSTR-9 and GSTR-9C",
+        "Common ITC mismatch notices and how to reply",
+        "Documents to keep for every credit claimed",
+        "ITC year-end checklist",
+      ]),
+    ],
+    assignments: [
+      "Test a set of purchase invoices against the section 16 conditions",
+      "Identify blocked credits in a company's expenses",
+      "Decide IMS actions for a month's supplier records",
+      "Reconcile a purchase register with GSTR-2B",
+      "Calculate reversals under the 180-day rule and rule 37A",
+      "Prepare an annual ITC reconciliation for GSTR-9",
+    ],
+    exercises:
+      "Worked reconciliation exercises after each module, using one trading company's purchase register, GSTR-2B and payment records.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Reconcile a full year's input tax credit for a fictional business — monthly matching, reversals and re-claims, blocked credits and the GSTR-9 ITC tables — and draft a reply to an ITC mismatch notice.",
+    note:
+      "This course reflects the CGST Act and Rules and GST portal features as of October 2026. GST law, rates, forms and portal processes change often. This course is for learning, not professional advice — always confirm current rules with CBIC notifications and GSTN advisories.",
+  },
 ]

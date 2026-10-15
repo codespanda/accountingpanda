@@ -52,7 +52,7 @@ const categories = [
     icon: Receipt,
     title: "Taxation",
     body: "Learn tax rules & compliance",
-    count: "5 Courses",
+    count: "6 Courses",
     href: "/learning/taxation",
   },
   {
