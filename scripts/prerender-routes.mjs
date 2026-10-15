@@ -80,6 +80,7 @@ const routes = [
   "learning/financial-accounting/financial-statement-analysis",
   "learning/financial-accounting/bank-reconciliation-and-month-end-close",
   "learning/financial-accounting/advanced-accounts-receivable-and-payable",
+  "learning/financial-accounting/fixed-assets-and-depreciation",
   "about",
   "faq",
   "privacy-policy",

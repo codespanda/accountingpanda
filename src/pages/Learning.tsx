@@ -38,7 +38,7 @@ const categories = [
     icon: FileText,
     title: "Financial Accounting",
     body: "Understand financial statements",
-    count: "4 Courses",
+    count: "5 Courses",
     href: "/learning/financial-accounting",
   },
   {

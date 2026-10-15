@@ -295,4 +295,77 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Complete the period-end review of receivables and payables for a fictional exporter — provisions, revaluation, cut-off, reconciliations and a management report.",
   },
+  {
+    slug: "fixed-assets-and-depreciation",
+    title: "Fixed Assets & Depreciation",
+    image: "assets/course-fixed-assets.jpg",
+    summary:
+      "Account for property, plant and equipment from purchase to disposal — capitalisation, the fixed asset register, depreciation methods, revaluation, impairment and disposals.",
+    intro:
+      "Fixed assets are often the largest numbers on a balance sheet. Learn how to decide what to capitalise, keep an accurate fixed asset register, choose and calculate depreciation, and handle revaluations, impairments and disposals correctly.",
+    objective:
+      "By the end of this course, learners will apply capitalisation rules, maintain a fixed asset register, calculate depreciation using the main methods, account for revaluations, impairments, disposals and asset exchanges, reconcile the register to the ledger, and explain the difference between book and tax depreciation.",
+    level: "Intermediate",
+    duration: "3.5 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "What Counts as a Fixed Asset", [
+        "Property, plant and equipment and intangible assets",
+        "Capital vs. revenue expenditure",
+        "What to include in cost — purchase price, delivery and installation",
+        "Capitalisation thresholds",
+        "Subsequent costs — repairs vs. improvements",
+      ]),
+      mod(2, "The Fixed Asset Register", [
+        "What a fixed asset register records",
+        "Asset classes, tags and locations",
+        "Assets under construction and capital work in progress",
+        "Physical verification of assets",
+        "Reconciling the register to the general ledger",
+      ]),
+      mod(3, "Depreciation Methods", [
+        "Useful life, residual value and depreciable amount",
+        "Straight-line method",
+        "Written-down value (reducing balance) method",
+        "Units-of-production method",
+        "Component depreciation",
+        "Changes in estimates",
+      ]),
+      mod(4, "Revaluation and Impairment", [
+        "Cost model vs. revaluation model",
+        "Recording revaluation gains and losses",
+        "Indicators of impairment",
+        "Recoverable amount and impairment losses",
+        "Reversing impairment losses",
+      ]),
+      mod(5, "Disposals, Exchanges and Leases", [
+        "Selling and scrapping assets",
+        "Gains and losses on disposal",
+        "Asset exchanges and trade-ins",
+        "Assets held for sale",
+        "Right-of-use assets from leases — an overview",
+      ]),
+      mod(6, "Reporting, Tax and Controls", [
+        "Fixed asset notes and movement schedules",
+        "Book depreciation vs. tax depreciation",
+        "Deferred tax on depreciation differences — an overview",
+        "Controls over additions, transfers and disposals",
+        "Year-end fixed asset checklist",
+      ]),
+    ],
+    assignments: [
+      "Decide which costs to capitalise for a new machine",
+      "Set up a fixed asset register",
+      "Calculate straight-line and written-down value depreciation",
+      "Record a revaluation and an impairment",
+      "Account for an asset disposal and a trade-in",
+      "Prepare a fixed asset movement schedule",
+    ],
+    exercises:
+      "Worked calculation and journal exercises after each module, following one company's assets from purchase to disposal.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Maintain a full year's fixed asset register for a fictional business — additions, depreciation, an impairment and disposals — and prepare the year-end note.",
+  },
 ]
