@@ -31,13 +31,28 @@ const countries = [
       "CPA firm support",
     ],
   },
+  {
+    label: "India",
+    title: "Indian accounting services",
+    image: "assets/india.jpg",
+    alt: "Gateway of India and the Taj Mahal Palace hotel on the Mumbai waterfront",
+    imagePosition: "object-center",
+    items: [
+      "Bookkeeping (Tally & Zoho Books)",
+      "GST registration and returns",
+      "TDS returns",
+      "Payroll (PF, ESI and PT)",
+      "Financial statements (Ind AS / Schedule III)",
+      "Income tax filing",
+    ],
+  },
 ]
 
 export function CountryServices() {
   return (
     <section id="countries" className="mt-12 grid scroll-mt-28 grid-cols-12 gap-4">
       {countries.map((c) => (
-        <div key={c.label} className="col-span-12 flex flex-col overflow-hidden rounded-[28px] bg-white lg:col-span-6">
+        <div key={c.label} className="col-span-12 flex flex-col overflow-hidden rounded-[28px] bg-white lg:col-span-4">
           <div className="relative">
             <img src={asset(c.image)} alt={c.alt} className={`block h-[220px] w-full object-cover ${c.imagePosition}`} />
             <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-2 font-display text-sm font-bold text-bento-ink">

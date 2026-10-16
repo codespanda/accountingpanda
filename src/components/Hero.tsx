@@ -18,7 +18,7 @@ export function Hero() {
             Outsourced accounting experts
           </span>
           <h1 className="m-0 text-[clamp(40px,5vw,72px)] font-bold leading-[1.02] tracking-[-0.04em] text-balance">
-            Your trusted outsourcing partner for USA &amp; Australia
+            Your trusted outsourcing partner for USA, Australia &amp; India
           </h1>
           <p className="max-w-[520px] text-lg leading-[1.6] text-gray-600">
             Accurate, compliant and scalable accounting and bookkeeping for

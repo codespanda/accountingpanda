@@ -192,6 +192,7 @@ function ConsultationDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 <SelectField id="c-country" name="country" defaultValue="USA">
                   <option>USA</option>
                   <option>Australia</option>
+                  <option>India</option>
                   <option>Other</option>
                 </SelectField>
               </div>

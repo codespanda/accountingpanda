@@ -14,11 +14,11 @@ const groups: Group[] = [
     items: [
       {
         q: "What services does AccountingPanda offer?",
-        a: "We provide outsourced bookkeeping, financial reporting, bank reconciliation, accounts payable & receivable, and payroll processing for businesses and CPA firms in the USA and Australia.",
+        a: "We provide outsourced bookkeeping, financial reporting, bank reconciliation, accounts payable & receivable, and payroll processing for businesses and CPA firms in the USA, Australia and India.",
       },
       {
         q: "Which countries do you serve?",
-        a: "We specialize in accounting for the USA (GAAP, sales tax, 1099s) and Australia (AASB, BAS, GST, superannuation), and support businesses operating across both.",
+        a: "We specialize in accounting for the USA (GAAP, sales tax, 1099s), Australia (AASB, BAS, GST, superannuation) and India (Ind AS, GST, TDS, payroll compliance), and support businesses operating across these countries.",
       },
       {
         q: "Do you work with CPA and accounting firms, not just businesses?",
@@ -35,7 +35,7 @@ const groups: Group[] = [
       },
       {
         q: "Which accounting software do you support?",
-        a: "We work directly inside QuickBooks and Xero for US clients, and Xero and MYOB for Australian clients — no need to switch platforms.",
+        a: "We work directly inside QuickBooks and Xero for US clients, Xero and MYOB for Australian clients, and Tally and Zoho Books for Indian clients — no need to switch platforms.",
       },
       {
         q: "Can you take over from our current bookkeeper or firm?",

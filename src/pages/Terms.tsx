@@ -7,7 +7,7 @@ const sections = [
   },
   {
     title: "2. Services",
-    body: "AccountingPanda provides outsourced bookkeeping, financial reporting, bank reconciliation, accounts payable & receivable, and payroll processing services for businesses and CPA firms in the USA and Australia. Specific scope, deliverables and pricing for each engagement are agreed separately with each client.",
+    body: "AccountingPanda provides outsourced bookkeeping, financial reporting, bank reconciliation, accounts payable & receivable, and payroll processing services for businesses and CPA firms in the USA, Australia and India. Specific scope, deliverables and pricing for each engagement are agreed separately with each client.",
   },
   {
     title: "3. Client Responsibilities",

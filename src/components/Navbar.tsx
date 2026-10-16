@@ -6,7 +6,7 @@ import { ConsultationLink } from "@/components/ConsultationDialog"
 
 const navLinks = [
   { label: "Services", href: "/#services" },
-  { label: "USA & Australia", href: "/#countries" },
+  { label: "USA, Australia & India", href: "/#countries" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
 ]
