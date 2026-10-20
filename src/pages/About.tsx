@@ -15,7 +15,7 @@ import { ConsultationLink } from "@/components/ConsultationDialog"
 
 const stats = [
   { value: "12+", label: "Years Experience" },
-  { value: "2", label: "Countries Covered" },
+  { value: "3", label: "Countries Covered" },
   { value: "99.9%", label: "Accuracy Rate" },
 ]
 
@@ -107,7 +107,7 @@ export function About() {
 
       {/* Mission / Vision */}
       <section className="container-px pt-4">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 pb-16 lg:pb-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 rounded-[28px] bg-white px-6 py-10 sm:px-10 lg:px-14 lg:py-14">
           <div className="rounded-[22px] bg-brand-bg p-8">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green-light">
               <Target className="h-6 w-6 text-brand-green" />
