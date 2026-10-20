@@ -7,7 +7,7 @@
 //
 // Keep this list in sync with the <Route> paths in src/App.tsx and the
 // URLs in public/sitemap.xml.
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 
 const routes = [
@@ -98,6 +98,36 @@ const routes = [
 
 const distDir = join(process.cwd(), "dist")
 const indexHtml = readFileSync(join(distDir, "index.html"), "utf-8")
+
+// Posts published from the blog studio live in src/content/blog/*.json.
+// Add their routes here and their URLs to the built sitemap automatically.
+const contentDir = join(process.cwd(), "src", "content", "blog")
+const studioSlugs = existsSync(contentDir)
+  ? readdirSync(contentDir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => JSON.parse(readFileSync(join(contentDir, f), "utf-8")).slug)
+      .filter((slug) => typeof slug === "string" && /^[a-z0-9-]+$/.test(slug))
+  : []
+for (const slug of studioSlugs) {
+  if (!routes.includes(`blog/${slug}`)) routes.push(`blog/${slug}`)
+}
+
+const sitemapPath = join(distDir, "sitemap.xml")
+if (studioSlugs.length && existsSync(sitemapPath)) {
+  let sitemap = readFileSync(sitemapPath, "utf-8")
+  const entries = studioSlugs
+    .map((slug) => `https://accountingpanda.com/blog/${slug}/`)
+    .filter((loc) => !sitemap.includes(`<loc>${loc}</loc>`))
+    .map((loc) => `  <url>
+    <loc>${loc}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`)
+    .join("")
+  sitemap = sitemap.replace("</urlset>", `${entries}</urlset>`)
+  writeFileSync(sitemapPath, sitemap)
+}
 
 for (const route of routes) {
   const dir = join(distDir, route)

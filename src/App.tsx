@@ -13,6 +13,8 @@ import { PayrollCourses } from "@/pages/PayrollCourses"
 import { ExcelCourses } from "@/pages/ExcelCourses"
 import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
+import { DataBlogPost } from "@/pages/DataBlogPost"
+import { BlogStudio } from "@/pages/BlogStudio"
 import { GstModuleLesson } from "@/pages/courses/GstModuleLesson"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
@@ -59,6 +61,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<DataBlogPost />} />
+            <Route path="/blog-studio-k7p3x9" element={<BlogStudio />} />
             <Route
               path="/blog/how-financial-planning-helps-your-business-grow-faster"
               element={<FinancialPlanningPost />}
