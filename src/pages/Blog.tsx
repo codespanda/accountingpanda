@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { ArrowRight, CalendarDays, Clock3 } from "lucide-react"
+import { useRef } from "react"
+import { Link, useSearchParams } from "react-router-dom"
+import { ArrowLeft, ArrowRight, CalendarDays, Clock3 } from "lucide-react"
 import { Newsletter } from "@/components/Newsletter"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
@@ -65,13 +65,38 @@ function CategoryPill({ category }: { category: string }) {
   )
 }
 
+const PAGE_SIZE = 9
+
 export function Blog() {
-  const [active, setActive] = useState("All")
+  const [searchParams, setSearchParams] = useSearchParams()
+  const requestedCategory = searchParams.get("category")
+  const active = requestedCategory && categories.includes(requestedCategory) ? requestedCategory : "All"
+  const gridRef = useRef<HTMLElement>(null)
 
   const featured = posts.find((p) => p.featured)
   const rest = posts.filter((p) => !p.featured)
   const filtered =
     active === "All" ? rest : rest.filter((p) => p.category === active)
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const requested = Number.parseInt(searchParams.get("page") ?? "1", 10)
+  const page = Number.isFinite(requested) ? Math.min(Math.max(requested, 1), pageCount) : 1
+  const pagePosts = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+
+  // Category and page live in the URL, so links and the back button work.
+  const setView = (category: string, nextPage: number) => {
+    const params: Record<string, string> = {}
+    if (category !== "All") params.category = category
+    if (nextPage > 1) params.page = String(nextPage)
+    setSearchParams(params)
+  }
+
+  const goToPage = (next: number) => {
+    setView(active, next)
+    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  const selectCategory = (cat: string) => setView(cat, 1)
 
   return (
     <>
@@ -102,7 +127,7 @@ export function Blog() {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActive(cat)}
+              onClick={() => selectCategory(cat)}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 active === cat
                   ? "bg-brand-green text-white"
@@ -116,7 +141,7 @@ export function Blog() {
       </section>
 
       {/* Featured post */}
-      {featured && (active === "All" || active === featured.category) && (
+      {featured && page === 1 && (active === "All" || active === featured.category) && (
         <section className="container-px pt-4">
           <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 pt-12">
             <Link
@@ -166,7 +191,7 @@ export function Blog() {
       )}
 
       {/* Post grid */}
-      <section className="container-px pt-4">
+      <section ref={gridRef} className="container-px scroll-mt-28 pt-4">
         <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
           {filtered.length === 0 ? (
             <p className="py-16 text-center text-sm text-gray-500">
@@ -174,7 +199,7 @@ export function Blog() {
             </p>
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filtered.map((post) => (
+              {pagePosts.map((post) => (
                 <Link
                   key={post.title}
                   to={post.slug ? `/blog/${post.slug}` : "#"}
@@ -207,6 +232,54 @@ export function Blog() {
                 </Link>
               ))}
             </div>
+          )}
+
+          {pageCount > 1 && (
+            <nav
+              aria-label="Blog pages"
+              className="mt-12 flex flex-col items-center gap-4 border-t border-gray-100 pt-8 sm:flex-row sm:justify-between"
+            >
+              <p className="text-sm text-gray-500">
+                Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} of{" "}
+                {filtered.length} articles
+              </p>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => goToPage(page - 1)}
+                  disabled={page === 1}
+                  className="inline-flex h-10 items-center gap-1.5 rounded-full px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-brand-bg disabled:pointer-events-none disabled:opacity-40"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  <span className="hidden sm:inline">Previous</span>
+                </button>
+                {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => goToPage(n)}
+                    aria-current={n === page ? "page" : undefined}
+                    aria-label={`Page ${n}`}
+                    className={`h-10 w-10 rounded-full text-sm font-semibold transition-colors ${
+                      n === page
+                        ? "bg-brand-green text-white"
+                        : "bg-brand-bg text-gray-600 hover:bg-brand-green-light hover:text-brand-green"
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => goToPage(page + 1)}
+                  disabled={page === pageCount}
+                  className="inline-flex h-10 items-center gap-1.5 rounded-full px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-brand-bg disabled:pointer-events-none disabled:opacity-40"
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </nav>
           )}
         </div>
       </section>
