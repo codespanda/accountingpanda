@@ -14,6 +14,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BlogPostView } from "@/components/BlogPostView"
+import { RichTextEditor } from "@/components/RichTextEditor"
 import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
 import { blogData, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
@@ -525,7 +526,7 @@ export function BlogStudio() {
               <span className={label}>Cover image</span>
               {draft.image ? (
                 <div className="overflow-hidden rounded-xl border border-gray-200">
-                  <img src={draft.image} alt="" className="max-h-72 w-full object-cover" />
+                  <img src={draft.image} alt="" className="aspect-[16/9] w-full object-cover" />
                 </div>
               ) : null}
               <label className="flex w-fit cursor-pointer items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-brand-heading hover:bg-brand-bg">
@@ -541,29 +542,27 @@ export function BlogStudio() {
                 onChange={(e) => update({ imageAlt: e.target.value })}
                 className={field}
               />
-              <p className="text-xs text-gray-500">Resized to at most 1600px wide and saved as JPEG.</p>
+              <p className="text-xs text-gray-500">
+                Use a 16:9 image (for example 1600×900) to match the other posts. Blog cards show images at 16:9, so
+                other shapes are cropped there. Resized to at most 1600px wide and saved as JPEG.
+              </p>
             </div>
 
             <div className="flex flex-col gap-2">
               <div className="flex items-baseline justify-between">
-                <label htmlFor="bs-body" className={label}>
-                  Post body
-                </label>
+                <span className={label}>Post body</span>
                 <span className="text-xs text-gray-500">{readTime}</span>
               </div>
-              <textarea
+              <RichTextEditor
                 id="bs-body"
-                rows={18}
                 value={draft.body}
-                onChange={(e) => update({ body: e.target.value })}
-                className={cn(field, "font-mono text-[13px] leading-relaxed")}
-                placeholder={"Start writing…\n\n## A section heading\n\nA paragraph with **bold** text and a [link](https://example.com).\n\n- A bullet point\n- Another one"}
+                onChange={(body) => update({ body })}
+                placeholder="Start writing your post…"
               />
               <p className="text-xs leading-relaxed text-gray-500">
-                Formatting: <code>## Heading</code> · <code>### Smaller heading</code> · <code>**bold**</code> ·{" "}
-                <code>*italic*</code> · <code>- bullet</code> · <code>1. numbered</code> ·{" "}
-                <code>&gt; highlighted callout</code> · <code>[link text](https://…)</code> · <code>---</code>{" "}
-                divider. Leave a blank line between paragraphs.
+                Use the toolbar, or shortcuts like Ctrl+B and Ctrl+I. Typing <code>## </code> starts a heading and{" "}
+                <code>- </code> a bullet list. Pasting from Word or Google Docs keeps headings, lists, bold, italic and
+                links.
               </p>
             </div>
 

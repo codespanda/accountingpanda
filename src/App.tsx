@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
@@ -14,7 +15,6 @@ import { ExcelCourses } from "@/pages/ExcelCourses"
 import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
 import { DataBlogPost } from "@/pages/DataBlogPost"
-import { BlogStudio } from "@/pages/BlogStudio"
 import { GstModuleLesson } from "@/pages/courses/GstModuleLesson"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
@@ -50,6 +50,10 @@ import { Form1099RulesMistakesPost } from "@/pages/posts/Form1099RulesMistakesPo
 import { MonthlyClosingProcessPost } from "@/pages/posts/MonthlyClosingProcessPost"
 import { BankReconciliationMismatchPost } from "@/pages/posts/BankReconciliationMismatchPost"
 
+// The blog studio (and its editor) loads separately so it isn't part of the
+// public site's main bundle.
+const BlogStudio = lazy(() => import("@/pages/BlogStudio").then((m) => ({ default: m.BlogStudio })))
+
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -62,7 +66,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<DataBlogPost />} />
-            <Route path="/blog-studio-k7p3x9" element={<BlogStudio />} />
+            <Route
+              path="/blog-studio-k7p3x9"
+              element={
+                <Suspense fallback={<div className="min-h-[60vh]" />}>
+                  <BlogStudio />
+                </Suspense>
+              }
+            />
             <Route
               path="/blog/how-financial-planning-helps-your-business-grow-faster"
               element={<FinancialPlanningPost />}

@@ -152,7 +152,7 @@ export function Blog() {
                 <img
                   src={featured.image}
                   alt={featured.title}
-                  className="block h-auto w-full self-center"
+                  className="block aspect-[16/9] w-full self-center object-cover"
                 />
               ) : (
                 <PostImage category={featured.category} className="h-56 lg:h-full" />
@@ -206,7 +206,7 @@ export function Blog() {
                   className="group flex flex-col overflow-hidden rounded-[22px] transition-shadow"
                 >
                   {post.image ? (
-                    <img src={post.image} alt={post.title} className="block h-auto w-full" />
+                    <img src={post.image} alt={post.title} className="block aspect-[16/9] w-full object-cover" />
                   ) : (
                     <PostImage category={post.category} className="h-44" />
                   )}
