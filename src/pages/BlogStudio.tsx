@@ -20,11 +20,14 @@ import { blogData, readTimeFor, slugify, type BlogData } from "@/lib/blogContent
 import { categories, staticPostSlugs } from "@/pages/blogPostList"
 
 // Hidden page for publishing blog posts. It is not linked anywhere and is
-// marked noindex. Publishing needs a GitHub token with write access to the
-// repo, so finding the page alone doesn't let anyone publish. The token is
-// kept only in this browser's localStorage.
+// marked noindex. Only the codespanda GitHub account may publish: the page
+// refuses any other account, and GitHub itself only lets accounts with write
+// access (currently just codespanda) push to the repo. The token is kept
+// only in this browser's localStorage.
 
 const OWNER = "codespanda"
+/** The only GitHub account allowed to publish from the studio. */
+const ALLOWED_LOGIN = "codespanda"
 const REPO = "accountingpanda"
 const BRANCH = "main"
 const SITE = "https://accountingpanda.com"
@@ -170,7 +173,14 @@ export function BlogStudio() {
     ])
       .then(([user, repo]) => {
         if (cancelled) return
-        if (!repo.permissions?.push) {
+        if (user.login.toLowerCase() !== ALLOWED_LOGIN) {
+          // Don't keep a token for an account that isn't allowed to publish.
+          save(TOKEN_KEY, null)
+          setConnection({
+            status: "error",
+            message: `Only the ${ALLOWED_LOGIN} GitHub account can publish blog posts. This token belongs to ${user.login}, so it wasn't saved.`,
+          })
+        } else if (!repo.permissions?.push) {
           setConnection({
             status: "error",
             message: `This token can't write to ${OWNER}/${REPO}. Give it Contents: Read and write access to that repository.`,
@@ -364,7 +374,8 @@ export function BlogStudio() {
                   </Button>
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-gray-500">
-                  Create one at{" "}
+                  Only the <strong>{ALLOWED_LOGIN}</strong> GitHub account can publish. Create a token while signed in
+                  as {ALLOWED_LOGIN} at{" "}
                   <a
                     href="https://github.com/settings/personal-access-tokens/new"
                     target="_blank"
