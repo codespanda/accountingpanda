@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent } from "react"
+import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import {
   CheckCircle2,
   ExternalLink,
@@ -22,7 +22,7 @@ import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
 import { asset } from "@/lib/asset"
 import { resizeImage } from "@/lib/imageResize"
-import { blogData, countWords, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
+import { blogData, countWords, formatPostDate, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
 import { categories, staticPostSlugs } from "@/pages/blogPostList"
 
 // Hidden page for publishing blog posts. It is not linked anywhere and is
@@ -204,6 +204,192 @@ async function commitChanges(
   return commit.html_url
 }
 
+/** Confirm → progress → result popup for publishing or updating a post. */
+function PublishDialog({
+  open,
+  onClose,
+  onConfirm,
+  publish,
+  post,
+  coverSrc,
+  isEdit,
+}: {
+  open: boolean
+  onClose: () => void
+  onConfirm: () => void
+  publish: PublishState
+  post: BlogData
+  coverSrc?: string
+  isEdit: boolean
+}) {
+  const ref = useRef<HTMLDialogElement>(null)
+  const working = publish.status === "working"
+
+  useEffect(() => {
+    const dialog = ref.current
+    if (!dialog) return
+    if (open && !dialog.open) {
+      dialog.showModal()
+      document.documentElement.style.overflow = "hidden"
+    } else if (!open && dialog.open) {
+      dialog.close()
+    }
+  }, [open])
+
+  // Never leave the page unscrollable if the studio unmounts with the popup open.
+  useEffect(() => () => void (document.documentElement.style.overflow = ""), [])
+
+  // Restore scrolling here as well as in onClose, rather than relying only
+  // on the dialog's close event.
+  const close = () => {
+    if (working) return
+    ref.current?.close()
+    document.documentElement.style.overflow = ""
+    onClose()
+  }
+
+  const bodyImages = (post.body.match(/!\[[^\]]*\]\([^)]+\)/g) ?? []).length
+  const newImages = (post.body.match(/data:image\//g) ?? []).length
+  const url = `${SITE}/blog/${post.slug}/`
+  const finished = publish.status === "done" && publish.kind !== "deleted"
+
+  const details: [string, string][] = [
+    ["URL", url],
+    ["Category", post.category],
+    ["Date", formatPostDate(post.date)],
+    ["Read time", post.readTime],
+    ["Images in body", bodyImages ? `${bodyImages}${newImages ? ` (${newImages} new)` : ""}` : "None"],
+    ["Featured", post.featured ? "Yes — shown at the top of the Blog page" : "No"],
+  ]
+
+  return (
+    <dialog
+      ref={ref}
+      onClose={() => {
+        document.documentElement.style.overflow = ""
+        onClose()
+      }}
+      // Escape can't close the popup while publishing is in progress.
+      onCancel={(e) => {
+        if (working) e.preventDefault()
+      }}
+      onClick={(e) => {
+        if (e.target === ref.current) close()
+      }}
+      aria-labelledby="publish-title"
+      className="fixed inset-0 m-auto h-fit max-h-[calc(100dvh-32px)] w-[calc(100%-32px)] max-w-[560px] overflow-y-auto rounded-[28px] border-0 bg-white p-0 text-bento-ink shadow-[0_32px_80px_-24px_rgba(17,24,39,0.45)] backdrop:bg-bento-ink/55 backdrop:backdrop-blur-sm"
+    >
+      <div className="relative p-7 sm:p-9">
+        {!working && (
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-bento-canvas transition-colors hover:bg-gray-200"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        )}
+
+        {working ? (
+          <div className="flex flex-col items-center gap-4 py-8 text-center" role="status" aria-live="polite">
+            <Loader2 className="h-10 w-10 animate-spin text-brand-green" />
+            <h2 id="publish-title" className="text-2xl font-bold">
+              {isEdit ? "Updating your post…" : "Publishing your post…"}
+            </h2>
+            <p className="text-sm text-gray-500">{publish.step}</p>
+            <p className="text-xs text-gray-400">Please keep this page open until it finishes.</p>
+          </div>
+        ) : finished ? (
+          <div className="flex flex-col items-center gap-4 py-6 text-center" role="status">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-bento-mint">
+              <CheckCircle2 className="h-8 w-8 text-bento-forest" />
+            </span>
+            <h2 id="publish-title" className="text-[28px] font-bold leading-tight">
+              {publish.kind === "updated" ? "Post updated!" : "Post published!"}
+            </h2>
+            <p className="max-w-sm text-sm leading-relaxed text-gray-600">
+              The site is rebuilding now. “{publish.title}” will be live in about 2–3 minutes.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <Button asChild>
+                <a href={`${SITE}/blog/${publish.slug}/`} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  View post
+                </a>
+              </Button>
+              <Button variant="outline" onClick={close}>
+                Done
+              </Button>
+            </div>
+            <p className="text-xs text-gray-400">
+              Follow the build on{" "}
+              <a
+                href={`https://github.com/${OWNER}/${REPO}/actions`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold underline"
+              >
+                GitHub Actions
+              </a>{" "}
+              or view the{" "}
+              <a href={publish.commitUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">
+                commit
+              </a>
+              .
+            </p>
+          </div>
+        ) : (
+          <>
+            <h2 id="publish-title" className="pr-10 text-2xl font-bold leading-tight">
+              {isEdit ? "Update this post?" : "Publish this post?"}
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">
+              {isEdit
+                ? "Your changes will replace the live version of this post."
+                : "It will appear on the Blog page for everyone."}
+            </p>
+
+            <div className="mt-5 overflow-hidden rounded-[22px] border border-gray-200">
+              {coverSrc && <img src={coverSrc} alt="" className="aspect-[16/9] w-full object-cover" />}
+              <div className="p-4">
+                <p className="text-base font-bold leading-snug text-brand-heading">{post.title}</p>
+                {post.excerpt && <p className="mt-1 line-clamp-2 text-sm text-gray-500">{post.excerpt}</p>}
+              </div>
+            </div>
+
+            <dl className="mt-4 divide-y divide-gray-100 rounded-xl bg-brand-bg px-4 text-sm">
+              {details.map(([label, value]) => (
+                <div key={label} className="flex gap-3 py-2">
+                  <dt className="w-28 shrink-0 text-gray-500">{label}</dt>
+                  <dd className="min-w-0 break-words font-medium text-brand-heading">{value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {publish.status === "error" && (
+              <p className="mt-4 flex items-start gap-2 rounded-xl bg-red-50 px-3.5 py-2.5 text-sm text-red-800">
+                <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                {isEdit ? "Updating" : "Publishing"} failed — {publish.message}
+              </p>
+            )}
+
+            <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              <Button variant="outline" onClick={close}>
+                Cancel
+              </Button>
+              <Button onClick={onConfirm}>
+                <Send className="h-4 w-4" />
+                {publish.status === "error" ? "Try again" : isEdit ? "Update now" : "Publish now"}
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+    </dialog>
+  )
+}
+
 const field =
   "w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-brand-heading outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20"
 const label = "text-sm font-semibold text-brand-heading"
@@ -217,6 +403,7 @@ export function BlogStudio() {
   const [imageError, setImageError] = useState("")
   const [publish, setPublish] = useState<PublishState>({ status: "idle" })
   const [published, setPublished] = useState<PublishedList>({ status: "idle" })
+  const [confirmOpen, setConfirmOpen] = useState(false)
   const editing = draft.editing
 
   useEffect(() => save(DRAFT_KEY, draft), [draft])
@@ -898,7 +1085,10 @@ export function BlogStudio() {
                 {editing ? "Discard changes" : "Clear draft"}
               </Button>
               <Button
-                onClick={doPublish}
+                onClick={() => {
+                  setPublish({ status: "idle" })
+                  setConfirmOpen(true)
+                }}
                 disabled={connection.status !== "ok" || problems.length > 0 || publish.status === "working"}
               >
                 {publish.status === "working" ? (
@@ -912,6 +1102,16 @@ export function BlogStudio() {
           </div>
         </div>
       </section>
+
+      <PublishDialog
+        open={confirmOpen}
+        onClose={() => setConfirmOpen(false)}
+        onConfirm={() => void doPublish()}
+        publish={publish}
+        post={post}
+        coverSrc={coverSrc}
+        isEdit={!!editing}
+      />
     </>
   )
 }
