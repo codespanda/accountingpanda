@@ -152,7 +152,8 @@ function Toolbar({ editor }: { editor: Editor }) {
   }
 
   return (
-    <div className="border-b border-gray-200 bg-brand-bg">
+    // Sticks just below the site's sticky navbar while scrolling a long post.
+    <div className="sticky top-[88px] z-20 rounded-t-xl border-b border-gray-200 bg-brand-bg shadow-[0_1px_0_rgba(0,0,0,0.02)]">
       <div className="flex flex-wrap items-center gap-0.5 px-2 py-1.5">
         <ToolButton label="Paragraph" active={state.paragraph} onClick={() => c().setParagraph().run()}>
           <Pilcrow className="h-4 w-4" />
@@ -298,7 +299,7 @@ export function RichTextEditor({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-gray-200 bg-white focus-within:border-brand-green focus-within:ring-2 focus-within:ring-brand-green/20",
+        "rounded-xl border border-gray-200 bg-white focus-within:border-brand-green focus-within:ring-2 focus-within:ring-brand-green/20",
         // Content styles, matching the published post as closely as possible.
         "[&_.ProseMirror]:space-y-3 [&_.ProseMirror]:text-base [&_.ProseMirror]:leading-relaxed [&_.ProseMirror]:text-gray-700",
         "[&_h2]:pt-3 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-brand-heading",

@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { Link, useSearchParams } from "react-router-dom"
-import { ArrowLeft, ArrowRight, CalendarDays, Clock3 } from "lucide-react"
+import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Search, X } from "lucide-react"
 import { Newsletter } from "@/components/Newsletter"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
@@ -67,14 +67,32 @@ function CategoryPill({ category }: { category: string }) {
 
 const PAGE_SIZE = 9
 
+const normalize = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+
+/** True when every word of the query appears in the post's title, excerpt or category. */
+function matches(post: Post, query: string) {
+  const haystack = normalize(`${post.title} ${post.excerpt} ${post.category}`)
+  return normalize(query)
+    .split(/\s+/)
+    .filter(Boolean)
+    .every((word) => haystack.includes(word))
+}
+
 export function Blog() {
   const [searchParams, setSearchParams] = useSearchParams()
   const requestedCategory = searchParams.get("category")
   const active = requestedCategory && categories.includes(requestedCategory) ? requestedCategory : "All"
+  const query = searchParams.get("q") ?? ""
+  const searching = query.trim().length > 0
   const gridRef = useRef<HTMLElement>(null)
 
-  const featured = posts.find((p) => p.featured)
-  const rest = posts.filter((p) => !p.featured)
+  // While searching, the featured post is just another result.
+  const featured = searching ? undefined : posts.find((p) => p.featured)
+  const rest = searching ? posts.filter((p) => matches(p, query)) : posts.filter((p) => !p.featured)
   const filtered =
     active === "All" ? rest : rest.filter((p) => p.category === active)
 
@@ -83,12 +101,13 @@ export function Blog() {
   const page = Number.isFinite(requested) ? Math.min(Math.max(requested, 1), pageCount) : 1
   const pagePosts = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
-  // Category and page live in the URL, so links and the back button work.
-  const setView = (category: string, nextPage: number) => {
+  // Search, category and page live in the URL, so links and the back button work.
+  const setView = (category: string, nextPage: number, q = query, replace = false) => {
     const params: Record<string, string> = {}
+    if (q) params.q = q
     if (category !== "All") params.category = category
     if (nextPage > 1) params.page = String(nextPage)
-    setSearchParams(params)
+    setSearchParams(params, { replace })
   }
 
   const goToPage = (next: number) => {
@@ -97,6 +116,9 @@ export function Blog() {
   }
 
   const selectCategory = (cat: string) => setView(cat, 1)
+  // Typing replaces the history entry rather than adding one per keystroke.
+  const setQuery = (q: string) => setView(active, 1, q, true)
+  const clearSearch = () => setView(active, 1, "")
 
   return (
     <>
@@ -121,22 +143,52 @@ export function Blog() {
         </div>
       </section>
 
-      {/* Category filters */}
+      {/* Search and category filters */}
       <section className="container-px pt-4">
-        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-5">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => selectCategory(cat)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                active === cat
-                  ? "bg-brand-green text-white"
-                  : "bg-brand-bg text-gray-600 hover:bg-brand-green-light hover:text-brand-green"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 py-5 sm:px-10 lg:px-14">
+          <form
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault()
+              gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+            }}
+            className="relative mx-auto max-w-xl"
+          >
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search articles…"
+              aria-label="Search articles"
+              className="w-full rounded-full border border-gray-200 bg-brand-bg py-3 pl-11 pr-11 text-sm text-brand-heading outline-none placeholder:text-gray-400 focus:border-brand-green focus:bg-white focus:ring-2 focus:ring-brand-green/20 [&::-webkit-search-cancel-button]:hidden"
+            />
+            {searching && (
+              <button
+                type="button"
+                onClick={clearSearch}
+                aria-label="Clear search"
+                className="absolute right-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-gray-400 hover:bg-white hover:text-brand-heading"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </form>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => selectCategory(cat)}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  active === cat
+                    ? "bg-brand-green text-white"
+                    : "bg-brand-bg text-gray-600 hover:bg-brand-green-light hover:text-brand-green"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -193,10 +245,36 @@ export function Blog() {
       {/* Post grid */}
       <section ref={gridRef} className="container-px scroll-mt-28 pt-4">
         <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
-          {filtered.length === 0 ? (
-            <p className="py-16 text-center text-sm text-gray-500">
-              No articles in this category yet — check back soon.
+          {searching && filtered.length > 0 && (
+            <p className="mb-6 text-sm text-gray-500" aria-live="polite">
+              {filtered.length} {filtered.length === 1 ? "article matches" : "articles match"}{" "}
+              <span className="font-semibold text-brand-heading">“{query.trim()}”</span>
+              {active !== "All" && <> in {active}</>}.{" "}
+              <button type="button" onClick={clearSearch} className="font-semibold text-brand-green hover:underline">
+                Clear search
+              </button>
             </p>
+          )}
+          {filtered.length === 0 ? (
+            searching ? (
+              <div className="py-16 text-center" aria-live="polite">
+                <p className="text-sm text-gray-500">
+                  No articles match <span className="font-semibold text-brand-heading">“{query.trim()}”</span>
+                  {active !== "All" && <> in {active}</>}.
+                </p>
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  className="mt-3 text-sm font-semibold text-brand-green hover:underline"
+                >
+                  Clear search
+                </button>
+              </div>
+            ) : (
+              <p className="py-16 text-center text-sm text-gray-500">
+                No articles in this category yet — check back soon.
+              </p>
+            )
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {pagePosts.map((post) => (
