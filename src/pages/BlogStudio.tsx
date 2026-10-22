@@ -8,15 +8,19 @@ import {
   Loader2,
   LogOut,
   PenLine,
+  RefreshCw,
   Send,
   ShieldCheck,
+  Trash2,
   TriangleAlert,
+  X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BlogPostView } from "@/components/BlogPostView"
 import { RichTextEditor } from "@/components/RichTextEditor"
 import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
+import { asset } from "@/lib/asset"
 import { resizeImage } from "@/lib/imageResize"
 import { blogData, countWords, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
 import { categories, staticPostSlugs } from "@/pages/blogPostList"
@@ -26,6 +30,9 @@ import { categories, staticPostSlugs } from "@/pages/blogPostList"
 // refuses any other account, and GitHub itself only lets accounts with write
 // access (currently just codespanda) push to the repo. The token is kept
 // only in this browser's localStorage.
+//
+// Posts published here can also be edited and deleted. The original
+// hand-coded posts live in src/pages/posts and aren't managed here.
 
 const OWNER = "codespanda"
 /** The only GitHub account allowed to publish from the studio. */
@@ -47,7 +54,9 @@ type Draft = {
   imageAlt: string
   featured: boolean
   body: string
-  image: string | null // JPEG data URL
+  image: string | null // new cover as a JPEG data URL; null keeps the current one when editing
+  /** Set when editing a published post: its original slug, cover and body. */
+  editing: { slug: string; title: string; image: string; body: string } | null
 }
 
 type Connection =
@@ -59,7 +68,7 @@ type Connection =
 type PublishState =
   | { status: "idle" }
   | { status: "working"; step: string }
-  | { status: "done"; slug: string; commitUrl: string }
+  | { status: "done"; kind: "published" | "updated" | "deleted"; slug: string; title: string; commitUrl: string }
   | { status: "error"; message: string }
 
 function today() {
@@ -79,7 +88,29 @@ const emptyDraft = (): Draft => ({
   featured: false,
   body: "",
   image: null,
+  editing: null,
 })
+
+type PublishedList =
+  | { status: "idle" | "loading" }
+  | { status: "ok"; posts: BlogData[] }
+  | { status: "error"; message: string }
+
+const CONTENT_DIR = "src/content/blog"
+
+/** Decodes GitHub's base64 file content as UTF-8 text. */
+function decodeBase64Utf8(b64: string) {
+  const bytes = Uint8Array.from(atob(b64.replace(/\s/g, "")), (c) => c.charCodeAt(0))
+  return new TextDecoder().decode(bytes)
+}
+
+/** Site image paths (assets/blog-<slug>…) referenced in a post body. */
+function bodyAssets(body: string, slug: string) {
+  const prefix = `assets/blog-${slug}-`
+  return [...new Set(body.match(/assets\/blog-[a-z0-9-]+\.(?:jpg|jpeg|png|webp|gif)/g) ?? [])].filter((p) =>
+    p.startsWith(prefix)
+  )
+}
 
 function load<T>(key: string, fallback: T): T {
   try {
@@ -102,6 +133,7 @@ function save(key: string, value: unknown) {
 async function github<T>(token: string, path: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(`https://api.github.com${path}`, {
     ...init,
+    cache: "no-store",
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: `Bearer ${token}`,
@@ -121,6 +153,57 @@ async function github<T>(token: string, path: string, init: RequestInit = {}): P
   return (res.status === 204 ? undefined : await res.json()) as T
 }
 
+type Change = { path: string; base64?: string; text?: string; remove?: true }
+
+async function fileExists(token: string, path: string) {
+  const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`, {
+    cache: "no-store",
+    headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" },
+  })
+  return res.ok
+}
+
+/** Applies all changes to the branch as a single commit. */
+async function commitChanges(
+  token: string,
+  message: string,
+  changes: Change[],
+  onStep: (step: string) => void
+) {
+  const repo = `/repos/${OWNER}/${REPO}`
+  const ref = await github<{ object: { sha: string } }>(token, `${repo}/git/ref/heads/${BRANCH}`)
+  const parent = await github<{ tree: { sha: string } }>(token, `${repo}/git/commits/${ref.object.sha}`)
+  const uploads = changes.filter((c) => !c.remove)
+  const tree: { path: string; mode: string; type: string; sha: string | null }[] = []
+  for (const [i, c] of uploads.entries()) {
+    onStep(`Uploading ${i + 1} of ${uploads.length}…`)
+    const blob = await github<{ sha: string }>(token, `${repo}/git/blobs`, {
+      method: "POST",
+      body: JSON.stringify(
+        c.base64 !== undefined ? { content: c.base64, encoding: "base64" } : { content: c.text, encoding: "utf-8" }
+      ),
+    })
+    tree.push({ path: c.path, mode: "100644", type: "blob", sha: blob.sha })
+  }
+  for (const c of changes.filter((ch) => ch.remove)) {
+    tree.push({ path: c.path, mode: "100644", type: "blob", sha: null })
+  }
+  onStep("Publishing…")
+  const newTree = await github<{ sha: string }>(token, `${repo}/git/trees`, {
+    method: "POST",
+    body: JSON.stringify({ base_tree: parent.tree.sha, tree }),
+  })
+  const commit = await github<{ sha: string; html_url: string }>(token, `${repo}/git/commits`, {
+    method: "POST",
+    body: JSON.stringify({ message, tree: newTree.sha, parents: [ref.object.sha] }),
+  })
+  await github(token, `${repo}/git/refs/heads/${BRANCH}`, {
+    method: "PATCH",
+    body: JSON.stringify({ sha: commit.sha }),
+  })
+  return commit.html_url
+}
+
 const field =
   "w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-brand-heading outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20"
 const label = "text-sm font-semibold text-brand-heading"
@@ -133,8 +216,37 @@ export function BlogStudio() {
   const [tab, setTab] = useState<"write" | "preview">("write")
   const [imageError, setImageError] = useState("")
   const [publish, setPublish] = useState<PublishState>({ status: "idle" })
+  const [published, setPublished] = useState<PublishedList>({ status: "idle" })
+  const editing = draft.editing
 
   useEffect(() => save(DRAFT_KEY, draft), [draft])
+
+  const loadPublished = async (t: string) => {
+    setPublished({ status: "loading" })
+    try {
+      const files = await github<{ name: string; path: string; type: string }[]>(
+        t,
+        `/repos/${OWNER}/${REPO}/contents/${CONTENT_DIR}?ref=${BRANCH}`
+      )
+      const posts = await Promise.all(
+        files
+          .filter((f) => f.type === "file" && f.name.endsWith(".json"))
+          .map(async (f) => {
+            const file = await github<{ content: string }>(t, `/repos/${OWNER}/${REPO}/contents/${f.path}?ref=${BRANCH}`)
+            return JSON.parse(decodeBase64Utf8(file.content)) as BlogData
+          })
+      )
+      setPublished({ status: "ok", posts: posts.sort((a, b) => b.date.localeCompare(a.date)) })
+    } catch (err) {
+      setPublished({ status: "error", message: (err as Error).message })
+    }
+  }
+
+  useEffect(() => {
+    if (connection.status === "ok") void loadPublished(token)
+    else setPublished({ status: "idle" })
+    // Reload when the connection changes (the token only changes with it).
+  }, [connection.status, token])
 
   useEffect(() => {
     if (!token) {
@@ -178,7 +290,12 @@ export function BlogStudio() {
   const setTitle = (title: string) =>
     update(draft.slugEdited ? { title } : { title, slug: slugify(title) })
 
-  const takenSlugs = new Set([...staticPostSlugs, ...blogData.map((p) => p.slug)])
+  const takenSlugs = new Set([
+    ...staticPostSlugs,
+    ...blogData.map((p) => p.slug),
+    ...(published.status === "ok" ? published.posts.map((p) => p.slug) : []),
+  ])
+  if (editing) takenSlugs.delete(editing.slug)
   const readTime = readTimeFor(draft.body)
   const problems = [
     !draft.title.trim() && "Add a title.",
@@ -186,7 +303,7 @@ export function BlogStudio() {
     takenSlugs.has(draft.slug) && "That URL slug is already used by another post.",
     !draft.excerpt.trim() && "Add a short excerpt.",
     !draft.date && "Pick a date.",
-    !draft.image && "Upload a cover image.",
+    !draft.image && !editing && "Upload a cover image.",
     countWords(draft.body) < 50 && "Write at least 50 words in the post body.",
   ].filter(Boolean) as string[]
 
@@ -197,11 +314,13 @@ export function BlogStudio() {
     category: draft.category,
     date: draft.date,
     readTime,
-    image: `assets/blog-${draft.slug}.jpg`,
+    image: editing ? editing.image : `assets/blog-${draft.slug}.jpg`,
     imageAlt: draft.imageAlt || draft.title,
     ...(draft.featured ? { featured: true } : {}),
     body: draft.body,
   }
+
+  const coverSrc = draft.image ?? (editing ? asset(editing.image) : undefined)
 
   const onImage = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -229,65 +348,116 @@ export function BlogStudio() {
   }
 
   const doPublish = async () => {
-    if (connection.status !== "ok" || problems.length || !draft.image) return
-    const repo = `/repos/${OWNER}/${REPO}`
-    const jsonPath = `src/content/blog/${post.slug}.json`
+    if (connection.status !== "ok" || problems.length) return
+    const slug = editing ? editing.slug : post.slug
+    const jsonPath = `${CONTENT_DIR}/${slug}.json`
+    const step = (s: string) => setPublish({ status: "working", step: s })
     try {
-      setPublish({ status: "working", step: "Checking the URL is free…" })
-      const exists = await fetch(`https://api.github.com${repo}/contents/${jsonPath}?ref=${BRANCH}`, {
-        headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" },
-      })
-      if (exists.ok) throw new Error("A post with this URL slug already exists in the repo. Change the slug.")
+      if (!editing) {
+        step("Checking the URL is free…")
+        if (await fileExists(token, jsonPath)) {
+          throw new Error("A post with this URL slug already exists in the repo. Change the slug.")
+        }
+      }
+      // A stamp keeps new image names unique, so browsers don't show cached old images.
+      const stamp = Date.now().toString(36)
+      const changes: Change[] = []
 
-      setPublish({ status: "working", step: "Uploading the cover image…" })
-      const ref = await github<{ object: { sha: string } }>(token, `${repo}/git/ref/heads/${BRANCH}`)
-      const parent = await github<{ tree: { sha: string } }>(token, `${repo}/git/commits/${ref.object.sha}`)
-      const imageBlob = await github<{ sha: string }>(token, `${repo}/git/blobs`, {
-        method: "POST",
-        body: JSON.stringify({ content: draft.image.split(",")[1], encoding: "base64" }),
-      })
+      let image = post.image
+      if (draft.image) {
+        image = editing ? `assets/blog-${slug}-cover-${stamp}.jpg` : `assets/blog-${slug}.jpg`
+        changes.push({ path: `public/${image}`, base64: draft.image.split(",")[1] })
+        if (editing && editing.image !== image && editing.image.startsWith(`assets/blog-${slug}`)) {
+          changes.push({ path: `public/${editing.image}`, remove: true })
+        }
+      }
 
-      // Images inserted in the body are data URLs in the draft. Upload each
-      // one as public/assets/blog-<slug>-<n>.<ext> and point the body at it.
-      const treeItems = [{ path: `public/${post.image}`, mode: "100644", type: "blob", sha: imageBlob.sha }]
-      const inlineImages = [...new Set(post.body.match(/data:image\/[a-z]+;base64,[A-Za-z0-9+/=]+/g) ?? [])]
+      // Images inserted in the body are data URLs in the draft: upload each one
+      // and point the body at its new path.
       let body = post.body
-      for (const [n, dataUrl] of inlineImages.entries()) {
-        setPublish({ status: "working", step: `Uploading image ${n + 1} of ${inlineImages.length}…` })
+      const inline = [...new Set(body.match(/data:image\/[a-z]+;base64,[A-Za-z0-9+/=]+/g) ?? [])]
+      for (const [n, dataUrl] of inline.entries()) {
         const mime = dataUrl.slice(11, dataUrl.indexOf(";"))
-        const assetPath = `assets/blog-${post.slug}-${n + 1}.${mime === "jpeg" ? "jpg" : mime}`
-        const blob = await github<{ sha: string }>(token, `${repo}/git/blobs`, {
-          method: "POST",
-          body: JSON.stringify({ content: dataUrl.split(",")[1], encoding: "base64" }),
-        })
-        treeItems.push({ path: `public/${assetPath}`, mode: "100644", type: "blob", sha: blob.sha })
+        const ext = mime === "jpeg" ? "jpg" : mime
+        const assetPath = editing ? `assets/blog-${slug}-${stamp}-${n + 1}.${ext}` : `assets/blog-${slug}-${n + 1}.${ext}`
+        changes.push({ path: `public/${assetPath}`, base64: dataUrl.split(",")[1] })
         body = body.split(dataUrl).join(assetPath)
       }
 
-      setPublish({ status: "working", step: "Saving the post…" })
-      const postBlob = await github<{ sha: string }>(token, `${repo}/git/blobs`, {
-        method: "POST",
-        body: JSON.stringify({ content: `${JSON.stringify({ ...post, body }, null, 2)}\n`, encoding: "utf-8" }),
-      })
-      treeItems.push({ path: jsonPath, mode: "100644", type: "blob", sha: postBlob.sha })
-      const tree = await github<{ sha: string }>(token, `${repo}/git/trees`, {
-        method: "POST",
-        body: JSON.stringify({ base_tree: parent.tree.sha, tree: treeItems }),
-      })
+      // When editing, remove this post's images that are no longer used.
+      if (editing) {
+        step("Checking for unused images…")
+        for (const old of bodyAssets(editing.body, slug)) {
+          if (!body.includes(old) && (await fileExists(token, `public/${old}`))) {
+            changes.push({ path: `public/${old}`, remove: true })
+          }
+        }
+      }
 
-      setPublish({ status: "working", step: "Publishing…" })
-      const commit = await github<{ sha: string; html_url: string }>(token, `${repo}/git/commits`, {
-        method: "POST",
-        body: JSON.stringify({ message: `Add blog post: ${post.title}`, tree: tree.sha, parents: [ref.object.sha] }),
-      })
-      await github(token, `${repo}/git/refs/heads/${BRANCH}`, {
-        method: "PATCH",
-        body: JSON.stringify({ sha: commit.sha }),
-      })
+      const finalPost: BlogData = { ...post, slug, image, body }
+      changes.push({ path: jsonPath, text: `${JSON.stringify(finalPost, null, 2)}\n` })
 
-      setPublish({ status: "done", slug: post.slug, commitUrl: commit.html_url })
+      const commitUrl = await commitChanges(
+        token,
+        `${editing ? "Update" : "Add"} blog post: ${finalPost.title}`,
+        changes,
+        step
+      )
+      setPublish({ status: "done", kind: editing ? "updated" : "published", slug, title: finalPost.title, commitUrl })
       setDraft(emptyDraft())
       setTab("write")
+      void loadPublished(token)
+    } catch (err) {
+      setPublish({ status: "error", message: (err as Error).message })
+    }
+  }
+
+  const startEditing = (p: BlogData) => {
+    const hasDraft = draft.title.trim() || draft.body.trim()
+    const sameEdit = editing?.slug === p.slug
+    if (hasDraft && !sameEdit && !window.confirm("Replace the post you're currently writing with this one?")) return
+    setDraft({
+      title: p.title,
+      slug: p.slug,
+      slugEdited: true,
+      category: p.category,
+      date: p.date,
+      excerpt: p.excerpt,
+      imageAlt: p.imageAlt,
+      featured: !!p.featured,
+      body: p.body,
+      image: null,
+      editing: { slug: p.slug, title: p.title, image: p.image, body: p.body },
+    })
+    setPublish({ status: "idle" })
+    setTab("write")
+    window.setTimeout(() => document.getElementById("bs-form")?.scrollIntoView({ behavior: "smooth" }), 50)
+  }
+
+  const deletePost = async (p: BlogData) => {
+    if (
+      !window.confirm(
+        `Delete “${p.title}”?\n\nThis removes the post and its images from the site. It can only be recovered from the GitHub history.`
+      )
+    )
+      return
+    const step = (s: string) => setPublish({ status: "working", step: s })
+    try {
+      step("Finding the post's files…")
+      const candidates = [
+        `${CONTENT_DIR}/${p.slug}.json`,
+        ...(p.image.startsWith(`assets/blog-${p.slug}`) ? [`public/${p.image}`] : []),
+        ...bodyAssets(p.body, p.slug).map((a) => `public/${a}`),
+      ]
+      const changes: Change[] = []
+      for (const path of candidates) {
+        if (await fileExists(token, path)) changes.push({ path, remove: true })
+      }
+      if (!changes.length) throw new Error("This post's files weren't found in the repo.")
+      const commitUrl = await commitChanges(token, `Delete blog post: ${p.title}`, changes, step)
+      setPublish({ status: "done", kind: "deleted", slug: p.slug, title: p.title, commitUrl })
+      if (editing?.slug === p.slug) setDraft(emptyDraft())
+      void loadPublished(token)
     } catch (err) {
       setPublish({ status: "error", message: (err as Error).message })
     }
@@ -383,18 +553,116 @@ export function BlogStudio() {
         </div>
       </section>
 
+      {connection.status === "ok" && (
+        <section className="container-px pt-4">
+          <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 py-8 sm:px-10 lg:px-14">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-lg font-bold text-brand-heading">Published posts</h2>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => void loadPublished(token)}
+                disabled={published.status === "loading"}
+              >
+                <RefreshCw className={cn("h-4 w-4", published.status === "loading" && "animate-spin")} />
+                Refresh
+              </Button>
+            </div>
+            <p className="mt-1 text-xs text-gray-500">
+              Posts published from this studio. The original posts are built into the site's code, so they aren't
+              listed here.
+            </p>
+
+            {published.status === "error" && (
+              <p className="mt-4 flex items-start gap-2 rounded-xl bg-red-50 px-3.5 py-2.5 text-sm text-red-800">
+                <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                Couldn't load the posts — {published.message}
+              </p>
+            )}
+            {published.status === "loading" && (
+              <p className="mt-4 flex items-center gap-2 text-sm text-gray-500">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Loading posts…
+              </p>
+            )}
+            {published.status === "ok" &&
+              (published.posts.length === 0 ? (
+                <p className="mt-4 text-sm text-gray-500">No posts published from the studio yet.</p>
+              ) : (
+                <ul className="mt-4 divide-y divide-gray-100 rounded-xl border border-gray-200">
+                  {published.posts.map((p) => (
+                    <li key={p.slug} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center">
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-semibold text-brand-heading">{p.title}</p>
+                        <p className="text-xs text-gray-500">
+                          {p.date} · {p.category}
+                          {editing?.slug === p.slug && (
+                            <span className="ml-2 rounded-full bg-bento-mint px-2 py-0.5 font-semibold text-bento-forest">
+                              Editing
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <div className="flex shrink-0 gap-1.5">
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={`${SITE}/blog/${p.slug}/`} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4" />
+                            View
+                          </a>
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => startEditing(p)}
+                          disabled={publish.status === "working"}
+                        >
+                          <PenLine className="h-4 w-4" />
+                          Edit
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => void deletePost(p)}
+                          disabled={publish.status === "working"}
+                          className="text-red-700 hover:bg-red-50"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          Delete
+                        </Button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+          </div>
+        </section>
+      )}
+
       {publish.status === "done" && (
         <section className="container-px pt-4">
           <div className="mx-auto flex max-w-4xl flex-col gap-3 rounded-[28px] bg-bento-mint px-6 py-6 sm:px-10">
             <p className="flex items-center gap-2 text-lg font-bold text-bento-forest">
               <CheckCircle2 className="h-5 w-5" />
-              Published! The site is rebuilding now.
+              {publish.kind === "published" && "Published! The site is rebuilding now."}
+              {publish.kind === "updated" && "Updated! The site is rebuilding now."}
+              {publish.kind === "deleted" && `Deleted “${publish.title}”. The site is rebuilding now.`}
             </p>
             <p className="text-sm text-bento-forest/80">
-              The post will be live in about 2–3 minutes at{" "}
-              <a href={`${SITE}/blog/${publish.slug}/`} target="_blank" rel="noopener noreferrer" className="font-semibold underline">
-                {SITE}/blog/{publish.slug}/
-              </a>
+              {publish.kind === "deleted" ? (
+                "It will disappear from the Blog page in about 2–3 minutes"
+              ) : (
+                <>
+                  The {publish.kind === "updated" ? "changes" : "post"} will be live in about 2–3 minutes at{" "}
+                  <a
+                    href={`${SITE}/blog/${publish.slug}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold underline"
+                  >
+                    {SITE}/blog/{publish.slug}/
+                  </a>
+                </>
+              )}
               . You can follow the build on{" "}
               <a
                 href={`https://github.com/${OWNER}/${REPO}/actions`}
@@ -414,8 +682,31 @@ export function BlogStudio() {
         </section>
       )}
 
+      {editing && (
+        <section className="container-px pt-4">
+          <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-[28px] bg-bento-butter px-6 py-4 sm:px-10">
+            <p className="text-sm text-bento-butter-text">
+              <span className="font-semibold">Editing:</span> {editing.title}
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-white"
+              onClick={() => {
+                if (window.confirm("Stop editing? Your unsaved changes to this post will be discarded.")) {
+                  setDraft(emptyDraft())
+                }
+              }}
+            >
+              <X className="h-4 w-4" />
+              Cancel editing
+            </Button>
+          </div>
+        </section>
+      )}
+
       {/* Write / Preview */}
-      <section className="container-px pt-4">
+      <section id="bs-form" className="container-px scroll-mt-28 pt-4">
         <div className="mx-auto flex max-w-4xl gap-2 rounded-[28px] bg-white p-2">
           {(["write", "preview"] as const).map((t) => (
             <button
@@ -435,7 +726,7 @@ export function BlogStudio() {
       </section>
 
       {tab === "preview" ? (
-        <BlogPostView post={post} imageSrc={draft.image ?? undefined} />
+        <BlogPostView post={post} imageSrc={coverSrc} />
       ) : (
         <section className="container-px pt-4">
           <div className="mx-auto max-w-4xl space-y-5 rounded-[28px] bg-white px-6 py-10 sm:px-10 lg:px-14">
@@ -456,10 +747,15 @@ export function BlogStudio() {
                   id="bs-slug"
                   value={draft.slug}
                   onChange={(e) => update({ slug: slugify(e.target.value), slugEdited: true })}
-                  className={field}
+                  disabled={!!editing}
+                  className={cn(field, editing && "cursor-not-allowed bg-brand-bg text-gray-500")}
                 />
               </div>
-              <p className="text-xs text-gray-500">Filled in from the title. Edit it if you want a shorter URL.</p>
+              <p className="text-xs text-gray-500">
+                {editing
+                  ? "The URL can't change after publishing, so links to the post keep working."
+                  : "Filled in from the title. Edit it if you want a shorter URL."}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -511,14 +807,14 @@ export function BlogStudio() {
 
             <div className="flex flex-col gap-2">
               <span className={label}>Cover image</span>
-              {draft.image ? (
+              {coverSrc ? (
                 <div className="overflow-hidden rounded-xl border border-gray-200">
-                  <img src={draft.image} alt="" className="aspect-[16/9] w-full object-cover" />
+                  <img src={coverSrc} alt="" className="aspect-[16/9] w-full object-cover" />
                 </div>
               ) : null}
               <label className="flex w-fit cursor-pointer items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-brand-heading hover:bg-brand-bg">
                 <ImagePlus className="h-4 w-4 text-brand-green" />
-                {draft.image ? "Replace image" : "Upload image"}
+                {coverSrc ? "Replace image" : "Upload image"}
                 <input type="file" accept="image/png,image/jpeg,image/webp" onChange={onImage} className="sr-only" />
               </label>
               {imageError && <p className="text-xs text-red-700">{imageError}</p>}
@@ -582,7 +878,7 @@ export function BlogStudio() {
           {publish.status === "error" && (
             <p className="mb-5 flex items-start gap-2 rounded-xl bg-red-50 px-3.5 py-2.5 text-sm text-red-800">
               <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
-              Publishing failed — {publish.message}
+              Something went wrong — {publish.message}
             </p>
           )}
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -595,10 +891,11 @@ export function BlogStudio() {
               <Button
                 variant="outline"
                 onClick={() => {
-                  if (window.confirm("Clear this draft?")) setDraft(emptyDraft())
+                  if (window.confirm(editing ? "Discard your changes to this post?" : "Clear this draft?"))
+                    setDraft(emptyDraft())
                 }}
               >
-                Clear draft
+                {editing ? "Discard changes" : "Clear draft"}
               </Button>
               <Button
                 onClick={doPublish}
@@ -609,7 +906,7 @@ export function BlogStudio() {
                 ) : (
                   <Send className="h-4 w-4" />
                 )}
-                {publish.status === "working" ? publish.step : "Publish"}
+                {publish.status === "working" ? publish.step : editing ? "Update post" : "Publish"}
               </Button>
             </div>
           </div>
