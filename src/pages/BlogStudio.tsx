@@ -17,7 +17,8 @@ import { BlogPostView } from "@/components/BlogPostView"
 import { RichTextEditor } from "@/components/RichTextEditor"
 import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
-import { blogData, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
+import { resizeImage } from "@/lib/imageResize"
+import { blogData, countWords, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
 import { categories, staticPostSlugs } from "@/pages/blogPostList"
 
 // Hidden page for publishing blog posts. It is not linked anywhere and is
@@ -120,32 +121,6 @@ async function github<T>(token: string, path: string, init: RequestInit = {}): P
   return (res.status === 204 ? undefined : await res.json()) as T
 }
 
-/** Resize to at most 1600px wide and re-encode as JPEG. */
-function resizeImage(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const url = URL.createObjectURL(file)
-    const img = new Image()
-    img.onload = () => {
-      const scale = Math.min(1, 1600 / img.naturalWidth)
-      const canvas = document.createElement("canvas")
-      canvas.width = Math.round(img.naturalWidth * scale)
-      canvas.height = Math.round(img.naturalHeight * scale)
-      const ctx = canvas.getContext("2d")
-      if (!ctx) return reject(new Error("Canvas not available"))
-      ctx.fillStyle = "#ffffff"
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-      URL.revokeObjectURL(url)
-      resolve(canvas.toDataURL("image/jpeg", 0.85))
-    }
-    img.onerror = () => {
-      URL.revokeObjectURL(url)
-      reject(new Error("Could not read that image"))
-    }
-    img.src = url
-  })
-}
-
 const field =
   "w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-brand-heading outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20"
 const label = "text-sm font-semibold text-brand-heading"
@@ -212,7 +187,7 @@ export function BlogStudio() {
     !draft.excerpt.trim() && "Add a short excerpt.",
     !draft.date && "Pick a date.",
     !draft.image && "Upload a cover image.",
-    draft.body.trim().split(/\s+/).filter(Boolean).length < 50 && "Write at least 50 words in the post body.",
+    countWords(draft.body) < 50 && "Write at least 50 words in the post body.",
   ].filter(Boolean) as string[]
 
   const post: BlogData = {
@@ -272,20 +247,32 @@ export function BlogStudio() {
         body: JSON.stringify({ content: draft.image.split(",")[1], encoding: "base64" }),
       })
 
+      // Images inserted in the body are data URLs in the draft. Upload each
+      // one as public/assets/blog-<slug>-<n>.<ext> and point the body at it.
+      const treeItems = [{ path: `public/${post.image}`, mode: "100644", type: "blob", sha: imageBlob.sha }]
+      const inlineImages = [...new Set(post.body.match(/data:image\/[a-z]+;base64,[A-Za-z0-9+/=]+/g) ?? [])]
+      let body = post.body
+      for (const [n, dataUrl] of inlineImages.entries()) {
+        setPublish({ status: "working", step: `Uploading image ${n + 1} of ${inlineImages.length}…` })
+        const mime = dataUrl.slice(11, dataUrl.indexOf(";"))
+        const assetPath = `assets/blog-${post.slug}-${n + 1}.${mime === "jpeg" ? "jpg" : mime}`
+        const blob = await github<{ sha: string }>(token, `${repo}/git/blobs`, {
+          method: "POST",
+          body: JSON.stringify({ content: dataUrl.split(",")[1], encoding: "base64" }),
+        })
+        treeItems.push({ path: `public/${assetPath}`, mode: "100644", type: "blob", sha: blob.sha })
+        body = body.split(dataUrl).join(assetPath)
+      }
+
       setPublish({ status: "working", step: "Saving the post…" })
       const postBlob = await github<{ sha: string }>(token, `${repo}/git/blobs`, {
         method: "POST",
-        body: JSON.stringify({ content: `${JSON.stringify(post, null, 2)}\n`, encoding: "utf-8" }),
+        body: JSON.stringify({ content: `${JSON.stringify({ ...post, body }, null, 2)}\n`, encoding: "utf-8" }),
       })
+      treeItems.push({ path: jsonPath, mode: "100644", type: "blob", sha: postBlob.sha })
       const tree = await github<{ sha: string }>(token, `${repo}/git/trees`, {
         method: "POST",
-        body: JSON.stringify({
-          base_tree: parent.tree.sha,
-          tree: [
-            { path: `public/${post.image}`, mode: "100644", type: "blob", sha: imageBlob.sha },
-            { path: jsonPath, mode: "100644", type: "blob", sha: postBlob.sha },
-          ],
-        }),
+        body: JSON.stringify({ base_tree: parent.tree.sha, tree: treeItems }),
       })
 
       setPublish({ status: "working", step: "Publishing…" })

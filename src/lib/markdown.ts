@@ -1,8 +1,9 @@
 // The limited Markdown format used for blog post bodies, shared by the
 // public renderer (components/Markdown.tsx) and the studio's visual editor.
 // Supported: ## / ### headings, paragraphs, - or * bullet lists, 1. numbered
-// lists, > callouts, --- dividers, **bold**, *italic* or _italic_, `code`
-// and [links](url).
+// lists, > callouts, --- dividers, **bold**, *italic* or _italic_, `code`,
+// [links](url), images on their own line as ![description](path) and tables
+// as | pipe | rows | with a |---| separator under the header row.
 
 export type InlineToken =
   | { type: "text"; text: string }
@@ -14,6 +15,8 @@ export type MarkdownBlock =
   | { kind: "h2" | "h3" | "p" | "quote"; text: string }
   | { kind: "ul" | "ol"; items: string[] }
   | { kind: "hr" }
+  | { kind: "img"; alt: string; src: string }
+  | { kind: "table"; header: string[]; rows: string[][] }
 
 const INLINE = /(\*\*.+?\*\*|`[^`]+`|\[[^\]]+\]\([^)\s]+\)|\*[^*\s][^*]*?\*|_[^_\s][^_]*?_)/g
 
@@ -21,6 +24,22 @@ const INLINE = /(\*\*.+?\*\*|`[^`]+`|\[[^\]]+\]\([^)\s]+\)|\*[^*\s][^*]*?\*|_[^_
 export function safeHref(href: string) {
   return /^(https?:\/\/|mailto:|\/|#)/i.test(href) ? href : undefined
 }
+
+/** Image sources: site assets, web images, or (while drafting) uploaded data. */
+export function safeImageSrc(src: string) {
+  return /^(https:\/\/|\/|assets\/|data:image\/(png|jpe?g|webp|gif);base64,)/i.test(src) ? src : undefined
+}
+
+const IMAGE_LINE = /^!\[([^\]]*)\]\(([^)\s]+)\)$/
+
+/** Splits a | a | b | table row into cells, honouring \| escapes. */
+function splitRow(line: string) {
+  const inner = line.trim().replace(/^\|/, "").replace(/\|$/, "")
+  return inner.split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, "|"))
+}
+
+const isTableRow = (line: string) => /^\|.*\|$/.test(line.trim())
+const isSeparator = (line: string) => /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?$/.test(line.trim())
 
 export function tokenizeInline(text: string): InlineToken[] {
   const tokens: InlineToken[] = []
@@ -60,14 +79,30 @@ export function parseMarkdown(markdown: string): MarkdownBlock[] {
     list = null
   }
 
-  for (const raw of lines) {
-    const line = raw.trim()
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim()
     if (!line) {
       flush()
       continue
     }
     let m: RegExpMatchArray | null
-    if ((m = line.match(/^#{1,2}\s+(.+)$/))) {
+    if ((m = line.match(IMAGE_LINE))) {
+      flush()
+      const src = safeImageSrc(m[2])
+      if (src) blocks.push({ kind: "img", alt: m[1], src })
+    } else if (isTableRow(line) && i + 1 < lines.length && isSeparator(lines[i + 1])) {
+      flush()
+      const header = splitRow(line)
+      const rows: string[][] = []
+      i += 2
+      while (i < lines.length && isTableRow(lines[i])) {
+        const cells = splitRow(lines[i])
+        rows.push(header.map((_, c) => cells[c] ?? ""))
+        i++
+      }
+      i--
+      blocks.push({ kind: "table", header, rows })
+    } else if ((m = line.match(/^#{1,2}\s+(.+)$/))) {
       flush()
       blocks.push({ kind: "h2", text: m[1] })
     } else if ((m = line.match(/^#{3,6}\s+(.+)$/))) {
@@ -146,6 +181,15 @@ export function markdownToHtml(markdown: string): string {
           return `<ol>${b.items.map((i) => `<li><p>${inline(i)}</p></li>`).join("")}</ol>`
         case "hr":
           return "<hr>"
+        case "img":
+          return `<img src="${escapeHtml(b.src)}" alt="${escapeHtml(b.alt)}">`
+        case "table": {
+          const head = `<tr>${b.header.map((h) => `<th><p>${inline(h)}</p></th>`).join("")}</tr>`
+          const body = b.rows
+            .map((r) => `<tr>${r.map((c) => `<td><p>${inline(c)}</p></td>`).join("")}</tr>`)
+            .join("")
+          return `<table><tbody>${head}${body}</tbody></table>`
+        }
       }
     })
     .join("")
@@ -188,6 +232,31 @@ const listItemMd = (item: DocNode): string =>
     .filter(Boolean)
     .join(" ")
 
+/** Table cells hold one line in Markdown, so lists inside them are flattened. */
+const cellMd = (cell: DocNode) =>
+  (cell.content ?? [])
+    .map((child) =>
+      child.type === "bulletList" || child.type === "orderedList"
+        ? (child.content ?? []).map(listItemMd).join("; ")
+        : inlineMd(child)
+    )
+    .filter(Boolean)
+    .join(" ")
+    .replace(/\|/g, "\\|")
+
+function tableToMarkdown(table: DocNode) {
+  const rows = (table.content ?? [])
+    .map((row) => (row.content ?? []).map(cellMd))
+    // Leave out completely empty rows (the header row is always kept).
+    .filter((cells, i) => i === 0 || cells.some(Boolean))
+  if (!rows.length) return ""
+  const cols = Math.max(...rows.map((r) => r.length))
+  const pad = (r: string[]) => Array.from({ length: cols }, (_, i) => r[i] ?? "")
+  const line = (r: string[]) => `| ${pad(r).join(" | ")} |`
+  const [header, ...body] = rows
+  return [line(header), `|${" --- |".repeat(cols)}`, ...body.map(line)].join("\n")
+}
+
 /** Editor document → Markdown, in the format the site renders. */
 export function docToMarkdown(doc: DocNode): string {
   return (doc.content ?? [])
@@ -210,6 +279,14 @@ export function docToMarkdown(doc: DocNode): string {
           return (node.content ?? []).map((i, n) => `${n + 1}. ${listItemMd(i)}`).join("\n")
         case "horizontalRule":
           return "---"
+        case "image": {
+          const src = typeof node.attrs?.src === "string" ? safeImageSrc(node.attrs.src) : undefined
+          if (!src) return ""
+          const alt = String(node.attrs?.alt ?? "").replace(/[[\]\n]/g, " ").trim()
+          return `![${alt}](${src})`
+        }
+        case "table":
+          return tableToMarkdown(node)
         default:
           return inlineMd(node)
       }

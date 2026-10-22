@@ -1,13 +1,17 @@
-import { useEffect, useRef, type ReactNode } from "react"
+import { useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react"
 import { EditorContent, useEditor, useEditorState, type Editor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Placeholder } from "@tiptap/extensions"
+import Image from "@tiptap/extension-image"
+import { TableKit } from "@tiptap/extension-table"
 import {
   Bold,
   Code,
   Heading2,
   Heading3,
+  ImagePlus,
   Italic,
+  Loader2,
   Link2,
   List,
   ListOrdered,
@@ -15,15 +19,18 @@ import {
   Pilcrow,
   Quote,
   Redo2,
+  Table as TableIcon,
   Undo2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { resizeImage } from "@/lib/imageResize"
 import { docToMarkdown, markdownToHtml, safeHref, type DocNode } from "@/lib/markdown"
 
 // A visual editor for blog post bodies. It edits formatted text but reads
 // and writes the site's limited Markdown, so published posts are still
 // rendered by components/Markdown.tsx. Only formats that Markdown supports
-// are enabled (no underline, strikethrough or code blocks).
+// are enabled (no underline, strikethrough or code blocks). Inserted images
+// are kept as data URLs in the draft and uploaded to the repo on publish.
 
 function ToolButton({
   label,
@@ -59,6 +66,22 @@ function ToolButton({
 
 const Divider = () => <span className="mx-1 h-5 w-px bg-gray-300" aria-hidden="true" />
 
+function TextButton({ onClick, danger, children }: { onClick: () => void; danger?: boolean; children: ReactNode }) {
+  return (
+    <button
+      type="button"
+      onMouseDown={(e) => e.preventDefault()}
+      onClick={onClick}
+      className={cn(
+        "rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors",
+        danger ? "text-red-700 hover:bg-red-50" : "text-gray-700 hover:bg-white hover:text-brand-heading"
+      )}
+    >
+      {children}
+    </button>
+  )
+}
+
 function Toolbar({ editor }: { editor: Editor }) {
   const state = useEditorState({
     editor,
@@ -77,6 +100,8 @@ function Toolbar({ editor }: { editor: Editor }) {
       bullet: e.isActive("bulletList"),
       ordered: e.isActive("orderedList"),
       quote: e.isActive("blockquote"),
+      table: e.isActive("table"),
+      image: e.isActive("image"),
       canUndo: e.can().undo(),
       canRedo: e.can().redo(),
     }),
@@ -101,54 +126,122 @@ function Toolbar({ editor }: { editor: Editor }) {
 
   const c = () => editor.chain().focus()
 
+  const fileInput = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
+
+  const onImageFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    e.target.value = ""
+    if (!file) return
+    setUploading(true)
+    try {
+      const src = await resizeImage(file, 1200, 0.82)
+      const alt = window.prompt("Describe this image. It's shown as the caption and read by screen readers.", "") ?? ""
+      c().setImage({ src, alt: alt.trim() }).run()
+    } catch (err) {
+      window.alert((err as Error).message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const editCaption = () => {
+    const current = (editor.getAttributes("image").alt as string | undefined) ?? ""
+    const alt = window.prompt("Image caption / description", current)
+    if (alt !== null) c().updateAttributes("image", { alt: alt.trim() }).run()
+  }
+
   return (
-    <div className="flex flex-wrap items-center gap-0.5 border-b border-gray-200 bg-brand-bg px-2 py-1.5">
-      <ToolButton label="Paragraph" active={state.paragraph} onClick={() => c().setParagraph().run()}>
-        <Pilcrow className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Heading (Ctrl+Alt+2)" active={state.h2} onClick={() => c().toggleHeading({ level: 2 }).run()}>
-        <Heading2 className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Subheading (Ctrl+Alt+3)" active={state.h3} onClick={() => c().toggleHeading({ level: 3 }).run()}>
-        <Heading3 className="h-4 w-4" />
-      </ToolButton>
-      <Divider />
-      <ToolButton label="Bold (Ctrl+B)" active={state.bold} onClick={() => c().toggleBold().run()}>
-        <Bold className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Italic (Ctrl+I)" active={state.italic} onClick={() => c().toggleItalic().run()}>
-        <Italic className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Inline code (Ctrl+E)" active={state.code} onClick={() => c().toggleCode().run()}>
-        <Code className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Link" active={state.link} onClick={setLink}>
-        <Link2 className="h-4 w-4" />
-      </ToolButton>
-      <Divider />
-      <ToolButton label="Bullet list (Ctrl+Shift+8)" active={state.bullet} onClick={() => c().toggleBulletList().run()}>
-        <List className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton
-        label="Numbered list (Ctrl+Shift+7)"
-        active={state.ordered}
-        onClick={() => c().toggleOrderedList().run()}
-      >
-        <ListOrdered className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Highlighted callout" active={state.quote} onClick={() => c().toggleBlockquote().run()}>
-        <Quote className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Divider line" onClick={() => c().setHorizontalRule().run()}>
-        <Minus className="h-4 w-4" />
-      </ToolButton>
-      <Divider />
-      <ToolButton label="Undo (Ctrl+Z)" disabled={!state.canUndo} onClick={() => c().undo().run()}>
-        <Undo2 className="h-4 w-4" />
-      </ToolButton>
-      <ToolButton label="Redo (Ctrl+Y)" disabled={!state.canRedo} onClick={() => c().redo().run()}>
-        <Redo2 className="h-4 w-4" />
-      </ToolButton>
+    <div className="border-b border-gray-200 bg-brand-bg">
+      <div className="flex flex-wrap items-center gap-0.5 px-2 py-1.5">
+        <ToolButton label="Paragraph" active={state.paragraph} onClick={() => c().setParagraph().run()}>
+          <Pilcrow className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Heading (Ctrl+Alt+2)" active={state.h2} onClick={() => c().toggleHeading({ level: 2 }).run()}>
+          <Heading2 className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Subheading (Ctrl+Alt+3)" active={state.h3} onClick={() => c().toggleHeading({ level: 3 }).run()}>
+          <Heading3 className="h-4 w-4" />
+        </ToolButton>
+        <Divider />
+        <ToolButton label="Bold (Ctrl+B)" active={state.bold} onClick={() => c().toggleBold().run()}>
+          <Bold className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Italic (Ctrl+I)" active={state.italic} onClick={() => c().toggleItalic().run()}>
+          <Italic className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Inline code (Ctrl+E)" active={state.code} onClick={() => c().toggleCode().run()}>
+          <Code className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Link" active={state.link} onClick={setLink}>
+          <Link2 className="h-4 w-4" />
+        </ToolButton>
+        <Divider />
+        <ToolButton label="Bullet list (Ctrl+Shift+8)" active={state.bullet} onClick={() => c().toggleBulletList().run()}>
+          <List className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton
+          label="Numbered list (Ctrl+Shift+7)"
+          active={state.ordered}
+          onClick={() => c().toggleOrderedList().run()}
+        >
+          <ListOrdered className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Highlighted callout" active={state.quote} onClick={() => c().toggleBlockquote().run()}>
+          <Quote className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Divider line" onClick={() => c().setHorizontalRule().run()}>
+          <Minus className="h-4 w-4" />
+        </ToolButton>
+        <Divider />
+        <ToolButton label="Insert image" disabled={uploading} onClick={() => fileInput.current?.click()}>
+          {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ImagePlus className="h-4 w-4" />}
+        </ToolButton>
+        <ToolButton
+          label="Insert table"
+          active={state.table}
+          onClick={() => c().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+        >
+          <TableIcon className="h-4 w-4" />
+        </ToolButton>
+        <input
+          ref={fileInput}
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/gif"
+          onChange={onImageFile}
+          className="hidden"
+        />
+        <Divider />
+        <ToolButton label="Undo (Ctrl+Z)" disabled={!state.canUndo} onClick={() => c().undo().run()}>
+          <Undo2 className="h-4 w-4" />
+        </ToolButton>
+        <ToolButton label="Redo (Ctrl+Y)" disabled={!state.canRedo} onClick={() => c().redo().run()}>
+          <Redo2 className="h-4 w-4" />
+        </ToolButton>
+      </div>
+      {state.table && (
+        <div className="flex flex-wrap items-center gap-0.5 border-t border-gray-200 px-2 py-1">
+          <span className="px-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500">Table</span>
+          <TextButton onClick={() => c().addRowBefore().run()}>+ Row above</TextButton>
+          <TextButton onClick={() => c().addRowAfter().run()}>+ Row below</TextButton>
+          <TextButton onClick={() => c().addColumnBefore().run()}>+ Column left</TextButton>
+          <TextButton onClick={() => c().addColumnAfter().run()}>+ Column right</TextButton>
+          <TextButton onClick={() => c().deleteRow().run()}>− Row</TextButton>
+          <TextButton onClick={() => c().deleteColumn().run()}>− Column</TextButton>
+          <TextButton danger onClick={() => c().deleteTable().run()}>
+            Delete table
+          </TextButton>
+        </div>
+      )}
+      {state.image && (
+        <div className="flex flex-wrap items-center gap-0.5 border-t border-gray-200 px-2 py-1">
+          <span className="px-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500">Image</span>
+          <TextButton onClick={editCaption}>Edit caption</TextButton>
+          <TextButton danger onClick={() => c().deleteSelection().run()}>
+            Remove image
+          </TextButton>
+        </div>
+      )}
     </div>
   )
 }
@@ -178,6 +271,8 @@ export function RichTextEditor({
         link: { openOnClick: false, autolink: true, defaultProtocol: "https" },
       }),
       Placeholder.configure({ placeholder: placeholder ?? "Start writing…" }),
+      Image.configure({ allowBase64: true }),
+      TableKit.configure({ table: { resizable: false } }),
     ],
     content: markdownToHtml(value),
     editorProps: {
@@ -214,6 +309,10 @@ export function RichTextEditor({
         "[&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-6 [&_li::marker]:text-brand-green",
         "[&_blockquote]:rounded-xl [&_blockquote]:bg-bento-mint [&_blockquote]:px-4 [&_blockquote]:py-3 [&_blockquote]:text-bento-forest",
         "[&_hr]:my-4 [&_hr]:border-gray-200",
+        "[&_img]:my-2 [&_img]:max-w-full [&_img]:rounded-xl [&_img.ProseMirror-selectednode]:outline-3 [&_img.ProseMirror-selectednode]:outline-brand-green",
+        "[&_.tableWrapper]:overflow-x-auto [&_table]:w-full [&_table]:border-collapse [&_table]:text-sm",
+        "[&_td]:border [&_td]:border-gray-200 [&_td]:px-3 [&_td]:py-2 [&_td]:align-top [&_th]:border [&_th]:border-gray-200 [&_th]:bg-brand-bg [&_th]:px-3 [&_th]:py-2 [&_th]:text-left [&_th]:font-semibold [&_th]:text-brand-heading",
+        "[&_.selectedCell]:bg-bento-mint/60 [&_td_p]:m-0 [&_th_p]:m-0",
         "[&_.is-editor-empty:first-child::before]:pointer-events-none [&_.is-editor-empty:first-child::before]:float-left [&_.is-editor-empty:first-child::before]:h-0 [&_.is-editor-empty:first-child::before]:text-gray-400 [&_.is-editor-empty:first-child::before]:content-[attr(data-placeholder)]"
       )}
     >

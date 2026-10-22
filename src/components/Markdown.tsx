@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 import { Info } from "lucide-react"
+import { asset } from "@/lib/asset"
 import { parseMarkdown, tokenizeInline, type InlineToken } from "@/lib/markdown"
 
 // Renders a blog post body. It builds React elements directly (no raw
@@ -103,6 +104,45 @@ export function Markdown({ source }: { source: string }) {
             )
           case "hr":
             return <hr key={key} className="border-gray-100" />
+          case "img":
+            return (
+              <figure key={key} className="py-2">
+                <img
+                  src={block.src.startsWith("assets/") ? asset(block.src) : block.src}
+                  alt={block.alt}
+                  loading="lazy"
+                  className="w-full rounded-[22px]"
+                />
+                {block.alt && <figcaption className="mt-2 text-center text-xs text-gray-500">{block.alt}</figcaption>}
+              </figure>
+            )
+          case "table":
+            return (
+              <div key={key} className="overflow-x-auto rounded-xl border border-gray-200">
+                <table className="w-full min-w-[28rem] text-left text-sm">
+                  <thead className="bg-brand-bg">
+                    <tr>
+                      {block.header.map((h, j) => (
+                        <th key={j} className="px-4 py-3 font-semibold text-brand-heading">
+                          {inline(h, `${key}-h${j}`)}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {block.rows.map((row, r) => (
+                      <tr key={r} className="border-t border-gray-100 align-top">
+                        {row.map((cell, j) => (
+                          <td key={j} className="px-4 py-3 leading-relaxed text-gray-600">
+                            {inline(cell, `${key}-${r}-${j}`)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )
         }
       })}
     </div>

@@ -41,10 +41,17 @@ export function formatPostDate(iso: string) {
   })
 }
 
+/** Words of real text, ignoring images and Markdown symbols like table pipes. */
+export function countWords(markdown: string) {
+  return markdown
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+    .split(/\s+/)
+    .filter((w) => /[\p{L}\p{N}]/u.test(w)).length
+}
+
 /** About 200 words a minute, at least one minute. */
 export function readTimeFor(markdown: string) {
-  const words = markdown.trim().split(/\s+/).filter(Boolean).length
-  return `${Math.max(1, Math.round(words / 200))} min read`
+  return `${Math.max(1, Math.round(countWords(markdown) / 200))} min read`
 }
 
 export function slugify(text: string) {
