@@ -1,7 +1,7 @@
 import { Check } from "lucide-react"
 
 const items = [
-  { title: "Data security.", desc: "100% secure with us." },
+  { title: "Data security.", desc: "Confidential and access-controlled." },
   { title: "Expert team.", desc: "Experienced bookkeepers." },
   { title: "On time.", desc: "Deadlines matter to us." },
   { title: "Scalable.", desc: "Grows with your business." },

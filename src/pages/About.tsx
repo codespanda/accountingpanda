@@ -16,14 +16,14 @@ import { ConsultationLink } from "@/components/ConsultationDialog"
 const stats = [
   { value: "12+", label: "Years Experience" },
   { value: "3", label: "Countries Covered" },
-  { value: "99.9%", label: "Accuracy Rate" },
+  { value: "24/7", label: "Client Support" },
 ]
 
 const values = [
   {
     icon: ShieldCheck,
     title: "Integrity",
-    desc: "Your financial data is handled with the strictest confidentiality and security standards.",
+    desc: "Your financial data is handled with strict confidentiality and careful security practices.",
   },
   {
     icon: Award,
