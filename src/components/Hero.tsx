@@ -5,7 +5,7 @@ import { ConsultationLink } from "@/components/ConsultationDialog"
 
 const trust = [
   { icon: ShieldCheck, label: "100% data security", tint: "bg-bento-sky", ink: "text-bento-sky-ink" },
-  { icon: CircleCheck, label: "CPA-approved processes", tint: "bg-bento-butter", ink: "text-bento-butter-ink" },
+  { icon: CircleCheck, label: "Strict confidentiality", tint: "bg-bento-butter", ink: "text-bento-butter-ink" },
   { icon: Clock, label: "On-time delivery", tint: "bg-bento-mint", ink: "text-bento-forest" },
 ]
 

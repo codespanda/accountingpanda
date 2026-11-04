@@ -52,7 +52,7 @@ const groups: Group[] = [
       },
       {
         q: "Is my financial data secure?",
-        a: "Yes — we use bank-level encryption, restricted data access, and CPA-approved processes. Your data is never shared with third parties.",
+        a: "Yes. Your financial data is kept strictly confidential, access is limited to the people working on your account, and it is used only to deliver your services. It is shared only with the accounting software we use for your work (such as QuickBooks or Xero) or when the law requires. See our Privacy Policy for details.",
       },
       {
         q: "Do you sign a confidentiality agreement (NDA)?",
