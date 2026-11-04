@@ -4,6 +4,7 @@ import { CheckCircle2, ChevronDown, Loader2, X } from "lucide-react"
 import { CONSULTATION_MAILTO } from "@/lib/contact"
 import {
   CONSULTATION_FORM_ENDPOINT,
+  WEB3FORMS_KEY,
   ConsultationContext,
   useConsultation,
 } from "@/lib/consultation"
@@ -98,17 +99,16 @@ function ConsultationDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     }
     setStatus("sending")
     try {
-      const res = await fetch(CONSULTATION_FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          ...data,
-          // Record of the consent given (DPDP Act), in place of the checkbox's raw value.
-          consent: `Agreed to the privacy notice on ${new Date().toISOString()} (accountingpanda.com/privacy-policy, November 2026 version)`,
-          _subject: `Free consultation request from ${data.name}`,
-          _template: "table",
-        }),
-      })
+      // Posted as FormData (a "simple" request), so the browser needs no CORS preflight.
+      const form = new FormData()
+      form.append("access_key", WEB3FORMS_KEY)
+      form.append("subject", `Free consultation request from ${data.name}`)
+      form.append("from_name", "accountingpanda.com")
+      const { _honey: _, consent: __, ...fields } = data
+      for (const [key, value] of Object.entries(fields)) form.append(key, value)
+      // Record of the consent given (DPDP Act), in place of the checkbox's raw value.
+      form.append("consent", `Agreed to the privacy notice on ${new Date().toISOString()} (accountingpanda.com/privacy-policy, November 2026 version)`)
+      const res = await fetch(CONSULTATION_FORM_ENDPOINT, { method: "POST", body: form, headers: { Accept: "application/json" } })
       const body = await res.json().catch(() => ({}))
       if (!res.ok || String(body.success) !== "true") throw new Error(body.message || "Send failed")
       setStatus("sent")
@@ -221,7 +221,7 @@ function ConsultationDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 
               <div className="flex flex-col gap-2.5 rounded-[20px] bg-bento-mint/60 px-4 py-3.5 sm:col-span-2">
                 <p className="text-[13px] leading-relaxed text-gray-600">
-                  We'll use these details only to reply and arrange your consultation. They're sent through FormSubmit (USA) to our
+                  We'll use these details only to reply and arrange your consultation. They're sent through Web3Forms to our
                   inbox and deleted within 12 months if we don't work together. You can ask us to see, correct or delete them, or
                   withdraw consent, any time.{" "}
                   <Link to="/privacy-policy" onClick={() => dialogRef.current?.close()} className="font-semibold text-brand-green underline underline-offset-2">

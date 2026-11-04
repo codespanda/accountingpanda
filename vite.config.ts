@@ -14,10 +14,10 @@ const CSP = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  // FormSubmit (consultation form), Google Analytics (after consent), GitHub (the blog studio).
-  "connect-src 'self' https://formsubmit.co https://api.github.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com",
+  // Web3Forms (consultation form), Google Analytics (after consent), GitHub (the blog studio).
+  "connect-src 'self' https://api.web3forms.com https://api.github.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com",
   "frame-src 'none'",
-  "form-action 'self' https://formsubmit.co",
+  "form-action 'self'",
   "object-src 'none'",
   "base-uri 'self'",
   'upgrade-insecure-requests',

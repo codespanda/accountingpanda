@@ -12,9 +12,7 @@ export function useConsultation() {
   return useContext(ConsultationContext)
 }
 
-/**
- * FormSubmit relays each submission to contact@accountingpanda.com. The URL uses
- * FormSubmit's alias for that inbox, so the address isn't exposed in form requests.
- */
-export const CONSULTATION_FORM_ENDPOINT =
-  "https://formsubmit.co/ajax/3e322a9b87c2f2eaa0a9d32f4f231f20"
+/** Web3Forms delivers each consultation request to contact@accountingpanda.com. */
+export const CONSULTATION_FORM_ENDPOINT = "https://api.web3forms.com/submit"
+/** Web3Forms access key for that inbox (public by design). */
+export const WEB3FORMS_KEY = "0291c3e4-73cb-4649-9ff3-a4a2edf4dd81"

@@ -28,7 +28,7 @@ const sections: { title: string; body: string; list?: string[] }[] = [
     title: "4. Who we share it with",
     body: "We don't sell personal or financial information or use it for advertising. We share it only with providers that process it for us, under their security and confidentiality terms:",
     list: [
-      "FormSubmit (USA): delivers consultation requests to our inbox.",
+      "Web3Forms: delivers consultation requests to our inbox.",
       "Google (USA): Google Analytics, only with your consent, and our email provider.",
       "GitHub (USA): hosts this website and processes visitors' IP addresses to serve and protect it.",
       "Accounting software we use for client work, such as QuickBooks, Xero or MYOB, and as required by law.",
