@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { openConsentSettings } from "@/lib/consent"
 import { asset } from "@/lib/asset"
 
 const links = [
@@ -26,6 +27,9 @@ export function Footer() {
               {l.label}
             </Link>
           ))}
+          <button type="button" onClick={openConsentSettings} className="font-semibold text-bento-ink hover:text-brand-green">
+            Cookie settings
+          </button>
         </nav>
         <span>© 2026 AccountingPanda · +91 6280 347210</span>
       </div>

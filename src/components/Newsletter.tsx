@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useState } from "react"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { ConsultationLink } from "@/components/ConsultationDialog"
@@ -82,6 +83,16 @@ export function Newsletter({ contained = true }: { contained?: boolean }) {
               >
                 Subscribe
               </button>
+              <label className="flex cursor-pointer items-start gap-2 text-[13px] leading-snug text-gray-600">
+                <input type="checkbox" required className="mt-0.5 h-4 w-4 shrink-0 accent-[#14532d]" />
+                <span>
+                  Send me the monthly newsletter. You can unsubscribe any time; see our{" "}
+                  <Link to="/privacy-policy" className="font-semibold text-brand-green underline underline-offset-2">
+                    privacy policy
+                  </Link>
+                  .
+                </span>
+              </label>
             </form>
           )}
         </div>

@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import { ScrollToHash } from "@/components/ScrollToHash"
 import { ConsultationProvider } from "@/components/ConsultationDialog"
+import { CookieConsent } from "@/components/CookieConsent"
 import { Home } from "@/pages/Home"
 import { Blog } from "@/pages/Blog"
 import { Learning } from "@/pages/Learning"
@@ -225,6 +226,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <CookieConsent />
       </div>
       </ConsultationProvider>
     </BrowserRouter>

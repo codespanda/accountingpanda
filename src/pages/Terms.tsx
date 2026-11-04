@@ -33,6 +33,10 @@ const sections = [
     title: "8. Governing Law",
     body: "These terms are governed by applicable laws in the jurisdiction where the service agreement was executed, without regard to conflict of law principles.",
   },
+  {
+    title: "9. Data Protection",
+    body: "We process personal data as described in our Privacy Policy and in line with India's Digital Personal Data Protection Act, 2023. When we handle personal data in your records (for example your customers', employees' or suppliers'), we do so only on your instructions and to deliver the agreed services, keep it confidential, protect it with reasonable security safeguards, and return or delete it when the engagement ends, unless the law requires us to keep it. You confirm you have the right to share that data with us.",
+  },
 ]
 
 export function Terms() {
@@ -51,7 +55,7 @@ export function Terms() {
         <h1 className="mt-5 text-3xl font-bold text-brand-heading sm:text-4xl">
           Terms &amp; Conditions
         </h1>
-        <p className="mt-3 text-sm text-gray-500">Last updated: August 2026</p>
+        <p className="mt-3 text-sm text-gray-500">Last updated: November 4, 2026</p>
 
         <div className="mt-10 space-y-8">
           {sections.map((s) => (

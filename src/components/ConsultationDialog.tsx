@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { CheckCircle2, ChevronDown, Loader2, X } from "lucide-react"
 import { CONSULTATION_MAILTO } from "@/lib/contact"
 import {
@@ -102,6 +103,8 @@ function ConsultationDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           ...data,
+          // Record of the consent given (DPDP Act), in place of the checkbox's raw value.
+          consent: `Agreed to the privacy notice on ${new Date().toISOString()} (accountingpanda.com/privacy-policy, November 2026 version)`,
           _subject: `Free consultation request from ${data.name}`,
           _template: "table",
         }),
@@ -214,6 +217,21 @@ function ConsultationDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                   className="w-full resize-y rounded-[20px] border border-[#d3d9e0] bg-white px-[18px] py-3 text-[15px] text-bento-ink placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
                   placeholder="Tell us what you need help with"
                 />
+              </div>
+
+              <div className="flex flex-col gap-2.5 rounded-[20px] bg-bento-mint/60 px-4 py-3.5 sm:col-span-2">
+                <p className="text-[13px] leading-relaxed text-gray-600">
+                  We'll use these details only to reply and arrange your consultation. They're sent through FormSubmit (USA) to our
+                  inbox and deleted within 12 months if we don't work together. You can ask us to see, correct or delete them, or
+                  withdraw consent, any time.{" "}
+                  <Link to="/privacy-policy" onClick={() => dialogRef.current?.close()} className="font-semibold text-brand-green underline underline-offset-2">
+                    Privacy policy
+                  </Link>
+                </p>
+                <label htmlFor="c-consent" className="flex cursor-pointer items-start gap-2.5 text-sm font-semibold text-bento-ink">
+                  <input id="c-consent" name="consent" type="checkbox" required className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#14532d]" />
+                  I agree to AccountingPanda using these details to respond to my enquiry.
+                </label>
               </div>
 
               {status === "error" && (
