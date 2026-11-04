@@ -13,9 +13,8 @@ export function useConsultation() {
 }
 
 /**
- * FormSubmit relays each submission to the inbox in the URL. The first
- * submission sends a one-time activation email to that address; after the
- * link in it is clicked, every request is delivered.
+ * FormSubmit relays each submission to contact@accountingpanda.com. The URL uses
+ * FormSubmit's alias for that inbox, so the address isn't exposed in form requests.
  */
 export const CONSULTATION_FORM_ENDPOINT =
-  "https://formsubmit.co/ajax/contact@accountingpanda.com"
+  "https://formsubmit.co/ajax/3e322a9b87c2f2eaa0a9d32f4f231f20"
