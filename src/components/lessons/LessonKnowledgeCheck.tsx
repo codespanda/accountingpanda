@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Check, PartyPopper, RotateCcw, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import type { GstQuizQuestion } from "@/pages/courses/gstIndiaLessons"
+import type { QuizQuestion } from "@/lib/lessonTypes"
 
 const LETTERS = ["A", "B", "C", "D", "E"]
 
 /** Multiple-choice check with per-question explanations and a pass mark. */
-export function GstKnowledgeCheck({
+export function LessonKnowledgeCheck({
   questions,
   passCount,
   onPass,
 }: {
-  questions: GstQuizQuestion[]
+  questions: QuizQuestion[]
   passCount: number
   onPass?: () => void
 }) {

@@ -49,10 +49,6 @@ const routes = [
   "learning/bookkeeping/advanced-bookkeeping-and-adjusting-entries",
   "learning/taxation",
   "learning/taxation/learn-gst-in-india",
-  "learning/taxation/learn-gst-in-india/modules/1",
-  "learning/taxation/learn-gst-in-india/modules/2",
-  "learning/taxation/learn-gst-in-india/modules/3",
-  "learning/taxation/learn-gst-in-india/modules/4",
   "learning/taxation/gst-compliance-in-india",
   "learning/taxation/tds-compliance-in-india",
   "learning/taxation/income-tax-for-salaried-employees",
@@ -110,6 +106,21 @@ const studioSlugs = existsSync(contentDir)
   : []
 for (const slug of studioSlugs) {
   if (!routes.includes(`blog/${slug}`)) routes.push(`blog/${slug}`)
+}
+
+// Course lessons live in src/content/lessons/<category>--<slug>.ts, keyed by
+// module index. Pre-render a page for every module that has lessons.
+const lessonsDir = join(process.cwd(), "src", "content", "lessons")
+if (existsSync(lessonsDir)) {
+  for (const file of readdirSync(lessonsDir).filter((f) => f.endsWith(".ts"))) {
+    const [category, slug] = file.replace(/\.ts$/, "").split("--")
+    if (!category || !slug) continue
+    const source = readFileSync(join(lessonsDir, file), "utf-8")
+    for (const [, index] of source.matchAll(/^  (\d+): \[/gm)) {
+      const route = `learning/${category}/${slug}/modules/${Number(index) + 1}`
+      if (!routes.includes(route)) routes.push(route)
+    }
+  }
 }
 
 const sitemapPath = join(distDir, "sitemap.xml")

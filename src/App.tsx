@@ -16,7 +16,7 @@ import { ExcelCourses } from "@/pages/ExcelCourses"
 import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
 import { DataBlogPost } from "@/pages/DataBlogPost"
-import { GstModuleLesson } from "@/pages/courses/GstModuleLesson"
+import { CatalogModuleLessonRoute, GstModuleLessonRoute } from "@/pages/courses/CourseModuleRoutes"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 import { taxationCourseCatalog } from "@/pages/courses/taxationCourseCatalog"
@@ -159,11 +159,19 @@ function App() {
                 <CatalogCourseDetail catalog={bookkeepingCourseCatalog} basePath="/learning/bookkeeping" />
               }
             />
+            <Route
+              path="/learning/bookkeeping/:courseSlug/modules/:moduleNumber"
+              element={<CatalogModuleLessonRoute catalog={bookkeepingCourseCatalog} basePath="/learning/bookkeeping" />}
+            />
             <Route path="/learning/taxation" element={<TaxationCourses />} />
             <Route path="/learning/payroll" element={<PayrollCourses />} />
             <Route
               path="/learning/payroll/:courseSlug"
               element={<CatalogCourseDetail catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
+            />
+            <Route
+              path="/learning/payroll/:courseSlug/modules/:moduleNumber"
+              element={<CatalogModuleLessonRoute catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
             />
             <Route path="/learning/excel-for-accountants" element={<ExcelCourses />} />
             <Route
@@ -172,12 +180,20 @@ function App() {
                 <CatalogCourseDetail catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />
               }
             />
+            <Route
+              path="/learning/excel-for-accountants/:courseSlug/modules/:moduleNumber"
+              element={<CatalogModuleLessonRoute catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />}
+            />
             <Route path="/learning/business-finance" element={<BusinessFinanceCourses />} />
             <Route
               path="/learning/business-finance/:courseSlug"
               element={
                 <CatalogCourseDetail catalog={businessFinanceCourseCatalog} basePath="/learning/business-finance" />
               }
+            />
+            <Route
+              path="/learning/business-finance/:courseSlug/modules/:moduleNumber"
+              element={<CatalogModuleLessonRoute catalog={businessFinanceCourseCatalog} basePath="/learning/business-finance" />}
             />
             <Route path="/learning/financial-accounting" element={<FinancialAccountingCourses />} />
             <Route
@@ -190,6 +206,10 @@ function App() {
               }
             />
             <Route
+              path="/learning/financial-accounting/:courseSlug/modules/:moduleNumber"
+              element={<CatalogModuleLessonRoute catalog={financialAccountingCourseCatalog} basePath="/learning/financial-accounting" />}
+            />
+            <Route
               path="/learning/taxation/learn-gst-in-india"
               element={<GstIndiaCourse />}
             />
@@ -199,13 +219,17 @@ function App() {
             />
             <Route
               path="/learning/taxation/learn-gst-in-india/modules/:moduleNumber"
-              element={<GstModuleLesson />}
+              element={<GstModuleLessonRoute />}
             />
             <Route
               path="/learning/taxation/:courseSlug"
               element={
                 <CatalogCourseDetail catalog={taxationCourseCatalog} basePath="/learning/taxation" />
               }
+            />
+            <Route
+              path="/learning/taxation/:courseSlug/modules/:moduleNumber"
+              element={<CatalogModuleLessonRoute catalog={taxationCourseCatalog} basePath="/learning/taxation" />}
             />
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners"

@@ -17,10 +17,10 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import type { GstLessonBlock, GstLessonScreen } from "@/pages/courses/gstIndiaLessons"
-import { GstKnowledgeCheck } from "@/pages/courses/GstKnowledgeCheck"
+import type { LessonBlock, LessonScreen } from "@/lib/lessonTypes"
+import { LessonKnowledgeCheck } from "@/components/lessons/LessonKnowledgeCheck"
 
-function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }) {
+function Block({ block, onPass }: { block: LessonBlock; onPass?: () => void }) {
   switch (block.type) {
     case "paragraph":
       return <p className="text-sm leading-relaxed text-gray-600 sm:text-[0.95rem]">{block.text}</p>
@@ -369,7 +369,7 @@ function Block({ block, onPass }: { block: GstLessonBlock; onPass?: () => void }
         </div>
       )
     case "knowledge-check":
-      return <GstKnowledgeCheck questions={block.questions} passCount={block.passCount} onPass={onPass} />
+      return <LessonKnowledgeCheck questions={block.questions} passCount={block.passCount} onPass={onPass} />
     case "exercises":
       return (
         <div className="space-y-4">
@@ -497,11 +497,11 @@ function Exercise({ title, task, answer }: { title: string; task: string[]; answ
 }
 
 /** Steps through a module's lesson screens one at a time. */
-export function GstLessonViewer({
+export function LessonViewer({
   screens,
   onFinish,
 }: {
-  screens: GstLessonScreen[]
+  screens: LessonScreen[]
   /** Shown as "Mark complete" on the last screen. */
   onFinish?: () => void
 }) {

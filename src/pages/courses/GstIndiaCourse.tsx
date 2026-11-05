@@ -1,6 +1,6 @@
 import { CourseOverview, type CourseDetails } from "@/components/CourseOverview"
-import { GstCourseTracker } from "@/pages/courses/GstCourseTracker"
-import { GST_INDIA_COURSE_PATH, gstIndiaModules } from "@/pages/courses/gstIndiaModules"
+import { CourseTracker } from "@/components/lessons/CourseTracker"
+import { GST_INDIA_COURSE_PATH, gstIndiaModules, gstIndiaModuleSummaries } from "@/pages/courses/gstIndiaModules"
 
 const course: CourseDetails = {
   slug: "learn-gst-in-india",
@@ -33,6 +33,25 @@ const course: CourseDetails = {
     "GST rates, thresholds and due dates change through GST Council decisions and CBIC notifications. This course explains the rules as they stand, but always confirm the current position on the official GST portal before filing.",
 }
 
+const trackerModules = gstIndiaModuleSummaries.map((m, i) => ({
+  ...m,
+  topics: gstIndiaModules[i]?.sections.flatMap((s) => s.items) ?? [],
+}))
+
 export function GstIndiaCourse() {
-  return <CourseOverview course={course} path={GST_INDIA_COURSE_PATH} curriculum={<GstCourseTracker />} />
+  return (
+    <CourseOverview
+      course={course}
+      path={GST_INDIA_COURSE_PATH}
+      curriculum={
+        <CourseTracker
+          coursePath={GST_INDIA_COURSE_PATH}
+          progressKey="learn-gst-in-india"
+          programTitle="GST Practical Learning Program"
+          programSubtitle="Beginner to practical accounting"
+          modules={trackerModules}
+        />
+      }
+    />
+  )
 }

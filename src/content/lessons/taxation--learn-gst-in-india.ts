@@ -1,73 +1,7 @@
-/** Lesson screens for the GST course, keyed by module index (0 = Module 1). */
+import type { CourseLessons } from "@/lib/lessonTypes"
 
-export type GstQuizQuestion = {
-  question: string
-  options: string[]
-  /** Index of the correct option. */
-  answer: number
-  explanation: string
-}
-
-export type GstLessonBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "heading"; text: string }
-  | {
-      type: "example"
-      rows: { label: string; value: string }[]
-      total: { label: string; value: string }
-    }
-  | {
-      type: "table"
-      headers: string[]
-      rows: string[][]
-      /** Optional totals row, shown in bold. */
-      footer?: string[]
-      /** Columns whose cells are right-aligned (e.g. amounts). */
-      numeric?: number[]
-    }
-  | { type: "list"; items: { term: string; text: string }[] }
-  | { type: "bullets"; items: string[] }
-  | {
-      type: "flow"
-      from: { title: string; place: string }
-      to: { title: string; place: string }
-      caption: string
-    }
-  | { type: "tip"; title: string; text: string }
-  | { type: "caution"; text: string }
-  | { type: "steps"; items: { title: string; text: string }[] }
-  | { type: "checklist"; title: string; items: { title: string; text: string }[] }
-  | { type: "compare"; items: { title: string; text: string; examples: string[] }[] }
-  | { type: "gstin"; segments: { chars: string; label: string }[]; caption: string }
-  | { type: "cases"; items: { title: string; stat: { label: string; value: string }; text: string }[] }
-  | { type: "scenarios"; items: { title: string; text: string; badge: string; tax: string }[] }
-  | {
-      type: "calcs"
-      items: {
-        title: string
-        rows: { label: string; value: string }[]
-        total: { label: string; value: string }
-      }[]
-    }
-  | {
-      type: "branches"
-      root: { title: string; text: string }
-      items: { title: string; text: string; result: string; resultNote?: string }[]
-      caption?: string
-    }
-  | { type: "knowledge-check"; passCount: number; questions: GstQuizQuestion[] }
-  | { type: "exercises"; items: { title: string; task: string[]; answer: string[] }[] }
-  | { type: "links"; items: { label: string; href: string; text: string }[] }
-  | { type: "link"; label: string; text: string; href: string }
-  | {
-      type: "cards"
-      items: { title: string; text: string; source?: { label: string; href: string } }[]
-    }
-  | { type: "note"; text: string }
-
-export type GstLessonScreen = { title: string; blocks: GstLessonBlock[] }
-
-export const gstIndiaLessons: Record<number, GstLessonScreen[]> = {
+// Learn GST in India — lesson screens by module index (0 = Module 1).
+const lessons: CourseLessons = {
   0: [
     {
       title: "What is an indirect tax?",
@@ -2079,4 +2013,1212 @@ export const gstIndiaLessons: Record<number, GstLessonScreen[]> = {
       ],
     },
   ],
+  4: [
+    {
+      title: "How GST rates are set — and the current slabs",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "GST rates are recommended by the GST Council and put into effect through rate notifications issued by the Central and State Governments. The notification — not a news report or a price list — is what decides the rate for an item.",
+        },
+        {
+          type: "table",
+          headers: ["Rate", "Broadly applies to"],
+          rows: [
+            ["Nil (0%)", "Specified essential goods and services, such as certain unprocessed foods, as listed in the exemption and nil-rate notifications"],
+            ["5%", "Merit and everyday-use goods and services"],
+            ["18%", "The standard rate — most goods and services"],
+            ["40%", "A special rate for select luxury and “sin” goods, such as aerated sugary drinks and large luxury cars"],
+            ["3%", "Gold, silver, platinum and jewellery"],
+            ["0.25%", "Diamonds and other precious and semi-precious stones"],
+          ],
+        },
+        {
+          type: "paragraph",
+          text: "For an intra-state supply the rate is split equally between CGST and SGST (for example 18% = 9% + 9%). For an inter-state supply the whole rate is charged as IGST.",
+        },
+        {
+          type: "note",
+          text: "The examples are broad categories, not a rate list. Always check the exact entry in the current rate notification for the item you are invoicing.",
+        },
+      ],
+    },
+    {
+      title: "GST 2.0 — the September 2025 rate rationalisation",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "From 1 July 2017 until September 2025, most goods and services fell into four main slabs — 5%, 12%, 18% and 28% — with compensation cess on top for some goods.",
+        },
+        {
+          type: "paragraph",
+          text: "On the recommendation of the 56th GST Council meeting, a simpler structure took effect on 22 September 2025:",
+        },
+        {
+          type: "bullets",
+          items: [
+            "Most items in the 12% slab moved to 5%.",
+            "Most items in the 28% slab moved to 18%.",
+            "A 40% rate was introduced for select luxury and sin goods.",
+            "Compensation cess was removed for most goods, with GST rates adjusted instead.",
+          ],
+        },
+        {
+          type: "caution",
+          text: "When rates change, the rate that applies depends on the time of supply (Module 6), not just the invoice date. Transactions that straddle a rate change need special care.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "PIB — Recommendations of the 56th GST Council meeting",
+          href: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2163555&reg=48&lang=2",
+        },
+      ],
+    },
+    {
+      title: "Classifying goods (HSN) and services (SAC)",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Rates are linked to classification codes. Goods use HSN codes; services use SAC codes, which start with 99.",
+        },
+        {
+          type: "table",
+          headers: ["HSN digits", "Level", "Example — a laptop"],
+          rows: [
+            ["2", "Chapter", "84 — machinery and mechanical appliances"],
+            ["4", "Heading", "8471 — automatic data-processing machines"],
+            ["6", "Sub-heading", "847130 — portable machines such as laptops"],
+            ["8", "Tariff item", "The most detailed level"],
+          ],
+        },
+        {
+          type: "paragraph",
+          text: "On tax invoices, businesses with aggregate turnover up to ₹5 crore in the previous year generally show at least 4-digit HSN codes, and those above ₹5 crore show at least 6 digits.",
+        },
+        { type: "heading", text: "Finding the correct rate" },
+        {
+          type: "steps",
+          items: [
+            { title: "Describe the item exactly", text: "Material, use, specification and how it is sold." },
+            { title: "Classify it", text: "Find the HSN or SAC code using the tariff and official search tools." },
+            { title: "Find the rate entry", text: "Look up that code in the current rate notification, including any conditions." },
+            { title: "Record your reasoning", text: "Keep a note of the code, notification entry and date checked." },
+          ],
+        },
+        {
+          type: "link",
+          label: "Search codes",
+          text: "GST Portal — Search HSN/SAC code",
+          href: "https://services.gst.gov.in/services/searchhsnsac",
+        },
+      ],
+    },
+    {
+      title: "Module 5 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "What finally decides the GST rate for an item?",
+              options: ["A news report", "The applicable rate notification", "The supplier's price list", "The customer's request"],
+              answer: 1,
+              explanation: "The GST Council recommends rates, but the rate notification issued by the Government is what applies.",
+            },
+            {
+              question: "What is the standard GST rate that applies to most goods and services after GST 2.0?",
+              options: ["5%", "12%", "18%", "28%"],
+              answer: 2,
+              explanation: "18% is the standard rate. Most items formerly at 28% moved to 18%, and most at 12% moved to 5%.",
+            },
+            {
+              question: "From which date did the GST 2.0 rate structure take effect?",
+              options: ["1 July 2017", "1 April 2025", "22 September 2025", "1 February 2026"],
+              answer: 2,
+              explanation: "The rationalised rates took effect on 22 September 2025, following the 56th GST Council meeting.",
+            },
+            {
+              question: "An 18% intra-state supply is shown on the invoice as:",
+              options: ["18% IGST", "9% CGST + 9% SGST", "18% CGST + 18% SGST", "12% CGST + 6% SGST"],
+              answer: 1,
+              explanation: "Intra-state supplies split the rate equally between CGST and SGST; inter-state supplies carry the full rate as IGST.",
+            },
+            {
+              question: "Which codes are used to classify services?",
+              options: ["HSN codes", "SAC codes starting with 99", "GSTIN codes", "PAN codes"],
+              answer: 1,
+              explanation: "Services use SAC codes, which begin with 99. Goods use HSN codes.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  5: [
+    {
+      title: "Time of supply — when GST becomes payable",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The time of supply decides the tax period in which GST must be paid — and, when rates change, which rate applies.",
+        },
+        {
+          type: "table",
+          headers: ["Supply", "General rule"],
+          rows: [
+            [
+              "Goods (Section 12)",
+              "The earlier of the date the invoice is issued and the last date by which it should have been issued. For normal taxpayers, GST is generally not payable on advances received for goods.",
+            ],
+            [
+              "Services (Section 13)",
+              "If the invoice is issued on time (generally within 30 days of supply), the earlier of the invoice date and the date payment is received. If not issued on time, the earlier of the date of supply and the payment date.",
+            ],
+          ],
+        },
+        {
+          type: "tip",
+          title: "Example",
+          text: "A consultant completes work on 5 May, issues the invoice on 20 May and is paid on 10 June. The invoice was issued within 30 days, so the time of supply is 20 May — the GST goes into May's return.",
+        },
+        {
+          type: "note",
+          text: "Special rules apply to reverse charge, vouchers and some continuous supplies. Advances for services are taxable when received.",
+        },
+      ],
+    },
+    {
+      title: "Value of supply — what to include",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "GST is charged on the value of supply. Under Section 15, this is normally the transaction value — the price actually paid or payable, where the supplier and recipient are not related and price is the only consideration.",
+        },
+        { type: "heading", text: "Include in the taxable value" },
+        {
+          type: "bullets",
+          items: [
+            "Taxes, duties and fees other than GST charged by the supplier.",
+            "Amounts the supplier owes but the customer pays on the supplier's behalf.",
+            "Incidental expenses charged to the customer, such as packing, commission and delivery by the supplier.",
+            "Interest, late fees or penalties for delayed payment.",
+            "Subsidies directly linked to the price (except those from the Central and State Governments).",
+          ],
+        },
+        {
+          type: "example",
+          rows: [
+            { label: "Price of goods", value: "₹1,00,000" },
+            { label: "Packing charged to customer", value: "₹2,000" },
+            { label: "Delivery charged by supplier", value: "₹3,000" },
+            { label: "Taxable value", value: "₹1,05,000" },
+            { label: "GST at an assumed 18%", value: "₹18,900" },
+          ],
+          total: { label: "Invoice total", value: "₹1,23,900" },
+        },
+      ],
+    },
+    {
+      title: "Discounts and their GST treatment",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Section 15(3) allows two kinds of discount to reduce the taxable value:",
+        },
+        {
+          type: "cards",
+          items: [
+            {
+              title: "Before or at the time of supply",
+              text: "Excluded from value if it is recorded on the invoice — for example, a trade discount shown on the tax invoice.",
+            },
+            {
+              title: "After the supply",
+              text: "Excluded only if the supplier issues a credit note for it and the recipient reverses the input tax credit attributable to the discount, as provided under Section 34.",
+            },
+          ],
+        },
+        {
+          type: "caution",
+          text: "A discount that doesn't meet these conditions doesn't reduce the GST payable, even if it reduces the amount the customer pays.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Act — Section 15 (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter4/section15_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "Place of supply",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Place of supply decides whether a supply is intra-state (CGST + SGST) or inter-state (IGST). The rules are in Sections 10 to 13 of the IGST Act.",
+        },
+        {
+          type: "table",
+          headers: ["Situation", "General place of supply"],
+          rows: [
+            ["Goods that are moved", "Where the movement ends for delivery to the recipient"],
+            ["Goods delivered on a third party's instructions (bill-to, ship-to)", "The principal place of business of the third party who gave the instructions"],
+            ["Goods not moved", "Where the goods are at the time of delivery"],
+            ["Services — general rule, registered recipient", "The recipient's location"],
+            ["Services — general rule, unregistered recipient", "The recipient's address on record, or else the supplier's location"],
+            ["Services linked to immovable property", "Where the property is located"],
+            ["Restaurant, catering and similar services", "Where the services are actually performed"],
+          ],
+        },
+        {
+          type: "caution",
+          text: "Many services have specific rules, and imports and exports follow separate provisions. Check the relevant section before deciding the tax type.",
+        },
+      ],
+    },
+    {
+      title: "Module 6 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "A service is completed on 5 May, invoiced on 20 May and paid on 10 June. What is the time of supply?",
+              options: ["5 May", "20 May", "10 June", "31 May"],
+              answer: 1,
+              explanation: "The invoice was issued within 30 days, so the time of supply is the earlier of the invoice date (20 May) and the payment date (10 June).",
+            },
+            {
+              question: "Goods priced at ₹1,00,000 carry ₹2,000 packing and ₹3,000 delivery charged by the supplier. What is the taxable value?",
+              options: ["₹1,00,000", "₹1,02,000", "₹1,05,000", "₹1,23,900"],
+              answer: 2,
+              explanation: "Incidental charges such as packing and delivery charged by the supplier are part of the value: ₹1,05,000.",
+            },
+            {
+              question: "When does a discount given after the supply reduce the taxable value?",
+              options: [
+                "Always",
+                "Only if a credit note is issued and the recipient reverses the related ITC",
+                "Only if the customer pays in cash",
+                "Never",
+              ],
+              answer: 1,
+              explanation: "Under Section 15(3)(b), a post-supply discount reduces value only with a credit note and a reversal of the attributable ITC by the recipient.",
+            },
+            {
+              question: "For goods that are moved, the general place of supply is:",
+              options: [
+                "The supplier's registered office",
+                "Where the movement ends for delivery to the recipient",
+                "Where the invoice is printed",
+                "The bank's location",
+              ],
+              answer: 1,
+              explanation: "Under Section 10 of the IGST Act, the place of supply of moved goods is where the movement terminates for delivery.",
+            },
+            {
+              question: "Which of these is NOT included in the taxable value?",
+              options: ["Packing charged to the customer", "Interest for late payment", "The GST itself", "Delivery charged by the supplier"],
+              answer: 2,
+              explanation: "GST is charged on the value — it is never part of the value itself.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  6: [
+    {
+      title: "What input tax credit is",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Input tax credit (ITC) lets a registered business deduct the GST it paid on eligible business purchases from the GST it owes on its sales. This is how GST avoids tax on tax.",
+        },
+        {
+          type: "example",
+          rows: [
+            { label: "Output GST on sales", value: "₹18,000" },
+            { label: "Less: eligible ITC on purchases", value: "₹12,000" },
+          ],
+          total: { label: "GST payable", value: "₹6,000" },
+        },
+        {
+          type: "note",
+          text: "ITC is available only on purchases used, or intended to be used, in the course or furtherance of business, and only if the legal conditions are met.",
+        },
+      ],
+    },
+    {
+      title: "Conditions for claiming ITC",
+      blocks: [
+        { type: "paragraph", text: "Under Section 16 of the CGST Act, a business can claim ITC only if all of these are met:" },
+        {
+          type: "checklist",
+          title: "ITC conditions",
+          items: [
+            { title: "Tax invoice or debit note", text: "You hold a valid document from a registered supplier." },
+            { title: "Shown in GSTR-2B", text: "The supplier has reported the invoice and it appears in your GSTR-2B." },
+            { title: "Goods or services received", text: "Including goods delivered to a third party on your instructions." },
+            { title: "Tax paid by the supplier", text: "The supplier has actually paid the tax to the Government." },
+            { title: "Return filed", text: "You have filed your own GSTR-3B." },
+          ],
+        },
+        {
+          type: "bullets",
+          items: [
+            "Time limit: ITC must be claimed by 30 November after the end of the financial year, or the date of filing the annual return, if earlier.",
+            "180-day rule: if you don't pay the supplier within 180 days of the invoice date, reverse the ITC with interest, then claim it again once you pay.",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Blocked credits and capital goods",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Section 17(5) blocks ITC on certain items even when they are used in business. Common examples:",
+        },
+        {
+          type: "bullets",
+          items: [
+            "Motor vehicles for transporting people (with specified exceptions, such as further supply or training).",
+            "Food and beverages, outdoor catering, beauty treatment, health services and cosmetic surgery (unless used for the same kind of taxable supply or required by law).",
+            "Membership of clubs, health and fitness centres.",
+            "Works contracts and goods or services for constructing immovable property — other than plant and machinery.",
+            "Goods lost, stolen, destroyed, written off, or given as gifts or free samples.",
+            "Goods or services used for personal consumption.",
+          ],
+        },
+        { type: "heading", text: "ITC on capital goods" },
+        {
+          type: "paragraph",
+          text: "ITC on eligible capital goods such as machinery and computers is generally available in full when received. But if depreciation is claimed on the GST component under the Income-tax Act, ITC on that tax can't be claimed (Section 16(3)).",
+        },
+      ],
+    },
+    {
+      title: "Using ITC — the order of set-off",
+      blocks: [
+        { type: "paragraph", text: "Section 49(5) fixes the order in which ITC is used against tax payable:" },
+        {
+          type: "table",
+          headers: ["Credit of", "Use first against", "Then against", "Never against"],
+          rows: [
+            ["IGST", "IGST", "CGST and SGST/UTGST", "—"],
+            ["CGST", "CGST", "IGST", "SGST/UTGST"],
+            ["SGST/UTGST", "SGST/UTGST", "IGST (only after CGST credit is used up)", "CGST"],
+          ],
+        },
+        {
+          type: "tip",
+          title: "Remember",
+          text: "IGST credit must be used fully before CGST or SGST credit is used. CGST and SGST credits can never be used for each other.",
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Act — Section 49 (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter10/section49_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "Module 7 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "Output GST is ₹18,000 and eligible ITC is ₹12,000. How much GST is payable?",
+              options: ["₹30,000", "₹18,000", "₹12,000", "₹6,000"],
+              answer: 3,
+              explanation: "₹18,000 − ₹12,000 = ₹6,000.",
+            },
+            {
+              question: "Which is a condition for claiming ITC?",
+              options: [
+                "The supplier is in the same State",
+                "The invoice appears in your GSTR-2B",
+                "The purchase is above ₹50,000",
+                "You paid in cash",
+              ],
+              answer: 1,
+              explanation: "Section 16(2)(aa) requires the supplier to have reported the invoice so that it appears in your GSTR-2B.",
+            },
+            {
+              question: "What happens if you don't pay a supplier within 180 days of the invoice date?",
+              options: [
+                "Nothing",
+                "You reverse the ITC with interest, and can claim it again after paying",
+                "The supplier loses the sale",
+                "You must cancel your registration",
+              ],
+              answer: 1,
+              explanation: "The ITC must be reversed with interest; it can be re-claimed once the supplier is paid.",
+            },
+            {
+              question: "ITC on which of these is generally blocked?",
+              options: ["Raw materials for production", "Office computers", "A club membership for staff", "Goods bought for resale"],
+              answer: 2,
+              explanation: "Section 17(5) blocks ITC on membership of clubs and health and fitness centres.",
+            },
+            {
+              question: "Which credit must be used first?",
+              options: ["CGST", "SGST", "IGST", "Any, in any order"],
+              answer: 2,
+              explanation: "IGST credit must be fully used (against IGST, then CGST and SGST) before CGST or SGST credit.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  7: [
+    {
+      title: "Tax invoices — when and what",
+      blocks: [
+        {
+          type: "bullets",
+          items: [
+            "Goods: issue the invoice before or at the time of removal or delivery.",
+            "Services: generally within 30 days of supply.",
+            "Reverse charge purchases from unregistered suppliers: the recipient issues a self-invoice within 30 days of receiving the supply (Rule 47A, from 1 November 2024).",
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Mandatory contents of a tax invoice (Rule 46)",
+          items: [
+            { title: "Supplier details", text: "Name, address and GSTIN" },
+            { title: "Invoice number", text: "Consecutive and unique for the financial year, up to 16 characters" },
+            { title: "Date of issue", text: "The date the invoice is issued" },
+            { title: "Recipient details", text: "Name, address and GSTIN (if registered)" },
+            { title: "HSN or SAC code", text: "At the required number of digits" },
+            { title: "Description, quantity and value", text: "Including taxable value after discounts" },
+            { title: "Tax rate and amount", text: "CGST, SGST/UTGST or IGST shown separately" },
+            { title: "Place of supply", text: "With the State name, for inter-state supplies" },
+            { title: "Reverse charge", text: "Whether tax is payable on reverse charge" },
+            { title: "Signature", text: "Signature or digital signature of the supplier" },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Other GST documents",
+      blocks: [
+        {
+          type: "table",
+          headers: ["Document", "When it is used"],
+          rows: [
+            ["Bill of supply", "For exempt supplies, and by composition taxpayers, instead of a tax invoice"],
+            ["Credit note", "To reduce value or tax — for example sales returns, post-supply discounts or overcharging"],
+            ["Debit note", "To increase value or tax — for example undercharging"],
+            ["Delivery challan", "For movement of goods that is not a supply, or not yet one — such as job work or goods sent on approval"],
+            ["Receipt voucher", "When an advance payment is received"],
+            ["Refund voucher", "When an advance is refunded and no supply is made"],
+            ["Payment voucher", "When paying a supplier for supplies taxed under reverse charge"],
+          ],
+        },
+        {
+          type: "note",
+          text: "A credit note must generally be declared by 30 November after the end of the financial year, or the date of filing the annual return, if earlier.",
+        },
+      ],
+    },
+    {
+      title: "E-invoicing — IRN and QR code",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Businesses whose aggregate turnover has exceeded ₹5 crore in any financial year since 2017-18 must e-invoice. They report B2B invoices, credit and debit notes and exports to the Invoice Registration Portal (IRP), which returns:",
+        },
+        {
+          type: "list",
+          items: [
+            { term: "IRN", text: "a unique Invoice Reference Number." },
+            { term: "Signed QR code", text: "printed on the invoice so it can be verified." },
+          ],
+        },
+        {
+          type: "bullets",
+          items: [
+            "An invoice that should be e-invoiced but isn't reported is not a valid invoice — and the buyer's ITC is at risk.",
+            "Businesses with aggregate turnover of ₹10 crore or more must report invoices to the IRP within 30 days of the invoice date (from 1 April 2025).",
+            "Certain sectors are exempt, such as banking and insurance companies and SEZ units.",
+          ],
+        },
+      ],
+    },
+    {
+      title: "E-way bills",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Under Rule 138, an e-way bill is generally needed before moving goods of consignment value exceeding ₹50,000 — whether for a sale, for reasons other than supply, or for inward supply from an unregistered person.",
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Part A", text: "Enter the invoice details, the parties and the value of goods." },
+            { title: "Part B", text: "Enter the transport details, such as the vehicle number." },
+            { title: "Generate", text: "Get the e-way bill number (EBN) before the movement starts." },
+          ],
+        },
+        {
+          type: "table",
+          headers: ["Distance", "Validity (regular cargo)"],
+          rows: [
+            ["Up to 200 km", "1 day"],
+            ["Every further 200 km or part of it", "1 more day"],
+          ],
+        },
+        {
+          type: "caution",
+          text: "Some States set different limits for movement within the State, and certain goods and movements are exempt. Check the applicable rules before moving goods.",
+        },
+      ],
+    },
+    {
+      title: "Module 8 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "Within how many days of supply should a service invoice generally be issued?",
+              options: ["7 days", "15 days", "30 days", "90 days"],
+              answer: 2,
+              explanation: "A tax invoice for services is generally issued within 30 days of the supply.",
+            },
+            {
+              question: "Which document does a composition taxpayer issue instead of a tax invoice?",
+              options: ["Debit note", "Bill of supply", "Delivery challan", "Payment voucher"],
+              answer: 1,
+              explanation: "Composition taxpayers and suppliers of exempt supplies issue a bill of supply.",
+            },
+            {
+              question: "A business sends goods to a job worker. Which document accompanies the goods?",
+              options: ["Tax invoice", "Delivery challan", "Receipt voucher", "Credit note"],
+              answer: 1,
+              explanation: "Movement that is not a supply, such as sending goods for job work, is covered by a delivery challan.",
+            },
+            {
+              question: "E-invoicing is mandatory for businesses whose aggregate turnover has exceeded:",
+              options: ["₹40 lakh", "₹1.5 crore", "₹5 crore", "₹100 crore"],
+              answer: 2,
+              explanation: "The current threshold is aggregate turnover above ₹5 crore in any financial year since 2017-18.",
+            },
+            {
+              question: "Goods worth ₹80,000 are being moved 450 km by road. Is an e-way bill needed, and how long is it valid?",
+              options: [
+                "Not needed",
+                "Needed — valid for 1 day",
+                "Needed — valid for 3 days",
+                "Needed — valid for 7 days",
+              ],
+              answer: 2,
+              explanation: "The value exceeds ₹50,000. 450 km = 200 km (1 day) + 200 km (1 day) + 50 km (1 more day) = 3 days.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  8: [
+    {
+      title: "Forward charge vs. reverse charge",
+      blocks: [
+        {
+          type: "compare",
+          items: [
+            {
+              title: "Forward charge",
+              text: "The normal rule: the supplier charges GST on the invoice, collects it from the customer and pays it to the Government.",
+              examples: ["Most sales", "Supplier pays"],
+            },
+            {
+              title: "Reverse charge (RCM)",
+              text: "For notified supplies, the recipient pays the GST directly to the Government instead of the supplier.",
+              examples: ["Notified supplies", "Recipient pays"],
+            },
+          ],
+        },
+        {
+          type: "list",
+          items: [
+            { term: "Section 9(3)", text: "notified goods and services taxed under reverse charge, whoever the supplier is." },
+            { term: "Section 9(4)", text: "notified supplies received from unregistered suppliers by notified classes of registered persons." },
+            { term: "Import of services", text: "IGST is paid by the recipient in India under reverse charge." },
+          ],
+        },
+        {
+          type: "caution",
+          text: "Tax payable under reverse charge must be paid in cash. It cannot be paid by using ITC from the electronic credit ledger.",
+        },
+      ],
+    },
+    {
+      title: "Common reverse charge supplies",
+      blocks: [
+        {
+          type: "table",
+          headers: ["Supply", "Typical situation"],
+          rows: [
+            ["Goods transport agency (GTA)", "Freight to specified recipients, taxed at 5% under RCM unless the GTA opts to charge GST itself (18% with ITC since 22 September 2025)"],
+            ["Legal services", "By an advocate or firm of advocates to a business entity"],
+            ["Director services", "By a director to the company"],
+            ["Sponsorship", "Sponsorship services to a body corporate or partnership firm"],
+            ["Security services", "Security personnel supplied by a non-body-corporate to a registered person (with exclusions)"],
+            ["Renting of commercial property", "By an unregistered person to a registered person (with exclusions)"],
+            ["Import of services", "Services from a supplier outside India"],
+          ],
+        },
+        {
+          type: "note",
+          text: "The RCM lists are changed by notification from time to time, and each entry has conditions and exclusions. Check the current notification for the exact scope.",
+        },
+      ],
+    },
+    {
+      title: "Self-invoicing, payment and ITC under RCM",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            {
+              title: "Self-invoice",
+              text: "When buying from an unregistered supplier under RCM, the recipient issues the tax invoice itself, within 30 days of receiving the supply (Rule 47A).",
+            },
+            { title: "Payment voucher", text: "Issue a payment voucher when paying the supplier." },
+            { title: "Pay the tax in cash", text: "Report the RCM liability in GSTR-3B and pay it through the electronic cash ledger." },
+            {
+              title: "Claim ITC",
+              text: "Once the tax is paid, eligible ITC on it can be claimed — so for a fully taxable business the net cost is usually only a timing difference.",
+            },
+          ],
+        },
+        { type: "heading", text: "Journal entry — legal fees of ₹10,000 at an assumed 18% (intra-state)" },
+        {
+          type: "table",
+          headers: ["Account", "Debit (₹)", "Credit (₹)"],
+          rows: [
+            ["Legal expenses", "10,000", "—"],
+            ["Input CGST (RCM)", "900", "—"],
+            ["Input SGST (RCM)", "900", "—"],
+            ["Advocate (supplier)", "—", "10,000"],
+            ["CGST payable under RCM", "—", "900"],
+            ["SGST payable under RCM", "—", "900"],
+          ],
+          footer: ["Total", "11,800", "11,800"],
+          numeric: [1, 2],
+        },
+      ],
+    },
+    {
+      title: "Module 9 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "Under reverse charge, who pays the GST to the Government?",
+              options: ["The supplier", "The recipient", "The transporter", "The bank"],
+              answer: 1,
+              explanation: "Under RCM the recipient pays the tax directly to the Government.",
+            },
+            {
+              question: "How must tax payable under reverse charge be paid?",
+              options: ["Using IGST credit", "Using any ITC", "In cash through the electronic cash ledger", "It doesn't need to be paid"],
+              answer: 2,
+              explanation: "RCM liability must be paid in cash; ITC cannot be used for it.",
+            },
+            {
+              question: "A company receives legal services from an advocate. Who generally pays the GST?",
+              options: ["The advocate", "The company, under reverse charge", "No GST applies", "The Bar Council"],
+              answer: 1,
+              explanation: "Legal services by an advocate to a business entity are notified under reverse charge.",
+            },
+            {
+              question: "Within how long must a self-invoice be issued for a reverse charge purchase from an unregistered supplier?",
+              options: ["7 days", "30 days", "90 days", "By year-end"],
+              answer: 1,
+              explanation: "Rule 47A requires the self-invoice within 30 days of receiving the supply.",
+            },
+            {
+              question: "Can a fully taxable business claim ITC on GST it paid under reverse charge?",
+              options: ["Never", "Yes, once the tax has been paid, if otherwise eligible", "Only for imports", "Only the next year"],
+              answer: 1,
+              explanation: "RCM tax paid is eligible ITC (subject to the usual conditions) once it has been paid.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  9: [
+    {
+      title: "Who can opt for the composition scheme",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "The composition scheme lets small businesses pay tax at a low, fixed rate on turnover, with simpler compliance — in return for giving up input tax credit and inter-state sales.",
+        },
+        {
+          type: "table",
+          headers: ["Scheme", "Who it is for", "Turnover limit (previous year)"],
+          rows: [
+            ["Section 10(1)", "Manufacturers, traders and restaurants", "₹1.5 crore (₹75 lakh in specified special category States)"],
+            ["Section 10(2A)", "Service providers and mixed suppliers not eligible under 10(1)", "₹50 lakh"],
+          ],
+        },
+        { type: "paragraph", text: "A business generally can't opt if it:" },
+        {
+          type: "bullets",
+          items: [
+            "Makes inter-state outward supplies of goods.",
+            "Manufactures notified goods, such as ice cream, pan masala and tobacco products.",
+            "Is a casual taxable person or a non-resident taxable person.",
+          ],
+        },
+        {
+          type: "note",
+          text: "All registrations under the same PAN must opt for the scheme together.",
+        },
+      ],
+    },
+    {
+      title: "Composition tax rates",
+      blocks: [
+        {
+          type: "table",
+          headers: ["Type of business", "Rate (CGST + SGST)", "Charged on"],
+          rows: [
+            ["Manufacturers", "1% (0.5% + 0.5%)", "Turnover in the State or UT"],
+            ["Traders", "1% (0.5% + 0.5%)", "Turnover of taxable supplies in the State or UT"],
+            ["Restaurants not serving alcohol", "5% (2.5% + 2.5%)", "Turnover in the State or UT"],
+            ["Service providers under Section 10(2A)", "6% (3% + 3%)", "Turnover in the State or UT"],
+          ],
+        },
+        {
+          type: "example",
+          rows: [
+            { label: "Trader's taxable turnover for the quarter", value: "₹12,00,000" },
+            { label: "Composition tax at 1%", value: "₹12,000" },
+          ],
+          total: { label: "Paid through CMP-08 (₹6,000 CGST + ₹6,000 SGST)", value: "₹12,000" },
+        },
+      ],
+    },
+    {
+      title: "Restrictions and compliance",
+      blocks: [
+        {
+          type: "bullets",
+          items: [
+            "No input tax credit on purchases.",
+            "GST can't be collected from customers — issue a bill of supply, not a tax invoice.",
+            "Mention “composition taxable person, not eligible to collect tax on supplies” on the bill of supply, and display “Composition taxable person” at the place of business.",
+            "Tax under reverse charge is still payable at the normal rates.",
+          ],
+        },
+        {
+          type: "table",
+          headers: ["Form", "Purpose", "Due"],
+          rows: [
+            ["CMP-02", "Opt into the scheme", "Before the start of the financial year"],
+            ["CMP-08", "Statement and payment of tax", "18th of the month after each quarter"],
+            ["GSTR-4", "Annual return", "30 June after the financial year (from FY 2024-25)"],
+          ],
+        },
+        {
+          type: "link",
+          label: "Official source",
+          text: "CGST Rules — Rule 62 (CBIC)",
+          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter8/rule62_v1.00.html",
+        },
+      ],
+    },
+    {
+      title: "Is composition right for your business?",
+      blocks: [
+        {
+          type: "cards",
+          items: [
+            {
+              title: "Composition often suits",
+              text: "Small businesses selling mainly to consumers within one State, with modest purchases that carry GST — where simple compliance matters more than claiming ITC.",
+            },
+            {
+              title: "Regular registration often suits",
+              text: "Businesses selling to other registered businesses, who want ITC on your invoices; businesses making inter-state sales; and those with large GST-bearing purchases.",
+            },
+          ],
+        },
+        {
+          type: "tip",
+          title: "Do the numbers",
+          text: "Compare the composition tax plus the GST you can't recover on purchases with the net GST you would pay as a regular taxpayer — and think about your customers' need for ITC.",
+        },
+      ],
+    },
+    {
+      title: "Module 10 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "What is the general composition turnover limit for traders?",
+              options: ["₹20 lakh", "₹50 lakh", "₹1.5 crore", "₹5 crore"],
+              answer: 2,
+              explanation: "Manufacturers, traders and restaurants can opt up to ₹1.5 crore (₹75 lakh in specified special category States).",
+            },
+            {
+              question: "A trader under composition has taxable turnover of ₹12,00,000 for a quarter. What is the tax?",
+              options: ["₹6,000", "₹12,000", "₹60,000", "₹2,16,000"],
+              answer: 1,
+              explanation: "Traders pay 1% (0.5% CGST + 0.5% SGST) of taxable turnover: ₹12,000.",
+            },
+            {
+              question: "Which document does a composition taxpayer issue to customers?",
+              options: ["Tax invoice", "Bill of supply", "E-way bill", "Credit note"],
+              answer: 1,
+              explanation: "Composition taxpayers can't collect GST, so they issue a bill of supply.",
+            },
+            {
+              question: "When is the composition annual return (GSTR-4) due?",
+              options: ["18th of every month", "30 April", "30 June after the financial year", "31 December"],
+              answer: 2,
+              explanation: "From FY 2024-25, GSTR-4 is due by 30 June after the end of the financial year.",
+            },
+            {
+              question: "Which business is generally NOT eligible for the composition scheme?",
+              options: [
+                "A local grocery shop",
+                "A trader making inter-state sales of goods",
+                "A small restaurant not serving alcohol",
+                "A small manufacturer selling within its State",
+              ],
+              answer: 1,
+              explanation: "Businesses making inter-state outward supplies of goods can't opt for composition.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  10: [
+    {
+      title: "The GST return system at a glance",
+      blocks: [
+        {
+          type: "table",
+          headers: ["Return or statement", "What it covers", "Monthly due date"],
+          rows: [
+            ["GSTR-1", "Details of outward supplies", "11th of the next month"],
+            ["GSTR-2B", "Auto-drafted ITC statement from suppliers' filings", "Generated around the 14th"],
+            ["GSTR-3B", "Summary return and payment of tax", "20th of the next month"],
+            ["GSTR-9", "Annual return", "31 December after the financial year"],
+            ["GSTR-9C", "Reconciliation statement (turnover above ₹5 crore)", "With GSTR-9"],
+          ],
+        },
+        {
+          type: "note",
+          text: "GSTR-2A is a live view that changes as suppliers file. GSTR-2B is a fixed monthly statement and is the basis for claiming ITC.",
+        },
+      ],
+    },
+    {
+      title: "GSTR-1 and GSTR-3B",
+      blocks: [
+        {
+          type: "cards",
+          items: [
+            {
+              title: "GSTR-1 — outward supplies",
+              text: "Invoice-level details: B2B invoices, large inter-state B2C invoices, other B2C supplies in summary, exports, credit and debit notes, amendments, an HSN summary and a list of documents issued.",
+            },
+            {
+              title: "GSTR-3B — summary and payment",
+              text: "Totals of outward supplies and tax, supplies liable to reverse charge, eligible and ineligible ITC, exempt and nil-rated inward supplies, and the tax paid in cash and through ITC.",
+            },
+          ],
+        },
+        {
+          type: "tip",
+          title: "Good practice",
+          text: "Reconcile GSTR-1 with your sales books and GSTR-3B with GSTR-1 every month. Differences are a common trigger for notices.",
+        },
+      ],
+    },
+    {
+      title: "The QRMP scheme",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Taxpayers with aggregate turnover up to ₹5 crore can choose the Quarterly Return Monthly Payment (QRMP) scheme:",
+        },
+        {
+          type: "table",
+          headers: ["Item", "Under QRMP"],
+          rows: [
+            ["GSTR-1", "Quarterly, by the 13th of the month after the quarter"],
+            ["Invoice Furnishing Facility (IFF)", "Optional, for B2B invoices in the first two months of the quarter (1st–13th of the next month)"],
+            ["Monthly tax", "Paid through PMT-06 by the 25th of the next month, for the first two months"],
+            ["GSTR-3B", "Quarterly, by the 22nd or 24th of the month after the quarter, depending on the State"],
+          ],
+        },
+        {
+          type: "note",
+          text: "The IFF lets your B2B customers claim ITC monthly even though you file GSTR-1 quarterly.",
+        },
+      ],
+    },
+    {
+      title: "Annual returns and the filing calendar",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "GSTR-9 summarises the whole financial year. Taxpayers with aggregate turnover above ₹5 crore also file GSTR-9C, a self-certified reconciliation of the annual return with the audited financial statements.",
+        },
+        { type: "heading", text: "Example: monthly filer, October 2026 tax period" },
+        {
+          type: "table",
+          headers: ["Date", "Action"],
+          rows: [
+            ["11 November 2026", "File GSTR-1 for October"],
+            ["Around 14 November", "Review GSTR-2B and take IMS actions"],
+            ["20 November 2026", "File GSTR-3B and pay the tax for October"],
+          ],
+        },
+        {
+          type: "caution",
+          text: "Since the Finance Act, 2023, a GST return generally can't be filed after three years from its due date. Late filing also attracts interest and late fees (Module 12).",
+        },
+      ],
+    },
+    {
+      title: "Module 11 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "When is the monthly GSTR-1 due?",
+              options: ["11th of the next month", "13th of the next month", "20th of the next month", "Last day of the month"],
+              answer: 0,
+              explanation: "Monthly GSTR-1 is due by the 11th of the following month.",
+            },
+            {
+              question: "Which return is used to pay tax monthly?",
+              options: ["GSTR-1", "GSTR-2B", "GSTR-3B", "GSTR-9"],
+              answer: 2,
+              explanation: "GSTR-3B is the summary return through which tax is paid.",
+            },
+            {
+              question: "Which statement is the basis for claiming ITC?",
+              options: ["GSTR-2A", "GSTR-2B", "GSTR-1", "GSTR-9C"],
+              answer: 1,
+              explanation: "GSTR-2B is the fixed monthly ITC statement used to claim credit.",
+            },
+            {
+              question: "Who can opt for the QRMP scheme?",
+              options: [
+                "Any taxpayer",
+                "Taxpayers with aggregate turnover up to ₹5 crore",
+                "Only composition taxpayers",
+                "Only exporters",
+              ],
+              answer: 1,
+              explanation: "QRMP is available to taxpayers with aggregate turnover up to ₹5 crore.",
+            },
+            {
+              question: "When is the annual return GSTR-9 due?",
+              options: ["30 June", "30 September", "30 November", "31 December after the financial year"],
+              answer: 3,
+              explanation: "GSTR-9 is due by 31 December after the end of the financial year.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  11: [
+    {
+      title: "Electronic ledgers and paying tax",
+      blocks: [
+        {
+          type: "table",
+          headers: ["Ledger", "What it shows"],
+          rows: [
+            ["Electronic cash ledger", "Money you have deposited, available to pay tax, interest, late fees and penalties"],
+            ["Electronic credit ledger", "Your ITC, available only to pay output tax"],
+            ["Electronic liability ledger", "What you owe — tax, interest, late fees and penalties"],
+          ],
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Create a challan", text: "Generate form PMT-06 on the GST Portal, showing the amount under each tax head." },
+            { title: "Pay", text: "Pay by net banking, UPI, card, NEFT/RTGS or over the counter at an authorised bank." },
+            { title: "Cash ledger is credited", text: "The payment appears in your electronic cash ledger." },
+            {
+              title: "Set off in GSTR-3B",
+              text: "Use ITC in the order set by law (Module 7), then cash for the balance. RCM tax, interest and late fees must be paid in cash.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Interest and late fees",
+      blocks: [
+        {
+          type: "list",
+          items: [
+            { term: "Late payment of tax", text: "interest at 18% a year from the day after the due date (Section 50(1)) — generally on the portion paid in cash." },
+            { term: "ITC wrongly availed and used", text: "interest at the notified rate, currently 18% a year (Section 50(3))." },
+          ],
+        },
+        {
+          type: "example",
+          rows: [
+            { label: "Tax paid late", value: "₹50,000" },
+            { label: "Days late", value: "30" },
+            { label: "Interest = ₹50,000 × 18% × 30 ÷ 365", value: "₹739.73" },
+          ],
+          total: { label: "Interest payable (rounded)", value: "₹740" },
+        },
+        { type: "heading", text: "Late fees for GSTR-1 and GSTR-3B" },
+        {
+          type: "table",
+          headers: ["Situation", "Late fee (CGST + SGST combined)"],
+          rows: [
+            ["Regular return", "₹50 per day"],
+            ["Nil return", "₹20 per day"],
+            ["Maximum — nil return", "₹500"],
+            ["Maximum — turnover up to ₹1.5 crore", "₹2,000"],
+            ["Maximum — turnover ₹1.5 crore to ₹5 crore", "₹5,000"],
+            ["Maximum — turnover above ₹5 crore", "₹10,000"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Late fees can't be paid from ITC. Separate late fee rules apply to annual returns. Check the current notifications for the exact amounts.",
+        },
+      ],
+    },
+    {
+      title: "Refunds",
+      blocks: [
+        { type: "paragraph", text: "A refund can arise when, for example:" },
+        {
+          type: "bullets",
+          items: [
+            "Goods or services are exported (zero-rated) — Module 13.",
+            "There is an inverted duty structure, where tax on inputs is higher than tax on outputs.",
+            "Excess money is left in the electronic cash ledger.",
+            "Tax was paid by mistake, such as under the wrong head.",
+          ],
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Check eligibility and time limit", text: "Generally apply within two years from the relevant date (Section 54)." },
+            { title: "File form RFD-01", text: "On the GST Portal, with the supporting statements and documents." },
+            { title: "Track and respond", text: "Answer any deficiency memo or notice from the officer." },
+          ],
+        },
+        {
+          type: "note",
+          text: "At its 57th meeting in October 2026, the GST Council recommended allowing refunds of ITC on input services under the inverted duty structure. Changes apply only once notified.",
+        },
+      ],
+    },
+    {
+      title: "Module 12 — Knowledge check",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
+        },
+        {
+          type: "knowledge-check",
+          passCount: 4,
+          questions: [
+            {
+              question: "Which form is used to create a GST payment challan?",
+              options: ["RFD-01", "PMT-06", "CMP-08", "GSTR-1"],
+              answer: 1,
+              explanation: "PMT-06 is the payment challan.",
+            },
+            {
+              question: "What is the interest rate on tax paid late?",
+              options: ["12% a year", "18% a year", "24% a year", "2% a month"],
+              answer: 1,
+              explanation: "Section 50(1) interest on delayed tax is 18% a year.",
+            },
+            {
+              question: "₹50,000 of tax is paid 30 days late. What is the interest, rounded?",
+              options: ["₹740", "₹900", "₹1,500", "₹9,000"],
+              answer: 0,
+              explanation: "₹50,000 × 18% × 30 ÷ 365 = ₹739.73, about ₹740.",
+            },
+            {
+              question: "Can late fees be paid using ITC?",
+              options: ["Yes", "No — they must be paid in cash", "Only IGST credit", "Only for nil returns"],
+              answer: 1,
+              explanation: "Late fees, interest and RCM tax must be paid through the electronic cash ledger.",
+            },
+            {
+              question: "Within what period should a refund generally be claimed?",
+              options: ["Six months", "One year", "Two years from the relevant date", "Five years"],
+              answer: 2,
+              explanation: "Section 54 generally requires a refund application within two years from the relevant date.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
 }
+
+export default lessons

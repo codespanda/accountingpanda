@@ -3,24 +3,34 @@ import { Link } from "react-router-dom"
 import { ArrowRight, Check, GraduationCap, Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getCompletedModules, toggleModule } from "@/lib/courseProgress"
-import {
-  GST_INDIA_COURSE_PATH,
-  gstIndiaModules,
-  gstIndiaModuleSummaries,
-} from "@/pages/courses/gstIndiaModules"
-import { gstIndiaLessons } from "@/pages/courses/gstIndiaLessons"
+import { lessonKey, useLessons } from "@/lib/lessons"
 
-const COURSE_SLUG = "learn-gst-in-india"
-const totalModules = gstIndiaModules.length
+export type TrackerModule = { title: string; summary: string; topics: string[] }
 
-/** GST course curriculum as a tick-off list with saved progress. */
-export function GstCourseTracker() {
+/** A course curriculum as a tick-off list with saved progress. Modules that
+ * have lessons link to their lesson page; the rest expand to show topics. */
+export function CourseTracker({
+  coursePath,
+  progressKey,
+  programTitle,
+  programSubtitle,
+  modules,
+}: {
+  coursePath: string
+  /** localStorage key used for this course's progress. */
+  progressKey: string
+  programTitle: string
+  programSubtitle: string
+  modules: TrackerModule[]
+}) {
   const [completed, setCompleted] = useState<number[]>([])
   const [open, setOpen] = useState<number | null>(null)
+  const { lessons } = useLessons(lessonKey(coursePath))
+  const totalModules = modules.length
 
   useEffect(() => {
-    setCompleted(getCompletedModules(COURSE_SLUG))
-  }, [])
+    setCompleted(getCompletedModules(progressKey))
+  }, [progressKey])
 
   const completedCount = completed.length
   const progressPct = Math.round((completedCount / totalModules) * 100)
@@ -34,10 +44,10 @@ export function GstCourseTracker() {
         </span>
         <div>
           <h3 className="text-base font-bold text-brand-heading sm:text-lg">
-            GST Practical Learning Program
+            {programTitle}
           </h3>
           <p className="text-sm text-gray-500">
-            {totalModules} modules · Beginner to practical accounting
+            {totalModules} modules · {programSubtitle}
           </p>
         </div>
       </div>
@@ -67,11 +77,10 @@ export function GstCourseTracker() {
 
       {/* Module checklist */}
       <ol className="mt-6 space-y-1">
-        {gstIndiaModuleSummaries.map(({ title, summary }, index) => {
+        {modules.map(({ title, summary, topics }, index) => {
           const done = completed.includes(index)
           const expanded = open === index
-          const topics = gstIndiaModules[index]?.sections.flatMap((s) => s.items) ?? []
-          const screens = gstIndiaLessons[index]
+          const screens = lessons?.[index]
           const label = (
             <span>
               <span className="block text-sm font-semibold text-brand-heading sm:text-base">
@@ -86,7 +95,7 @@ export function GstCourseTracker() {
               <div className="flex items-start gap-3 p-3">
                 <button
                   type="button"
-                  onClick={() => setCompleted(toggleModule(COURSE_SLUG, index))}
+                  onClick={() => setCompleted(toggleModule(progressKey, index))}
                   aria-pressed={done}
                   aria-label={done ? `Mark module ${index + 1} as not done` : `Mark module ${index + 1} as done`}
                   className={cn(
@@ -101,7 +110,7 @@ export function GstCourseTracker() {
 
                 {screens ? (
                   <Link
-                    to={`${GST_INDIA_COURSE_PATH}/modules/${index + 1}`}
+                    to={`${coursePath}/modules/${index + 1}`}
                     className="flex flex-1 items-start justify-between gap-3 text-left"
                   >
                     {label}
