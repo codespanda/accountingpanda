@@ -39,7 +39,7 @@ const lessons: CourseLessons = {
         ["Products and services", "Items on invoices, each linked to an income account (and expense or inventory account if bought)."],
         ["Users", "Invite users with roles that limit what they can see and do. Invite the external accountant as an accountant user."],
       ),
-      caution("Give each person their own login. Shared logins make the audit log useless and are against Intuit's terms."),
+      caution("Give each person their own login. Shared logins make the audit log useless, because you can't tell who changed what."),
     ),
     check(
       1,
