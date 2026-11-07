@@ -1560,29 +1560,534 @@ Total Assets   No Change`,
   ],
   2: [
     {
-      title: "Module 3 — Accounts, Debits and Credits",
+      title: "Module 3 — Accounts and the Chart of Accounts",
       blocks: [
-        { type: "h3", text: "Goal" },
         {
           type: "p",
-          text: "Learn how financial transactions are categorized into different types of accounts, and how debits and credits record them.",
+          text: "Every transaction is recorded in accounts. An account is simply a place where you collect all the increases and decreases for one item — such as Cash, Rent Expense or Sales Revenue.",
         },
-        { type: "h3", text: "What You'll Cover" },
         {
-          type: "list",
+          type: "p",
+          text: "A chart of accounts is the complete list of accounts a business uses, organized by type and usually numbered.",
+        },
+        {
+          type: "table",
+          headers: ["Number range", "Account type", "Examples"],
+          rows: [
+            ["1000–1999", "Assets", "Cash, Accounts Receivable, Inventory, Equipment"],
+            ["2000–2999", "Liabilities", "Accounts Payable, Loans Payable, Wages Payable"],
+            ["3000–3999", "Owner's Equity", "Owner's Capital, Owner's Drawings"],
+            ["4000–4999", "Revenue", "Sales Revenue, Service Revenue"],
+            ["5000–6999", "Expenses", "Rent, Wages, Utilities, Office Supplies"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Keep personal and business spending separate. A personal grocery bill paid from the business account is not an expense — it's an owner's drawing.",
+        },
+      ],
+    },
+    {
+      title: "Debits and Credits",
+      blocks: [
+        {
+          type: "p",
+          text: "Every account has two sides: the left side is the debit side and the right side is the credit side. Debit and credit don't mean good or bad — they simply mean left and right.",
+        },
+        {
+          type: "table",
+          headers: ["Account type", "Increase with", "Decrease with", "Normal balance"],
+          rows: [
+            ["Assets", "Debit", "Credit", "Debit"],
+            ["Expenses", "Debit", "Credit", "Debit"],
+            ["Owner's Drawings", "Debit", "Credit", "Debit"],
+            ["Liabilities", "Credit", "Debit", "Credit"],
+            ["Owner's Equity", "Credit", "Debit", "Credit"],
+            ["Revenue", "Credit", "Debit", "Credit"],
+          ],
+        },
+        {
+          type: "term",
+          term: "Memory aid — DEAD CLIC",
+          definition: "Debits increase Expenses, Assets and Drawings. Credits increase Liabilities, Income (revenue) and Capital.",
+        },
+        {
+          type: "note",
+          text: "In every transaction, total debits must equal total credits. That is the heart of double-entry bookkeeping.",
+        },
+      ],
+    },
+    {
+      title: "T-Accounts in Practice",
+      blocks: [
+        {
+          type: "p",
+          text: "A T-account is a quick sketch of an account: debits on the left, credits on the right. Example: the business buys office supplies for $300 cash.",
+        },
+        {
+          type: "ascii",
+          text: "      Office Supplies              Cash\n   Debit   |  Credit         Debit  |  Credit\n  ---------+---------       --------+---------\n    $300   |                        |   $300",
+        },
+        {
+          type: "steps",
           items: [
-            "Chart of accounts",
-            "Account types",
-            "Asset accounts",
-            "Liability accounts",
-            "Equity accounts",
-            "Revenue accounts",
-            "Expense accounts",
-            "Personal vs. business expenses",
-            "Creating a simple chart of accounts",
-            "Debits and credits",
-            "Normal balances",
-            "T-accounts and double-entry bookkeeping",
+            { title: "Which accounts are affected?", body: "Office Supplies (an expense) and Cash (an asset)." },
+            { title: "Which way does each move?", body: "Office Supplies goes up; Cash goes down." },
+            { title: "Apply the rules", body: "Expenses increase with a debit; assets decrease with a credit." },
+            { title: "Check the balance", body: "Debit $300 = Credit $300." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Knowledge Check",
+      blocks: [
+        {
+          type: "knowledge-check",
+          passPct: 80,
+          questions: [
+            {
+              question: "What is a chart of accounts?",
+              options: [
+                "A. A graph of monthly sales",
+                "B. The complete list of accounts a business uses",
+                "C. A bank statement",
+                "D. A list of customers",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Which side increases an asset account?",
+              options: ["A. Debit", "B. Credit", "C. Either side", "D. Neither side"],
+              answer: "A",
+            },
+            {
+              question: "What is the normal balance of a revenue account?",
+              options: ["A. Debit", "B. Credit", "C. Zero", "D. It depends on the month"],
+              answer: "B",
+            },
+            {
+              question: "The owner pays a personal phone bill from the business account. How is it recorded?",
+              options: [
+                "A. Utilities expense",
+                "B. Owner's drawings",
+                "C. Revenue",
+                "D. It isn't recorded",
+              ],
+              answer: "B",
+            },
+            {
+              question: "The business pays $300 cash for office supplies. What is the entry?",
+              options: [
+                "A. Debit Cash, credit Office Supplies",
+                "B. Debit Office Supplies, credit Cash",
+                "C. Debit Office Supplies, credit Accounts Payable",
+                "D. Credit both accounts",
+              ],
+              answer: "B",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  3: [
+    {
+      title: "Module 4 — Source Documents",
+      blocks: [
+        {
+          type: "p",
+          text: "Every entry in the books starts with evidence. A source document proves that a transaction happened and shows its date, amount and the parties involved.",
+        },
+        {
+          type: "table",
+          headers: ["Source document", "What it shows", "Usually records"],
+          rows: [
+            ["Sales invoice", "A sale to a customer, often on credit", "Revenue and Accounts Receivable"],
+            ["Supplier bill", "A purchase from a supplier, often on credit", "Expense or asset and Accounts Payable"],
+            ["Receipt", "Cash or card payment made or received", "Cash and the related account"],
+            ["Bank statement", "All money in and out of the bank account", "Bank charges, interest, transfers"],
+            ["Payroll record", "Wages paid to employees", "Wages expense and Cash"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Keep supporting documents organized and stored securely — digitally or on paper — so any entry can be traced back to its evidence.",
+        },
+      ],
+    },
+    {
+      title: "Writing Journal Entries",
+      blocks: [
+        {
+          type: "p",
+          text: "The journal is where transactions are first recorded in date order. Each entry lists the date, the accounts debited and credited, the amounts and a short description.",
+        },
+        {
+          type: "table",
+          headers: ["Date", "Transaction", "Debit", "Credit", "Amount"],
+          rows: [
+            ["Mar 1", "Owner invests cash", "Cash", "Owner's Capital", "$20,000"],
+            ["Mar 3", "Buys supplies for cash", "Office Supplies", "Cash", "$500"],
+            ["Mar 8", "Provides services on credit", "Accounts Receivable", "Service Revenue", "$3,000"],
+            ["Mar 10", "Pays the month's rent", "Rent Expense", "Cash", "$1,200"],
+            ["Mar 20", "Customer pays part of the invoice", "Cash", "Accounts Receivable", "$1,000"],
+            ["Mar 28", "Owner withdraws cash", "Owner's Drawings", "Cash", "$800"],
+          ],
+        },
+        {
+          type: "term",
+          term: "Cash vs. credit transactions",
+          definition: "A cash transaction is paid immediately. A credit transaction is paid later, so it creates a receivable (customer owes you) or a payable (you owe a supplier).",
+          example: "Mar 8 is a credit sale: revenue is recorded now, cash arrives later.",
+        },
+      ],
+    },
+    {
+      title: "Posting to the General Ledger",
+      blocks: [
+        {
+          type: "p",
+          text: "Posting means copying each journal line into its account in the general ledger, so you can see each account's running balance.",
+        },
+        { type: "h3", text: "Cash account for March" },
+        {
+          type: "table",
+          headers: ["Date", "Description", "Debit", "Credit", "Balance"],
+          rows: [
+            ["Mar 1", "Owner investment", "$20,000", "", "$20,000"],
+            ["Mar 3", "Office supplies", "", "$500", "$19,500"],
+            ["Mar 10", "Rent", "", "$1,200", "$18,300"],
+            ["Mar 20", "Customer payment", "$1,000", "", "$19,300"],
+            ["Mar 28", "Owner withdrawal", "", "$800", "$18,500"],
+          ],
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Journalize", body: "Record the transaction from its source document." },
+            { title: "Post", body: "Copy each debit and credit to the ledger account." },
+            { title: "Balance", body: "Update each account's running balance." },
+            { title: "Reference", body: "Note the journal page or entry number so the trail can be followed." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Knowledge Check",
+      blocks: [
+        {
+          type: "knowledge-check",
+          passPct: 80,
+          questions: [
+            {
+              question: "What is the purpose of a source document?",
+              options: [
+                "A. To advertise the business",
+                "B. To prove a transaction happened and support the entry",
+                "C. To calculate tax rates",
+                "D. To replace the ledger",
+              ],
+              answer: "B",
+            },
+            {
+              question: "The owner invests $20,000 cash. What is the entry?",
+              options: [
+                "A. Debit Owner's Capital, credit Cash",
+                "B. Debit Cash, credit Revenue",
+                "C. Debit Cash, credit Owner's Capital",
+                "D. Debit Cash, credit Accounts Payable",
+              ],
+              answer: "C",
+            },
+            {
+              question: "Services worth $3,000 are provided on credit. Which account is debited?",
+              options: ["A. Cash", "B. Accounts Receivable", "C. Service Revenue", "D. Accounts Payable"],
+              answer: "B",
+            },
+            {
+              question: "What does posting mean?",
+              options: [
+                "A. Mailing invoices to customers",
+                "B. Copying journal entries into ledger accounts",
+                "C. Paying suppliers",
+                "D. Filing tax returns",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Using the March example, what is the ending cash balance?",
+              options: ["A. $17,700", "B. $18,500", "C. $19,300", "D. $20,000"],
+              answer: "B",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  4: [
+    {
+      title: "Module 5 — Receivables and Payables",
+      blocks: [
+        {
+          type: "term",
+          term: "Accounts Receivable (AR)",
+          definition: "Money customers owe the business for goods or services already delivered. It is an asset.",
+          examples: [
+            "Invoice sent: debit Accounts Receivable, credit Revenue.",
+            "Customer pays: debit Cash, credit Accounts Receivable.",
+          ],
+        },
+        {
+          type: "term",
+          term: "Accounts Payable (AP)",
+          definition: "Money the business owes suppliers for goods or services already received. It is a liability.",
+          examples: [
+            "Bill received: debit Expense (or asset), credit Accounts Payable.",
+            "Bill paid: debit Accounts Payable, credit Cash.",
+          ],
+        },
+        {
+          type: "note",
+          text: "Review an aged receivables list regularly. The older an unpaid invoice gets, the less likely it is to be collected — follow up early.",
+        },
+      ],
+    },
+    {
+      title: "Why the Bank and the Books Differ",
+      blocks: [
+        {
+          type: "p",
+          text: "A bank reconciliation compares your cash account with the bank statement and explains every difference. The two rarely match at first, because of timing and items you haven't recorded yet.",
+        },
+        {
+          type: "table",
+          headers: ["Difference", "What it is", "Adjust"],
+          rows: [
+            ["Outstanding check", "A check you wrote that hasn't cleared the bank yet", "Bank balance (subtract)"],
+            ["Deposit in transit", "Money you deposited that the bank hasn't shown yet", "Bank balance (add)"],
+            ["Bank fee", "A charge on the statement not yet in your books", "Book balance (subtract)"],
+            ["Interest earned", "Interest on the statement not yet in your books", "Book balance (add)"],
+            ["Error", "A wrong amount recorded by you or the bank", "Whichever side made the error"],
+          ],
+        },
+      ],
+    },
+    {
+      title: "Preparing a Bank Reconciliation",
+      blocks: [
+        {
+          type: "p",
+          text: "At March 31, the bank statement shows $9,320 and the cash account in the books shows $8,450.",
+        },
+        {
+          type: "table",
+          headers: ["Bank side", "Amount", "Book side", "Amount"],
+          rows: [
+            ["Balance per bank statement", "$9,320", "Balance per books", "$8,450"],
+            ["Add: deposit in transit", "$400", "Add: interest earned", "$95"],
+            ["Less: outstanding check #1045", "($1,200)", "Less: bank fee", "($25)"],
+            ["Adjusted bank balance", "$8,520", "Adjusted book balance", "$8,520"],
+          ],
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Compare deposits and payments", body: "Tick off each item that appears in both the books and the statement." },
+            { title: "List the unticked items", body: "Decide whether each one is a bank-side or book-side difference." },
+            { title: "Adjust both balances", body: "The adjusted balances must agree." },
+            {
+              title: "Record book-side items",
+              body: "Journalize the items you hadn't recorded:",
+              list: ["Debit Bank Fees $25, credit Cash $25", "Debit Cash $95, credit Interest Income $95"],
+            },
+          ],
+        },
+        {
+          type: "note",
+          text: "If the adjusted balances don't agree, look for transposed digits (e.g. $540 vs. $450 — differences divisible by 9 are a clue), duplicates and missing entries.",
+        },
+      ],
+    },
+    {
+      title: "Knowledge Check",
+      blocks: [
+        {
+          type: "knowledge-check",
+          passPct: 80,
+          questions: [
+            {
+              question: "What type of account is Accounts Receivable?",
+              options: ["A. Liability", "B. Asset", "C. Expense", "D. Equity"],
+              answer: "B",
+            },
+            {
+              question: "A supplier bill for $600 of utilities is received, to be paid later. What is the entry?",
+              options: [
+                "A. Debit Cash, credit Utilities",
+                "B. Debit Utilities, credit Accounts Payable",
+                "C. Debit Accounts Payable, credit Utilities",
+                "D. Debit Utilities, credit Accounts Receivable",
+              ],
+              answer: "B",
+            },
+            {
+              question: "How is an outstanding check treated in a bank reconciliation?",
+              options: [
+                "A. Added to the bank balance",
+                "B. Subtracted from the bank balance",
+                "C. Subtracted from the book balance",
+                "D. Ignored",
+              ],
+              answer: "B",
+            },
+            {
+              question: "A $25 bank fee appears on the statement but not in the books. What should you do?",
+              options: [
+                "A. Ask the bank to remove it",
+                "B. Subtract it from the bank balance",
+                "C. Subtract it from the book balance and record it in the books",
+                "D. Add it to the book balance",
+              ],
+              answer: "C",
+            },
+            {
+              question: "In the example, what is the adjusted cash balance?",
+              options: ["A. $8,450", "B. $8,520", "C. $9,320", "D. $9,720"],
+              answer: "B",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  5: [
+    {
+      title: "Module 6 — The Trial Balance",
+      blocks: [
+        {
+          type: "p",
+          text: "A trial balance lists every ledger account and its balance at a date, with debit balances in one column and credit balances in the other. If the books follow double entry, the two totals agree.",
+        },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$12,000", ""],
+            ["Accounts Receivable", "$3,000", ""],
+            ["Equipment", "$6,000", ""],
+            ["Accounts Payable", "", "$2,000"],
+            ["Owner's Capital", "", "$15,000"],
+            ["Service Revenue", "", "$9,000"],
+            ["Rent Expense", "$2,500", ""],
+            ["Wages Expense", "$2,500", ""],
+            ["Totals", "$26,000", "$26,000"],
+          ],
+        },
+        {
+          type: "note",
+          text: "A balanced trial balance doesn't prove the books are correct. Entries posted to the wrong account, or left out entirely, still balance.",
+        },
+      ],
+    },
+    {
+      title: "Adjusting Entries",
+      blocks: [
+        {
+          type: "p",
+          text: "At the end of a period, adjusting entries make sure revenue and expenses land in the period they belong to.",
+        },
+        {
+          type: "table",
+          headers: ["Adjustment", "Example", "Entry"],
+          rows: [
+            ["Accrued expense", "Wages earned by staff but not yet paid: $400", "Debit Wages Expense, credit Wages Payable"],
+            ["Prepaid expense", "One month of a 12-month $1,200 insurance policy used: $100", "Debit Insurance Expense, credit Prepaid Insurance"],
+            ["Depreciation", "Equipment of $6,000 with a 5-year life: $100 a month", "Debit Depreciation Expense, credit Accumulated Depreciation"],
+            ["Accrued revenue", "Work done but not yet invoiced", "Debit Accounts Receivable, credit Revenue"],
+          ],
+        },
+        {
+          type: "p",
+          text: "For our business, we record two adjustments: $400 of accrued wages and $100 of depreciation.",
+        },
+      ],
+    },
+    {
+      title: "The Financial Statements",
+      blocks: [
+        { type: "h3", text: "Income statement — for the month" },
+        {
+          type: "table",
+          headers: ["Item", "Amount"],
+          rows: [
+            ["Service Revenue", "$9,000"],
+            ["Less: Rent Expense", "($2,500)"],
+            ["Less: Wages Expense ($2,500 + $400)", "($2,900)"],
+            ["Less: Depreciation Expense", "($100)"],
+            ["Net Income", "$3,500"],
+          ],
+        },
+        { type: "h3", text: "Balance sheet — at month-end" },
+        {
+          type: "table",
+          headers: ["Assets", "Amount", "Liabilities and Equity", "Amount"],
+          rows: [
+            ["Cash", "$12,000", "Accounts Payable", "$2,000"],
+            ["Accounts Receivable", "$3,000", "Wages Payable", "$400"],
+            ["Equipment, net ($6,000 − $100)", "$5,900", "Owner's Capital ($15,000 + $3,500)", "$18,500"],
+            ["Total Assets", "$20,900", "Total Liabilities and Equity", "$20,900"],
+          ],
+        },
+        {
+          type: "term",
+          term: "Cash flow statement",
+          definition: "Shows where cash came from and where it went, split into operating, investing and financing activities. Profit and cash differ — for example, the $3,000 receivable is revenue but not yet cash.",
+        },
+      ],
+    },
+    {
+      title: "Knowledge Check",
+      blocks: [
+        {
+          type: "knowledge-check",
+          passPct: 80,
+          questions: [
+            {
+              question: "What does a balanced trial balance show?",
+              options: [
+                "A. The books are completely error-free",
+                "B. Total debits equal total credits",
+                "C. The business is profitable",
+                "D. All taxes have been paid",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Staff have earned $400 of wages that will be paid next month. What is the adjusting entry?",
+              options: [
+                "A. Debit Wages Payable, credit Cash",
+                "B. Debit Wages Expense, credit Wages Payable",
+                "C. Debit Cash, credit Wages Expense",
+                "D. No entry until paid",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Equipment costing $6,000 has a 5-year life and no salvage value. What is monthly straight-line depreciation?",
+              options: ["A. $50", "B. $100", "C. $500", "D. $1,200"],
+              answer: "B",
+            },
+            {
+              question: "In the example, what is net income for the month?",
+              options: ["A. $3,500", "B. $4,000", "C. $6,500", "D. $9,000"],
+              answer: "A",
+            },
+            {
+              question: "Which statement shows assets, liabilities and equity at a point in time?",
+              options: ["A. Income statement", "B. Cash flow statement", "C. Balance sheet", "D. Trial balance"],
+              answer: "C",
+            },
           ],
         },
       ],
