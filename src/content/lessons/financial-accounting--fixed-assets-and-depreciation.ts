@@ -1,5 +1,5 @@
 import type { CourseLessons } from "@/lib/lessonTypes"
-import { bullets, caution, check, compare, example, h, journal, note, p, q, screen, steps, table, terms, tip } from "@/lib/lessonKit"
+import { bullets, check, compare, example, h, journal, note, p, q, screen, steps, table, terms, tip } from "@/lib/lessonKit"
 
 // Fixed Assets and Depreciation — lesson screens by module index (0 = Module 1).
 const lessons: CourseLessons = {
