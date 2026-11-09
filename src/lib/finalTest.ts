@@ -3,7 +3,7 @@ import type { CourseLessons, QuizQuestion } from "@/lib/lessonTypes"
 /** Seconds allowed per final-test question. */
 export const SECONDS_PER_QUESTION = 90
 /** Percentage needed to pass a final test. */
-export const FINAL_TEST_PASS_PCT = 70
+export const FINAL_TEST_PASS_PCT = 80
 
 /** Every knowledge-check question in a course, in module order. */
 export function questionsFromLessons(lessons: CourseLessons | null): QuizQuestion[] {

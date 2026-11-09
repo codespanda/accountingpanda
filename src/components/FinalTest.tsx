@@ -9,8 +9,11 @@ import {
   allModulesCompleted,
   getExamAttempt,
   getExamResult,
+  getLastExamDay,
+  localDay,
   saveExamAttempt,
   saveExamResult,
+  setLastExamDay,
   type ExamAttempt,
   type ExamResult,
 } from "@/lib/courseProgress"
@@ -60,6 +63,9 @@ export function FinalTest({
   const [review, setReview] = useState<{ attempt: ExamAttempt; result: ExamResult } | null>(null)
   const [now, setNow] = useState(() => Date.now())
   const [confirmSubmit, setConfirmSubmit] = useState(false)
+  const [lastDay, setLastDay] = useState(() => getLastExamDay(courseSlug))
+  // One attempt per calendar day, counted when an attempt is started.
+  const attemptedToday = lastDay === localDay()
 
   const durationSec = questionCount * SECONDS_PER_QUESTION
   const minutes = Math.round(durationSec / 60)
@@ -103,6 +109,10 @@ export function FinalTest({
   }, [validAttempt, submit])
 
   const start = () => {
+    if (attemptedToday) return
+    const today = localDay()
+    setLastExamDay(courseSlug, today)
+    setLastDay(today)
     const a: ExamAttempt = {
       ids: pickQuestions(pool.length, questionCount),
       answers: {},
@@ -260,7 +270,7 @@ export function FinalTest({
                   <p className={cn("mt-1 text-sm", review.result.passed ? "text-bento-forest/80" : "text-red-800")}>
                     {review.result.passed
                       ? "Congratulations — you passed the final test. Your certificate is ready, and you can review your answers below."
-                      : `You need ${FINAL_TEST_PASS_PCT}% to pass. Review the course modules, then try again — you'll get a new set of questions.`}
+                      : `You need ${FINAL_TEST_PASS_PCT}% to pass. Review the course modules and try again tomorrow — you'll get a new set of questions.`}
                   </p>
                 </div>
               )}
@@ -291,16 +301,23 @@ export function FinalTest({
                     <li>• Pass mark: {FINAL_TEST_PASS_PCT}%</li>
                     <li>• The test is submitted automatically when time runs out</li>
                     <li>• If you leave or reload the page, the timer keeps running</li>
-                    <li>• You can retake the test — each attempt has a new set of questions</li>
+                    <li>• One attempt per day — if you don't pass, you can try again tomorrow with a new set of questions</li>
                   </ul>
                 </>
               )}
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button onClick={start}>
-                  {review || result ? <RotateCcw className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
-                  {review || result ? "Retake the test" : "Start the test"}
-                </Button>
+                {attemptedToday ? (
+                  <p className="flex items-center gap-2 rounded-lg bg-brand-bg px-4 py-2.5 text-sm font-medium text-gray-600">
+                    <Clock className="h-4 w-4 shrink-0" />
+                    You've used today's attempt. Your next attempt is available tomorrow.
+                  </p>
+                ) : (
+                  <Button onClick={start}>
+                    {review || result ? <RotateCcw className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
+                    {review || result ? "Retake the test" : "Start the test"}
+                  </Button>
+                )}
                 <Button variant="outline" asChild>
                   <Link to={backTo}>{backLabel}</Link>
                 </Button>

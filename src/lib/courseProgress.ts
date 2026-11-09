@@ -194,3 +194,13 @@ export function allModulesCompleted(courseSlug: string, totalModules: number) {
   const completed = getCompletedModules(courseSlug)
   return Array.from({ length: totalModules }, (_, i) => i).every((i) => completed.includes(i))
 }
+
+/** Today's date in the learner's time zone, as YYYY-MM-DD. */
+export const localDay = (date = new Date()) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
+
+const lastAttemptDayKey = (courseSlug: string) => `course-exam:${courseSlug}:lastAttemptDay`
+
+/** The day the learner last started a final test attempt (YYYY-MM-DD). */
+export const getLastExamDay = (courseSlug: string) => readJson<string>(lastAttemptDayKey(courseSlug))
+export const setLastExamDay = (courseSlug: string, day: string) => writeJson(lastAttemptDayKey(courseSlug), day)
