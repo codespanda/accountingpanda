@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import {
   ArrowLeft,
   ArrowRight,
+  Award,
   CalendarClock,
   CheckCircle2,
   Lock,
@@ -49,6 +50,7 @@ export function BookkeepingBasicsProgress() {
 
   const completedCount = completed.length
   const progressPct = Math.round((completedCount / totalModules) * 100)
+  const allDone = bookkeepingBasicsModules.every((_, i) => completed.includes(i))
 
   return (
     <>
@@ -179,15 +181,34 @@ export function BookkeepingBasicsProgress() {
               })}
 
               {/* Completion state */}
-              <div className="flex items-center gap-4 rounded-xl border border-dashed border-gray-200 p-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-400">
-                  <CheckCircle2 className="h-4 w-4" />
-                </span>
-                <p className="flex-1 text-sm text-gray-500">
-                  Complete all {totalModules} modules to earn your
-                  certificate of completion.
-                </p>
-              </div>
+              {allDone ? (
+                <Link
+                  to={`${COURSE_PATH}/certificate`}
+                  className="flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
+                    <Award className="h-4 w-4" />
+                  </span>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-bento-forest">Course complete — well done!</p>
+                    <p className="text-xs text-bento-forest/80">Your certificate of completion is ready.</p>
+                  </div>
+                  <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-brand-green">
+                    View certificate
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              ) : (
+                <div className="flex items-center gap-4 rounded-xl border border-dashed border-gray-200 p-4">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+                    <Award className="h-4 w-4" />
+                  </span>
+                  <p className="flex-1 text-sm text-gray-500">
+                    Complete all {totalModules} modules to earn your certificate of completion.
+                    {completedCount > 0 && ` ${totalModules - completedCount} to go.`}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 

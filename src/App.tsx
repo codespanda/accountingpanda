@@ -27,6 +27,7 @@ import { businessFinanceCourseCatalog } from "@/pages/courses/businessFinanceCou
 import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse"
 import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { BookkeepingBasicsModuleLesson } from "@/pages/courses/BookkeepingBasicsModuleLesson"
+import { CourseCertificate } from "@/components/CourseCertificate"
 import { About } from "@/pages/About"
 import { FAQ } from "@/pages/FAQ"
 import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
@@ -61,7 +62,9 @@ function App() {
       <ConsultationProvider>
       <div className="min-h-screen bg-bento-canvas">
         <ScrollToHash />
-        <Navbar />
+        <div className="contents print:hidden">
+          <Navbar />
+        </div>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -243,14 +246,29 @@ function App() {
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners/modules/:moduleNumber"
               element={<BookkeepingBasicsModuleLesson />}
             />
+            <Route
+              path="/learning/bookkeeping/bookkeeping-basics-for-beginners/certificate"
+              element={
+                <CourseCertificate
+                  courseTitle="Bookkeeping Basics for Beginners"
+                  courseSlug="bookkeeping-basics-for-beginners"
+                  backTo="/learning/bookkeeping/bookkeeping-basics-for-beginners/progress"
+                  backLabel="Back to Course Progress"
+                  totalModules={6}
+                  path="/learning/bookkeeping/bookkeeping-basics-for-beginners/certificate"
+                />
+              }
+            />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
-        <Footer />
-        <CookieConsent />
+        <div className="contents print:hidden">
+          <Footer />
+          <CookieConsent />
+        </div>
       </div>
       </ConsultationProvider>
     </BrowserRouter>

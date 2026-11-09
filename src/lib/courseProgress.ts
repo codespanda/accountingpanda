@@ -94,3 +94,46 @@ export function setLessonPage(courseSlug: string, moduleIndex: number, pageIndex
     // Ignore storage errors — position just won't persist for this viewer.
   }
 }
+
+function completedAtKey(courseSlug: string) {
+  return `course-progress:${courseSlug}:completedAt`
+}
+
+/** The date a learner first completed every module of a course, recorded
+ * the first time this is called with all modules done. Returns null while
+ * the course is unfinished. */
+export function getCourseCompletedAt(courseSlug: string, totalModules: number): string | null {
+  if (typeof window === "undefined") return null
+  const completed = getCompletedModules(courseSlug)
+  const allDone = Array.from({ length: totalModules }, (_, i) => i).every((i) => completed.includes(i))
+  if (!allDone) return null
+  try {
+    const saved = window.localStorage.getItem(completedAtKey(courseSlug))
+    if (saved) return saved
+    const now = new Date().toISOString()
+    window.localStorage.setItem(completedAtKey(courseSlug), now)
+    return now
+  } catch {
+    return new Date().toISOString()
+  }
+}
+
+const LEARNER_NAME_KEY = "learner-name"
+
+/** The name a learner chose for their certificates (kept in this browser only). */
+export function getLearnerName(): string {
+  if (typeof window === "undefined") return ""
+  try {
+    return window.localStorage.getItem(LEARNER_NAME_KEY) ?? ""
+  } catch {
+    return ""
+  }
+}
+
+export function setLearnerName(name: string): void {
+  try {
+    window.localStorage.setItem(LEARNER_NAME_KEY, name)
+  } catch {
+    // Ignore storage errors — the name just won't be remembered.
+  }
+}
