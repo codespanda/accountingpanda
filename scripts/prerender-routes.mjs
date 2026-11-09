@@ -12,6 +12,7 @@ import { join } from "node:path"
 
 const routes = [
   "blog",
+  "certificate",
   "blog/how-financial-planning-helps-your-business-grow-faster",
   "blog/us-sales-tax-nexus-in-2026",
   "blog/bas-preparation-checklist-for-australian-businesses",

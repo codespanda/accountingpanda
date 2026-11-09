@@ -46,6 +46,7 @@ export function GstCertificateRoute() {
     <CourseCertificate
       courseTitle="Learn GST in India"
       courseSlug="learn-gst-in-india"
+      coursePath={GST_INDIA_COURSE_PATH}
       backTo={GST_INDIA_COURSE_PATH}
       backLabel="Back to Course"
       totalModules={gstIndiaModuleSummaries.length}
@@ -65,6 +66,7 @@ export function CatalogCertificateRoute({ catalog, basePath }: { catalog: Course
     <CourseCertificate
       courseTitle={course.title}
       courseSlug={lessonKey(coursePath)}
+      coursePath={coursePath}
       backTo={coursePath}
       backLabel="Back to Course"
       totalModules={course.modules.length}

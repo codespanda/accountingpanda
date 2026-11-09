@@ -36,6 +36,7 @@ import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse
 import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { BookkeepingBasicsModuleLesson } from "@/pages/courses/BookkeepingBasicsModuleLesson"
 import { About } from "@/pages/About"
+import { SharedCertificate } from "@/pages/SharedCertificate"
 import { FAQ } from "@/pages/FAQ"
 import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
 import { Terms } from "@/pages/Terms"
@@ -317,6 +318,7 @@ function App() {
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners/final-test"
               element={<BookkeepingBasicsFinalTest />}
             />
+            <Route path="/certificate" element={<SharedCertificate />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

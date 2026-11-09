@@ -32,6 +32,7 @@ export function BookkeepingBasicsCertificate() {
     <CourseCertificate
       courseTitle={COURSE_TITLE}
       courseSlug={COURSE_SLUG}
+      coursePath={COURSE_PATH}
       backTo={`${COURSE_PATH}/progress`}
       backLabel="Back to Course Progress"
       totalModules={bookkeepingBasicsModules.length}

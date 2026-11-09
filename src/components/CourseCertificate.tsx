@@ -1,15 +1,18 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { ArrowLeft, Award, Lock, Printer } from "lucide-react"
+import { ArrowLeft, Lock, Printer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
-import { asset } from "@/lib/asset"
+import { CertificateCard } from "@/components/CertificateCard"
+import { CertificateShare } from "@/components/CertificateShare"
+import { certificateId, formatCertificateDate, type CertificateDetails } from "@/lib/certificateLink"
 import { allModulesCompleted, getExamResult, getLearnerName, setLearnerName } from "@/lib/courseProgress"
 
 /** A printable certificate of completion for a course whose modules are all done. */
 export function CourseCertificate({
   courseTitle,
   courseSlug,
+  coursePath,
   backTo,
   backLabel,
   totalModules,
@@ -19,6 +22,8 @@ export function CourseCertificate({
   courseTitle: string
   /** The course's progress key in local storage. */
   courseSlug: string
+  /** Site path of the course overview, used in shared links. */
+  coursePath: string
   backTo: string
   backLabel: string
   totalModules: number
@@ -36,9 +41,11 @@ export function CourseCertificate({
     setLearnerName(value)
   }
 
-  const completedOn = completedAt
-    ? new Date(completedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-    : ""
+  const completedOn = completedAt ? formatCertificateDate(completedAt) : ""
+  const details: CertificateDetails | null =
+    completedAt && result && name.trim()
+      ? { name: name.trim(), courseTitle, coursePath, totalModules, scorePct: result.scorePct, completedAt }
+      : null
 
   return (
     <>
@@ -95,36 +102,22 @@ export function CourseCertificate({
                 Your name is saved only in this browser. To save a PDF, choose “Save as PDF” in the print dialog.
               </p>
 
-              {/* Print the certificate on a single landscape page, keeping its colours. */}
-              <style>{"@page { size: landscape; margin: 10mm; }"}</style>
-              <div
-                className="rounded-[22px] border-4 border-double border-bento-forest/70 p-2 print:h-[180mm] print:break-inside-avoid"
-                style={{ WebkitPrintColorAdjust: "exact", printColorAdjust: "exact" }}
-              >
-                <div className="flex flex-col items-center rounded-2xl border border-bento-forest/20 bg-bento-mint/40 px-6 py-12 text-center sm:px-12 print:h-full print:justify-center print:py-6">
-                  <img src={asset("assets/panda-logo.png")} alt="AccountingPanda" className="h-12 w-auto" />
-                  <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-brand-green">
-                    Certificate of completion
-                  </p>
-                  <p className="mt-6 text-sm text-gray-600">This certifies that</p>
-                  <p className="mt-2 min-h-[2.5rem] border-b border-bento-forest/30 px-6 pb-1 text-3xl font-bold text-brand-heading sm:text-4xl">
-                    {name.trim() || "Your name"}
-                  </p>
-                  <p className="mt-5 text-sm text-gray-600">has successfully completed the online course</p>
-                  <p className="mt-2 flex items-center gap-2 text-xl font-bold text-bento-forest sm:text-2xl">
-                    <Award className="h-6 w-6 shrink-0" />
-                    {courseTitle}
-                  </p>
-                  <p className="mt-3 text-sm text-gray-600">
-                    {totalModules} modules and a timed final test · Final test score {result?.scorePct}% · Completed on {completedOn}
-                  </p>
-                  <p className="mt-10 text-sm font-semibold text-brand-heading">AccountingPanda Learning</p>
-                  <p className="mt-6 max-w-md text-[11px] leading-relaxed text-gray-500">
-                    This certificate confirms completion of a self-paced online course from AccountingPanda. It is not a
-                    professional qualification or licence.
-                  </p>
+              {details ? (
+                <div className="mb-8 print:hidden">
+                  <CertificateShare details={details} />
                 </div>
-              </div>
+              ) : (
+                <p className="mb-8 text-sm text-gray-500 print:hidden">Enter your name to share or print your certificate.</p>
+              )}
+
+              <CertificateCard
+                name={name}
+                courseTitle={courseTitle}
+                totalModules={totalModules}
+                scorePct={result?.scorePct ?? 0}
+                completedOn={completedOn}
+                certificateId={details ? certificateId(details) : undefined}
+              />
             </>
           )}
         </div>
