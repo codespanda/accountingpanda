@@ -13,6 +13,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
+import { LessonVideo } from "@/components/lessons/LessonVideo"
 import { ConsultationLink } from "@/components/ConsultationDialog"
 import { ModuleAccordion, type CourseModule } from "@/components/CourseModuleAccordion"
 
@@ -38,6 +39,8 @@ export type CourseDetails = {
   exercises?: string
   /** Optional caveat shown under the assessment, e.g. rules that change. */
   note?: string
+  /** Optional introduction video shown above the course objective. */
+  video?: { src: string; title: string }
   /** Where "Start Course" goes once lessons are published; omitted = "Lessons coming soon". */
   startHref?: string
 }
@@ -99,6 +102,10 @@ export function CourseOverview({
 
       <div className="container-px pt-4">
         <div className="mx-auto max-w-5xl rounded-[28px] bg-white px-6 py-14 sm:px-10 lg:px-14 lg:py-16">
+          {course.video && (
+            <LessonVideo src={course.video.src} title={course.video.title} label="Course introduction" />
+          )}
+
           {/* Course objective */}
           <div className="flex items-start gap-3 rounded-[22px] bg-brand-bg p-6">
             <Target className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />

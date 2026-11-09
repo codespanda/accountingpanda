@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Circle, ChevronDown, X, Check } fr
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
 import { ScreenProgress } from "@/components/lessons/ScreenProgress"
+import { LessonVideo } from "@/components/lessons/LessonVideo"
 import { maxReachableScreen } from "@/lib/screenProgress"
 import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
@@ -453,6 +454,13 @@ export function BookkeepingBasicsModuleLesson() {
         <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 sm:px-10 lg:px-14 py-12 lg:py-14">
           {lessons ? (
             <div>
+              {safePageIndex === 0 && (
+                <LessonVideo
+                  src={`/videos/bookkeeping-basics/module-${moduleIndex + 1}.mp4`}
+                  title={`${courseModule.title} — video lesson`}
+                  label="Watch the module video"
+                />
+              )}
               {currentLesson!.blocks.map((block, i) => (
                 <LessonBlockView
                   key={`${safePageIndex}-${i}`}
