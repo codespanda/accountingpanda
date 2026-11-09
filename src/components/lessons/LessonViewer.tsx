@@ -18,6 +18,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { LessonBlock, LessonScreen } from "@/lib/lessonTypes"
+import { ScreenProgress } from "@/components/lessons/ScreenProgress"
+import { maxReachableScreen } from "@/lib/screenProgress"
 import { LessonKnowledgeCheck } from "@/components/lessons/LessonKnowledgeCheck"
 
 function Block({ block, onPass }: { block: LessonBlock; onPass?: () => void }) {
@@ -500,18 +502,22 @@ function Exercise({ title, task, answer }: { title: string; task: string[]; answ
 export function LessonViewer({
   screens,
   onFinish,
+  completed = false,
 }: {
   screens: LessonScreen[]
   /** Shown as "Mark complete" on the last screen. */
   onFinish?: () => void
+  /** The module was completed before, so every screen can be opened. */
+  completed?: boolean
 }) {
   const [page, setPage] = useState(0)
   const [passed, setPassed] = useState<Set<number>>(new Set())
   const screen = screens[page]
   const last = page === screens.length - 1
   // A knowledge check must be passed before moving on.
-  const hasCheck = screen.blocks.some((b) => b.type === "knowledge-check")
-  const locked = hasCheck && !passed.has(page)
+  const checks = screens.map((s) => s.blocks.some((b) => b.type === "knowledge-check"))
+  const locked = checks[page] && !completed && !passed.has(page)
+  const maxReachable = maxReachableScreen(checks, (i) => passed.has(i), completed)
 
   const go = (next: number) => {
     setPage(next)
@@ -526,6 +532,15 @@ export function LessonViewer({
 
   return (
     <div>
+      {screens.length > 1 && (
+        <ScreenProgress
+          className="mb-4"
+          titles={screens.map((s) => s.title)}
+          current={page}
+          maxReachable={maxReachable}
+          onSelect={go}
+        />
+      )}
       <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">
         Screen {page + 1} of {screens.length}
       </p>

@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { ArrowLeft, ArrowRight, CheckCircle2, Circle, ChevronDown, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
+import { ScreenProgress } from "@/components/lessons/ScreenProgress"
+import { maxReachableScreen } from "@/lib/screenProgress"
 import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
 import { bookkeepingBasicsLessons, type LessonBlock } from "@/pages/courses/bookkeepingBasicsLessons"
@@ -336,11 +338,8 @@ export function BookkeepingBasicsModuleLesson() {
 
   const [completed, setCompleted] = useState<number[] | null>(null)
   const [pageIndex, setPageIndex] = useState(0)
-  const [knowledgeCheckPassed, setKnowledgeCheckPassed] = useState(false)
-
-  useEffect(() => {
-    setKnowledgeCheckPassed(false)
-  }, [pageIndex, moduleIndex])
+  // Screens whose knowledge check has been passed in this visit.
+  const [passedChecks, setPassedChecks] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     if (!courseModule) {
@@ -353,9 +352,13 @@ export function BookkeepingBasicsModuleLesson() {
       return
     }
     setCompleted(current)
-    const totalPages = bookkeepingBasicsLessons[moduleIndex]?.length ?? 1
-    const resumeAt = Math.min(getLessonPage(COURSE_SLUG, moduleIndex), totalPages - 1)
+    const pages = bookkeepingBasicsLessons[moduleIndex] ?? []
+    const resumeAt = Math.min(getLessonPage(COURSE_SLUG, moduleIndex), Math.max(pages.length - 1, 0))
     setPageIndex(resumeAt)
+    // A learner resuming past a knowledge check must already have passed it.
+    setPassedChecks(
+      new Set(pages.flatMap((page, i) => (i < resumeAt && page.blocks.some((b) => b.type === "knowledge-check") ? [i] : []))),
+    )
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [moduleIndex])
@@ -374,7 +377,20 @@ export function BookkeepingBasicsModuleLesson() {
   const isLastPage = safePageIndex === totalPages - 1
   const currentLesson = lessons?.[safePageIndex]
   const knowledgeCheckBlock = currentLesson?.blocks.find((b) => b.type === "knowledge-check")
-  const isGated = !!knowledgeCheckBlock && !knowledgeCheckPassed
+  const moduleDone = completed.includes(moduleIndex)
+  const isGated = !!knowledgeCheckBlock && !moduleDone && !passedChecks.has(safePageIndex)
+  const maxReachable = lessons
+    ? maxReachableScreen(
+        lessons.map((page) => page.blocks.some((b) => b.type === "knowledge-check")),
+        (i) => passedChecks.has(i),
+        moduleDone,
+      )
+    : 0
+
+  const goToPage = (index: number) => {
+    setPageIndex(index)
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+  }
 
   const handleMoveNext = () => {
     setPageIndex((p) => Math.min(p + 1, totalPages - 1))
@@ -420,17 +436,14 @@ export function BookkeepingBasicsModuleLesson() {
           </h1>
 
           {lessons && lessons.length > 1 && (
-            <div className="mt-5 flex items-center gap-1.5">
-              {lessons.map((lesson, i) => (
-                <span
-                  key={lesson.title}
-                  className={cn(
-                    "h-1.5 flex-1 rounded-full transition-colors",
-                    i <= safePageIndex ? "bg-white" : "bg-white/25"
-                  )}
-                />
-              ))}
-            </div>
+            <ScreenProgress
+              className="mt-4"
+              tone="dark"
+              titles={lessons.map((lesson) => lesson.title)}
+              current={safePageIndex}
+              maxReachable={maxReachable}
+              onSelect={goToPage}
+            />
           )}
         </div>
       </section>
@@ -444,7 +457,7 @@ export function BookkeepingBasicsModuleLesson() {
                 <LessonBlockView
                   key={`${safePageIndex}-${i}`}
                   block={block}
-                  onKnowledgeCheckPass={() => setKnowledgeCheckPassed(true)}
+                  onKnowledgeCheckPass={() => setPassedChecks((prev) => new Set(prev).add(safePageIndex))}
                 />
               ))}
             </div>

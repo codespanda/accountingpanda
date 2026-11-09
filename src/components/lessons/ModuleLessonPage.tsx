@@ -1,8 +1,9 @@
+import { useState } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import { ArrowLeft, Loader2 } from "lucide-react"
 import { Seo } from "@/components/Seo"
 import { LessonViewer } from "@/components/lessons/LessonViewer"
-import { completeModule } from "@/lib/courseProgress"
+import { completeModule, getCompletedModules } from "@/lib/courseProgress"
 import { lessonKey, useLessons } from "@/lib/lessons"
 
 /** A module's lesson screens on their own page, for any course with lessons. */
@@ -23,6 +24,7 @@ export function ModuleLessonPage({
   const navigate = useNavigate()
   const { lessons, loading } = useLessons(lessonKey(coursePath))
   const index = Number(moduleNumber) - 1
+  const [completedBefore] = useState(() => getCompletedModules(progressKey).includes(index))
   const module = modules[index]
   const screens = lessons?.[index]
 
@@ -60,7 +62,7 @@ export function ModuleLessonPage({
       <section className="container-px pt-4">
         <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
           {screens ? (
-            <LessonViewer key={index} screens={screens} onFinish={finish} />
+            <LessonViewer key={index} screens={screens} onFinish={finish} completed={completedBefore} />
           ) : (
             <p className="flex items-center justify-center gap-2 py-16 text-sm text-gray-500">
               <Loader2 className="h-4 w-4 animate-spin" />
