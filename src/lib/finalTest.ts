@@ -1,22 +1,9 @@
-import type { CourseLessons, QuizQuestion } from "@/lib/lessonTypes"
+import type { QuizQuestion } from "@/lib/lessonTypes"
 
 /** Seconds allowed per final-test question. */
 export const SECONDS_PER_QUESTION = 90
 /** Percentage needed to pass a final test. */
 export const FINAL_TEST_PASS_PCT = 80
-
-/** Every knowledge-check question in a course, in module order. */
-export function questionsFromLessons(lessons: CourseLessons | null): QuizQuestion[] {
-  if (!lessons) return []
-  return Object.keys(lessons)
-    .map(Number)
-    .sort((a, b) => a - b)
-    .flatMap((index) =>
-      lessons[index].flatMap((screen) =>
-        screen.blocks.flatMap((block) => (block.type === "knowledge-check" ? block.questions : [])),
-      ),
-    )
-}
 
 /** "30 questions" → 30, capped by the number of questions available. */
 export function finalTestSize(declared: string | undefined, poolSize: number) {
@@ -32,4 +19,26 @@ export function pickQuestions(poolSize: number, count: number): number[] {
     ;[ids[i], ids[j]] = [ids[j], ids[i]]
   }
   return ids.slice(0, count)
+}
+
+/**
+ * A final-test question: the correct answer first, then three wrong ones.
+ * The test shuffles the options for every attempt, so the order here never
+ * shows on screen.
+ */
+export const fq = (question: string, correct: string, wrong: [string, string, string], explanation: string): QuizQuestion => ({
+  question,
+  options: [correct, ...wrong],
+  answer: 0,
+  explanation,
+})
+
+/** A shuffled order of option indexes for one question. */
+export function shuffledOrder(count: number): number[] {
+  const order = Array.from({ length: count }, (_, i) => i)
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[order[i], order[j]] = [order[j], order[i]]
+  }
+  return order
 }

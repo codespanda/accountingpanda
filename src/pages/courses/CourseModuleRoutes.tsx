@@ -2,9 +2,10 @@ import { Navigate, useParams } from "react-router-dom"
 import type { CourseDetails } from "@/components/CourseOverview"
 import { CourseCertificate } from "@/components/CourseCertificate"
 import { ModuleLessonPage } from "@/components/lessons/ModuleLessonPage"
-import { lessonKey, useLessons } from "@/lib/lessons"
+import { lessonKey } from "@/lib/lessons"
 import { FinalTest } from "@/components/FinalTest"
-import { finalTestSize, questionsFromLessons } from "@/lib/finalTest"
+import { finalTestSize } from "@/lib/finalTest"
+import { useFinalTestQuestions } from "@/lib/finalTestBanks"
 import { trackerModules } from "@/lib/trackerModules"
 import { GST_INDIA_COURSE_PATH, gstIndiaModuleSummaries } from "@/pages/courses/gstIndiaModules"
 
@@ -75,8 +76,7 @@ export function CatalogCertificateRoute({ catalog, basePath }: { catalog: Course
 
 /** Timed final test for Learn GST in India. */
 export function GstFinalTestRoute() {
-  const { lessons, loading } = useLessons(lessonKey(GST_INDIA_COURSE_PATH))
-  const pool = questionsFromLessons(lessons)
+  const { questions: pool, loading, available } = useFinalTestQuestions(lessonKey(GST_INDIA_COURSE_PATH))
   return (
     <FinalTest
       courseTitle="Learn GST in India"
@@ -84,6 +84,7 @@ export function GstFinalTestRoute() {
       totalModules={gstIndiaModuleSummaries.length}
       pool={pool}
       loading={loading}
+      available={available}
       questionCount={finalTestSize("40 questions", pool.length)}
       backTo={GST_INDIA_COURSE_PATH}
       backLabel="Back to Course"
@@ -98,9 +99,8 @@ export function CatalogFinalTestRoute({ catalog, basePath }: { catalog: CourseDe
   const { courseSlug } = useParams()
   const course = catalog.find((c) => c.slug === courseSlug)
   const coursePath = `${basePath}/${courseSlug ?? ""}`
-  const { lessons, loading } = useLessons(lessonKey(coursePath))
+  const { questions: pool, loading, available } = useFinalTestQuestions(lessonKey(coursePath))
   if (!course) return <Navigate to={basePath} replace />
-  const pool = questionsFromLessons(lessons)
   return (
     <FinalTest
       courseTitle={course.title}
@@ -108,6 +108,7 @@ export function CatalogFinalTestRoute({ catalog, basePath }: { catalog: CourseDe
       totalModules={course.modules.length}
       pool={pool}
       loading={loading}
+      available={available}
       questionCount={finalTestSize(course.finalExam, pool.length)}
       backTo={coursePath}
       backLabel="Back to Course"

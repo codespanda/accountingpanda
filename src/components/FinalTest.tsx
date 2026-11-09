@@ -17,7 +17,7 @@ import {
   type ExamAttempt,
   type ExamResult,
 } from "@/lib/courseProgress"
-import { FINAL_TEST_PASS_PCT, SECONDS_PER_QUESTION, pickQuestions } from "@/lib/finalTest"
+import { FINAL_TEST_PASS_PCT, SECONDS_PER_QUESTION, pickQuestions, shuffledOrder } from "@/lib/finalTest"
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"]
 
@@ -38,6 +38,7 @@ export function FinalTest({
   totalModules,
   pool,
   loading = false,
+  available = true,
   questionCount,
   backTo,
   backLabel,
@@ -51,6 +52,8 @@ export function FinalTest({
   /** All questions the test can draw from. */
   pool: QuizQuestion[]
   loading?: boolean
+  /** False when the course doesn't have a final test question bank yet. */
+  available?: boolean
   questionCount: number
   backTo: string
   backLabel: string
@@ -125,8 +128,10 @@ export function FinalTest({
 
   const start = () => {
     if (attemptedToday) return
+    const ids = pickQuestions(pool.length, questionCount)
     const a: ExamAttempt = {
-      ids: pickQuestions(pool.length, questionCount),
+      ids,
+      orders: ids.map((id) => shuffledOrder(pool[id].options.length)),
       answers: {},
       startedAt: Date.now(),
       durationSec,
@@ -204,6 +209,20 @@ export function FinalTest({
                 <Link to={backTo}>{backLabel}</Link>
               </Button>
             </div>
+          ) : !available ? (
+            <div className="flex flex-col items-center py-10 text-center">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-bento-mint text-bento-forest">
+                <Clock className="h-5 w-5" />
+              </span>
+              <p className="mt-4 text-lg font-semibold text-brand-heading">The final test is being prepared</p>
+              <p className="mt-1 max-w-md text-sm text-gray-500">
+                The final test for {courseTitle} isn't available yet. Your module progress is saved — come back soon to
+                take the test and earn your certificate.
+              </p>
+              <Button className="mt-6" asChild>
+                <Link to={backTo}>{backLabel}</Link>
+              </Button>
+            </div>
           ) : loading || pool.length === 0 ? (
             <p className="flex items-center justify-center gap-2 py-16 text-sm text-gray-500">
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -220,7 +239,8 @@ export function FinalTest({
                       {qi + 1}. {q.question}
                     </p>
                     <div className="mt-3 space-y-2">
-                      {q.options.map((option, oi) => {
+                      {(validAttempt.orders?.[qi] ?? q.options.map((_, i) => i)).map((oi, position) => {
+                        const option = q.options[oi]
                         const selected = validAttempt.answers[qi] === oi
                         return (
                           <button
@@ -241,7 +261,7 @@ export function FinalTest({
                                 selected ? "border-transparent bg-brand-green text-white" : "border-gray-300 text-gray-500",
                               )}
                             >
-                              {LETTERS[oi]}
+                              {LETTERS[position]}
                             </span>
                             <span className="flex-1">{option}</span>
                           </button>

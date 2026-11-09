@@ -143,6 +143,9 @@ export function setLearnerName(name: string): void {
 export type ExamAttempt = {
   /** Indexes into the course's question pool, in the order shown. */
   ids: number[]
+  /** For each question, the order its options are shown in (indexes into options). */
+  orders?: number[][]
+  /** For each question, the index of the chosen option (in the original option list). */
   answers: Record<number, number>
   startedAt: number
   durationSec: number
