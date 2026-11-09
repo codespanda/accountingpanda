@@ -3076,283 +3076,304 @@ const lessons: CourseLessons = {
     ),
   ],
   10: [
-    {
-      title: "The GST return system at a glance",
-      blocks: [
-        {
-          type: "table",
-          headers: ["Return or statement", "What it covers", "Monthly due date"],
-          rows: [
-            ["GSTR-1", "Details of outward supplies", "11th of the next month"],
-            ["GSTR-2B", "Auto-drafted ITC statement from suppliers' filings", "Generated around the 14th"],
-            ["GSTR-3B", "Summary return and payment of tax", "20th of the next month"],
-            ["GSTR-9", "Annual return", "31 December after the financial year"],
-            ["GSTR-9C", "Reconciliation statement (turnover above ₹5 crore)", "With GSTR-9"],
-          ],
-        },
-        {
-          type: "note",
-          text: "GSTR-2A is a live view that changes as suppliers file. GSTR-2B is a fixed monthly statement and is the basis for claiming ITC.",
-        },
+    overview(
+      "Module 11 — GST Returns",
+      [
+        "Returns are how a business reports its GST to the Government. This module walks through the main returns — GSTR-1, GSTR-2B, GSTR-3B and the annual returns — their due dates, and the QRMP scheme for smaller businesses.",
       ],
-    },
-    {
-      title: "GSTR-1 and GSTR-3B",
-      blocks: [
-        {
-          type: "cards",
-          items: [
-            {
-              title: "GSTR-1 — outward supplies",
-              text: "Invoice-level details: B2B invoices, large inter-state B2C invoices, other B2C supplies in summary, exports, credit and debit notes, amendments, an HSN summary and a list of documents issued.",
-            },
-            {
-              title: "GSTR-3B — summary and payment",
-              text: "Totals of outward supplies and tax, supplies liable to reverse charge, eligible and ineligible ITC, exempt and nil-rated inward supplies, and the tax paid in cash and through ITC.",
-            },
-          ],
-        },
-        {
-          type: "tip",
-          title: "Good practice",
-          text: "Reconcile GSTR-1 with your sales books and GSTR-3B with GSTR-1 every month. Differences are a common trigger for notices.",
-        },
+      [
+        "Name the main GST returns and what each covers",
+        "Prepare the data for GSTR-1",
+        "Use GSTR-2B and the IMS to check ITC",
+        "Explain what GSTR-3B reports",
+        "Apply the QRMP scheme",
+        "Plan a monthly and annual filing calendar",
       ],
-    },
-    {
-      title: "The QRMP scheme",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Taxpayers with aggregate turnover up to ₹5 crore can choose the Quarterly Return Monthly Payment (QRMP) scheme:",
-        },
-        {
-          type: "table",
-          headers: ["Item", "Under QRMP"],
-          rows: [
-            ["GSTR-1", "Quarterly, by the 13th of the month after the quarter"],
-            ["Invoice Furnishing Facility (IFF)", "Optional, for B2B invoices in the first two months of the quarter (1st–13th of the next month)"],
-            ["Monthly tax", "Paid through PMT-06 by the 25th of the next month, for the first two months"],
-            ["GSTR-3B", "Quarterly, by the 22nd or 24th of the month after the quarter, depending on the State"],
-          ],
-        },
-        {
-          type: "note",
-          text: "The IFF lets your B2B customers claim ITC monthly even though you file GSTR-1 quarterly.",
-        },
+    ),
+    screen(
+      "The GST return system at a glance",
+      table(
+        ["Return or statement", "What it covers", "Monthly due date"],
+        [
+          ["GSTR-1", "Details of outward supplies (sales)", "11th of the next month"],
+          ["GSTR-2B", "Auto-drafted ITC statement from suppliers' filings", "Generated around the 14th"],
+          ["GSTR-3B", "Summary return and payment of tax", "20th of the next month"],
+          ["GSTR-9", "Annual return", "31 December after the financial year"],
+          ["GSTR-9C", "Reconciliation statement (turnover above ₹5 crore)", "With GSTR-9"],
+        ],
+      ),
+      note("Composition taxpayers file CMP-08 and GSTR-4 instead (Module 10)."),
+    ),
+    screen(
+      "GSTR-1 — outward supplies",
+      p("GSTR-1 reports sales in detail, so customers' ITC statements can be built from it."),
+      table(
+        ["Section", "What goes in it"],
+        [
+          ["B2B", "Invoices to registered customers, invoice by invoice"],
+          ["B2C (large)", "Inter-state invoices to unregistered customers above ₹1 lakh"],
+          ["B2C (others)", "Other sales to unregistered customers, summarised by State and rate"],
+          ["Exports and SEZ supplies", "Zero-rated supplies"],
+          ["Credit and debit notes", "Notes issued to registered and unregistered customers"],
+          ["HSN summary", "Supplies summarised by HSN/SAC code"],
+          ["Documents issued", "Invoice and note number ranges, including cancelled ones"],
+        ],
+      ),
+    ),
+    screen(
+      "GSTR-2A, GSTR-2B and the IMS",
+      terms(
+        ["GSTR-2A", "A live view of invoices suppliers have reported. It changes as suppliers file."],
+        ["GSTR-2B", "A fixed monthly statement of ITC, generated around the 14th from suppliers' filings. It's the basis for claiming ITC."],
+        ["Invoice Management System (IMS)", "Lets the recipient accept, reject or keep pending each supplier invoice before GSTR-2B is finalised."],
+      ),
+      tip("Reconcile every month", "Compare your purchase register with GSTR-2B. Follow up suppliers whose invoices are missing (Module 7)."),
+    ),
+    screen(
+      "GSTR-3B — summary return and payment",
+      p("GSTR-3B is the return through which tax is actually paid. It summarises:"),
+      bullets(
+        "Outward taxable supplies and the tax on them.",
+        "Inward supplies liable to reverse charge.",
+        "Eligible ITC, ITC reversed and ineligible ITC.",
+        "Exempt, nil-rated and non-GST inward supplies.",
+        "Interest and late fees.",
+        "Tax paid through ITC and in cash.",
+      ),
+      tip("Good practice", "Reconcile GSTR-1 with your sales books, and GSTR-3B with GSTR-1, every month. Differences are a common trigger for notices."),
+    ),
+    screen(
+      "The QRMP scheme",
+      p("Taxpayers with aggregate turnover up to ₹5 crore can choose the Quarterly Return Monthly Payment (QRMP) scheme:"),
+      table(
+        ["Item", "Under QRMP"],
+        [
+          ["GSTR-1", "Quarterly, by the 13th of the month after the quarter"],
+          ["Invoice Furnishing Facility (IFF)", "Optional, for B2B invoices in the first two months of the quarter (1st–13th of the next month)"],
+          ["Monthly tax", "Paid through PMT-06 by the 25th of the next month, for the first two months"],
+          ["GSTR-3B", "Quarterly, by the 22nd or 24th of the month after the quarter, depending on the State"],
+        ],
+      ),
+      terms(
+        ["Fixed sum method", "Pay 35% of the cash tax paid in the last quarter (if it filed quarterly) each month."],
+        ["Self-assessment method", "Work out and pay the actual tax due for the month."],
+      ),
+      note("The IFF lets your B2B customers claim ITC monthly even though you file GSTR-1 quarterly."),
+    ),
+    screen(
+      "Annual returns",
+      terms(
+        ["GSTR-9", "Summarises the whole financial year's supplies, ITC and tax paid. Due by 31 December after the year. In recent years, filing has been made optional by notification for small taxpayers with turnover up to ₹2 crore."],
+        ["GSTR-9C", "A self-certified reconciliation of the annual return with the audited financial statements, for taxpayers with aggregate turnover above ₹5 crore."],
+      ),
+      caution("Since the Finance Act, 2023, a GST return generally can't be filed after three years from its due date. Don't let returns fall behind."),
+    ),
+    screen(
+      "Worked example: a monthly filing calendar",
+      p("A monthly filer's tasks for the October 2026 tax period:"),
+      table(
+        ["Date", "Action"],
+        [
+          ["1–10 November", "Close October's sales and purchase books"],
+          ["11 November 2026", "File GSTR-1 for October"],
+          ["Around 14 November", "Review GSTR-2B and take IMS actions"],
+          ["15–19 November", "Reconcile purchases with GSTR-2B; calculate tax and ITC"],
+          ["20 November 2026", "File GSTR-3B and pay the tax for October"],
+        ],
+      ),
+      note("If a due date falls on a holiday or is extended by notification, follow the notified date."),
+    ),
+    mistakes(
+      ["Filing GSTR-3B before reconciling", "Errors flow straight into tax paid."],
+      ["Claiming ITC from GSTR-2A instead of GSTR-2B", "GSTR-2B is the basis for ITC."],
+      ["Missing invoices in GSTR-1", "Customers can't claim ITC on invoices you didn't report."],
+      ["Not using the IFF under QRMP", "Your B2B customers wait a whole quarter for ITC."],
+      ["Letting returns fall behind", "Late fees and interest build up, and returns are barred after three years."],
+    ),
+    check(
+      11,
+      q("When is the monthly GSTR-1 due?", ["11th of the next month", "13th of the next month", "20th of the next month", "Last day of the month"], 0, "Monthly GSTR-1 is due by the 11th."),
+      q("Which return is used to pay tax?", ["GSTR-1", "GSTR-2B", "GSTR-3B", "GSTR-9C"], 2, "GSTR-3B is the summary return through which tax is paid."),
+      q("Which statement is the basis for claiming ITC?", ["GSTR-2A", "GSTR-2B", "GSTR-1", "GSTR-9C"], 1, "GSTR-2B is the fixed monthly ITC statement."),
+      q("Who can opt for the QRMP scheme?", ["Any taxpayer", "Taxpayers with aggregate turnover up to ₹5 crore", "Only composition taxpayers", "Only exporters"], 1, "Up to ₹5 crore."),
+      q("What does the IMS let a recipient do?", ["Pay tax", "Accept, reject or keep pending supplier invoices", "File GSTR-9", "Generate e-way bills"], 1, "It acts on invoices before GSTR-2B is finalised."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Which GSTR-1 section?",
+          ["Where does each go? (a) Invoice to a registered customer, (b) ₹1,50,000 inter-state sale to an unregistered customer, (c) ₹2,000 cash sale to a walk-in customer, (d) credit note to a registered customer."],
+          ["(a) B2B. (b) B2C (large). (c) B2C (others). (d) Credit/debit notes (registered)."],
+        ],
+        [
+          "Exercise 2 — QRMP payments",
+          ["A QRMP taxpayer paid ₹60,000 tax in cash for the last quarter and uses the fixed sum method.", "How much does it pay for each of the first two months?"],
+          ["35% × ₹60,000 = ₹21,000 each month, by the 25th through PMT-06."],
+        ],
+        [
+          "Exercise 3 — Calendar",
+          ["List a monthly filer's three key dates for the March tax period."],
+          ["GSTR-1 by 11 April, review GSTR-2B around 14 April, GSTR-3B and payment by 20 April."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "The main GST returns and their due dates",
+        "The sections of GSTR-1",
+        "GSTR-2A, GSTR-2B and the Invoice Management System",
+        "What GSTR-3B reports",
+        "The QRMP scheme, IFF and monthly payments",
+        "GSTR-9, GSTR-9C and the three-year time bar",
       ],
-    },
-    {
-      title: "Annual returns and the filing calendar",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "GSTR-9 summarises the whole financial year. Taxpayers with aggregate turnover above ₹5 crore also file GSTR-9C, a self-certified reconciliation of the annual return with the audited financial statements.",
-        },
-        { type: "heading", text: "Example: monthly filer, October 2026 tax period" },
-        {
-          type: "table",
-          headers: ["Date", "Action"],
-          rows: [
-            ["11 November 2026", "File GSTR-1 for October"],
-            ["Around 14 November", "Review GSTR-2B and take IMS actions"],
-            ["20 November 2026", "File GSTR-3B and pay the tax for October"],
-          ],
-        },
-        {
-          type: "caution",
-          text: "Since the Finance Act, 2023, a GST return generally can't be filed after three years from its due date. Late filing also attracts interest and late fees (Module 12).",
-        },
-      ],
-    },
-    {
-      title: "Module 11 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "When is the monthly GSTR-1 due?",
-              options: ["11th of the next month", "13th of the next month", "20th of the next month", "Last day of the month"],
-              answer: 0,
-              explanation: "Monthly GSTR-1 is due by the 11th of the following month.",
-            },
-            {
-              question: "Which return is used to pay tax monthly?",
-              options: ["GSTR-1", "GSTR-2B", "GSTR-3B", "GSTR-9"],
-              answer: 2,
-              explanation: "GSTR-3B is the summary return through which tax is paid.",
-            },
-            {
-              question: "Which statement is the basis for claiming ITC?",
-              options: ["GSTR-2A", "GSTR-2B", "GSTR-1", "GSTR-9C"],
-              answer: 1,
-              explanation: "GSTR-2B is the fixed monthly ITC statement used to claim credit.",
-            },
-            {
-              question: "Who can opt for the QRMP scheme?",
-              options: [
-                "Any taxpayer",
-                "Taxpayers with aggregate turnover up to ₹5 crore",
-                "Only composition taxpayers",
-                "Only exporters",
-              ],
-              answer: 1,
-              explanation: "QRMP is available to taxpayers with aggregate turnover up to ₹5 crore.",
-            },
-            {
-              question: "When is the annual return GSTR-9 due?",
-              options: ["30 June", "30 September", "30 November", "31 December after the financial year"],
-              answer: 3,
-              explanation: "GSTR-9 is due by 31 December after the end of the financial year.",
-            },
-          ],
-        },
-      ],
-    },
+      "Report sales accurately in GSTR-1, check ITC against GSTR-2B, then pay through GSTR-3B — every period, on time.",
+    ),
   ],
   11: [
-    {
-      title: "Electronic ledgers and paying tax",
-      blocks: [
-        {
-          type: "table",
-          headers: ["Ledger", "What it shows"],
-          rows: [
-            ["Electronic cash ledger", "Money you have deposited, available to pay tax, interest, late fees and penalties"],
-            ["Electronic credit ledger", "Your ITC, available only to pay output tax"],
-            ["Electronic liability ledger", "What you owe — tax, interest, late fees and penalties"],
-          ],
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Create a challan", text: "Generate form PMT-06 on the GST Portal, showing the amount under each tax head." },
-            { title: "Pay", text: "Pay by net banking, UPI, card, NEFT/RTGS or over the counter at an authorised bank." },
-            { title: "Cash ledger is credited", text: "The payment appears in your electronic cash ledger." },
-            {
-              title: "Set off in GSTR-3B",
-              text: "Use ITC in the order set by law (Module 7), then cash for the balance. RCM tax, interest and late fees must be paid in cash.",
-            },
-          ],
-        },
+    overview(
+      "Module 12 — Paying GST, Interest, Late Fees and Refunds",
+      [
+        "Filing a return isn't the end — the tax must be paid on time. This module explains the electronic ledgers, how to pay, what happens when you're late, and how to claim money back.",
       ],
-    },
-    {
-      title: "Interest and late fees",
-      blocks: [
-        {
-          type: "list",
-          items: [
-            { term: "Late payment of tax", text: "interest at 18% a year from the day after the due date (Section 50(1)) — generally on the portion paid in cash." },
-            { term: "ITC wrongly availed and used", text: "interest at the notified rate, currently 18% a year (Section 50(3))." },
-          ],
-        },
-        {
-          type: "example",
-          rows: [
-            { label: "Tax paid late", value: "₹50,000" },
-            { label: "Days late", value: "30" },
-            { label: "Interest = ₹50,000 × 18% × 30 ÷ 365", value: "₹739.73" },
-          ],
-          total: { label: "Interest payable (rounded)", value: "₹740" },
-        },
-        { type: "heading", text: "Late fees for GSTR-1 and GSTR-3B" },
-        {
-          type: "table",
-          headers: ["Situation", "Late fee (CGST + SGST combined)"],
-          rows: [
-            ["Regular return", "₹50 per day"],
-            ["Nil return", "₹20 per day"],
-            ["Maximum — nil return", "₹500"],
-            ["Maximum — turnover up to ₹1.5 crore", "₹2,000"],
-            ["Maximum — turnover ₹1.5 crore to ₹5 crore", "₹5,000"],
-            ["Maximum — turnover above ₹5 crore", "₹10,000"],
-          ],
-        },
-        {
-          type: "note",
-          text: "Late fees can't be paid from ITC. Separate late fee rules apply to annual returns. Check the current notifications for the exact amounts.",
-        },
+      [
+        "Explain the three electronic ledgers",
+        "Create a challan and pay tax",
+        "Calculate interest on late payment",
+        "Work out late fees",
+        "Know when a refund can be claimed and how",
       ],
-    },
-    {
-      title: "Refunds",
-      blocks: [
-        { type: "paragraph", text: "A refund can arise when, for example:" },
-        {
-          type: "bullets",
-          items: [
-            "Goods or services are exported (zero-rated) — Module 13.",
-            "There is an inverted duty structure, where tax on inputs is higher than tax on outputs.",
-            "Excess money is left in the electronic cash ledger.",
-            "Tax was paid by mistake, such as under the wrong head.",
-          ],
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Check eligibility and time limit", text: "Generally apply within two years from the relevant date (Section 54)." },
-            { title: "File form RFD-01", text: "On the GST Portal, with the supporting statements and documents." },
-            { title: "Track and respond", text: "Answer any deficiency memo or notice from the officer." },
-          ],
-        },
-        {
-          type: "note",
-          text: "At its 57th meeting in October 2026, the GST Council recommended allowing refunds of ITC on input services under the inverted duty structure. Changes apply only once notified.",
-        },
+    ),
+    screen(
+      "The electronic ledgers",
+      table(
+        ["Ledger", "What it shows"],
+        [
+          ["Electronic cash ledger", "Money you have deposited, available to pay tax, interest, late fees and penalties"],
+          ["Electronic credit ledger", "Your ITC, available only to pay output tax"],
+          ["Electronic liability ledger", "What you owe — tax, interest, late fees and penalties"],
+        ],
+      ),
+      note("Money in the cash ledger is held under heads — tax, interest, penalty, fee and others — for each of IGST, CGST, SGST and cess."),
+    ),
+    screen(
+      "Paying tax",
+      steps(
+        ["Create a challan", "Generate form PMT-06 on the GST Portal, showing the amount under each tax head."],
+        ["Pay", "By net banking, UPI, card, NEFT/RTGS or over the counter at an authorised bank."],
+        ["Cash ledger is credited", "The payment appears in your electronic cash ledger."],
+        ["Set off in GSTR-3B", "Use ITC in the order set by law (Module 7), then cash for the balance."],
+      ),
+      caution("RCM tax, interest and late fees must be paid in cash — never from the credit ledger."),
+    ),
+    screen(
+      "Interest",
+      terms(
+        ["Late payment of tax — Section 50(1)", "Interest at 18% a year from the day after the due date until payment. For returns filed late, interest applies to the part of the tax paid in cash."],
+        ["ITC wrongly availed and used — Section 50(3)", "Interest at the notified rate, currently 18% a year."],
+      ),
+      p("Interest is calculated per day:"),
+      example(
+        [["Tax paid late", "₹50,000"], ["Days late", "30"], ["Interest = ₹50,000 × 18% × 30 ÷ 365", "₹739.73"]],
+        ["Interest payable (rounded)", "₹740"],
+      ),
+    ),
+    screen(
+      "Late fees",
+      p("Filing GSTR-1 or GSTR-3B late attracts a late fee:"),
+      table(
+        ["Situation", "Late fee (CGST + SGST combined)"],
+        [
+          ["Regular return", "₹50 per day"],
+          ["Nil return", "₹20 per day"],
+          ["Maximum — nil return", "₹500"],
+          ["Maximum — turnover up to ₹1.5 crore", "₹2,000"],
+          ["Maximum — turnover ₹1.5 crore to ₹5 crore", "₹5,000"],
+          ["Maximum — turnover above ₹5 crore", "₹10,000"],
+        ],
+      ),
+      note("Late fees can't be paid from ITC. Separate late fee rules apply to annual returns. Check the current notifications for the exact amounts."),
+    ),
+    screen(
+      "Worked example: filing GSTR-3B late",
+      p("A business with ₹1 crore turnover files its GSTR-3B 12 days late. It owes ₹80,000 tax, of which ₹30,000 is paid in cash after using ITC."),
+      table(
+        ["Item", "Calculation", "Amount"],
+        [
+          ["Interest", "₹30,000 × 18% × 12 ÷ 365", "≈ ₹178"],
+          ["Late fee", "₹50 × 12 days (cap ₹2,000 not reached)", "₹600"],
+          ["Tax paid in cash", "", "₹30,000"],
+        ],
+        { footer: ["Total cash outflow", "", "≈ ₹30,778"] },
+      ),
+      p("Interest applies only to the ₹30,000 paid in cash, not to the part settled by ITC."),
+    ),
+    screen(
+      "When refunds arise",
+      p("A refund can be claimed when, for example:"),
+      bullets(
+        "Goods or services are exported (zero-rated) — Module 13.",
+        "There is an inverted duty structure, where tax on inputs is higher than tax on outputs, leaving unused ITC.",
+        "Excess money is left in the electronic cash ledger.",
+        "Tax was paid by mistake, such as IGST paid instead of CGST + SGST.",
+      ),
+      note("At its 57th meeting, the GST Council recommended allowing refunds of ITC on input services under the inverted duty structure. Such changes apply only once notified — check the notification."),
+    ),
+    screen(
+      "Claiming a refund",
+      steps(
+        ["Check eligibility and time limit", "Generally apply within two years from the relevant date (Section 54)."],
+        ["File form RFD-01", "On the GST Portal, with the supporting statements and documents."],
+        ["Track and respond", "Answer any deficiency memo or notice from the officer."],
+        ["Receive the refund", "Credited to the bank account registered on the GST Portal."],
+      ),
+      tip("Keep records ready", "Invoices, shipping bills, bank realisation and ITC working papers speed up refunds."),
+    ),
+    mistakes(
+      ["Paying late fees or interest from ITC", "They must be paid in cash."],
+      ["Paying under the wrong head", "IGST paid instead of CGST + SGST needs a refund or adjustment."],
+      ["Ignoring interest on late payment", "It's due even if not demanded."],
+      ["Leaving money idle in the cash ledger", "Use it or claim a refund."],
+      ["Missing the two-year refund deadline", "Late claims are rejected."],
+    ),
+    check(
+      12,
+      q("Which form is used to create a GST payment challan?", ["RFD-01", "PMT-06", "CMP-08", "GSTR-1"], 1, "PMT-06 is the challan."),
+      q("What is the interest rate on tax paid late?", ["12% a year", "18% a year", "24% a year", "2% a month"], 1, "Section 50(1) interest is 18% a year."),
+      q("₹50,000 of tax is paid 30 days late. What is the interest, rounded?", ["₹740", "₹900", "₹1,500", "₹9,000"], 0, "₹50,000 × 18% × 30 ÷ 365 ≈ ₹740."),
+      q("What is the late fee for a regular GSTR-3B filed 12 days late by a ₹1 crore business?", ["₹240", "₹600", "₹2,000", "₹5,000"], 1, "₹50 × 12 days, below the ₹2,000 cap."),
+      q("Within what period should a refund generally be claimed?", ["Six months", "One year", "Two years from the relevant date", "Five years"], 2, "Section 54."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Interest",
+          ["₹1,20,000 of tax is paid in cash 20 days late.", "Calculate the interest."],
+          ["₹1,20,000 × 18% × 20 ÷ 365 = ₹1,183.56 — about ₹1,184."],
+        ],
+        [
+          "Exercise 2 — Late fee with a cap",
+          ["A business with ₹1 crore turnover files a regular GSTR-3B 60 days late.", "What is the late fee?"],
+          ["₹50 × 60 = ₹3,000, but the cap for turnover up to ₹1.5 crore is ₹2,000.", "Late fee = ₹2,000."],
+        ],
+        [
+          "Exercise 3 — Nil return",
+          ["A business files a nil GSTR-3B 15 days late.", "What is the late fee?"],
+          ["₹20 × 15 = ₹300 (below the ₹500 cap for nil returns)."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "The cash, credit and liability ledgers",
+        "How to pay tax with a PMT-06 challan",
+        "Interest under Section 50 and how to calculate it",
+        "Late fees and their caps",
+        "When refunds arise and how to claim them",
       ],
-    },
-    {
-      title: "Module 12 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "Which form is used to create a GST payment challan?",
-              options: ["RFD-01", "PMT-06", "CMP-08", "GSTR-1"],
-              answer: 1,
-              explanation: "PMT-06 is the payment challan.",
-            },
-            {
-              question: "What is the interest rate on tax paid late?",
-              options: ["12% a year", "18% a year", "24% a year", "2% a month"],
-              answer: 1,
-              explanation: "Section 50(1) interest on delayed tax is 18% a year.",
-            },
-            {
-              question: "₹50,000 of tax is paid 30 days late. What is the interest, rounded?",
-              options: ["₹740", "₹900", "₹1,500", "₹9,000"],
-              answer: 0,
-              explanation: "₹50,000 × 18% × 30 ÷ 365 = ₹739.73, about ₹740.",
-            },
-            {
-              question: "Can late fees be paid using ITC?",
-              options: ["Yes", "No — they must be paid in cash", "Only IGST credit", "Only for nil returns"],
-              answer: 1,
-              explanation: "Late fees, interest and RCM tax must be paid through the electronic cash ledger.",
-            },
-            {
-              question: "Within what period should a refund generally be claimed?",
-              options: ["Six months", "One year", "Two years from the relevant date", "Five years"],
-              answer: 2,
-              explanation: "Section 54 generally requires a refund application within two years from the relevant date.",
-            },
-          ],
-        },
-      ],
-    },
+      "Pay on time from the right ledger. Interest and late fees are avoidable costs — and refunds have deadlines too.",
+    ),
   ],
   12: [
     {
