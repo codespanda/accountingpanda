@@ -1,5 +1,5 @@
 import type { CourseLessons } from "@/lib/lessonTypes"
-import { bullets, caution, cards, check, compare, example, exercises, mistakes, note, overview, p, q, screen, steps, summary, table, terms, tip } from "@/lib/lessonKit"
+import { bullets, caution, cards, check, compare, example, exercises, journal, mistakes, note, overview, p, q, screen, steps, summary, table, terms, tip } from "@/lib/lessonKit"
 
 // Learn GST in India — lesson screens by module index (0 = Module 1).
 const lessons: CourseLessons = {
@@ -2769,297 +2769,311 @@ const lessons: CourseLessons = {
     ),
   ],
   8: [
-    {
-      title: "Forward charge vs. reverse charge",
-      blocks: [
-        {
-          type: "compare",
-          items: [
-            {
-              title: "Forward charge",
-              text: "The normal rule: the supplier charges GST on the invoice, collects it from the customer and pays it to the Government.",
-              examples: ["Most sales", "Supplier pays"],
-            },
-            {
-              title: "Reverse charge (RCM)",
-              text: "For notified supplies, the recipient pays the GST directly to the Government instead of the supplier.",
-              examples: ["Notified supplies", "Recipient pays"],
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            { term: "Section 9(3)", text: "notified goods and services taxed under reverse charge, whoever the supplier is." },
-            { term: "Section 9(4)", text: "notified supplies received from unregistered suppliers by notified classes of registered persons." },
-            { term: "Import of services", text: "IGST is paid by the recipient in India under reverse charge." },
-          ],
-        },
-        {
-          type: "caution",
-          text: "Tax payable under reverse charge must be paid in cash. It cannot be paid by using ITC from the electronic credit ledger.",
-        },
+    overview(
+      "Module 9 — Reverse Charge Mechanism (RCM)",
+      [
+        "Normally the supplier collects GST and pays it to the Government. Under reverse charge, the recipient pays instead. Many businesses owe RCM tax without realising it — this module shows you how to spot, record and pay it.",
       ],
-    },
-    {
-      title: "Common reverse charge supplies",
-      blocks: [
-        {
-          type: "table",
-          headers: ["Supply", "Typical situation"],
-          rows: [
-            ["Goods transport agency (GTA)", "Freight to specified recipients, taxed at 5% under RCM unless the GTA opts to charge GST itself (18% with ITC since 22 September 2025)"],
-            ["Legal services", "By an advocate or firm of advocates to a business entity"],
-            ["Director services", "By a director to the company"],
-            ["Sponsorship", "Sponsorship services to a body corporate or partnership firm"],
-            ["Security services", "Security personnel supplied by a non-body-corporate to a registered person (with exclusions)"],
-            ["Renting of commercial property", "By an unregistered person to a registered person (with exclusions)"],
-            ["Import of services", "Services from a supplier outside India"],
-          ],
-        },
-        {
-          type: "note",
-          text: "The RCM lists are changed by notification from time to time, and each entry has conditions and exclusions. Check the current notification for the exact scope.",
-        },
+      [
+        "Explain the difference between forward and reverse charge",
+        "Identify supplies taxed under reverse charge",
+        "Work out the time of supply under RCM",
+        "Issue a self-invoice and payment voucher",
+        "Pay RCM tax and claim the ITC",
+        "Record RCM transactions in the books",
       ],
-    },
-    {
-      title: "Self-invoicing, payment and ITC under RCM",
-      blocks: [
-        {
-          type: "steps",
-          items: [
-            {
-              title: "Self-invoice",
-              text: "When buying from an unregistered supplier under RCM, the recipient issues the tax invoice itself, within 30 days of receiving the supply (Rule 47A).",
-            },
-            { title: "Payment voucher", text: "Issue a payment voucher when paying the supplier." },
-            { title: "Pay the tax in cash", text: "Report the RCM liability in GSTR-3B and pay it through the electronic cash ledger." },
-            {
-              title: "Claim ITC",
-              text: "Once the tax is paid, eligible ITC on it can be claimed — so for a fully taxable business the net cost is usually only a timing difference.",
-            },
-          ],
-        },
-        { type: "heading", text: "Journal entry — legal fees of ₹10,000 at an assumed 18% (intra-state)" },
-        {
-          type: "table",
-          headers: ["Account", "Debit (₹)", "Credit (₹)"],
-          rows: [
-            ["Legal expenses", "10,000", "—"],
-            ["Input CGST (RCM)", "900", "—"],
-            ["Input SGST (RCM)", "900", "—"],
-            ["Advocate (supplier)", "—", "10,000"],
-            ["CGST payable under RCM", "—", "900"],
-            ["SGST payable under RCM", "—", "900"],
-          ],
-          footer: ["Total", "11,800", "11,800"],
-          numeric: [1, 2],
-        },
+    ),
+    screen(
+      "Forward charge vs. reverse charge",
+      compare(
+        ["Forward charge", "The normal rule: the supplier charges GST on the invoice, collects it from the customer and pays it to the Government.", ["Most sales", "Supplier pays"]],
+        ["Reverse charge (RCM)", "For notified supplies, the recipient pays the GST directly to the Government instead of the supplier.", ["Notified supplies", "Recipient pays"]],
+      ),
+      p("Reverse charge is used where collecting tax from the supplier is hard — for example, many small or unregistered suppliers — or where the supplier is outside India."),
+    ),
+    screen(
+      "Where reverse charge comes from",
+      terms(
+        ["Section 9(3)", "Notified goods and services taxed under reverse charge, whoever the supplier is."],
+        ["Section 9(4)", "Notified supplies received from unregistered suppliers by notified classes of registered persons."],
+        ["Import of services", "IGST is paid by the recipient in India under reverse charge (Section 5(3) of the IGST Act)."],
+      ),
+      caution("Tax payable under reverse charge must be paid in cash. It cannot be paid by using ITC from the electronic credit ledger."),
+    ),
+    screen(
+      "Common reverse charge services",
+      table(
+        ["Service", "Typical situation"],
+        [
+          ["Goods transport agency (GTA)", "Freight to specified recipients, taxed at 5% under RCM unless the GTA opts to charge GST itself (18% with ITC since 22 September 2025)"],
+          ["Legal services", "By an advocate or firm of advocates to a business entity"],
+          ["Director services", "By a director to the company"],
+          ["Sponsorship", "Sponsorship services to a body corporate or partnership firm"],
+          ["Security services", "Security personnel supplied by a non-body-corporate to a registered person (with exclusions)"],
+          ["Renting of commercial property", "By an unregistered person to a registered person (with exclusions)"],
+          ["Insurance and recovery agents", "Services to insurers, banks and financial institutions"],
+        ],
+      ),
+      note("The RCM lists are changed by notification from time to time, and each entry has conditions and exclusions. Check the current notification for the exact scope."),
+    ),
+    screen(
+      "Common reverse charge goods",
+      p("Some goods are also under reverse charge when bought from certain suppliers, for example:"),
+      bullets(
+        "Metal scrap supplied by an unregistered person to a registered person.",
+        "Raw cotton supplied by agriculturists.",
+        "Certain agricultural produce such as unshelled cashew nuts and tendu leaves.",
+      ),
+      note("As with services, check the current rate notification for the full list and conditions."),
+    ),
+    screen(
+      "Time of supply under reverse charge",
+      table(
+        ["Supply", "Time of supply — the earliest of"],
+        [
+          ["Goods (Section 12(3))", "Date goods are received · Date of payment · 31st day after the supplier's invoice date"],
+          ["Services (Section 13(3))", "Date of payment · 61st day after the supplier's invoice date"],
+        ],
+      ),
+      tip("Example", "A lawyer's invoice is dated 1 April. The company pays it on 20 April. The time of supply is 20 April (payment comes before the 61st day), so the RCM tax goes into April's return."),
+    ),
+    screen(
+      "Self-invoicing and payment vouchers",
+      steps(
+        ["Self-invoice", "When buying from an unregistered supplier under RCM, the recipient issues the tax invoice itself, within 30 days of receiving the supply (Rule 47A)."],
+        ["Payment voucher", "Issue a payment voucher when paying the supplier for an RCM supply."],
+        ["Report in GSTR-3B", "Show the inward supplies liable to reverse charge and the tax payable."],
+        ["Pay in cash", "Pay the RCM tax through the electronic cash ledger."],
+        ["Claim ITC", "Once paid, eligible ITC can be claimed in the same return."],
+      ),
+    ),
+    screen(
+      "Recording RCM in the books",
+      p("Legal fees of ₹10,000 at 18%, intra-state, paid to an advocate:"),
+      journal(
+        [
+          ["Legal expenses", "₹10,000", ""],
+          ["Input CGST (RCM)", "₹900", ""],
+          ["Input SGST (RCM)", "₹900", ""],
+          ["Advocate (supplier)", "", "₹10,000"],
+          ["CGST payable under RCM", "", "₹900"],
+          ["SGST payable under RCM", "", "₹900"],
+        ],
+        "₹11,800",
+      ),
+      p("The advocate is paid ₹10,000 — not ₹11,800 — because the company pays the ₹1,800 GST directly to the Government."),
+    ),
+    screen(
+      "Worked example: rent from an unregistered landlord",
+      p("A registered trader in Kolkata rents a shop from an unregistered landlord for ₹50,000 a month. Renting of commercial property by an unregistered person to a registered person is under reverse charge."),
+      example(
+        [["Monthly rent", "₹50,000"], ["CGST under RCM at 9%", "₹4,500"], ["SGST under RCM at 9%", "₹4,500"]],
+        ["RCM tax paid in cash each month", "₹9,000"],
+      ),
+      p("The trader pays the landlord ₹50,000, pays ₹9,000 to the Government in cash, and — if fully engaged in taxable supplies — claims ₹9,000 ITC. The net cost is usually only a timing difference."),
+    ),
+    mistakes(
+      ["Not recognising RCM supplies", "Check legal fees, director fees, GTA freight, security and rent from unregistered landlords."],
+      ["Paying RCM tax with ITC", "RCM tax must be paid in cash."],
+      ["Paying the supplier the GST", "Under RCM the supplier shouldn't charge GST; you pay it to the Government."],
+      ["Missing the self-invoice", "Issue it within 30 days for purchases from unregistered suppliers."],
+      ["Forgetting to claim the ITC", "Once paid, eligible RCM tax is creditable."],
+    ),
+    check(
+      9,
+      q("Under reverse charge, who pays the GST to the Government?", ["The supplier", "The recipient", "The transporter", "The bank"], 1, "The recipient pays under RCM."),
+      q("How must RCM tax be paid?", ["Using IGST credit", "Using any ITC", "In cash through the electronic cash ledger", "It doesn't need to be paid"], 2, "RCM liability is paid in cash."),
+      q("A company receives legal services from an advocate. Who generally pays the GST?", ["The advocate", "The company, under reverse charge", "No GST applies", "The Bar Council"], 1, "Legal services to a business entity are under RCM."),
+      q("Within how long must a self-invoice be issued for an RCM purchase from an unregistered supplier?", ["7 days", "30 days", "90 days", "By year-end"], 1, "Rule 47A: within 30 days."),
+      q("Monthly rent of ₹50,000 is paid to an unregistered landlord for a shop. What is the RCM tax at 18%?", ["₹4,500", "₹9,000", "₹18,000", "₹50,000"], 1, "₹4,500 CGST + ₹4,500 SGST."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Is it RCM?",
+          ["Decide for each: (a) a director's sitting fees, (b) electricity bill from a registered company, (c) a lawyer's fees to a partnership firm, (d) office supplies from a registered shop."],
+          ["(a) RCM. (b) Forward charge. (c) RCM — a partnership firm is a business entity. (d) Forward charge."],
+        ],
+        [
+          "Exercise 2 — Time of supply",
+          ["A director's invoice is dated 1 August. The company pays on 15 November.", "What is the time of supply?"],
+          ["Earlier of payment (15 November) and the 61st day after the invoice (about 1 October).", "Time of supply ≈ 1 October — the 61st day comes first."],
+        ],
+        [
+          "Exercise 3 — Journal entry",
+          ["Write the entry for ₹20,000 of sponsorship received by a company, at 18% intra-state under RCM."],
+          ["Dr Sponsorship expense ₹20,000 · Dr Input CGST ₹1,800 · Dr Input SGST ₹1,800", "Cr Supplier ₹20,000 · Cr CGST payable (RCM) ₹1,800 · Cr SGST payable (RCM) ₹1,800"],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "The difference between forward and reverse charge",
+        "Section 9(3), Section 9(4) and import of services",
+        "Common RCM services and goods",
+        "Time of supply under RCM",
+        "Self-invoices, payment vouchers and cash payment",
+        "Recording RCM and claiming the ITC",
       ],
-    },
-    {
-      title: "Module 9 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "Under reverse charge, who pays the GST to the Government?",
-              options: ["The supplier", "The recipient", "The transporter", "The bank"],
-              answer: 1,
-              explanation: "Under RCM the recipient pays the tax directly to the Government.",
-            },
-            {
-              question: "How must tax payable under reverse charge be paid?",
-              options: ["Using IGST credit", "Using any ITC", "In cash through the electronic cash ledger", "It doesn't need to be paid"],
-              answer: 2,
-              explanation: "RCM liability must be paid in cash; ITC cannot be used for it.",
-            },
-            {
-              question: "A company receives legal services from an advocate. Who generally pays the GST?",
-              options: ["The advocate", "The company, under reverse charge", "No GST applies", "The Bar Council"],
-              answer: 1,
-              explanation: "Legal services by an advocate to a business entity are notified under reverse charge.",
-            },
-            {
-              question: "Within how long must a self-invoice be issued for a reverse charge purchase from an unregistered supplier?",
-              options: ["7 days", "30 days", "90 days", "By year-end"],
-              answer: 1,
-              explanation: "Rule 47A requires the self-invoice within 30 days of receiving the supply.",
-            },
-            {
-              question: "Can a fully taxable business claim ITC on GST it paid under reverse charge?",
-              options: ["Never", "Yes, once the tax has been paid, if otherwise eligible", "Only for imports", "Only the next year"],
-              answer: 1,
-              explanation: "RCM tax paid is eligible ITC (subject to the usual conditions) once it has been paid.",
-            },
-          ],
-        },
-      ],
-    },
+      "Under RCM the buyer becomes the taxpayer: issue the documents, pay the tax in cash, then claim the credit.",
+    ),
   ],
   9: [
-    {
-      title: "Who can opt for the composition scheme",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "The composition scheme lets small businesses pay tax at a low, fixed rate on turnover, with simpler compliance — in return for giving up input tax credit and inter-state sales.",
-        },
-        {
-          type: "table",
-          headers: ["Scheme", "Who it is for", "Turnover limit (previous year)"],
-          rows: [
-            ["Section 10(1)", "Manufacturers, traders and restaurants", "₹1.5 crore (₹75 lakh in specified special category States)"],
-            ["Section 10(2A)", "Service providers and mixed suppliers not eligible under 10(1)", "₹50 lakh"],
-          ],
-        },
-        { type: "paragraph", text: "A business generally can't opt if it:" },
-        {
-          type: "bullets",
-          items: [
-            "Makes inter-state outward supplies of goods.",
-            "Manufactures notified goods, such as ice cream, pan masala and tobacco products.",
-            "Is a casual taxable person or a non-resident taxable person.",
-          ],
-        },
-        {
-          type: "note",
-          text: "All registrations under the same PAN must opt for the scheme together.",
-        },
+    overview(
+      "Module 10 — The Composition Scheme",
+      [
+        "The composition scheme lets small businesses pay tax at a low, fixed rate on turnover with simpler compliance — in return for giving up input tax credit and some kinds of sales. This module helps you decide whether it suits a business.",
       ],
-    },
-    {
-      title: "Composition tax rates",
-      blocks: [
-        {
-          type: "table",
-          headers: ["Type of business", "Rate (CGST + SGST)", "Charged on"],
-          rows: [
-            ["Manufacturers", "1% (0.5% + 0.5%)", "Turnover in the State or UT"],
-            ["Traders", "1% (0.5% + 0.5%)", "Turnover of taxable supplies in the State or UT"],
-            ["Restaurants not serving alcohol", "5% (2.5% + 2.5%)", "Turnover in the State or UT"],
-            ["Service providers under Section 10(2A)", "6% (3% + 3%)", "Turnover in the State or UT"],
-          ],
-        },
-        {
-          type: "example",
-          rows: [
-            { label: "Trader's taxable turnover for the quarter", value: "₹12,00,000" },
-            { label: "Composition tax at 1%", value: "₹12,000" },
-          ],
-          total: { label: "Paid through CMP-08 (₹6,000 CGST + ₹6,000 SGST)", value: "₹12,000" },
-        },
+      [
+        "Explain what the composition scheme is",
+        "Check who can and can't opt in",
+        "Apply the composition tax rates",
+        "List the restrictions on composition taxpayers",
+        "Describe how to opt in, opt out and file returns",
+        "Compare composition with regular registration",
       ],
-    },
-    {
-      title: "Restrictions and compliance",
-      blocks: [
-        {
-          type: "bullets",
-          items: [
-            "No input tax credit on purchases.",
-            "GST can't be collected from customers — issue a bill of supply, not a tax invoice.",
-            "Mention “composition taxable person, not eligible to collect tax on supplies” on the bill of supply, and display “Composition taxable person” at the place of business.",
-            "Tax under reverse charge is still payable at the normal rates.",
-          ],
-        },
-        {
-          type: "table",
-          headers: ["Form", "Purpose", "Due"],
-          rows: [
-            ["CMP-02", "Opt into the scheme", "Before the start of the financial year"],
-            ["CMP-08", "Statement and payment of tax", "18th of the month after each quarter"],
-            ["GSTR-4", "Annual return", "30 June after the financial year (from FY 2024-25)"],
-          ],
-        },
-        {
-          type: "link",
-          label: "Official source",
-          text: "CGST Rules — Rule 62 (CBIC)",
-          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter8/rule62_v1.00.html",
-        },
+    ),
+    screen(
+      "What the composition scheme is",
+      compare(
+        ["Regular taxpayer", "Charges GST on invoices, claims ITC, files monthly or quarterly returns.", ["ITC available", "More compliance"]],
+        ["Composition taxpayer", "Pays a small percentage of turnover as tax, can't collect GST from customers or claim ITC.", ["Simple", "No ITC"]],
+      ),
+    ),
+    screen(
+      "Who can opt",
+      table(
+        ["Scheme", "Who it's for", "Turnover limit (previous year)"],
+        [
+          ["Section 10(1)", "Manufacturers, traders and restaurants", "₹1.5 crore (₹75 lakh in specified special category States)"],
+          ["Section 10(2A)", "Service providers and mixed suppliers not eligible under 10(1)", "₹50 lakh"],
+        ],
+      ),
+      note("All registrations under the same PAN must opt for the scheme together."),
+    ),
+    screen(
+      "Who can't opt",
+      p("A business generally can't opt for composition if it:"),
+      bullets(
+        "Makes inter-state outward supplies of goods.",
+        "Supplies goods not taxable under GST.",
+        "Manufactures notified goods, such as ice cream, pan masala and tobacco products.",
+        "Is a casual taxable person or a non-resident taxable person.",
+      ),
+    ),
+    screen(
+      "Composition tax rates",
+      table(
+        ["Type of business", "Rate (CGST + SGST)", "Charged on"],
+        [
+          ["Manufacturers", "1% (0.5% + 0.5%)", "Turnover in the State or UT"],
+          ["Traders", "1% (0.5% + 0.5%)", "Turnover of taxable supplies in the State or UT"],
+          ["Restaurants not serving alcohol", "5% (2.5% + 2.5%)", "Turnover in the State or UT"],
+          ["Service providers under Section 10(2A)", "6% (3% + 3%)", "Turnover in the State or UT"],
+        ],
+      ),
+      example(
+        [["Trader's taxable turnover for the quarter", "₹12,00,000"], ["Composition tax at 1%", "₹12,000"]],
+        ["Paid through CMP-08 (₹6,000 CGST + ₹6,000 SGST)", "₹12,000"],
+      ),
+    ),
+    screen(
+      "Restrictions on composition taxpayers",
+      bullets(
+        "No input tax credit on purchases.",
+        "GST can't be collected from customers — issue a bill of supply, not a tax invoice.",
+        "Mention “composition taxable person, not eligible to collect tax on supplies” on the bill of supply.",
+        "Display “Composition taxable person” at the place of business.",
+        "Tax under reverse charge is still payable at the normal rates — and paid in cash.",
+        "The composition tax is paid from the business's own pocket.",
+      ),
+    ),
+    screen(
+      "Opting in, opting out and crossing the limit",
+      table(
+        ["Event", "Form", "Timing"],
+        [
+          ["Opt into the scheme", "CMP-02", "Before the start of the financial year"],
+          ["Opt out voluntarily", "CMP-04", "When choosing to leave"],
+          ["Turnover crosses the limit", "CMP-04", "Within 7 days of crossing — then become a regular taxpayer"],
+        ],
+      ),
+      caution("Once the limit is crossed during the year, the business must move to regular registration — it can't continue under composition."),
+    ),
+    screen(
+      "Returns and payments",
+      table(
+        ["Form", "Purpose", "Due"],
+        [
+          ["CMP-08", "Statement and payment of tax", "18th of the month after each quarter"],
+          ["GSTR-4", "Annual return", "30 June after the financial year (from FY 2024-25)"],
+        ],
+      ),
+      { type: "link", label: "Official source", text: "CGST Rules — Rule 62 (CBIC)", href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter8/rule62_v1.00.html" },
+    ),
+    screen(
+      "Worked example: composition or regular?",
+      p("A trader sells only to consumers in its own State. Annual sales are ₹1 crore, and customers pay the same price either way. Purchases are ₹70 lakh plus 18% GST (₹12.6 lakh). Rates are assumed for the example."),
+      table(
+        ["", "Regular", "Composition"],
+        [
+          ["Sales received from customers", "₹100 lakh", "₹100 lakh"],
+          ["GST included in sales (18/118)", "(₹15.25 lakh)", "—"],
+          ["Composition tax at 1%", "—", "(₹1 lakh)"],
+          ["Purchases (net of ITC under regular)", "(₹70 lakh)", "(₹82.6 lakh)"],
+          ["Profit before other costs", "₹14.75 lakh", "₹16.4 lakh"],
+        ],
+      ),
+      p("Here composition gives a higher profit. But if the trader sold to registered businesses that want ITC, or had large GST-bearing purchases, regular registration could be better."),
+    ),
+    mistakes(
+      ["Charging GST on a bill of supply", "Composition taxpayers can't collect GST."],
+      ["Claiming ITC", "No ITC is allowed under composition."],
+      ["Making inter-state sales of goods", "This makes the business ineligible."],
+      ["Continuing after crossing the limit", "File CMP-04 within 7 days and register as regular."],
+      ["Forgetting RCM", "Reverse charge tax is still payable in cash at normal rates."],
+    ),
+    check(
+      10,
+      q("What is the general composition turnover limit for traders?", ["₹20 lakh", "₹50 lakh", "₹1.5 crore", "₹5 crore"], 2, "₹1.5 crore (₹75 lakh in specified special category States)."),
+      q("A trader has taxable turnover of ₹12,00,000 for a quarter. What is the composition tax?", ["₹6,000", "₹12,000", "₹60,000", "₹2,16,000"], 1, "1% of turnover."),
+      q("Which document does a composition taxpayer issue to customers?", ["Tax invoice", "Bill of supply", "E-way bill", "Credit note"], 1, "They can't collect GST."),
+      q("When is CMP-08 due?", ["11th of every month", "18th of the month after each quarter", "30 June", "31 December"], 1, "Quarterly, by the 18th."),
+      q("A composition taxpayer's turnover crosses the limit mid-year. What must it do?", ["Nothing until next year", "File CMP-04 within 7 days and become a regular taxpayer", "Pay double tax", "Cancel registration"], 1, "It must leave the scheme."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Eligibility",
+          ["Can each opt for composition? (a) a ₹90 lakh grocery shop in Gujarat selling locally, (b) a ₹40 lakh consultant, (c) a ₹1 crore trader selling to other States, (d) an ice-cream manufacturer with ₹60 lakh turnover."],
+          ["(a) Yes — under ₹1.5 crore. (b) Yes — under Section 10(2A), under ₹50 lakh. (c) No — inter-state sales of goods. (d) No — ice cream is a notified excluded good."],
+        ],
+        [
+          "Exercise 2 — Tax for a quarter",
+          ["A restaurant (no alcohol) under composition has quarterly turnover of ₹8,00,000.", "What tax is paid, and in which form?"],
+          ["5% × ₹8,00,000 = ₹40,000 (₹20,000 CGST + ₹20,000 SGST).", "Paid through CMP-08 by the 18th of the month after the quarter."],
+        ],
+        [
+          "Exercise 3 — RCM under composition",
+          ["A composition trader (a business entity) pays an advocate ₹30,000 in legal fees, which are under reverse charge at 18% (intra-state).", "How much RCM tax is paid, and can ITC be claimed?"],
+          ["RCM tax = ₹2,700 CGST + ₹2,700 SGST = ₹5,400, paid in cash.", "No ITC — composition taxpayers can't claim input tax credit, so the ₹5,400 is a cost."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "What the composition scheme is and how it differs from regular registration",
+        "Turnover limits and who can't opt",
+        "Composition rates for manufacturers, traders, restaurants and service providers",
+        "Restrictions: no ITC, bills of supply, display requirements",
+        "Opting in and out, and crossing the limit",
+        "CMP-08 and GSTR-4",
+        "How to compare composition with regular registration",
       ],
-    },
-    {
-      title: "Is composition right for your business?",
-      blocks: [
-        {
-          type: "cards",
-          items: [
-            {
-              title: "Composition often suits",
-              text: "Small businesses selling mainly to consumers within one State, with modest purchases that carry GST — where simple compliance matters more than claiming ITC.",
-            },
-            {
-              title: "Regular registration often suits",
-              text: "Businesses selling to other registered businesses, who want ITC on your invoices; businesses making inter-state sales; and those with large GST-bearing purchases.",
-            },
-          ],
-        },
-        {
-          type: "tip",
-          title: "Do the numbers",
-          text: "Compare the composition tax plus the GST you can't recover on purchases with the net GST you would pay as a regular taxpayer — and think about your customers' need for ITC.",
-        },
-      ],
-    },
-    {
-      title: "Module 10 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "What is the general composition turnover limit for traders?",
-              options: ["₹20 lakh", "₹50 lakh", "₹1.5 crore", "₹5 crore"],
-              answer: 2,
-              explanation: "Manufacturers, traders and restaurants can opt up to ₹1.5 crore (₹75 lakh in specified special category States).",
-            },
-            {
-              question: "A trader under composition has taxable turnover of ₹12,00,000 for a quarter. What is the tax?",
-              options: ["₹6,000", "₹12,000", "₹60,000", "₹2,16,000"],
-              answer: 1,
-              explanation: "Traders pay 1% (0.5% CGST + 0.5% SGST) of taxable turnover: ₹12,000.",
-            },
-            {
-              question: "Which document does a composition taxpayer issue to customers?",
-              options: ["Tax invoice", "Bill of supply", "E-way bill", "Credit note"],
-              answer: 1,
-              explanation: "Composition taxpayers can't collect GST, so they issue a bill of supply.",
-            },
-            {
-              question: "When is the composition annual return (GSTR-4) due?",
-              options: ["18th of every month", "30 April", "30 June after the financial year", "31 December"],
-              answer: 2,
-              explanation: "From FY 2024-25, GSTR-4 is due by 30 June after the end of the financial year.",
-            },
-            {
-              question: "Which business is generally NOT eligible for the composition scheme?",
-              options: [
-                "A local grocery shop",
-                "A trader making inter-state sales of goods",
-                "A small restaurant not serving alcohol",
-                "A small manufacturer selling within its State",
-              ],
-              answer: 1,
-              explanation: "Businesses making inter-state outward supplies of goods can't opt for composition.",
-            },
-          ],
-        },
-      ],
-    },
+      "Composition trades credit for simplicity. It suits small local businesses selling to consumers — run the numbers before choosing.",
+    ),
   ],
   10: [
     {
