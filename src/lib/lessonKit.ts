@@ -58,6 +58,23 @@ export const example = (rows: [string, string][], total: [string, string]): Less
 
 export const screen = (title: string, ...blocks: LessonBlock[]): LessonScreen => ({ title, blocks })
 
+/** Practical exercises: [title, task lines, answer lines] triples. */
+export const exercises = (...items: [string, string[], string[]][]): LessonBlock => ({
+  type: "exercises",
+  items: items.map(([title, task, answer]) => ({ title, task, answer })),
+})
+
+/** Opening screen of a module: intro text and learning objectives. */
+export const overview = (title: string, intro: string[], objectives: string[]): LessonScreen =>
+  screen(title, ...intro.map(p), h("By the end of this module"), p("You'll be able to:"), bullets(...objectives))
+
+/** Common-mistakes screen: [mistake, explanation] pairs. */
+export const mistakes = (...items: [string, string][]): LessonScreen => screen("Common mistakes", steps(...items))
+
+/** Closing summary screen of a module. */
+export const summary = (learned: string[], keyConcept: string): LessonScreen =>
+  screen("Module summary", p("In this module you learned:"), bullets(...learned), h("Key concept to remember"), note(keyConcept))
+
 /** A quiz question; `answer` is the index of the correct option. */
 export const q = (question: string, options: string[], answer: number, explanation: string): QuizQuestion => ({
   question,

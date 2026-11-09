@@ -1,4 +1,5 @@
 import type { CourseLessons } from "@/lib/lessonTypes"
+import { bullets, caution, cards, check, compare, example, exercises, mistakes, note, overview, p, q, screen, steps, summary, table, tip } from "@/lib/lessonKit"
 
 // Learn GST in India — lesson screens by module index (0 = Module 1).
 const lessons: CourseLessons = {
@@ -2014,329 +2015,373 @@ const lessons: CourseLessons = {
     },
   ],
   4: [
-    {
-      title: "How GST rates are set — and the current slabs",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "GST rates are recommended by the GST Council and put into effect through rate notifications issued by the Central and State Governments. The notification — not a news report or a price list — is what decides the rate for an item.",
-        },
-        {
-          type: "table",
-          headers: ["Rate", "Broadly applies to"],
-          rows: [
-            ["Nil (0%)", "Specified essential goods and services, such as certain unprocessed foods, as listed in the exemption and nil-rate notifications"],
-            ["5%", "Merit and everyday-use goods and services"],
-            ["18%", "The standard rate — most goods and services"],
-            ["40%", "A special rate for select luxury and “sin” goods, such as aerated sugary drinks and large luxury cars"],
-            ["3%", "Gold, silver, platinum and jewellery"],
-            ["0.25%", "Diamonds and other precious and semi-precious stones"],
-          ],
-        },
-        {
-          type: "paragraph",
-          text: "For an intra-state supply the rate is split equally between CGST and SGST (for example 18% = 9% + 9%). For an inter-state supply the whole rate is charged as IGST.",
-        },
-        {
-          type: "note",
-          text: "The examples are broad categories, not a rate list. Always check the exact entry in the current rate notification for the item you are invoicing.",
-        },
+    overview(
+      "Module 5 — GST Rates and Classification",
+      [
+        "Every GST invoice needs the right rate. In this module you'll learn how rates are set, what the current slabs are after the September 2025 changes, and how to find the correct rate for an item using HSN and SAC codes.",
       ],
-    },
-    {
-      title: "GST 2.0 — the September 2025 rate rationalisation",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "From 1 July 2017 until September 2025, most goods and services fell into four main slabs — 5%, 12%, 18% and 28% — with compensation cess on top for some goods.",
-        },
-        {
-          type: "paragraph",
-          text: "On the recommendation of the 56th GST Council meeting, a simpler structure took effect on 22 September 2025:",
-        },
-        {
-          type: "bullets",
-          items: [
-            "Most items in the 12% slab moved to 5%.",
-            "Most items in the 28% slab moved to 18%.",
-            "A 40% rate was introduced for select luxury and sin goods.",
-            "Compensation cess was removed for most goods, with GST rates adjusted instead.",
-          ],
-        },
-        {
-          type: "caution",
-          text: "When rates change, the rate that applies depends on the time of supply (Module 6), not just the invoice date. Transactions that straddle a rate change need special care.",
-        },
-        {
-          type: "link",
-          label: "Official source",
-          text: "PIB — Recommendations of the 56th GST Council meeting",
-          href: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2163555&reg=48&lang=2",
-        },
+      [
+        "Explain how GST rates are decided and notified",
+        "List the current GST rate slabs",
+        "Split a rate into CGST and SGST, or charge it as IGST",
+        "Describe the GST 2.0 changes from 22 September 2025",
+        "Read an HSN code and a SAC code",
+        "Find and document the correct rate for an item",
       ],
-    },
-    {
-      title: "Classifying goods (HSN) and services (SAC)",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Rates are linked to classification codes. Goods use HSN codes; services use SAC codes, which start with 99.",
-        },
-        {
-          type: "table",
-          headers: ["HSN digits", "Level", "Example — a laptop"],
-          rows: [
-            ["2", "Chapter", "84 — machinery and mechanical appliances"],
-            ["4", "Heading", "8471 — automatic data-processing machines"],
-            ["6", "Sub-heading", "847130 — portable machines such as laptops"],
-            ["8", "Tariff item", "The most detailed level"],
-          ],
-        },
-        {
-          type: "paragraph",
-          text: "On tax invoices, businesses with aggregate turnover up to ₹5 crore in the previous year generally show at least 4-digit HSN codes, and those above ₹5 crore show at least 6 digits.",
-        },
-        { type: "heading", text: "Finding the correct rate" },
-        {
-          type: "steps",
-          items: [
-            { title: "Describe the item exactly", text: "Material, use, specification and how it is sold." },
-            { title: "Classify it", text: "Find the HSN or SAC code using the tariff and official search tools." },
-            { title: "Find the rate entry", text: "Look up that code in the current rate notification, including any conditions." },
-            { title: "Record your reasoning", text: "Keep a note of the code, notification entry and date checked." },
-          ],
-        },
-        {
-          type: "link",
-          label: "Search codes",
-          text: "GST Portal — Search HSN/SAC code",
-          href: "https://services.gst.gov.in/services/searchhsnsac",
-        },
+    ),
+    screen(
+      "How GST rates are set",
+      p("GST rates are recommended by the GST Council and put into effect through rate notifications issued by the Central and State Governments."),
+      steps(
+        ["GST Council recommends", "The Council — the Union Finance Minister and State Finance Ministers — discusses and recommends rates."],
+        ["Governments notify", "The Centre and the States issue rate notifications listing items and their rates."],
+        ["Businesses apply", "Businesses charge the rate in the notification for each item's classification."],
+      ),
+      note("The notification — not a news report or a supplier's price list — is what decides the rate for an item."),
+    ),
+    screen(
+      "The current GST rate slabs",
+      table(
+        ["Rate", "Broadly applies to"],
+        [
+          ["Nil (0%)", "Specified essential goods and services, such as certain unprocessed foods, as listed in the exemption and nil-rate notifications"],
+          ["5%", "Merit and everyday-use goods and services"],
+          ["18%", "The standard rate — most goods and services"],
+          ["40%", "A special rate for select luxury and “sin” goods, such as aerated sugary drinks and large luxury cars"],
+          ["3%", "Gold, silver, platinum and jewellery"],
+          ["0.25%", "Diamonds and other precious and semi-precious stones"],
+        ],
+      ),
+      note("These are broad categories, not a rate list. Always check the exact entry in the current rate notification for the item you are invoicing."),
+    ),
+    screen(
+      "How the rate is split",
+      p("The rate is the total GST. How it appears on the invoice depends on whether the supply is intra-state or inter-state (Module 2)."),
+      table(
+        ["Rate", "Intra-state", "Inter-state"],
+        [
+          ["5%", "2.5% CGST + 2.5% SGST", "5% IGST"],
+          ["18%", "9% CGST + 9% SGST", "18% IGST"],
+          ["40%", "20% CGST + 20% SGST", "40% IGST"],
+        ],
+      ),
+      example(
+        [["Taxable value", "₹50,000"], ["CGST at 9%", "₹4,500"], ["SGST at 9%", "₹4,500"]],
+        ["Invoice total (intra-state, 18%)", "₹59,000"],
+      ),
+      p("The same supply to a customer in another State would show IGST at 18% = ₹9,000, with the same total of ₹59,000."),
+    ),
+    screen(
+      "GST 2.0 — the September 2025 rate rationalisation",
+      p("From 1 July 2017 until September 2025, most goods and services fell into four main slabs — 5%, 12%, 18% and 28% — with compensation cess on top for some goods."),
+      p("On the recommendation of the 56th GST Council meeting, a simpler structure took effect on 22 September 2025:"),
+      bullets(
+        "Most items in the 12% slab moved to 5%.",
+        "Most items in the 28% slab moved to 18%.",
+        "A 40% rate was introduced for select luxury and sin goods.",
+        "Compensation cess was removed for most goods, with GST rates adjusted instead.",
+      ),
+      { type: "link", label: "Official source", text: "PIB — Recommendations of the 56th GST Council meeting", href: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2163555&reg=48&lang=2" },
+    ),
+    screen(
+      "When rates change",
+      p("Rate changes create a practical question: which rate applies to a supply that straddles the change date?"),
+      bullets(
+        "The answer depends on the time of supply — when the goods or services were supplied, invoiced and paid for.",
+        "Section 14 of the CGST Act sets out which rate applies when these events fall on different sides of the change.",
+        "You'll learn the time of supply rules in Module 6.",
+      ),
+      caution("Don't simply use the invoice date. Transactions that straddle a rate change need the time of supply rules."),
+    ),
+    screen(
+      "HSN codes for goods",
+      p("Rates are linked to classification codes. Goods use HSN (Harmonised System of Nomenclature) codes, based on an international system used for customs."),
+      table(
+        ["HSN digits", "Level", "Example — a laptop"],
+        [
+          ["2", "Chapter", "84 — machinery and mechanical appliances"],
+          ["4", "Heading", "8471 — automatic data-processing machines"],
+          ["6", "Sub-heading", "847130 — portable machines such as laptops"],
+          ["8", "Tariff item", "The most detailed level"],
+        ],
+      ),
+      p("Each extra pair of digits narrows the description. The more digits, the more precisely the item is identified."),
+    ),
+    screen(
+      "SAC codes for services",
+      p("Services use SAC (Services Accounting Code) codes. All SAC codes start with 99."),
+      table(
+        ["SAC heading", "Services"],
+        [
+          ["9954", "Construction services"],
+          ["9963", "Accommodation, food and beverage services"],
+          ["9973", "Leasing or rental services without operator"],
+          ["9982", "Legal and accounting services"],
+          ["9983", "Other professional, technical and business services"],
+        ],
+      ),
+      note("Like HSN, SAC codes become more detailed as digits are added. Use the most specific code that describes the service."),
+    ),
+    screen(
+      "HSN and SAC on invoices",
+      p("Tax invoices must show HSN or SAC codes. The minimum number of digits depends on the supplier's aggregate turnover in the previous financial year:"),
+      table(
+        ["Aggregate turnover in the previous year", "Minimum digits on invoices"],
+        [
+          ["Up to ₹5 crore", "4 digits"],
+          ["Above ₹5 crore", "6 digits"],
+        ],
+      ),
+      p("Codes are also reported in the HSN summary of the GSTR-1 return (Module 11)."),
+    ),
+    screen(
+      "Finding the correct rate",
+      steps(
+        ["Describe the item exactly", "Material, use, specification and how it is sold."],
+        ["Classify it", "Find the HSN or SAC code using the tariff and official search tools."],
+        ["Find the rate entry", "Look up that code in the current rate notification, including any conditions."],
+        ["Record your reasoning", "Keep a note of the code, notification entry and date checked."],
+      ),
+      { type: "link", label: "Search codes", text: "GST Portal — Search HSN/SAC code", href: "https://services.gst.gov.in/services/searchhsnsac" },
+      tip("Why record your reasoning?", "If a tax officer questions a rate, a note of the code, notification and date checked shows the business took care."),
+    ),
+    screen(
+      "Worked example: an invoice with two rates",
+      p("A Mumbai stationery trader sells to a customer in Pune (both in Maharashtra). The invoice has two items. The rates below are assumed for the example."),
+      table(
+        ["Item", "Value", "Rate", "CGST", "SGST"],
+        [
+          ["Exercise notebooks", "₹20,000", "5%", "₹500", "₹500"],
+          ["Office files", "₹50,000", "18%", "₹4,500", "₹4,500"],
+        ],
+        { footer: ["Total", "₹70,000", "", "₹5,000", "₹5,000"], numeric: [1, 3, 4] },
+      ),
+      p("Invoice total = ₹70,000 + ₹10,000 GST = ₹80,000."),
+      p("If the same goods were sold to a customer in Delhi, the tax would be IGST: ₹1,000 + ₹9,000 = ₹10,000, and the total would still be ₹80,000."),
+    ),
+    mistakes(
+      ["Using an old rate", "Rates changed on 22 September 2025. Always check the current notification."],
+      ["Guessing the classification", "Use the tariff and official search; record your reasoning."],
+      ["Applying one rate to a whole invoice", "Each item is taxed at the rate for its own classification."],
+      ["Charging IGST on an intra-state supply", "Intra-state supplies split into CGST + SGST."],
+      ["Too few HSN digits", "Above ₹5 crore turnover, invoices need at least 6 digits."],
+    ),
+    check(
+      5,
+      q("What finally decides the GST rate for an item?", ["A news report", "The applicable rate notification", "The supplier's price list", "The customer's request"], 1, "The Council recommends rates, but the notification is what applies."),
+      q("What is the standard GST rate for most goods and services after GST 2.0?", ["5%", "12%", "18%", "28%"], 2, "18% is the standard rate."),
+      q("From which date did the GST 2.0 rate structure take effect?", ["1 July 2017", "1 April 2025", "22 September 2025", "1 February 2026"], 2, "22 September 2025, after the 56th Council meeting."),
+      q("An 18% intra-state supply is shown on the invoice as:", ["18% IGST", "9% CGST + 9% SGST", "18% CGST + 18% SGST", "12% CGST + 6% SGST"], 1, "Intra-state supplies split the rate equally."),
+      q("A business had ₹7 crore turnover last year. How many HSN digits must its invoices show?", ["2", "4", "6", "8"], 2, "Above ₹5 crore, at least 6 digits."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Split the rate",
+          ["A Jaipur supplier sells goods worth ₹40,000 at 5% to a customer in Udaipur (Rajasthan).", "Work out the tax and invoice total."],
+          ["Intra-state: CGST 2.5% = ₹1,000 and SGST 2.5% = ₹1,000.", "Invoice total = ₹42,000."],
+        ],
+        [
+          "Exercise 2 — Inter-state supply",
+          ["The same supplier sells the same goods to a customer in Ahmedabad (Gujarat).", "What changes?"],
+          ["Inter-state: IGST 5% = ₹2,000.", "The invoice total is still ₹42,000 — only the tax type changes."],
+        ],
+        [
+          "Exercise 3 — Read an HSN code",
+          ["What does each part of HSN 847130 tell you?"],
+          ["84 = chapter (machinery), 8471 = heading (data-processing machines), 847130 = sub-heading (portable machines such as laptops)."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "How the GST Council recommends rates and Governments notify them",
+        "The current slabs: nil, 5%, 18% and 40%, plus 3% and 0.25%",
+        "How rates split into CGST + SGST or are charged as IGST",
+        "The GST 2.0 changes from 22 September 2025",
+        "HSN codes for goods and SAC codes for services",
+        "How many HSN digits invoices need",
+        "A step-by-step method to find and record the correct rate",
       ],
-    },
-    {
-      title: "Module 5 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "What finally decides the GST rate for an item?",
-              options: ["A news report", "The applicable rate notification", "The supplier's price list", "The customer's request"],
-              answer: 1,
-              explanation: "The GST Council recommends rates, but the rate notification issued by the Government is what applies.",
-            },
-            {
-              question: "What is the standard GST rate that applies to most goods and services after GST 2.0?",
-              options: ["5%", "12%", "18%", "28%"],
-              answer: 2,
-              explanation: "18% is the standard rate. Most items formerly at 28% moved to 18%, and most at 12% moved to 5%.",
-            },
-            {
-              question: "From which date did the GST 2.0 rate structure take effect?",
-              options: ["1 July 2017", "1 April 2025", "22 September 2025", "1 February 2026"],
-              answer: 2,
-              explanation: "The rationalised rates took effect on 22 September 2025, following the 56th GST Council meeting.",
-            },
-            {
-              question: "An 18% intra-state supply is shown on the invoice as:",
-              options: ["18% IGST", "9% CGST + 9% SGST", "18% CGST + 18% SGST", "12% CGST + 6% SGST"],
-              answer: 1,
-              explanation: "Intra-state supplies split the rate equally between CGST and SGST; inter-state supplies carry the full rate as IGST.",
-            },
-            {
-              question: "Which codes are used to classify services?",
-              options: ["HSN codes", "SAC codes starting with 99", "GSTIN codes", "PAN codes"],
-              answer: 1,
-              explanation: "Services use SAC codes, which begin with 99. Goods use HSN codes.",
-            },
-          ],
-        },
-      ],
-    },
+      "The right rate comes from the right classification. Classify carefully, check the current notification and record how you decided.",
+    ),
   ],
   5: [
-    {
-      title: "Time of supply — when GST becomes payable",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "The time of supply decides the tax period in which GST must be paid — and, when rates change, which rate applies.",
-        },
-        {
-          type: "table",
-          headers: ["Supply", "General rule"],
-          rows: [
-            [
-              "Goods (Section 12)",
-              "The earlier of the date the invoice is issued and the last date by which it should have been issued. For normal taxpayers, GST is generally not payable on advances received for goods.",
-            ],
-            [
-              "Services (Section 13)",
-              "If the invoice is issued on time (generally within 30 days of supply), the earlier of the invoice date and the date payment is received. If not issued on time, the earlier of the date of supply and the payment date.",
-            ],
-          ],
-        },
-        {
-          type: "tip",
-          title: "Example",
-          text: "A consultant completes work on 5 May, issues the invoice on 20 May and is paid on 10 June. The invoice was issued within 30 days, so the time of supply is 20 May — the GST goes into May's return.",
-        },
-        {
-          type: "note",
-          text: "Special rules apply to reverse charge, vouchers and some continuous supplies. Advances for services are taxable when received.",
-        },
+    overview(
+      "Module 6 — Time, Value and Place of Supply",
+      [
+        "Three questions decide how GST applies to every transaction: when is the tax due, on how much, and which tax applies? This module answers each one.",
       ],
-    },
-    {
-      title: "Value of supply — what to include",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "GST is charged on the value of supply. Under Section 15, this is normally the transaction value — the price actually paid or payable, where the supplier and recipient are not related and price is the only consideration.",
-        },
-        { type: "heading", text: "Include in the taxable value" },
-        {
-          type: "bullets",
-          items: [
-            "Taxes, duties and fees other than GST charged by the supplier.",
-            "Amounts the supplier owes but the customer pays on the supplier's behalf.",
-            "Incidental expenses charged to the customer, such as packing, commission and delivery by the supplier.",
-            "Interest, late fees or penalties for delayed payment.",
-            "Subsidies directly linked to the price (except those from the Central and State Governments).",
-          ],
-        },
-        {
-          type: "example",
-          rows: [
-            { label: "Price of goods", value: "₹1,00,000" },
-            { label: "Packing charged to customer", value: "₹2,000" },
-            { label: "Delivery charged by supplier", value: "₹3,000" },
-            { label: "Taxable value", value: "₹1,05,000" },
-            { label: "GST at an assumed 18%", value: "₹18,900" },
-          ],
-          total: { label: "Invoice total", value: "₹1,23,900" },
-        },
+      [
+        "Work out the time of supply for goods and services",
+        "Explain how advances are treated",
+        "Calculate the value of supply, including incidental charges",
+        "Treat discounts correctly",
+        "Determine the place of supply for goods and services",
+        "Decide between CGST + SGST and IGST",
       ],
-    },
-    {
-      title: "Discounts and their GST treatment",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Section 15(3) allows two kinds of discount to reduce the taxable value:",
-        },
-        {
-          type: "cards",
-          items: [
-            {
-              title: "Before or at the time of supply",
-              text: "Excluded from value if it is recorded on the invoice — for example, a trade discount shown on the tax invoice.",
-            },
-            {
-              title: "After the supply",
-              text: "Excluded only if the supplier issues a credit note for it and the recipient reverses the input tax credit attributable to the discount, as provided under Section 34.",
-            },
-          ],
-        },
-        {
-          type: "caution",
-          text: "A discount that doesn't meet these conditions doesn't reduce the GST payable, even if it reduces the amount the customer pays.",
-        },
-        {
-          type: "link",
-          label: "Official source",
-          text: "CGST Act — Section 15 (CBIC)",
-          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter4/section15_v1.00.html",
-        },
+    ),
+    screen(
+      "Three questions for every supply",
+      table(
+        ["Question", "Concept", "What it decides"],
+        [
+          ["When?", "Time of supply", "Which tax period (return) the GST belongs to — and which rate applies if rates change"],
+          ["How much?", "Value of supply", "The amount GST is calculated on"],
+          ["Where?", "Place of supply", "Whether the supply is intra-state (CGST + SGST) or inter-state (IGST)"],
+        ],
+      ),
+    ),
+    screen(
+      "Time of supply — goods",
+      p("Under Section 12 of the CGST Act, the time of supply of goods is generally the earlier of:"),
+      bullets(
+        "The date the invoice is issued, and",
+        "The last date by which the invoice should have been issued.",
+      ),
+      p("For goods involving movement, the invoice should be issued before or at the time the goods are removed for delivery."),
+      tip("Example", "Goods are dispatched on 28 March and the invoice is issued that day. The time of supply is 28 March — the GST belongs to March's return."),
+    ),
+    screen(
+      "Time of supply — services",
+      p("Under Section 13, the rule depends on whether the invoice is issued on time — generally within 30 days of the supply of service:"),
+      table(
+        ["Situation", "Time of supply"],
+        [
+          ["Invoice issued on time", "The earlier of the invoice date and the date payment is received"],
+          ["Invoice not issued on time", "The earlier of the date of supply and the date payment is received"],
+        ],
+      ),
+      tip("Example", "A consultant completes work on 5 May, issues the invoice on 20 May and is paid on 10 June. The invoice was issued within 30 days, so the time of supply is 20 May — the GST goes into May's return."),
+    ),
+    screen(
+      "Advances",
+      compare(
+        ["Advances for goods", "For normal taxpayers, GST is generally not payable when an advance is received for goods. Tax is paid when the invoice is issued.", ["Notified exemption for advances on goods"]],
+        ["Advances for services", "GST is payable when the advance is received, because payment can be the earlier event.", ["Issue a receipt voucher", "Adjust it against the final invoice"]],
+      ),
+      note("Special rules also apply to reverse charge, vouchers and some continuous supplies."),
+    ),
+    screen(
+      "Value of supply — transaction value",
+      p("GST is charged on the value of supply. Under Section 15, this is normally the transaction value — the price actually paid or payable — when:"),
+      bullets(
+        "The supplier and recipient are not related, and",
+        "Price is the only consideration for the supply.",
+      ),
+      p("If either condition isn't met — for example, a sale to a related company — the valuation rules in the CGST Rules are used instead."),
+    ),
+    screen(
+      "What to include in the value",
+      bullets(
+        "Taxes, duties and fees other than GST charged by the supplier.",
+        "Amounts the supplier owes but the customer pays on the supplier's behalf.",
+        "Incidental expenses charged to the customer, such as packing, commission and delivery by the supplier.",
+        "Interest, late fees or penalties for delayed payment.",
+        "Subsidies directly linked to the price (except those from the Central and State Governments).",
+      ),
+      example(
+        [["Price of goods", "₹1,00,000"], ["Packing charged to customer", "₹2,000"], ["Delivery charged by supplier", "₹3,000"], ["Taxable value", "₹1,05,000"], ["GST at an assumed 18%", "₹18,900"]],
+        ["Invoice total", "₹1,23,900"],
+      ),
+      note("GST itself is never part of the taxable value."),
+    ),
+    screen(
+      "Discounts",
+      p("Section 15(3) allows two kinds of discount to reduce the taxable value:"),
+      cards(
+        ["Before or at the time of supply", "Excluded from value if it is recorded on the invoice — for example, a trade discount shown on the tax invoice."],
+        ["After the supply", "Excluded only if the supplier issues a credit note for it and the recipient reverses the input tax credit attributable to the discount."],
+      ),
+      caution("A discount that doesn't meet these conditions doesn't reduce the GST payable, even if it reduces the amount the customer pays."),
+      { type: "link", label: "Official source", text: "CGST Act — Section 15 (CBIC)", href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter4/section15_v1.00.html" },
+    ),
+    screen(
+      "Place of supply — goods",
+      p("The place of supply rules are in Sections 10 to 13 of the IGST Act. For goods within India:"),
+      table(
+        ["Situation", "Place of supply"],
+        [
+          ["Goods that are moved", "Where the movement ends for delivery to the recipient"],
+          ["Goods delivered on a third party's instructions (bill-to, ship-to)", "The principal place of business of the third party who gave the instructions"],
+          ["Goods not moved", "Where the goods are at the time of delivery"],
+          ["Goods assembled or installed at a site", "Where they are assembled or installed"],
+        ],
+      ),
+    ),
+    screen(
+      "Place of supply — services",
+      table(
+        ["Situation", "Place of supply"],
+        [
+          ["General rule, registered recipient", "The recipient's location"],
+          ["General rule, unregistered recipient", "The recipient's address on record, or else the supplier's location"],
+          ["Services linked to immovable property (e.g. hotel stays)", "Where the property is located"],
+          ["Restaurant, catering and similar services", "Where the services are actually performed"],
+        ],
+      ),
+      caution("Many services have specific rules, and imports and exports follow separate provisions (Module 13). Check the relevant section before deciding the tax type."),
+    ),
+    screen(
+      "Worked example: which tax applies?",
+      p("A supplier registered in Karnataka (Bengaluru) makes three supplies:"),
+      table(
+        ["Supply", "Place of supply", "Tax"],
+        [
+          ["Goods delivered to a customer in Chennai", "Tamil Nadu (where movement ends)", "IGST — inter-state"],
+          ["Consulting for a registered client in Mysuru", "Karnataka (recipient's location)", "CGST + SGST — intra-state"],
+          ["Goods sold to a Delhi buyer and delivered, on its instructions, to its customer in Bengaluru", "Delhi (principal place of business of the buyer who gave the instructions)", "IGST — inter-state"],
+        ],
+      ),
+      note("Compare the supplier's location with the place of supply. Same State = CGST + SGST; different States = IGST."),
+    ),
+    mistakes(
+      ["Using the payment date for goods", "For goods, time of supply generally follows the invoice, not the payment."],
+      ["Ignoring advances for services", "GST is payable when a service advance is received."],
+      ["Leaving packing or delivery out of the value", "Incidental charges billed to the customer are part of the value."],
+      ["Reducing value for every discount", "Post-supply discounts need a credit note and ITC reversal by the recipient."],
+      ["Using the customer's billing address for every supply", "Place of supply follows specific rules — e.g. hotel stays follow the property's location."],
+    ),
+    check(
+      6,
+      q("A service is completed on 5 May, invoiced on 20 May and paid on 10 June. What is the time of supply?", ["5 May", "20 May", "10 June", "31 May"], 1, "The invoice was on time, so it's the earlier of 20 May and 10 June."),
+      q("For a normal taxpayer, is GST payable when an advance is received for goods?", ["Yes, always", "Generally no", "Only above ₹1 lakh", "Only for exports"], 1, "Advances for goods are generally not taxed for normal taxpayers; advances for services are."),
+      q("Goods priced at ₹1,00,000 carry ₹2,000 packing and ₹3,000 delivery charged by the supplier. What is the taxable value?", ["₹1,00,000", "₹1,02,000", "₹1,05,000", "₹1,23,900"], 2, "Incidental charges billed by the supplier are part of the value."),
+      q("When does a discount given after the supply reduce the taxable value?", ["Always", "Only with a credit note and ITC reversal by the recipient", "Only if paid in cash", "Never"], 1, "That's the Section 15(3)(b) condition."),
+      q("A Bengaluru supplier sends goods to a customer in Chennai. Which tax applies?", ["CGST + SGST", "IGST", "No GST", "UTGST"], 1, "The movement ends in Tamil Nadu — a different State."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Time of supply for a service",
+          ["A designer completes work on 2 March but forgets to invoice until 15 April. The client pays on 20 April.", "What is the time of supply?"],
+          ["The invoice wasn't issued within 30 days, so use the earlier of the date of supply (2 March) and payment (20 April).", "Time of supply = 2 March."],
+        ],
+        [
+          "Exercise 2 — Value of supply",
+          ["Goods ₹60,000, packing ₹1,500 and delivery ₹2,500, all charged by the supplier. GST at an assumed 18%.", "Find the taxable value, GST and invoice total."],
+          ["Taxable value = ₹64,000.", "GST = ₹11,520.", "Invoice total = ₹75,520."],
+        ],
+        [
+          "Exercise 3 — Tax type",
+          ["A Pune hotel hosts a guest from a Hyderabad company for a conference.", "What is the place of supply and the tax type?"],
+          ["Hotel stays are linked to immovable property, so the place of supply is where the hotel is — Maharashtra.", "The hotel is also in Maharashtra, so CGST + SGST applies."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "Time of supply rules for goods (Section 12) and services (Section 13)",
+        "How advances for goods and services are treated",
+        "Transaction value and what's included in the value of supply",
+        "When discounts reduce the taxable value",
+        "Place of supply rules for goods and services",
+        "How to choose between CGST + SGST and IGST",
       ],
-    },
-    {
-      title: "Place of supply",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Place of supply decides whether a supply is intra-state (CGST + SGST) or inter-state (IGST). The rules are in Sections 10 to 13 of the IGST Act.",
-        },
-        {
-          type: "table",
-          headers: ["Situation", "General place of supply"],
-          rows: [
-            ["Goods that are moved", "Where the movement ends for delivery to the recipient"],
-            ["Goods delivered on a third party's instructions (bill-to, ship-to)", "The principal place of business of the third party who gave the instructions"],
-            ["Goods not moved", "Where the goods are at the time of delivery"],
-            ["Services — general rule, registered recipient", "The recipient's location"],
-            ["Services — general rule, unregistered recipient", "The recipient's address on record, or else the supplier's location"],
-            ["Services linked to immovable property", "Where the property is located"],
-            ["Restaurant, catering and similar services", "Where the services are actually performed"],
-          ],
-        },
-        {
-          type: "caution",
-          text: "Many services have specific rules, and imports and exports follow separate provisions. Check the relevant section before deciding the tax type.",
-        },
-      ],
-    },
-    {
-      title: "Module 6 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "A service is completed on 5 May, invoiced on 20 May and paid on 10 June. What is the time of supply?",
-              options: ["5 May", "20 May", "10 June", "31 May"],
-              answer: 1,
-              explanation: "The invoice was issued within 30 days, so the time of supply is the earlier of the invoice date (20 May) and the payment date (10 June).",
-            },
-            {
-              question: "Goods priced at ₹1,00,000 carry ₹2,000 packing and ₹3,000 delivery charged by the supplier. What is the taxable value?",
-              options: ["₹1,00,000", "₹1,02,000", "₹1,05,000", "₹1,23,900"],
-              answer: 2,
-              explanation: "Incidental charges such as packing and delivery charged by the supplier are part of the value: ₹1,05,000.",
-            },
-            {
-              question: "When does a discount given after the supply reduce the taxable value?",
-              options: [
-                "Always",
-                "Only if a credit note is issued and the recipient reverses the related ITC",
-                "Only if the customer pays in cash",
-                "Never",
-              ],
-              answer: 1,
-              explanation: "Under Section 15(3)(b), a post-supply discount reduces value only with a credit note and a reversal of the attributable ITC by the recipient.",
-            },
-            {
-              question: "For goods that are moved, the general place of supply is:",
-              options: [
-                "The supplier's registered office",
-                "Where the movement ends for delivery to the recipient",
-                "Where the invoice is printed",
-                "The bank's location",
-              ],
-              answer: 1,
-              explanation: "Under Section 10 of the IGST Act, the place of supply of moved goods is where the movement terminates for delivery.",
-            },
-            {
-              question: "Which of these is NOT included in the taxable value?",
-              options: ["Packing charged to the customer", "Interest for late payment", "The GST itself", "Delivery charged by the supplier"],
-              answer: 2,
-              explanation: "GST is charged on the value — it is never part of the value itself.",
-            },
-          ],
-        },
-      ],
-    },
+      "When, how much and where: answer these three questions for every supply and the GST treatment follows.",
+    ),
   ],
   6: [
     {
