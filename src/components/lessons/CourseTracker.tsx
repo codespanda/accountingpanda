@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Check, GraduationCap, Minus, Plus } from "lucide-react"
+import { ArrowRight, Award, Check, GraduationCap, Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getCompletedModules, toggleModule } from "@/lib/courseProgress"
 import { lessonKey, useLessons } from "@/lib/lessons"
@@ -32,8 +32,9 @@ export function CourseTracker({
     setCompleted(getCompletedModules(progressKey))
   }, [progressKey])
 
-  const completedCount = completed.length
+  const completedCount = modules.filter((_, i) => completed.includes(i)).length
   const progressPct = Math.round((completedCount / totalModules) * 100)
+  const allDone = completedCount === totalModules
 
   return (
     <div className="rounded-[22px] border border-gray-200 bg-white p-5 sm:p-7">
@@ -93,20 +94,36 @@ export function CourseTracker({
           return (
             <li key={title} className="group rounded-xl transition-colors hover:bg-brand-bg">
               <div className="flex items-start gap-3 p-3">
-                <button
-                  type="button"
-                  onClick={() => setCompleted(toggleModule(progressKey, index))}
-                  aria-pressed={done}
-                  aria-label={done ? `Mark module ${index + 1} as not done` : `Mark module ${index + 1} as done`}
-                  className={cn(
-                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors",
-                    done
-                      ? "border-brand-green bg-brand-green text-white"
-                      : "border-gray-300 bg-white hover:border-brand-green"
-                  )}
-                >
-                  {done && <Check className="h-3 w-3" strokeWidth={3} />}
-                </button>
+                {screens ? (
+                  // Modules with lessons are completed by passing their knowledge
+                  // check, so the tick only shows status.
+                  <span
+                    role="img"
+                    aria-label={done ? `Module ${index + 1} completed` : `Module ${index + 1} not completed yet`}
+                    title={done ? "Completed" : "Pass this module's knowledge check to complete it"}
+                    className={cn(
+                      "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border",
+                      done ? "border-brand-green bg-brand-green text-white" : "border-gray-300 bg-white"
+                    )}
+                  >
+                    {done && <Check className="h-3 w-3" strokeWidth={3} />}
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setCompleted(toggleModule(progressKey, index))}
+                    aria-pressed={done}
+                    aria-label={done ? `Mark module ${index + 1} as not done` : `Mark module ${index + 1} as done`}
+                    className={cn(
+                      "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors",
+                      done
+                        ? "border-brand-green bg-brand-green text-white"
+                        : "border-gray-300 bg-white hover:border-brand-green"
+                    )}
+                  >
+                    {done && <Check className="h-3 w-3" strokeWidth={3} />}
+                  </button>
+                )}
 
                 {screens ? (
                   <Link
@@ -153,9 +170,29 @@ export function CourseTracker({
         })}
       </ol>
 
-      {completedCount === totalModules && (
-        <p className="mt-5 rounded-xl bg-bento-mint px-4 py-3 text-sm font-semibold text-bento-forest">
-          You've completed all {totalModules} modules — well done!
+      {allDone ? (
+        <Link
+          to={`${coursePath}/certificate`}
+          className="mt-5 flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
+        >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
+            <Award className="h-4 w-4" />
+          </span>
+          <span className="flex-1">
+            <span className="block text-sm font-semibold text-bento-forest">
+              You've completed all {totalModules} modules — well done!
+            </span>
+            <span className="block text-xs text-bento-forest/80">Your certificate of completion is ready.</span>
+          </span>
+          <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-brand-green">
+            View certificate
+            <ArrowRight className="h-3.5 w-3.5" />
+          </span>
+        </Link>
+      ) : (
+        <p className="mt-5 flex items-center gap-3 rounded-xl border border-dashed border-gray-200 px-4 py-3 text-sm text-gray-500">
+          <Award className="h-4 w-4 shrink-0 text-gray-400" />
+          Complete all {totalModules} modules to earn your certificate of completion.
         </p>
       )}
     </div>

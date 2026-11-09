@@ -88,8 +88,13 @@ export function CourseCertificate({
                 Your name is saved only in this browser. To save a PDF, choose “Save as PDF” in the print dialog.
               </p>
 
-              <div className="rounded-[22px] border-4 border-double border-bento-forest/70 p-2 print:break-inside-avoid">
-                <div className="flex flex-col items-center rounded-2xl border border-bento-forest/20 bg-bento-mint/40 px-6 py-12 text-center sm:px-12">
+              {/* Print the certificate on a single landscape page, keeping its colours. */}
+              <style>{"@page { size: landscape; margin: 10mm; }"}</style>
+              <div
+                className="rounded-[22px] border-4 border-double border-bento-forest/70 p-2 print:h-[180mm] print:break-inside-avoid"
+                style={{ WebkitPrintColorAdjust: "exact", printColorAdjust: "exact" }}
+              >
+                <div className="flex flex-col items-center rounded-2xl border border-bento-forest/20 bg-bento-mint/40 px-6 py-12 text-center sm:px-12 print:h-full print:justify-center print:py-6">
                   <img src={asset("assets/panda-logo.png")} alt="AccountingPanda" className="h-12 w-auto" />
                   <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-brand-green">
                     Certificate of completion
