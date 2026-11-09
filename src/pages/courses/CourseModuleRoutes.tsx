@@ -2,7 +2,9 @@ import { Navigate, useParams } from "react-router-dom"
 import type { CourseDetails } from "@/components/CourseOverview"
 import { CourseCertificate } from "@/components/CourseCertificate"
 import { ModuleLessonPage } from "@/components/lessons/ModuleLessonPage"
-import { lessonKey } from "@/lib/lessons"
+import { lessonKey, useLessons } from "@/lib/lessons"
+import { FinalTest } from "@/components/FinalTest"
+import { finalTestSize, questionsFromLessons } from "@/lib/finalTest"
 import { trackerModules } from "@/lib/trackerModules"
 import { GST_INDIA_COURSE_PATH, gstIndiaModuleSummaries } from "@/pages/courses/gstIndiaModules"
 
@@ -46,6 +48,7 @@ export function GstCertificateRoute() {
       backTo={GST_INDIA_COURSE_PATH}
       backLabel="Back to Course"
       totalModules={gstIndiaModuleSummaries.length}
+      testPath={`${GST_INDIA_COURSE_PATH}/final-test`}
       path={`${GST_INDIA_COURSE_PATH}/certificate`}
     />
   )
@@ -64,7 +67,52 @@ export function CatalogCertificateRoute({ catalog, basePath }: { catalog: Course
       backTo={coursePath}
       backLabel="Back to Course"
       totalModules={course.modules.length}
+      testPath={`${coursePath}/final-test`}
       path={`${coursePath}/certificate`}
+    />
+  )
+}
+
+/** Timed final test for Learn GST in India. */
+export function GstFinalTestRoute() {
+  const { lessons, loading } = useLessons(lessonKey(GST_INDIA_COURSE_PATH))
+  const pool = questionsFromLessons(lessons)
+  return (
+    <FinalTest
+      courseTitle="Learn GST in India"
+      courseSlug="learn-gst-in-india"
+      totalModules={gstIndiaModuleSummaries.length}
+      pool={pool}
+      loading={loading}
+      questionCount={finalTestSize("40 questions", pool.length)}
+      backTo={GST_INDIA_COURSE_PATH}
+      backLabel="Back to Course"
+      certificatePath={`${GST_INDIA_COURSE_PATH}/certificate`}
+      path={`${GST_INDIA_COURSE_PATH}/final-test`}
+    />
+  )
+}
+
+/** Timed final test for any course in a category catalog. */
+export function CatalogFinalTestRoute({ catalog, basePath }: { catalog: CourseDetails[]; basePath: string }) {
+  const { courseSlug } = useParams()
+  const course = catalog.find((c) => c.slug === courseSlug)
+  const coursePath = `${basePath}/${courseSlug ?? ""}`
+  const { lessons, loading } = useLessons(lessonKey(coursePath))
+  if (!course) return <Navigate to={basePath} replace />
+  const pool = questionsFromLessons(lessons)
+  return (
+    <FinalTest
+      courseTitle={course.title}
+      courseSlug={lessonKey(coursePath)}
+      totalModules={course.modules.length}
+      pool={pool}
+      loading={loading}
+      questionCount={finalTestSize(course.finalExam, pool.length)}
+      backTo={coursePath}
+      backLabel="Back to Course"
+      certificatePath={`${coursePath}/certificate`}
+      path={`${coursePath}/final-test`}
     />
   )
 }

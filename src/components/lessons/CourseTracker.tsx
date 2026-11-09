@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Award, Check, GraduationCap, Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { getCompletedModules, toggleModule } from "@/lib/courseProgress"
+import { getCompletedModules, getExamResult, toggleModule, type ExamResult } from "@/lib/courseProgress"
 import { lessonKey, useLessons } from "@/lib/lessons"
 
 export type TrackerModule = { title: string; summary: string; topics: string[] }
@@ -24,12 +24,14 @@ export function CourseTracker({
   modules: TrackerModule[]
 }) {
   const [completed, setCompleted] = useState<number[]>([])
+  const [exam, setExam] = useState<ExamResult | null>(null)
   const [open, setOpen] = useState<number | null>(null)
   const { lessons } = useLessons(lessonKey(coursePath))
   const totalModules = modules.length
 
   useEffect(() => {
     setCompleted(getCompletedModules(progressKey))
+    setExam(getExamResult(progressKey))
   }, [progressKey])
 
   const completedCount = modules.filter((_, i) => completed.includes(i)).length
@@ -170,31 +172,47 @@ export function CourseTracker({
         })}
       </ol>
 
-      {allDone ? (
-        <Link
+      {allDone && exam?.passed ? (
+        <CompletionCard
           to={`${coursePath}/certificate`}
-          className="mt-5 flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
-        >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
-            <Award className="h-4 w-4" />
-          </span>
-          <span className="flex-1">
-            <span className="block text-sm font-semibold text-bento-forest">
-              You've completed all {totalModules} modules — well done!
-            </span>
-            <span className="block text-xs text-bento-forest/80">Your certificate of completion is ready.</span>
-          </span>
-          <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-brand-green">
-            View certificate
-            <ArrowRight className="h-3.5 w-3.5" />
-          </span>
-        </Link>
+          title={`You passed the final test with ${exam.scorePct}% — well done!`}
+          text="Your certificate of completion is ready."
+          action="View certificate"
+        />
+      ) : allDone ? (
+        <CompletionCard
+          to={`${coursePath}/final-test`}
+          title={`You've completed all ${totalModules} modules!`}
+          text="Pass the timed final test to earn your certificate of completion."
+          action="Take the final test"
+        />
       ) : (
         <p className="mt-5 flex items-center gap-3 rounded-xl border border-dashed border-gray-200 px-4 py-3 text-sm text-gray-500">
           <Award className="h-4 w-4 shrink-0 text-gray-400" />
-          Complete all {totalModules} modules to earn your certificate of completion.
+          Complete all {totalModules} modules, then pass the final test, to earn your certificate of completion.
         </p>
       )}
     </div>
+  )
+}
+
+function CompletionCard({ to, title, text, action }: { to: string; title: string; text: string; action: string }) {
+  return (
+    <Link
+      to={to}
+      className="mt-5 flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
+    >
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
+        <Award className="h-4 w-4" />
+      </span>
+      <span className="flex-1">
+        <span className="block text-sm font-semibold text-bento-forest">{title}</span>
+        <span className="block text-xs text-bento-forest/80">{text}</span>
+      </span>
+      <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-brand-green">
+        {action}
+        <ArrowRight className="h-3.5 w-3.5" />
+      </span>
+    </Link>
   )
 }

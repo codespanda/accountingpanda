@@ -16,7 +16,15 @@ import { ExcelCourses } from "@/pages/ExcelCourses"
 import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
 import { DataBlogPost } from "@/pages/DataBlogPost"
-import { CatalogCertificateRoute, CatalogModuleLessonRoute, GstCertificateRoute, GstModuleLessonRoute } from "@/pages/courses/CourseModuleRoutes"
+import {
+  CatalogCertificateRoute,
+  CatalogFinalTestRoute,
+  CatalogModuleLessonRoute,
+  GstCertificateRoute,
+  GstFinalTestRoute,
+  GstModuleLessonRoute,
+} from "@/pages/courses/CourseModuleRoutes"
+import { BookkeepingBasicsCertificate, BookkeepingBasicsFinalTest } from "@/pages/courses/BookkeepingBasicsFinalTest"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 import { taxationCourseCatalog } from "@/pages/courses/taxationCourseCatalog"
@@ -27,7 +35,6 @@ import { businessFinanceCourseCatalog } from "@/pages/courses/businessFinanceCou
 import { BookkeepingBasicsCourse } from "@/pages/courses/BookkeepingBasicsCourse"
 import { BookkeepingBasicsProgress } from "@/pages/courses/BookkeepingBasicsProgress"
 import { BookkeepingBasicsModuleLesson } from "@/pages/courses/BookkeepingBasicsModuleLesson"
-import { CourseCertificate } from "@/components/CourseCertificate"
 import { About } from "@/pages/About"
 import { FAQ } from "@/pages/FAQ"
 import { PrivacyPolicy } from "@/pages/PrivacyPolicy"
@@ -170,6 +177,10 @@ function App() {
               path="/learning/bookkeeping/:courseSlug/certificate"
               element={<CatalogCertificateRoute catalog={bookkeepingCourseCatalog} basePath="/learning/bookkeeping" />}
             />
+            <Route
+              path="/learning/bookkeeping/:courseSlug/final-test"
+              element={<CatalogFinalTestRoute catalog={bookkeepingCourseCatalog} basePath="/learning/bookkeeping" />}
+            />
             <Route path="/learning/taxation" element={<TaxationCourses />} />
             <Route path="/learning/payroll" element={<PayrollCourses />} />
             <Route
@@ -183,6 +194,10 @@ function App() {
             <Route
               path="/learning/payroll/:courseSlug/certificate"
               element={<CatalogCertificateRoute catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
+            />
+            <Route
+              path="/learning/payroll/:courseSlug/final-test"
+              element={<CatalogFinalTestRoute catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
             />
             <Route path="/learning/excel-for-accountants" element={<ExcelCourses />} />
             <Route
@@ -199,6 +214,10 @@ function App() {
               path="/learning/excel-for-accountants/:courseSlug/certificate"
               element={<CatalogCertificateRoute catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />}
             />
+            <Route
+              path="/learning/excel-for-accountants/:courseSlug/final-test"
+              element={<CatalogFinalTestRoute catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />}
+            />
             <Route path="/learning/business-finance" element={<BusinessFinanceCourses />} />
             <Route
               path="/learning/business-finance/:courseSlug"
@@ -213,6 +232,10 @@ function App() {
             <Route
               path="/learning/business-finance/:courseSlug/certificate"
               element={<CatalogCertificateRoute catalog={businessFinanceCourseCatalog} basePath="/learning/business-finance" />}
+            />
+            <Route
+              path="/learning/business-finance/:courseSlug/final-test"
+              element={<CatalogFinalTestRoute catalog={businessFinanceCourseCatalog} basePath="/learning/business-finance" />}
             />
             <Route path="/learning/financial-accounting" element={<FinancialAccountingCourses />} />
             <Route
@@ -233,6 +256,10 @@ function App() {
               element={<CatalogCertificateRoute catalog={financialAccountingCourseCatalog} basePath="/learning/financial-accounting" />}
             />
             <Route
+              path="/learning/financial-accounting/:courseSlug/final-test"
+              element={<CatalogFinalTestRoute catalog={financialAccountingCourseCatalog} basePath="/learning/financial-accounting" />}
+            />
+            <Route
               path="/learning/taxation/learn-gst-in-india"
               element={<GstIndiaCourse />}
             />
@@ -249,6 +276,10 @@ function App() {
               element={<GstCertificateRoute />}
             />
             <Route
+              path="/learning/taxation/learn-gst-in-india/final-test"
+              element={<GstFinalTestRoute />}
+            />
+            <Route
               path="/learning/taxation/:courseSlug"
               element={
                 <CatalogCourseDetail catalog={taxationCourseCatalog} basePath="/learning/taxation" />
@@ -261,6 +292,10 @@ function App() {
             <Route
               path="/learning/taxation/:courseSlug/certificate"
               element={<CatalogCertificateRoute catalog={taxationCourseCatalog} basePath="/learning/taxation" />}
+            />
+            <Route
+              path="/learning/taxation/:courseSlug/final-test"
+              element={<CatalogFinalTestRoute catalog={taxationCourseCatalog} basePath="/learning/taxation" />}
             />
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners"
@@ -276,16 +311,11 @@ function App() {
             />
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners/certificate"
-              element={
-                <CourseCertificate
-                  courseTitle="Bookkeeping Basics for Beginners"
-                  courseSlug="bookkeeping-basics-for-beginners"
-                  backTo="/learning/bookkeeping/bookkeeping-basics-for-beginners/progress"
-                  backLabel="Back to Course Progress"
-                  totalModules={6}
-                  path="/learning/bookkeeping/bookkeeping-basics-for-beginners/certificate"
-                />
-              }
+              element={<BookkeepingBasicsCertificate />}
+            />
+            <Route
+              path="/learning/bookkeeping/bookkeeping-basics-for-beginners/final-test"
+              element={<BookkeepingBasicsFinalTest />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />

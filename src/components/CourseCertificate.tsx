@@ -4,7 +4,7 @@ import { ArrowLeft, Award, Lock, Printer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Seo } from "@/components/Seo"
 import { asset } from "@/lib/asset"
-import { getCourseCompletedAt, getLearnerName, setLearnerName } from "@/lib/courseProgress"
+import { allModulesCompleted, getExamResult, getLearnerName, setLearnerName } from "@/lib/courseProgress"
 
 /** A printable certificate of completion for a course whose modules are all done. */
 export function CourseCertificate({
@@ -13,6 +13,7 @@ export function CourseCertificate({
   backTo,
   backLabel,
   totalModules,
+  testPath,
   path,
 }: {
   courseTitle: string
@@ -21,9 +22,13 @@ export function CourseCertificate({
   backTo: string
   backLabel: string
   totalModules: number
+  /** The course's final test, which must be passed to unlock the certificate. */
+  testPath: string
   path: string
 }) {
-  const [completedAt] = useState(() => getCourseCompletedAt(courseSlug, totalModules))
+  const [modulesDone] = useState(() => allModulesCompleted(courseSlug, totalModules))
+  const [result] = useState(() => getExamResult(courseSlug))
+  const completedAt = modulesDone && result?.passed ? result.takenAt : null
   const [name, setName] = useState(getLearnerName)
 
   const updateName = (value: string) => {
@@ -59,10 +64,12 @@ export function CourseCertificate({
               </span>
               <p className="mt-4 text-lg font-semibold text-brand-heading">Not unlocked yet</p>
               <p className="mt-1 max-w-md text-sm text-gray-500">
-                Complete all {totalModules} modules of {courseTitle} to unlock your certificate of completion.
+                {modulesDone
+                  ? `Pass the final test for ${courseTitle} to unlock your certificate of completion.`
+                  : `Complete all ${totalModules} modules of ${courseTitle}, then pass the final test, to unlock your certificate of completion.`}
               </p>
               <Button className="mt-6" asChild>
-                <Link to={backTo}>{backLabel}</Link>
+                <Link to={modulesDone ? testPath : backTo}>{modulesDone ? "Go to the final test" : backLabel}</Link>
               </Button>
             </div>
           ) : (
@@ -109,7 +116,7 @@ export function CourseCertificate({
                     {courseTitle}
                   </p>
                   <p className="mt-3 text-sm text-gray-600">
-                    {totalModules} modules, each with a knowledge check · Completed on {completedOn}
+                    {totalModules} modules and a timed final test · Final test score {result?.scorePct}% · Completed on {completedOn}
                   </p>
                   <p className="mt-10 text-sm font-semibold text-brand-heading">AccountingPanda Learning</p>
                   <p className="mt-6 max-w-md text-[11px] leading-relaxed text-gray-500">

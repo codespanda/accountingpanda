@@ -137,3 +137,60 @@ export function setLearnerName(name: string): void {
     // Ignore storage errors — the name just won't be remembered.
   }
 }
+
+// ── Final course test ──────────────────────────────────────────────────
+
+export type ExamAttempt = {
+  /** Indexes into the course's question pool, in the order shown. */
+  ids: number[]
+  answers: Record<number, number>
+  startedAt: number
+  durationSec: number
+}
+
+export type ExamResult = {
+  correct: number
+  total: number
+  scorePct: number
+  passed: boolean
+  takenAt: string
+}
+
+const attemptKey = (courseSlug: string) => `course-exam:${courseSlug}:attempt`
+const resultKey = (courseSlug: string) => `course-exam:${courseSlug}:result`
+
+function readJson<T>(key: string): T | null {
+  if (typeof window === "undefined") return null
+  try {
+    const raw = window.localStorage.getItem(key)
+    return raw ? (JSON.parse(raw) as T) : null
+  } catch {
+    return null
+  }
+}
+
+function writeJson(key: string, value: unknown) {
+  try {
+    if (value === null) window.localStorage.removeItem(key)
+    else window.localStorage.setItem(key, JSON.stringify(value))
+  } catch {
+    // Ignore storage errors — the attempt just won't survive a reload.
+  }
+}
+
+export const getExamAttempt = (courseSlug: string) => readJson<ExamAttempt>(attemptKey(courseSlug))
+export const saveExamAttempt = (courseSlug: string, attempt: ExamAttempt | null) => writeJson(attemptKey(courseSlug), attempt)
+
+/** The learner's final test result. A pass is never replaced by a later fail. */
+export const getExamResult = (courseSlug: string) => readJson<ExamResult>(resultKey(courseSlug))
+export function saveExamResult(courseSlug: string, result: ExamResult) {
+  const previous = getExamResult(courseSlug)
+  if (previous?.passed && (!result.passed || result.scorePct <= previous.scorePct)) return previous
+  writeJson(resultKey(courseSlug), result)
+  return result
+}
+
+export function allModulesCompleted(courseSlug: string, totalModules: number) {
+  const completed = getCompletedModules(courseSlug)
+  return Array.from({ length: totalModules }, (_, i) => i).every((i) => completed.includes(i))
+}

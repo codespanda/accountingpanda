@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
 import {
   getCompletedModules,
+  getExamResult,
   isModuleCompleted,
   isModuleUnlocked,
 } from "@/lib/courseProgress"
@@ -42,10 +43,13 @@ function getNextCourseStartDate() {
 
 export function BookkeepingBasicsProgress() {
   const [completed, setCompleted] = useState<number[]>([])
+  const [examScore, setExamScore] = useState<number | null>(null)
   const startDate = getNextCourseStartDate()
 
   useEffect(() => {
     setCompleted(getCompletedModules(COURSE_SLUG))
+    const exam = getExamResult(COURSE_SLUG)
+    setExamScore(exam?.passed ? exam.scorePct : null)
   }, [])
 
   const completedCount = completed.length
@@ -183,18 +187,26 @@ export function BookkeepingBasicsProgress() {
               {/* Completion state */}
               {allDone ? (
                 <Link
-                  to={`${COURSE_PATH}/certificate`}
+                  to={examScore !== null ? `${COURSE_PATH}/certificate` : `${COURSE_PATH}/final-test`}
                   className="flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
                     <Award className="h-4 w-4" />
                   </span>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-bento-forest">Course complete — well done!</p>
-                    <p className="text-xs text-bento-forest/80">Your certificate of completion is ready.</p>
+                    <p className="text-sm font-semibold text-bento-forest">
+                      {examScore !== null
+                        ? `You passed the final test with ${examScore}% — well done!`
+                        : `You've completed all ${totalModules} modules!`}
+                    </p>
+                    <p className="text-xs text-bento-forest/80">
+                      {examScore !== null
+                        ? "Your certificate of completion is ready."
+                        : "Pass the timed final test to earn your certificate of completion."}
+                    </p>
                   </div>
                   <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-brand-green">
-                    View certificate
+                    {examScore !== null ? "View certificate" : "Take the final test"}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </Link>
@@ -204,7 +216,7 @@ export function BookkeepingBasicsProgress() {
                     <Award className="h-4 w-4" />
                   </span>
                   <p className="flex-1 text-sm text-gray-500">
-                    Complete all {totalModules} modules to earn your certificate of completion.
+                    Complete all {totalModules} modules, then pass the final test, to earn your certificate of completion.
                     {completedCount > 0 && ` ${totalModules - completedCount} to go.`}
                   </p>
                 </div>
