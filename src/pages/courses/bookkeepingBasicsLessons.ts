@@ -1560,50 +1560,343 @@ Total Assets   No Change`,
   ],
   2: [
     {
-      title: "Module 3 — Accounts and the Chart of Accounts",
+      title: "Module 3 — Accounts, Debits and Credits",
       blocks: [
+        { type: "h3", text: "Module Overview" },
         {
           type: "p",
-          text: "Every transaction is recorded in accounts. An account is simply a place where you collect all the increases and decreases for one item — such as Cash, Rent Expense or Sales Revenue.",
+          text: "In Module 2 you learned that every transaction affects assets, liabilities or owner's equity — and that the accounting equation always stays in balance.",
         },
         {
           type: "p",
-          text: "A chart of accounts is the complete list of accounts a business uses, organized by type and usually numbered.",
+          text: "In this module you'll learn how bookkeepers actually record those changes: in accounts, organized in a chart of accounts, using debits and credits.",
+        },
+        { type: "h3", text: "By the End of This Module" },
+        { type: "p", text: "You'll be able to:" },
+        {
+          type: "list",
+          items: [
+            "Explain what an account is",
+            "Describe the purpose of a chart of accounts",
+            "Name the five account types and give examples of each",
+            "Separate personal expenses from business expenses",
+            "Create a simple chart of accounts",
+            "Apply the debit and credit rules",
+            "State the normal balance of each account type",
+            "Record transactions in T-accounts using double-entry",
+          ],
+        },
+      ],
+    },
+    {
+      title: "What Is an Account?",
+      blocks: [
+        { type: "h3", text: "Definition" },
+        {
+          type: "p",
+          text: "An account is a record that collects all the increases and decreases for one specific item — such as Cash, Rent Expense or Sales Revenue.",
+        },
+        {
+          type: "p",
+          text: "Instead of keeping one long list of transactions, bookkeeping sorts every transaction into accounts. This makes it easy to see the balance of each item at any time.",
+        },
+        { type: "h3", text: "Example" },
+        {
+          type: "p",
+          text: "ABC Design Services (from Module 1) paid rent, internet and advertising in September. Each cost goes to its own account:",
         },
         {
           type: "table",
-          headers: ["Number range", "Account type", "Examples"],
+          headers: ["Account", "September activity", "Balance"],
           rows: [
-            ["1000–1999", "Assets", "Cash, Accounts Receivable, Inventory, Equipment"],
-            ["2000–2999", "Liabilities", "Accounts Payable, Loans Payable, Wages Payable"],
-            ["3000–3999", "Owner's Equity", "Owner's Capital, Owner's Drawings"],
-            ["4000–4999", "Revenue", "Sales Revenue, Service Revenue"],
-            ["5000–6999", "Expenses", "Rent, Wages, Utilities, Office Supplies"],
+            ["Rent Expense", "Rent paid $15,000", "$15,000"],
+            ["Internet Expense", "Internet paid $2,000", "$2,000"],
+            ["Advertising Expense", "Advertising paid $5,000", "$5,000"],
           ],
         },
         {
           type: "note",
-          text: "Keep personal and business spending separate. A personal grocery bill paid from the business account is not an expense — it's an owner's drawing.",
+          text: "Every account has a name, a type and usually a number. Together, all the accounts make up the general ledger.",
+        },
+      ],
+    },
+    {
+      title: "The Chart of Accounts",
+      blocks: [
+        { type: "h3", text: "Definition" },
+        {
+          type: "p",
+          text: "A chart of accounts is the complete list of all the accounts a business uses, organized by type and usually numbered.",
+        },
+        { type: "h3", text: "Why It Matters" },
+        {
+          type: "list",
+          items: [
+            "Every transaction must be recorded in an account on the chart.",
+            "Consistent accounts make reports reliable and comparable month to month.",
+            "Numbering keeps related accounts together and easy to find.",
+            "Financial statements are built from the chart's account balances.",
+          ],
+        },
+        { type: "h3", text: "A Common Numbering System" },
+        {
+          type: "table",
+          headers: ["Number range", "Account type"],
+          rows: [
+            ["1000–1999", "Assets"],
+            ["2000–2999", "Liabilities"],
+            ["3000–3999", "Owner's Equity"],
+            ["4000–4999", "Revenue"],
+            ["5000–6999", "Expenses"],
+          ],
+        },
+        {
+          type: "note",
+          text: "There is no single required numbering system. What matters is that it's logical and used consistently.",
+        },
+      ],
+    },
+    {
+      title: "The Five Account Types",
+      blocks: [
+        { type: "p", text: "Every account belongs to one of five types:" },
+        {
+          type: "table",
+          headers: ["Type", "What it records", "Appears on"],
+          rows: [
+            ["Assets", "What the business owns or is owed", "Balance sheet"],
+            ["Liabilities", "What the business owes others", "Balance sheet"],
+            ["Owner's Equity", "The owner's stake in the business", "Balance sheet"],
+            ["Revenue", "Income earned from selling goods or services", "Income statement"],
+            ["Expenses", "Costs of running the business", "Income statement"],
+          ],
+        },
+        {
+          type: "note",
+          text: "The first three come straight from the accounting equation (Assets = Liabilities + Owner's Equity). Revenue and expenses explain how equity changes through profit or loss.",
+        },
+      ],
+    },
+    {
+      title: "Asset Accounts",
+      blocks: [
+        {
+          type: "term",
+          term: "Asset accounts",
+          definition: "Track resources the business owns or controls that have value.",
+          examples: [
+            "1000 Cash / Bank",
+            "1100 Accounts Receivable — money customers owe",
+            "1200 Inventory — goods held for sale",
+            "1300 Prepaid Expenses — costs paid in advance",
+            "1500 Equipment",
+            "1600 Furniture and Fixtures",
+            "1700 Vehicles",
+          ],
+        },
+        {
+          type: "p",
+          text: "Current assets (cash, receivables, inventory, prepayments) are usually listed first, followed by fixed assets (equipment, furniture, vehicles), as you learned in Module 2.",
+        },
+      ],
+    },
+    {
+      title: "Liability Accounts",
+      blocks: [
+        {
+          type: "term",
+          term: "Liability accounts",
+          definition: "Track amounts the business owes to others.",
+          examples: [
+            "2000 Accounts Payable — money owed to suppliers",
+            "2100 Wages Payable — wages earned by staff but not yet paid",
+            "2200 Sales Tax Payable — tax collected for the government",
+            "2300 Credit Card Payable",
+            "2500 Bank Loan Payable",
+          ],
+        },
+        {
+          type: "p",
+          text: "As with assets, current liabilities (due within a year) are usually listed before long-term liabilities such as multi-year loans.",
+        },
+      ],
+    },
+    {
+      title: "Equity Accounts",
+      blocks: [
+        {
+          type: "term",
+          term: "Equity accounts",
+          definition: "Track the owner's investment in, and withdrawals from, the business, plus profits kept in the business.",
+          examples: [
+            "3000 Owner's Capital — money and assets the owner puts in",
+            "3100 Owner's Drawings — money the owner takes out for personal use",
+            "3200 Retained Earnings — past profits kept in the business",
+          ],
+        },
+        {
+          type: "note",
+          text: "Drawings reduce equity. They are not a business expense, because they don't help the business earn revenue.",
+        },
+      ],
+    },
+    {
+      title: "Revenue Accounts",
+      blocks: [
+        {
+          type: "term",
+          term: "Revenue accounts",
+          definition: "Track income the business earns from its normal activities.",
+          examples: [
+            "4000 Sales Revenue — selling goods",
+            "4100 Service Revenue — e.g. design fees",
+            "4200 Interest Income",
+            "4300 Other Income",
+          ],
+        },
+        {
+          type: "p",
+          text: "Revenue is recorded when it is earned — when the goods are delivered or the service is performed — even if the customer pays later.",
+        },
+        { type: "h3", text: "Example" },
+        {
+          type: "p",
+          text: "ABC Design Services issued a $25,000 invoice in September. That $25,000 is Service Revenue for September, even though the customer paid on September 15.",
+        },
+      ],
+    },
+    {
+      title: "Expense Accounts",
+      blocks: [
+        {
+          type: "term",
+          term: "Expense accounts",
+          definition: "Track the costs of running the business to earn revenue.",
+          examples: [
+            "5000 Cost of Goods Sold",
+            "6000 Rent Expense",
+            "6100 Wages Expense",
+            "6200 Utilities Expense",
+            "6300 Internet and Phone Expense",
+            "6400 Advertising Expense",
+            "6500 Office Supplies Expense",
+          ],
+        },
+        {
+          type: "note",
+          text: "Buying equipment is not an expense — it's an asset, because the business will use it for years. Paying rent is an expense, because the benefit is used up in the period.",
+        },
+      ],
+    },
+    {
+      title: "Personal vs. Business Expenses",
+      blocks: [
+        {
+          type: "p",
+          text: "Only costs incurred to run the business are business expenses. Personal costs must be kept out of the business's expense accounts.",
+        },
+        {
+          type: "table",
+          headers: ["Payment from the business account", "How to record it"],
+          rows: [
+            ["Office rent", "Rent Expense (business)"],
+            ["Owner's family groceries", "Owner's Drawings (personal)"],
+            ["Business internet", "Internet Expense (business)"],
+            ["Owner's personal phone bill", "Owner's Drawings (personal)"],
+            ["Fuel for the delivery van", "Vehicle Expense (business)"],
+          ],
+        },
+        { type: "h3", text: "Why It Matters" },
+        {
+          type: "list",
+          items: [
+            "Mixing personal costs into expenses understates profit.",
+            "It can lead to incorrect tax returns.",
+            "It makes the financial statements unreliable.",
+          ],
+        },
+        {
+          type: "note",
+          text: "Best practice: keep a separate business bank account and card, and record any personal spending from them as drawings.",
+        },
+      ],
+    },
+    {
+      title: "Creating a Simple Chart of Accounts",
+      blocks: [
+        {
+          type: "p",
+          text: "Here is a simple chart of accounts for ABC Design Services, a small graphic design business:",
+        },
+        {
+          type: "table",
+          headers: ["Number", "Account", "Type"],
+          rows: [
+            ["1000", "Cash", "Asset"],
+            ["1100", "Accounts Receivable", "Asset"],
+            ["1500", "Computer Equipment", "Asset"],
+            ["2000", "Accounts Payable", "Liability"],
+            ["3000", "Owner's Capital", "Equity"],
+            ["3100", "Owner's Drawings", "Equity"],
+            ["4100", "Design Revenue", "Revenue"],
+            ["6000", "Rent Expense", "Expense"],
+            ["6300", "Internet Expense", "Expense"],
+            ["6400", "Advertising Expense", "Expense"],
+          ],
+        },
+        { type: "h3", text: "Steps to Build One" },
+        {
+          type: "steps",
+          items: [
+            { title: "List what the business owns", body: "These become asset accounts." },
+            { title: "List what the business owes", body: "These become liability accounts." },
+            { title: "Add the owner's accounts", body: "Capital and drawings." },
+            { title: "List how the business earns money", body: "These become revenue accounts." },
+            { title: "List regular costs", body: "These become expense accounts." },
+            { title: "Number them by type", body: "Leave gaps so new accounts can be added later." },
+          ],
         },
       ],
     },
     {
       title: "Debits and Credits",
       blocks: [
+        { type: "h3", text: "Definition" },
         {
           type: "p",
-          text: "Every account has two sides: the left side is the debit side and the right side is the credit side. Debit and credit don't mean good or bad — they simply mean left and right.",
+          text: "Every account has two sides. The left side is called the debit side, and the right side is called the credit side.",
         },
         {
+          type: "list",
+          items: [
+            "Debit (Dr) = left side of an account",
+            "Credit (Cr) = right side of an account",
+          ],
+        },
+        {
+          type: "note",
+          text: "Debit and credit do not mean good or bad, or plus or minus. Whether a debit increases or decreases an account depends on the account type.",
+        },
+        { type: "h3", text: "The Golden Rule" },
+        {
+          type: "p",
+          text: "In every transaction, total debits must equal total credits. This keeps the accounting equation in balance.",
+        },
+      ],
+    },
+    {
+      title: "The Debit and Credit Rules",
+      blocks: [
+        {
           type: "table",
-          headers: ["Account type", "Increase with", "Decrease with", "Normal balance"],
+          headers: ["Account type", "Increase", "Decrease"],
           rows: [
-            ["Assets", "Debit", "Credit", "Debit"],
-            ["Expenses", "Debit", "Credit", "Debit"],
-            ["Owner's Drawings", "Debit", "Credit", "Debit"],
-            ["Liabilities", "Credit", "Debit", "Credit"],
-            ["Owner's Equity", "Credit", "Debit", "Credit"],
-            ["Revenue", "Credit", "Debit", "Credit"],
+            ["Assets", "Debit", "Credit"],
+            ["Expenses", "Debit", "Credit"],
+            ["Owner's Drawings", "Debit", "Credit"],
+            ["Liabilities", "Credit", "Debit"],
+            ["Owner's Equity (Capital)", "Credit", "Debit"],
+            ["Revenue", "Credit", "Debit"],
           ],
         },
         {
@@ -1611,37 +1904,172 @@ Total Assets   No Change`,
           term: "Memory aid — DEAD CLIC",
           definition: "Debits increase Expenses, Assets and Drawings. Credits increase Liabilities, Income (revenue) and Capital.",
         },
+        { type: "h3", text: "Example" },
         {
-          type: "note",
-          text: "In every transaction, total debits must equal total credits. That is the heart of double-entry bookkeeping.",
+          type: "p",
+          text: "ABC Design Services pays $15,000 rent in cash. Rent Expense increases (debit $15,000). Cash, an asset, decreases (credit $15,000).",
         },
       ],
     },
     {
-      title: "T-Accounts in Practice",
+      title: "Normal Balances",
       blocks: [
         {
           type: "p",
-          text: "A T-account is a quick sketch of an account: debits on the left, credits on the right. Example: the business buys office supplies for $300 cash.",
+          text: "An account's normal balance is the side on which it increases — and therefore the side where its balance usually sits.",
+        },
+        {
+          type: "table",
+          headers: ["Account type", "Normal balance"],
+          rows: [
+            ["Assets", "Debit"],
+            ["Expenses", "Debit"],
+            ["Owner's Drawings", "Debit"],
+            ["Liabilities", "Credit"],
+            ["Owner's Capital", "Credit"],
+            ["Revenue", "Credit"],
+          ],
+        },
+        {
+          type: "note",
+          text: "If an account shows a balance on the opposite side — for example, Cash with a credit balance — check for an error, such as a payment recorded twice.",
+        },
+      ],
+    },
+    {
+      title: "T-Accounts",
+      blocks: [
+        {
+          type: "p",
+          text: "A T-account is a simple picture of an account, shaped like the letter T. The account name goes on top, debits on the left and credits on the right.",
         },
         {
           type: "ascii",
-          text: "      Office Supplies              Cash\n   Debit   |  Credit         Debit  |  Credit\n  ---------+---------       --------+---------\n    $300   |                        |   $300",
+          text: "              Cash\n     Debit (Dr)  |  Credit (Cr)\n   --------------+--------------\n      100,000    |    15,000\n       25,000    |    40,000\n                 |     2,000\n                 |     5,000\n   --------------+--------------\n Total 125,000   |    62,000\n Balance 63,000 Dr",
         },
+        { type: "h3", text: "Finding the Balance" },
         {
           type: "steps",
           items: [
-            { title: "Which accounts are affected?", body: "Office Supplies (an expense) and Cash (an asset)." },
-            { title: "Which way does each move?", body: "Office Supplies goes up; Cash goes down." },
-            { title: "Apply the rules", body: "Expenses increase with a debit; assets decrease with a credit." },
-            { title: "Check the balance", body: "Debit $300 = Credit $300." },
+            { title: "Add the debit side", body: "$100,000 + $25,000 = $125,000" },
+            { title: "Add the credit side", body: "$15,000 + $40,000 + $2,000 + $5,000 = $62,000" },
+            { title: "Subtract the smaller total from the larger", body: "$125,000 − $62,000 = $63,000" },
+            { title: "Put the balance on the larger side", body: "A $63,000 debit balance — normal for Cash." },
           ],
+        },
+      ],
+    },
+    {
+      title: "Double-Entry in Action",
+      blocks: [
+        {
+          type: "p",
+          text: "Here are all of ABC Design Services' September transactions from Module 1, recorded with debits and credits:",
+        },
+        {
+          type: "table",
+          headers: ["Date", "Transaction", "Debit", "Credit", "Amount"],
+          rows: [
+            ["Sept 1", "Owner invests cash", "Cash", "Owner's Capital", "$100,000"],
+            ["Sept 2", "Office rent paid", "Rent Expense", "Cash", "$15,000"],
+            ["Sept 4", "Computer purchased", "Computer Equipment", "Cash", "$40,000"],
+            ["Sept 8", "Customer invoice issued", "Accounts Receivable", "Design Revenue", "$25,000"],
+            ["Sept 15", "Customer pays", "Cash", "Accounts Receivable", "$25,000"],
+            ["Sept 20", "Internet expense paid", "Internet Expense", "Cash", "$2,000"],
+            ["Sept 25", "Advertising expense paid", "Advertising Expense", "Cash", "$5,000"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Each line has one debit and one credit of the same amount, so total debits ($212,000) equal total credits ($212,000).",
+        },
+        {
+          type: "p",
+          text: "The Cash T-account on the previous screen comes from the four Cash credits and two Cash debits in this table.",
+        },
+      ],
+    },
+    {
+      title: "Common Mistakes",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            { title: "Thinking debit means “increase”", body: "A debit increases assets and expenses but decreases liabilities, equity and revenue." },
+            { title: "Recording only one side", body: "Every transaction needs a debit and a credit of equal value." },
+            { title: "Treating an asset purchase as an expense", body: "A $40,000 computer is an asset, not an expense." },
+            { title: "Recording personal spending as a business expense", body: "Personal costs are owner's drawings." },
+            { title: "Putting the balance on the wrong side", body: "The balance goes on the side with the larger total." },
+            { title: "Creating duplicate accounts", body: "“Phone” and “Telephone” split the same costs and confuse reports." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical Activity",
+      blocks: [
+        { type: "h3", text: "Scenario" },
+        {
+          type: "p",
+          text: "You are the bookkeeper for Bright Solutions (from Module 1). The owner started the business with $50,000 cash. During the month:",
+        },
+        {
+          type: "list",
+          items: [
+            "1. Owner invests an additional $25,000.",
+            "2. Business pays $10,000 office rent.",
+            "3. Business purchases a laptop for $35,000.",
+            "4. Business earns $20,000 from a customer, paid in cash.",
+            "5. Business pays $3,000 for internet and utilities.",
+            "6. Business receives another $15,000 from a customer.",
+          ],
+        },
+        { type: "h3", text: "Your Tasks" },
+        {
+          type: "list",
+          items: [
+            "Name the account debited and the account credited for each transaction.",
+            "Classify each account by type.",
+            "Draw the Cash T-account and find its balance.",
+          ],
+        },
+        { type: "h3", text: "Answer" },
+        {
+          type: "table",
+          headers: ["#", "Debit", "Credit", "Amount"],
+          rows: [
+            ["1", "Cash (asset)", "Owner's Capital (equity)", "$25,000"],
+            ["2", "Rent Expense (expense)", "Cash (asset)", "$10,000"],
+            ["3", "Equipment (asset)", "Cash (asset)", "$35,000"],
+            ["4", "Cash (asset)", "Service Revenue (revenue)", "$20,000"],
+            ["5", "Utilities Expense (expense)", "Cash (asset)", "$3,000"],
+            ["6", "Cash (asset)", "Service Revenue (revenue)", "$15,000"],
+          ],
+        },
+        {
+          type: "p",
+          text: "Cash: debits $50,000 + $25,000 + $20,000 + $15,000 = $110,000; credits $10,000 + $35,000 + $3,000 = $48,000. Balance: $62,000 debit — the same ending cash you found in Module 1.",
+        },
+      ],
+    },
+    {
+      title: "Quick Test",
+      blocks: [
+        {
+          type: "quiz",
+          question: "The business buys a $40,000 computer for cash. Which account is debited?",
+          options: ["A. Cash", "B. Computer Equipment", "C. Rent Expense", "D. Owner's Capital"],
+          answer: "B",
         },
       ],
     },
     {
       title: "Knowledge Check",
       blocks: [
+        {
+          type: "p",
+          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
+        },
         {
           type: "knowledge-check",
           passPct: 80,
@@ -1650,126 +2078,497 @@ Total Assets   No Change`,
               question: "What is a chart of accounts?",
               options: [
                 "A. A graph of monthly sales",
-                "B. The complete list of accounts a business uses",
+                "B. The complete list of all the accounts a business uses",
                 "C. A bank statement",
                 "D. A list of customers",
               ],
               answer: "B",
             },
             {
-              question: "Which side increases an asset account?",
-              options: ["A. Debit", "B. Credit", "C. Either side", "D. Neither side"],
-              answer: "A",
+              question: "Which side of an account is the debit side?",
+              options: ["A. The right side", "B. The left side", "C. The top", "D. The bottom"],
+              answer: "B",
             },
             {
-              question: "What is the normal balance of a revenue account?",
-              options: ["A. Debit", "B. Credit", "C. Zero", "D. It depends on the month"],
+              question: "Using DEAD CLIC, which accounts increase with a credit?",
+              options: [
+                "A. Expenses, Assets and Drawings",
+                "B. Liabilities, Income and Capital",
+                "C. Only Cash",
+                "D. Only Expenses",
+              ],
               answer: "B",
             },
             {
               question: "The owner pays a personal phone bill from the business account. How is it recorded?",
-              options: [
-                "A. Utilities expense",
-                "B. Owner's drawings",
-                "C. Revenue",
-                "D. It isn't recorded",
-              ],
+              options: ["A. Internet and Phone Expense", "B. Owner's Drawings", "C. Revenue", "D. Accounts Payable"],
               answer: "B",
             },
             {
-              question: "The business pays $300 cash for office supplies. What is the entry?",
-              options: [
-                "A. Debit Cash, credit Office Supplies",
-                "B. Debit Office Supplies, credit Cash",
-                "C. Debit Office Supplies, credit Accounts Payable",
-                "D. Credit both accounts",
-              ],
-              answer: "B",
+              question: "Cash has debits of $125,000 and credits of $62,000. What is the balance?",
+              options: ["A. $63,000 credit", "B. $187,000 debit", "C. $63,000 debit", "D. $62,000 debit"],
+              answer: "C",
             },
           ],
+        },
+      ],
+    },
+    {
+      title: "Module Summary",
+      blocks: [
+        { type: "p", text: "In this module you learned how transactions are organized and recorded." },
+        { type: "p", text: "You learned:" },
+        {
+          type: "list",
+          items: [
+            "What an account is",
+            "What a chart of accounts is and how it's numbered",
+            "The five account types: assets, liabilities, equity, revenue and expenses",
+            "Examples of each type of account",
+            "How to separate personal and business expenses",
+            "How to create a simple chart of accounts",
+            "What debits and credits are",
+            "The debit and credit rules (DEAD CLIC)",
+            "Normal balances",
+            "How to use T-accounts",
+            "How double-entry records every transaction",
+          ],
+        },
+        { type: "h3", text: "Key Concept to Remember" },
+        {
+          type: "note",
+          text: "Every transaction is recorded with equal debits and credits. That's what keeps the books — and the accounting equation — in balance.",
         },
       ],
     },
   ],
   3: [
     {
-      title: "Module 4 — Source Documents",
+      title: "Module 4 — Recording Transactions",
       blocks: [
+        { type: "h3", text: "Module Overview" },
         {
           type: "p",
-          text: "Every entry in the books starts with evidence. A source document proves that a transaction happened and shows its date, amount and the parties involved.",
+          text: "You now know the accounts and the debit and credit rules. In this module, you'll follow a transaction from the moment it happens to the moment it appears in the general ledger.",
         },
+        { type: "h3", text: "By the End of This Module" },
+        { type: "p", text: "You'll be able to:" },
         {
-          type: "table",
-          headers: ["Source document", "What it shows", "Usually records"],
-          rows: [
-            ["Sales invoice", "A sale to a customer, often on credit", "Revenue and Accounts Receivable"],
-            ["Supplier bill", "A purchase from a supplier, often on credit", "Expense or asset and Accounts Payable"],
-            ["Receipt", "Cash or card payment made or received", "Cash and the related account"],
-            ["Bank statement", "All money in and out of the bank account", "Bank charges, interest, transfers"],
-            ["Payroll record", "Wages paid to employees", "Wages expense and Cash"],
+          type: "list",
+          items: [
+            "Identify common source documents",
+            "Tell cash transactions from credit transactions",
+            "Record sales and purchases",
+            "Record owner investments and withdrawals",
+            "Write journal entries",
+            "Post journal entries to the general ledger",
+            "Keep proper supporting documentation",
           ],
-        },
-        {
-          type: "note",
-          text: "Keep supporting documents organized and stored securely — digitally or on paper — so any entry can be traced back to its evidence.",
         },
       ],
     },
     {
-      title: "Writing Journal Entries",
+      title: "What Is a Source Document?",
       blocks: [
+        { type: "h3", text: "Definition" },
         {
           type: "p",
-          text: "The journal is where transactions are first recorded in date order. Each entry lists the date, the accounts debited and credited, the amounts and a short description.",
+          text: "A source document is the original evidence that a transaction happened. It shows the date, the parties, what was bought or sold, and the amount.",
         },
+        { type: "h3", text: "Why Source Documents Matter" },
+        {
+          type: "list",
+          items: [
+            "They prove the transaction is real.",
+            "They give the details needed to record it correctly.",
+            "They let anyone trace a figure in the books back to its evidence.",
+            "They support tax returns and audits.",
+          ],
+        },
+        {
+          type: "note",
+          text: "Rule: no source document, no entry. If evidence is missing, find it or ask for it before recording.",
+        },
+      ],
+    },
+    {
+      title: "Sales Invoices and Receipts",
+      blocks: [
+        {
+          type: "term",
+          term: "Sales invoice",
+          definition: "A document the business sends to a customer asking for payment for goods or services supplied on credit.",
+          example: "Invoice #1002 to Lumen Co for $18,000 of design work, due in 30 days.",
+        },
+        {
+          type: "term",
+          term: "Sales receipt",
+          definition: "A document confirming the customer paid at the time of the sale.",
+          example: "Receipt for a $4,000 logo package paid by card on the spot.",
+        },
+        {
+          type: "table",
+          headers: ["Document", "Customer pays", "Creates a receivable?"],
+          rows: [
+            ["Sales invoice", "Later", "Yes"],
+            ["Sales receipt", "Now", "No"],
+          ],
+        },
+      ],
+    },
+    {
+      title: "Supplier Bills and Bank Statements",
+      blocks: [
+        {
+          type: "term",
+          term: "Supplier bill (purchase invoice)",
+          definition: "A document from a supplier asking the business to pay for goods or services received.",
+          example: "A $3,500 bill from PrintPro for brochures, due in 14 days.",
+        },
+        {
+          type: "term",
+          term: "Bank statement",
+          definition: "The bank's record of all money in and out of the account. It's the source for bank fees, interest and automatic payments.",
+          example: "A $25 monthly account fee shown on the statement.",
+        },
+        { type: "h3", text: "Other Source Documents" },
+        {
+          type: "list",
+          items: [
+            "Purchase receipts (cash or card purchases)",
+            "Payroll reports",
+            "Loan agreements and statements",
+            "Credit notes from suppliers or to customers",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Cash vs. Credit Transactions",
+      blocks: [
+        {
+          type: "table",
+          headers: ["", "Cash transaction", "Credit transaction"],
+          rows: [
+            ["Payment timing", "Paid immediately", "Paid later"],
+            ["Sale example", "Customer pays $4,000 at the counter", "Customer is invoiced $18,000, due in 30 days"],
+            ["Purchase example", "Buy $1,200 of supplies with the business card", "Supplier bills $3,500, due in 14 days"],
+            ["Account used", "Cash", "Accounts Receivable or Accounts Payable"],
+          ],
+        },
+        {
+          type: "note",
+          text: "“Credit transaction” means paid later. It has nothing to do with the credit side of an account.",
+        },
+        {
+          type: "p",
+          text: "Card payments made by the business from its bank account are usually treated as cash transactions; purchases on a business credit card create a credit card liability.",
+        },
+      ],
+    },
+    {
+      title: "Recording Sales",
+      blocks: [
+        { type: "h3", text: "Cash Sale — $4,000" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$4,000", ""],
+            ["Design Revenue", "", "$4,000"],
+          ],
+        },
+        { type: "h3", text: "Credit Sale — Invoice #1002, $18,000" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Accounts Receivable", "$18,000", ""],
+            ["Design Revenue", "", "$18,000"],
+          ],
+        },
+        { type: "h3", text: "Customer Pays Invoice #1002" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$18,000", ""],
+            ["Accounts Receivable", "", "$18,000"],
+          ],
+        },
+        {
+          type: "note",
+          text: "The revenue was recorded when the invoice was issued. When the customer pays, no new revenue is recorded — the receivable simply turns into cash.",
+        },
+      ],
+    },
+    {
+      title: "Recording Purchases",
+      blocks: [
+        { type: "h3", text: "Cash Purchase — Office Supplies, $1,200" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Office Supplies Expense", "$1,200", ""],
+            ["Cash", "", "$1,200"],
+          ],
+        },
+        { type: "h3", text: "Credit Purchase — PrintPro Bill, $3,500" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Printing Expense", "$3,500", ""],
+            ["Accounts Payable", "", "$3,500"],
+          ],
+        },
+        { type: "h3", text: "Paying PrintPro" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Accounts Payable", "$3,500", ""],
+            ["Cash", "", "$3,500"],
+          ],
+        },
+        {
+          type: "note",
+          text: "If the purchase were equipment that lasts for years, you'd debit an asset account (such as Equipment) instead of an expense.",
+        },
+      ],
+    },
+    {
+      title: "Owner Investments and Withdrawals",
+      blocks: [
+        {
+          type: "term",
+          term: "Owner investment",
+          definition: "Money or assets the owner puts into the business. It increases both an asset and owner's capital.",
+          example: "Owner invests $20,000: debit Cash $20,000, credit Owner's Capital $20,000.",
+        },
+        {
+          type: "term",
+          term: "Owner withdrawal (drawings)",
+          definition: "Money or assets the owner takes out for personal use. It decreases an asset and equity.",
+          example: "Owner withdraws $2,500: debit Owner's Drawings $2,500, credit Cash $2,500.",
+        },
+        {
+          type: "note",
+          text: "Investments aren't revenue, and withdrawals aren't expenses. Neither affects profit — they only change equity.",
+        },
+      ],
+    },
+    {
+      title: "The Journal and Journal Entries",
+      blocks: [
+        { type: "h3", text: "What Is the Journal?" },
+        {
+          type: "p",
+          text: "The general journal is the book of original entry. Transactions are recorded here first, in date order, before being posted to the accounts.",
+        },
+        { type: "h3", text: "Parts of a Journal Entry" },
+        {
+          type: "table",
+          headers: ["Part", "Example"],
+          rows: [
+            ["Date", "Oct 6"],
+            ["Account debited and amount", "Accounts Receivable $18,000"],
+            ["Account credited and amount", "Design Revenue $18,000"],
+            ["Description", "Invoice #1002 to Lumen Co — brand design"],
+            ["Reference", "JE-0104 / Invoice #1002"],
+          ],
+        },
+        {
+          type: "note",
+          text: "By convention, the debit line is written first and the credit line is written below it.",
+        },
+      ],
+    },
+    {
+      title: "Writing a Journal Entry Step by Step",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            { title: "Read the source document", body: "What happened, when, with whom and for how much?" },
+            { title: "Identify the accounts", body: "Which accounts are affected? (Usually two.)" },
+            { title: "Classify each account", body: "Asset, liability, equity, revenue or expense?" },
+            { title: "Decide increase or decrease", body: "Does each account go up or down?" },
+            { title: "Apply the debit and credit rules", body: "Use DEAD CLIC to choose debit or credit." },
+            { title: "Check debits equal credits", body: "Then add a clear description and reference." },
+          ],
+        },
+        { type: "h3", text: "Example: Bill from PrintPro, $3,500" },
+        {
+          type: "list",
+          items: [
+            "Accounts: Printing Expense and Accounts Payable",
+            "Printing Expense (expense) increases → debit",
+            "Accounts Payable (liability) increases → credit",
+            "Debit $3,500 = Credit $3,500 ✓",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Example: Journalizing a Month",
+      blocks: [
+        { type: "p", text: "ABC Design Services' October transactions:" },
         {
           type: "table",
           headers: ["Date", "Transaction", "Debit", "Credit", "Amount"],
           rows: [
-            ["Mar 1", "Owner invests cash", "Cash", "Owner's Capital", "$20,000"],
-            ["Mar 3", "Buys supplies for cash", "Office Supplies", "Cash", "$500"],
-            ["Mar 8", "Provides services on credit", "Accounts Receivable", "Service Revenue", "$3,000"],
-            ["Mar 10", "Pays the month's rent", "Rent Expense", "Cash", "$1,200"],
-            ["Mar 20", "Customer pays part of the invoice", "Cash", "Accounts Receivable", "$1,000"],
-            ["Mar 28", "Owner withdraws cash", "Owner's Drawings", "Cash", "$800"],
+            ["Oct 1", "Owner invests more cash", "Cash", "Owner's Capital", "$20,000"],
+            ["Oct 3", "Office supplies bought for cash (receipt)", "Office Supplies Expense", "Cash", "$1,200"],
+            ["Oct 6", "Invoice #1002 to Lumen Co", "Accounts Receivable", "Design Revenue", "$18,000"],
+            ["Oct 9", "PrintPro bill received", "Printing Expense", "Accounts Payable", "$3,500"],
+            ["Oct 12", "Cash sale (sales receipt)", "Cash", "Design Revenue", "$4,000"],
+            ["Oct 18", "Lumen Co pays invoice #1002", "Cash", "Accounts Receivable", "$18,000"],
+            ["Oct 22", "PrintPro bill paid", "Accounts Payable", "Cash", "$3,500"],
+            ["Oct 28", "Owner withdraws cash", "Owner's Drawings", "Cash", "$2,500"],
           ],
-        },
-        {
-          type: "term",
-          term: "Cash vs. credit transactions",
-          definition: "A cash transaction is paid immediately. A credit transaction is paid later, so it creates a receivable (customer owes you) or a payable (you owe a supplier).",
-          example: "Mar 8 is a credit sale: revenue is recorded now, cash arrives later.",
         },
       ],
     },
     {
       title: "Posting to the General Ledger",
       blocks: [
+        { type: "h3", text: "Definition" },
         {
           type: "p",
-          text: "Posting means copying each journal line into its account in the general ledger, so you can see each account's running balance.",
-        },
-        { type: "h3", text: "Cash account for March" },
-        {
-          type: "table",
-          headers: ["Date", "Description", "Debit", "Credit", "Balance"],
-          rows: [
-            ["Mar 1", "Owner investment", "$20,000", "", "$20,000"],
-            ["Mar 3", "Office supplies", "", "$500", "$19,500"],
-            ["Mar 10", "Rent", "", "$1,200", "$18,300"],
-            ["Mar 20", "Customer payment", "$1,000", "", "$19,300"],
-            ["Mar 28", "Owner withdrawal", "", "$800", "$18,500"],
-          ],
+          text: "Posting means copying each debit and credit from the journal into the matching account in the general ledger, so each account shows a running balance.",
         },
         {
           type: "steps",
           items: [
-            { title: "Journalize", body: "Record the transaction from its source document." },
-            { title: "Post", body: "Copy each debit and credit to the ledger account." },
-            { title: "Balance", body: "Update each account's running balance." },
-            { title: "Reference", body: "Note the journal page or entry number so the trail can be followed." },
+            { title: "Find the account", body: "Locate the ledger account for each journal line." },
+            { title: "Enter the amount on the same side", body: "A journal debit is posted as a debit; a credit as a credit." },
+            { title: "Record the date and reference", body: "So the ledger line can be traced back to the journal." },
+            { title: "Update the balance", body: "Calculate the new running balance." },
           ],
+        },
+        {
+          type: "note",
+          text: "Accounting software posts automatically when you save a transaction — but understanding posting helps you read the ledger and find errors.",
+        },
+      ],
+    },
+    {
+      title: "Example: Posting the Cash Account",
+      blocks: [
+        { type: "p", text: "Cash started October with the $63,000 balance from September." },
+        {
+          type: "table",
+          headers: ["Date", "Description", "Debit", "Credit", "Balance"],
+          rows: [
+            ["Oct 1", "Opening balance", "", "", "$63,000"],
+            ["Oct 1", "Owner investment", "$20,000", "", "$83,000"],
+            ["Oct 3", "Office supplies", "", "$1,200", "$81,800"],
+            ["Oct 12", "Cash sale", "$4,000", "", "$85,800"],
+            ["Oct 18", "Lumen Co payment", "$18,000", "", "$103,800"],
+            ["Oct 22", "Paid PrintPro", "", "$3,500", "$100,300"],
+            ["Oct 28", "Owner withdrawal", "", "$2,500", "$97,800"],
+          ],
+        },
+        {
+          type: "note",
+          text: "The Oct 6 invoice and Oct 9 bill don't appear in Cash — no money moved on those dates.",
+        },
+      ],
+    },
+    {
+      title: "Keeping Supporting Documentation",
+      blocks: [
+        {
+          type: "list",
+          items: [
+            "Attach each source document to its transaction in the software, or file it with the entry reference.",
+            "Use clear, consistent file names, e.g. 2026-10-09_PrintPro_Bill-3301.pdf.",
+            "Never change a document after recording it — record corrections with a new entry.",
+            "Store documents securely, with backups.",
+            "Keep records for as long as tax law and your accountant require — often several years.",
+          ],
+        },
+        { type: "h3", text: "The Audit Trail" },
+        {
+          type: "p",
+          text: "Good documentation creates an audit trail: anyone can follow a number in the reports back to the ledger, the journal and the original document.",
+        },
+      ],
+    },
+    {
+      title: "Common Mistakes",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            { title: "Recording revenue again when a customer pays", body: "The sale was recorded on the invoice; the payment only reduces Accounts Receivable." },
+            { title: "Recording from a quote or statement instead of the bill", body: "This can record purchases twice or too early." },
+            { title: "Treating owner withdrawals as expenses", body: "Withdrawals are drawings, not expenses." },
+            { title: "Using the date the entry was typed", body: "Use the date the transaction happened." },
+            { title: "Posting to the wrong side", body: "A journal debit must be posted as a ledger debit." },
+            { title: "Missing documentation", body: "Every entry needs evidence." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical Activity",
+      blocks: [
+        { type: "h3", text: "Scenario" },
+        {
+          type: "p",
+          text: "Bright Solutions starts the next month with $62,000 cash. During the month:",
+        },
+        {
+          type: "list",
+          items: [
+            "1. Owner invests $10,000 cash.",
+            "2. Invoice issued to a customer for $6,000.",
+            "3. Printer bought on credit from TechMart for $1,800.",
+            "4. Cash sale of $2,500.",
+            "5. Customer pays the $6,000 invoice.",
+            "6. TechMart is paid $1,800.",
+            "7. Owner withdraws $1,000.",
+          ],
+        },
+        { type: "h3", text: "Your Tasks" },
+        {
+          type: "list",
+          items: [
+            "Write the journal entry for each transaction.",
+            "Post the Cash entries to a Cash ledger and find the closing balance.",
+          ],
+        },
+        { type: "h3", text: "Answer" },
+        {
+          type: "table",
+          headers: ["#", "Debit", "Credit", "Amount"],
+          rows: [
+            ["1", "Cash", "Owner's Capital", "$10,000"],
+            ["2", "Accounts Receivable", "Service Revenue", "$6,000"],
+            ["3", "Equipment", "Accounts Payable", "$1,800"],
+            ["4", "Cash", "Service Revenue", "$2,500"],
+            ["5", "Cash", "Accounts Receivable", "$6,000"],
+            ["6", "Accounts Payable", "Cash", "$1,800"],
+            ["7", "Owner's Drawings", "Cash", "$1,000"],
+          ],
+        },
+        {
+          type: "p",
+          text: "Cash: $62,000 + $10,000 + $2,500 + $6,000 − $1,800 − $1,000 = $77,700.",
+        },
+      ],
+    },
+    {
+      title: "Quick Test",
+      blocks: [
+        {
+          type: "quiz",
+          question: "A customer pays an invoice that was already recorded. Which account is credited?",
+          options: ["A. Design Revenue", "B. Accounts Receivable", "C. Cash", "D. Owner's Capital"],
+          answer: "B",
         },
       ],
     },
@@ -1777,50 +2576,80 @@ Total Assets   No Change`,
       title: "Knowledge Check",
       blocks: [
         {
+          type: "p",
+          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
+        },
+        {
           type: "knowledge-check",
           passPct: 80,
           questions: [
             {
-              question: "What is the purpose of a source document?",
+              question: "What is a source document?",
               options: [
-                "A. To advertise the business",
-                "B. To prove a transaction happened and support the entry",
-                "C. To calculate tax rates",
-                "D. To replace the ledger",
+                "A. A list of accounts",
+                "B. The original evidence that a transaction happened",
+                "C. A tax return",
+                "D. A business plan",
               ],
               answer: "B",
             },
             {
-              question: "The owner invests $20,000 cash. What is the entry?",
+              question: "What does a “credit transaction” mean?",
               options: [
-                "A. Debit Owner's Capital, credit Cash",
-                "B. Debit Cash, credit Revenue",
-                "C. Debit Cash, credit Owner's Capital",
-                "D. Debit Cash, credit Accounts Payable",
+                "A. An entry on the right side of an account",
+                "B. A transaction paid later",
+                "C. A refund",
+                "D. A bank fee",
               ],
+              answer: "B",
+            },
+            {
+              question: "A $3,500 bill from PrintPro is received, to be paid later. Which account is credited?",
+              options: ["A. Printing Expense", "B. Cash", "C. Accounts Payable", "D. Accounts Receivable"],
               answer: "C",
             },
             {
-              question: "Services worth $3,000 are provided on credit. Which account is debited?",
-              options: ["A. Cash", "B. Accounts Receivable", "C. Service Revenue", "D. Accounts Payable"],
-              answer: "B",
+              question: "The owner withdraws $2,500 for personal use. Which account is debited?",
+              options: ["A. Wages Expense", "B. Owner's Capital", "C. Owner's Drawings", "D. Cash"],
+              answer: "C",
             },
             {
               question: "What does posting mean?",
               options: [
                 "A. Mailing invoices to customers",
-                "B. Copying journal entries into ledger accounts",
+                "B. Copying journal debits and credits into the ledger accounts",
                 "C. Paying suppliers",
-                "D. Filing tax returns",
+                "D. Filing source documents",
               ],
               answer: "B",
             },
-            {
-              question: "Using the March example, what is the ending cash balance?",
-              options: ["A. $17,700", "B. $18,500", "C. $19,300", "D. $20,000"],
-              answer: "B",
-            },
           ],
+        },
+      ],
+    },
+    {
+      title: "Module Summary",
+      blocks: [
+        { type: "p", text: "In this module you followed transactions from evidence to ledger." },
+        { type: "p", text: "You learned:" },
+        {
+          type: "list",
+          items: [
+            "What source documents are and why they matter",
+            "Sales invoices, sales receipts, supplier bills and bank statements",
+            "The difference between cash and credit transactions",
+            "How to record sales, customer payments, purchases and supplier payments",
+            "How to record owner investments and withdrawals",
+            "What the journal is and the parts of a journal entry",
+            "A step-by-step method for writing journal entries",
+            "How to post entries to the general ledger",
+            "How to keep supporting documentation and an audit trail",
+          ],
+        },
+        { type: "h3", text: "Key Concept to Remember" },
+        {
+          type: "note",
+          text: "Source document → journal entry → ledger. Every number in the books should be traceable back to its evidence.",
         },
       ],
     },
