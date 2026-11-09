@@ -1,5 +1,5 @@
 import type { CourseLessons } from "@/lib/lessonTypes"
-import { bullets, caution, cards, check, compare, example, exercises, journal, mistakes, note, overview, p, q, screen, steps, summary, table, terms, tip } from "@/lib/lessonKit"
+import { bullets, caution, cards, check, compare, example, exercises, h, journal, mistakes, note, overview, p, q, screen, steps, summary, table, terms, tip } from "@/lib/lessonKit"
 
 // Learn GST in India — lesson screens by module index (0 = Module 1).
 const lessons: CourseLessons = {
@@ -3376,428 +3376,470 @@ const lessons: CourseLessons = {
     ),
   ],
   12: [
-    {
-      title: "Exports are zero-rated",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Exports of goods and services, and supplies to SEZ units or developers, are zero-rated supplies under Section 16 of the IGST Act. No GST is effectively borne on them, and the exporter can still claim input tax credit on purchases.",
-        },
-        { type: "paragraph", text: "A supply of services counts as an export when all of these hold:" },
-        {
-          type: "bullets",
-          items: [
-            "The supplier is located in India.",
-            "The recipient is located outside India.",
-            "The place of supply is outside India.",
-            "Payment is received in convertible foreign exchange, or in Indian rupees where the RBI permits.",
-            "The supplier and recipient aren't merely establishments of the same person.",
-          ],
-        },
+    overview(
+      "Module 13 — GST on Exports and Imports",
+      [
+        "GST is designed so that exports leave India free of tax and imports are taxed like local goods. This module covers zero-rated supplies, exporting under an LUT or with IGST, SEZ supplies, and GST on imported goods and services.",
       ],
-    },
-    {
-      title: "Two ways to export",
-      blocks: [
-        {
-          type: "compare",
-          items: [
-            {
-              title: "Under a Letter of Undertaking (LUT)",
-              text: "File an LUT (form RFD-11) on the GST Portal for the financial year, then export without paying IGST. Claim a refund of the unused ITC.",
-              examples: ["No tax paid upfront", "Refund of ITC"],
-            },
-            {
-              title: "With payment of IGST",
-              text: "Charge and pay IGST on the export (ITC can be used to pay it), then claim a refund of the IGST paid.",
-              examples: ["Tax paid, then refunded", "Shipping bill acts as the refund claim for goods"],
-            },
-          ],
-        },
-        {
-          type: "tip",
-          title: "Which is better?",
-          text: "Most regular exporters use an LUT, because no tax is paid upfront and working capital isn't blocked. Renew the LUT before each financial year starts.",
-        },
-        {
-          type: "note",
-          text: "Supplies to an SEZ unit or developer are treated as inter-state supplies, even when the SEZ is in your own State, so IGST rules apply. They can be made under an LUT or with payment of IGST, just like exports.",
-        },
+      [
+        "Explain what a zero-rated supply is",
+        "Check whether a service counts as an export",
+        "Choose between exporting under an LUT and with IGST",
+        "Treat supplies to SEZs correctly",
+        "Calculate IGST on imported goods",
+        "Pay GST on imported services under reverse charge",
       ],
-    },
-    {
-      title: "GST on imports",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Imported goods attract IGST at the border under the Customs Tariff Act, collected by Customs along with basic customs duty (BCD). IGST is charged on the assessable value plus customs duties.",
-        },
-        {
-          type: "example",
-          rows: [
-            { label: "Assessable value", value: "₹1,00,000" },
-            { label: "Basic customs duty at 10%", value: "₹10,000" },
-            { label: "Social welfare surcharge (10% of BCD)", value: "₹1,000" },
-            { label: "Value for IGST", value: "₹1,11,000" },
-            { label: "IGST at 18%", value: "₹19,980" },
-          ],
-          total: { label: "Total duties and tax", value: "₹30,980" },
-        },
-        {
-          type: "list",
-          items: [
-            { term: "ITC on imported goods", text: "IGST paid on import (shown in the bill of entry) is eligible ITC. BCD and the surcharge are costs, not credits." },
-            { term: "Import of services", text: "The recipient in India pays IGST under reverse charge (Module 9) and can then claim it as ITC." },
-          ],
-        },
-        {
-          type: "note",
-          text: "Customs duty rates vary by product. The 10% BCD here is only for the example.",
-        },
+    ),
+    screen(
+      "Zero-rated supplies",
+      p("Exports of goods and services, and supplies to SEZ units or developers, are zero-rated supplies under Section 16 of the IGST Act."),
+      compare(
+        ["Zero-rated", "No GST is effectively borne, and ITC on related purchases can still be claimed (or refunded).", ["Exports", "SEZ supplies"]],
+        ["Exempt", "No GST is charged, but ITC on related purchases must be reversed.", ["Certain unprocessed foods", "Some healthcare and education services"]],
+      ),
+      note("That ITC difference is why exporters can compete internationally without carrying hidden Indian tax."),
+    ),
+    screen(
+      "When is a service an export?",
+      p("A supply of services counts as an export only when all of these hold:"),
+      bullets(
+        "The supplier is located in India.",
+        "The recipient is located outside India.",
+        "The place of supply is outside India.",
+        "Payment is received in convertible foreign exchange, or in Indian rupees where the RBI permits.",
+        "The supplier and recipient aren't merely establishments of the same person.",
+      ),
+      tip("Example", "A Pune software firm develops an app for a client in London and is paid in pounds. All five conditions are met — it's an export of services."),
+    ),
+    screen(
+      "Exporting under a Letter of Undertaking (LUT)",
+      steps(
+        ["File the LUT", "File form RFD-11 on the GST Portal before exporting, for the financial year."],
+        ["Export without IGST", "Invoices carry the note “supply meant for export under LUT without payment of IGST”."],
+        ["Claim ITC refund", "Claim a refund of the unused ITC on inputs and input services (form RFD-01)."],
+        ["Renew yearly", "File a fresh LUT before each financial year."],
+      ),
+      note("Most regular exporters use an LUT, because no tax is paid upfront and working capital isn't blocked."),
+    ),
+    screen(
+      "Exporting with payment of IGST",
+      p("The alternative is to charge and pay IGST on the export (ITC can be used to pay it), then claim a refund of the IGST paid."),
+      table(
+        ["", "Under LUT", "With IGST"],
+        [
+          ["Tax paid on export", "None", "IGST, often paid from ITC"],
+          ["Refund claimed", "Unused ITC", "IGST paid"],
+          ["Goods — refund claim", "RFD-01", "The shipping bill is treated as the refund application"],
+          ["Cash flow", "No tax paid upfront", "Tax paid first, refunded later"],
+        ],
+      ),
+    ),
+    screen(
+      "Supplies to SEZs and deemed exports",
+      terms(
+        ["SEZ supplies", "Supplies to an SEZ unit or developer are treated as inter-state supplies — even when the SEZ is in your own State — and zero-rated. They can be made under an LUT or with payment of IGST, for authorised operations."],
+        ["Deemed exports", "Certain notified supplies within India, such as to Export Oriented Units, are treated like exports for refund purposes, though goods don't leave India."],
+      ),
+      caution("Check the SEZ unit's authorisation for the goods or services before invoicing as zero-rated."),
+    ),
+    screen(
+      "IGST on imported goods",
+      p("Imported goods attract IGST at the border under the Customs Tariff Act, collected by Customs along with basic customs duty (BCD). IGST is charged on the assessable value plus customs duties."),
+      example(
+        [["Assessable value", "₹1,00,000"], ["Basic customs duty at 10%", "₹10,000"], ["Social welfare surcharge (10% of BCD)", "₹1,000"], ["Value for IGST", "₹1,11,000"], ["IGST at 18%", "₹19,980"]],
+        ["Total duties and tax", "₹30,980"],
+      ),
+      terms(["ITC on imported goods", "IGST paid on import (shown in the bill of entry) is eligible ITC. BCD and the surcharge are costs, not credits."]),
+      note("Customs duty rates vary by product. The 10% BCD here is only for the example."),
+    ),
+    screen(
+      "GST on imported services",
+      p("When a business in India buys services from a supplier outside India, it pays IGST under reverse charge (Module 9)."),
+      example(
+        [["Annual software subscription from a US company", "₹1,00,000"], ["IGST under reverse charge at 18%", "₹18,000"]],
+        ["Paid in cash, then claimed as ITC", "₹18,000"],
+      ),
+      note("Imports of services by individuals for personal use follow different rules — the foreign supplier may need to register in India."),
+    ),
+    screen(
+      "Worked example: ITC refund under LUT",
+      p("An exporter's turnover for the quarter is ₹12.5 lakh, of which ₹10 lakh is exports under LUT. Net ITC on inputs and input services is ₹1.2 lakh, all unused."),
+      example(
+        [["Zero-rated turnover", "₹10,00,000"], ["Adjusted total turnover", "₹12,50,000"], ["Net ITC", "₹1,20,000"], ["Refund = ₹10,00,000 × ₹1,20,000 ÷ ₹12,50,000", "₹96,000"]],
+        ["Maximum refund of unused ITC", "₹96,000"],
+      ),
+      note("This follows the formula in Rule 89(4), simplified. ITC on capital goods is not included in this refund."),
+    ),
+    mistakes(
+      ["Exporting without an LUT or IGST", "Without an LUT, exports must carry IGST."],
+      ["Forgetting to renew the LUT", "It's valid for one financial year."],
+      ["Charging CGST + SGST to an SEZ in your State", "SEZ supplies are inter-state — IGST or LUT."],
+      ["Missing RCM on imported services", "Foreign software and services usually attract IGST under reverse charge."],
+      ["Claiming ITC on customs duty", "Only the IGST on imports is creditable."],
+    ),
+    check(
+      13,
+      q("How are exports treated under GST?", ["Exempt supplies", "Zero-rated supplies", "Taxed at 5%", "Outside GST, with no ITC"], 1, "Exports are zero-rated."),
+      q("Which form is used to file a Letter of Undertaking?", ["RFD-01", "RFD-11", "PMT-06", "CMP-02"], 1, "The LUT is filed in RFD-11."),
+      q("Assessable value ₹1,00,000, BCD ₹10,000 and surcharge ₹1,000. What is IGST at 18%?", ["₹18,000", "₹19,800", "₹19,980", "₹21,600"], 2, "18% of ₹1,11,000."),
+      q("A Mumbai business supplies an SEZ unit in Mumbai. Which tax treatment applies?", ["CGST + SGST", "Inter-state and zero-rated (IGST or LUT)", "Exempt", "Customs duty"], 1, "SEZ supplies are treated as inter-state."),
+      q("Who pays GST on services imported from a foreign supplier for business use?", ["The foreign supplier", "The recipient in India, under reverse charge", "Customs", "Nobody"], 1, "IGST under RCM."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Export or not?",
+          ["A Chennai firm provides design services to a Dubai client, but is paid in Indian rupees from the client's Chennai bank account without RBI permission. Is it an export?"],
+          ["No — the payment condition isn't met. The supply is taxable in India."],
+        ],
+        [
+          "Exercise 2 — Import of goods",
+          ["Assessable value ₹2,00,000, BCD 7.5%, surcharge 10% of BCD, IGST 18%.", "Calculate the IGST."],
+          ["BCD ₹15,000; surcharge ₹1,500; value for IGST ₹2,16,500.", "IGST = ₹38,970."],
+        ],
+        [
+          "Exercise 3 — Refund",
+          ["Zero-rated turnover ₹6 lakh, adjusted total turnover ₹8 lakh, net ITC ₹80,000.", "What is the maximum refund?"],
+          ["₹6,00,000 × ₹80,000 ÷ ₹8,00,000 = ₹60,000."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "Zero-rated vs. exempt supplies",
+        "The conditions for export of services",
+        "Exporting under an LUT or with IGST, and the refunds for each",
+        "SEZ supplies and deemed exports",
+        "IGST on imported goods and ITC from the bill of entry",
+        "IGST on imported services under reverse charge",
       ],
-    },
-    {
-      title: "Module 13 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "How are exports treated under GST?",
-              options: ["Exempt supplies", "Zero-rated supplies", "Taxed at 5%", "Outside GST, with no ITC"],
-              answer: 1,
-              explanation: "Exports are zero-rated: no GST is effectively borne, and ITC remains available.",
-            },
-            {
-              question: "Which form is used to file a Letter of Undertaking?",
-              options: ["RFD-01", "RFD-11", "PMT-06", "CMP-02"],
-              answer: 1,
-              explanation: "The LUT is filed in form RFD-11.",
-            },
-            {
-              question: "Assessable value ₹1,00,000, BCD ₹10,000 and surcharge ₹1,000. What is IGST at 18%?",
-              options: ["₹18,000", "₹19,800", "₹19,980", "₹21,600"],
-              answer: 2,
-              explanation: "IGST is charged on ₹1,11,000 (value plus duties): 18% = ₹19,980.",
-            },
-            {
-              question: "A Mumbai business supplies an SEZ unit in Mumbai. Which tax applies?",
-              options: ["CGST + SGST", "IGST — supplies to SEZs are inter-state", "No tax and no ITC", "Customs duty"],
-              answer: 1,
-              explanation: "Supplies to SEZ units are treated as inter-state and zero-rated.",
-            },
-            {
-              question: "Who pays the GST on services imported from a foreign supplier?",
-              options: ["The foreign supplier", "The recipient in India, under reverse charge", "Customs", "Nobody"],
-              answer: 1,
-              explanation: "IGST on imported services is paid by the Indian recipient under reverse charge.",
-            },
-          ],
-        },
-      ],
-    },
+      "Exports go out tax-free through zero-rating; imports come in taxed like local supplies — with ITC keeping both fair.",
+    ),
   ],
   13: [
-    {
-      title: "Setting up GST in your software",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Tally Prime, Zoho Books and similar software follow the same pattern. Set GST up once correctly, and your invoices and return data follow automatically.",
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Enable GST for the company", text: "Enter the GSTIN, State, registration type (regular or composition) and the date GST applies from." },
-            { title: "Set up items and services", text: "Give each item its HSN or SAC code and GST rate." },
-            { title: "Set up customers and suppliers", text: "Record each party's GSTIN, State and registration type, so the software picks CGST + SGST or IGST correctly." },
-            { title: "Create tax ledgers", text: "Separate ledgers for output tax, input tax and reverse charge, by tax head." },
-          ],
-        },
-        {
-          type: "table",
-          headers: ["Ledger group", "Typical ledgers"],
-          rows: [
-            ["Output tax (liability)", "Output CGST, Output SGST, Output IGST"],
-            ["Input tax (asset)", "Input CGST, Input SGST, Input IGST"],
-            ["Reverse charge", "CGST/SGST/IGST payable under RCM, with matching input ledgers"],
-          ],
-        },
+    overview(
+      "Module 14 — GST in Practice: Accounting Software",
+      [
+        "Most businesses manage GST in accounting software such as Tally Prime or Zoho Books. This module shows how to set GST up, record transactions, produce return data and reconcile — skills that apply in any GST-ready software.",
       ],
-    },
-    {
-      title: "Recording GST transactions",
-      blocks: [
-        { type: "heading", text: "Intra-state sale of ₹50,000 at 18%" },
-        {
-          type: "table",
-          headers: ["Account", "Debit (₹)", "Credit (₹)"],
-          rows: [
-            ["Customer", "59,000", "—"],
-            ["Sales", "—", "50,000"],
-            ["Output CGST", "—", "4,500"],
-            ["Output SGST", "—", "4,500"],
-          ],
-          footer: ["Total", "59,000", "59,000"],
-          numeric: [1, 2],
-        },
-        { type: "heading", text: "Inter-state purchase of ₹20,000 at 18%" },
-        {
-          type: "table",
-          headers: ["Account", "Debit (₹)", "Credit (₹)"],
-          rows: [
-            ["Purchases", "20,000", "—"],
-            ["Input IGST", "3,600", "—"],
-            ["Supplier", "—", "23,600"],
-          ],
-          footer: ["Total", "23,600", "23,600"],
-          numeric: [1, 2],
-        },
-        {
-          type: "tip",
-          title: "Let the software decide the tax head",
-          text: "If the party's State and your State are set up correctly, the software chooses CGST + SGST or IGST for you. Most errors come from a wrong State or GSTIN on the party record.",
-        },
+      [
+        "Set up GST for a company in accounting software",
+        "Create the right GST ledgers",
+        "Record GST sales and purchases, including RCM",
+        "Generate GSTR-1 and GSTR-3B data from the books",
+        "Reconcile purchases with GSTR-2B",
+        "Follow a month-end GST checklist",
       ],
-    },
-    {
-      title: "Return data, reconciliation and month-end",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "GST reports in your software summarise the month's sales into GSTR-1 sections and the tax and ITC into GSTR-3B. Many tools export a JSON file that you upload to the GST Portal.",
-        },
-        { type: "heading", text: "Reconciling purchases with GSTR-2B" },
-        {
-          type: "table",
-          headers: ["Result", "What it means", "Action"],
-          rows: [
-            ["Matched", "In your books and in GSTR-2B", "Claim the ITC"],
-            ["In books, not in GSTR-2B", "The supplier hasn't reported it", "Hold the ITC and follow up with the supplier"],
-            ["In GSTR-2B, not in books", "Missing entry, or not your purchase", "Record it, or reject it in the IMS"],
-            ["Amount mismatch", "Typing error by you or the supplier", "Correct your entry, or ask for an amendment"],
-          ],
-        },
-        { type: "heading", text: "Month-end GST checklist" },
-        {
-          type: "bullets",
-          items: [
-            "All sales invoices, credit notes and debit notes recorded.",
-            "All purchases recorded, including reverse charge items and imports.",
-            "Purchases reconciled with GSTR-2B; blocked credits excluded.",
-            "GSTR-1 data checked against the sales register.",
-            "Tax liability, ITC set-off and cash payment worked out for GSTR-3B.",
-            "GST ledger balances in your books agree with the returns filed.",
-          ],
-        },
+    ),
+    screen(
+      "Setting up GST for the company",
+      steps(
+        ["Enable GST", "Turn on GST in the company settings."],
+        ["Enter registration details", "GSTIN, State, registration type (regular or composition) and the date GST applies from."],
+        ["Set return periodicity", "Monthly or quarterly (QRMP)."],
+        ["Enable e-invoicing and e-way bills", "If required, connect to the IRP and e-way bill portal."],
+      ),
+      note("Menu names differ between products and versions. Use the software's help pages to find each setting."),
+    ),
+    screen(
+      "Items, services and parties",
+      terms(
+        ["Items and services", "Give each one its HSN or SAC code, GST rate and unit of measure."],
+        ["Customers and suppliers", "Record each party's GSTIN, State and registration type (regular, composition, unregistered, SEZ, overseas)."],
+      ),
+      tip("Get the State right", "The software compares the party's State with yours to choose CGST + SGST or IGST. A wrong State means wrong tax on every invoice."),
+    ),
+    screen(
+      "GST ledgers",
+      table(
+        ["Ledger group", "Typical ledgers"],
+        [
+          ["Output tax (liability)", "Output CGST, Output SGST, Output IGST"],
+          ["Input tax (asset)", "Input CGST, Input SGST, Input IGST"],
+          ["Reverse charge", "CGST, SGST and IGST payable under RCM, with matching input ledgers"],
+          ["ITC on hold", "Credit waiting for GSTR-2B or the 180-day payment"],
+        ],
+      ),
+    ),
+    screen(
+      "Recording sales",
+      h("Intra-state sale of ₹50,000 at 18%"),
+      journal([["Customer", "₹59,000", ""], ["Sales", "", "₹50,000"], ["Output CGST", "", "₹4,500"], ["Output SGST", "", "₹4,500"]], "₹59,000"),
+      h("Inter-state sale of ₹30,000 at 18%"),
+      journal([["Customer", "₹35,400", ""], ["Sales", "", "₹30,000"], ["Output IGST", "", "₹5,400"]], "₹35,400"),
+    ),
+    screen(
+      "Recording purchases and RCM",
+      h("Inter-state purchase of ₹20,000 at 18%"),
+      journal([["Purchases", "₹20,000", ""], ["Input IGST", "₹3,600", ""], ["Supplier", "", "₹23,600"]], "₹23,600"),
+      h("Freight of ₹5,000 from a GTA under RCM at 5% (intra-state)"),
+      journal([["Freight inward", "₹5,000", ""], ["Input CGST (RCM)", "₹125", ""], ["Input SGST (RCM)", "₹125", ""], ["GTA", "", "₹5,000"], ["CGST payable (RCM)", "", "₹125"], ["SGST payable (RCM)", "", "₹125"]], "₹5,250"),
+      note("Mark RCM purchases as reverse charge in the software so they appear correctly in GSTR-3B."),
+    ),
+    screen(
+      "Generating return data",
+      p("GST reports in the software summarise the month's transactions into return format:"),
+      bullets(
+        "GSTR-1: B2B invoices, B2C summaries, credit and debit notes, HSN summary and documents issued.",
+        "GSTR-3B: outward supplies, RCM supplies, ITC and tax payable.",
+        "Many tools export a JSON file to upload to the GST Portal, or file directly through a GST Suvidha Provider.",
+      ),
+      caution("Review the software's exception reports — missing GSTINs, HSN codes or States — before exporting."),
+    ),
+    screen(
+      "Reconciling purchases with GSTR-2B",
+      table(
+        ["Result", "What it means", "Action"],
+        [
+          ["Matched", "In your books and in GSTR-2B", "Claim the ITC"],
+          ["In books, not in GSTR-2B", "The supplier hasn't reported it", "Hold the ITC and follow up with the supplier"],
+          ["In GSTR-2B, not in books", "Missing entry, or not your purchase", "Record it, or reject it in the IMS"],
+          ["Amount mismatch", "Typing error by you or the supplier", "Correct your entry, or ask for an amendment"],
+        ],
+      ),
+      tip("Use the matching tool", "Most GST software can import GSTR-2B and match it automatically by GSTIN, invoice number and amount."),
+    ),
+    screen(
+      "Worked example: a week in the books",
+      p("A Delhi business records these transactions (rates assumed at 18%):"),
+      table(
+        ["Transaction", "Output tax", "Input tax"],
+        [
+          ["Sale to Delhi customer ₹50,000", "CGST ₹4,500 + SGST ₹4,500", ""],
+          ["Sale to Haryana customer ₹30,000", "IGST ₹5,400", ""],
+          ["Purchase from Uttar Pradesh supplier ₹20,000", "", "IGST ₹3,600"],
+          ["Purchase from Delhi supplier ₹10,000", "", "CGST ₹900 + SGST ₹900"],
+        ],
+      ),
+      p("GST summary: output ₹14,400 (CGST ₹4,500, SGST ₹4,500, IGST ₹5,400); input ₹5,400 (IGST ₹3,600, CGST ₹900, SGST ₹900)."),
+      p("Set-off: IGST credit ₹3,600 → IGST (₹1,800 left to pay); CGST ₹4,500 − ₹900 = ₹3,600; SGST ₹4,500 − ₹900 = ₹3,600. Cash payable = ₹9,000."),
+    ),
+    screen(
+      "Month-end GST checklist",
+      bullets(
+        "All sales invoices, credit notes and debit notes recorded.",
+        "All purchases recorded, including reverse charge items and imports.",
+        "Purchases reconciled with GSTR-2B; blocked credits excluded.",
+        "Suppliers unpaid for 180 days reviewed for ITC reversal.",
+        "GSTR-1 data checked against the sales register.",
+        "Tax liability, ITC set-off and cash payment worked out for GSTR-3B.",
+        "GST ledger balances in the books agree with the returns filed.",
+      ),
+    ),
+    mistakes(
+      ["Wrong State on a party record", "Every invoice gets the wrong tax type."],
+      ["Missing HSN or SAC codes", "Invoices and the HSN summary are incomplete."],
+      ["Not marking RCM purchases", "RCM tax is missed in GSTR-3B."],
+      ["Uploading without reviewing exceptions", "Errors go straight to the GST Portal."],
+      ["Not reconciling GST ledgers with returns", "Differences surface later as notices."],
+    ),
+    check(
+      14,
+      q("What does the software mainly use to choose CGST + SGST or IGST?", ["The item price", "The party's State compared with yours", "The invoice number", "The payment terms"], 1, "Intra-state vs. inter-state comes from the States."),
+      q("An intra-state sale of ₹50,000 at 18% is recorded. What is the customer debited?", ["₹50,000", "₹54,500", "₹59,000", "₹68,000"], 2, "₹50,000 + ₹4,500 + ₹4,500."),
+      q("Input IGST is what kind of balance in the books?", ["Income", "Expense", "Asset (credit available)", "Liability"], 2, "It's credit you can use."),
+      q("A purchase is in your books but not in GSTR-2B. What should you do?", ["Claim the ITC anyway", "Hold the ITC and follow up with the supplier", "Delete the purchase", "Pay the supplier's tax yourself"], 1, "Wait for it to appear."),
+      q("In the week's example, how much cash is payable?", ["₹5,400", "₹9,000", "₹14,400", "₹19,800"], 1, "₹1,800 IGST + ₹3,600 CGST + ₹3,600 SGST."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Journal entry",
+          ["Record an inter-state sale of ₹80,000 at 18%."],
+          ["Dr Customer ₹94,400 · Cr Sales ₹80,000 · Cr Output IGST ₹14,400."],
+        ],
+        [
+          "Exercise 2 — Reconciliation",
+          ["Your books show 3 invoices from a supplier; GSTR-2B shows 2 of them. What do you do?"],
+          ["Claim ITC on the 2 matched invoices; hold the third and ask the supplier to report it in GSTR-1."],
+        ],
+        [
+          "Exercise 3 — Set-off",
+          ["Output: CGST ₹6,000, SGST ₹6,000. Input: IGST ₹4,000, CGST ₹1,000, SGST ₹1,000.", "How much cash is payable?"],
+          ["IGST credit ₹4,000 is used against CGST and SGST — say ₹2,000 each.", "CGST: ₹6,000 − ₹2,000 − ₹1,000 = ₹3,000. SGST: ₹6,000 − ₹2,000 − ₹1,000 = ₹3,000.", "Cash = ₹6,000."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "How to set up GST for a company in accounting software",
+        "Items, services and party records with GST details",
+        "Output, input, RCM and on-hold GST ledgers",
+        "Recording GST sales, purchases and RCM",
+        "Generating GSTR-1 and GSTR-3B data",
+        "Reconciling purchases with GSTR-2B",
+        "A month-end GST checklist",
       ],
-    },
-    {
-      title: "Module 14 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "What does the software mainly use to choose CGST + SGST or IGST on an invoice?",
-              options: ["The item price", "The party's State compared with yours", "The invoice number", "The payment terms"],
-              answer: 1,
-              explanation: "The tax head depends on whether the supply is intra-state or inter-state, which comes from the State on the party record.",
-            },
-            {
-              question: "An intra-state sale of ₹50,000 at 18% is recorded. What is the customer debited?",
-              options: ["₹50,000", "₹54,500", "₹59,000", "₹68,000"],
-              answer: 2,
-              explanation: "₹50,000 plus CGST ₹4,500 and SGST ₹4,500 = ₹59,000.",
-            },
-            {
-              question: "Input IGST is what kind of balance in your books?",
-              options: ["Income", "Expense", "Asset (credit available)", "Liability"],
-              answer: 2,
-              explanation: "Input tax is credit you can use against output tax, so it sits as an asset.",
-            },
-            {
-              question: "A purchase is in your books but not in GSTR-2B. What should you do?",
-              options: [
-                "Claim the ITC anyway",
-                "Hold the ITC and follow up with the supplier",
-                "Delete the purchase",
-                "Pay the supplier's tax yourself",
-              ],
-              answer: 1,
-              explanation: "ITC generally needs the invoice to appear in GSTR-2B, so hold it and ask the supplier to report it.",
-            },
-            {
-              question: "Which check belongs on a month-end GST checklist?",
-              options: [
-                "Reconcile purchases with GSTR-2B",
-                "Renew GST registration",
-                "File the income tax return",
-                "Change HSN codes every month",
-              ],
-              answer: 0,
-              explanation: "Reconciling purchases with GSTR-2B every month is a core month-end step.",
-            },
-          ],
-        },
-      ],
-    },
+      "Good GST returns start with good books: correct masters, correct entries and monthly reconciliation.",
+    ),
   ],
   14: [
-    {
-      title: "The business and the month's transactions",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Panda Traders is a regular GST taxpayer in Delhi (State code 07) trading in office furniture taxed at 18%. Handle its GST for one month.",
-        },
-        {
-          type: "table",
-          headers: ["Transaction", "Taxable value (₹)", "GST"],
-          rows: [
-            ["Sales to customers in Delhi", "2,50,000", "CGST + SGST at 9% each"],
-            ["Sales to a customer in Punjab (State code 03)", "1,50,000", "IGST at 18%"],
-            ["Purchases from a supplier in Delhi", "1,20,000", "CGST + SGST at 9% each"],
-            ["Purchases from a supplier in Haryana", "80,000", "IGST at 18%"],
-            ["Legal fees to an advocate (reverse charge)", "20,000", "CGST + SGST at 9% each, paid by Panda Traders"],
-            ["Purchase invoice missing from GSTR-2B", "10,000", "CGST + SGST ₹900 each — ITC held"],
-          ],
-          numeric: [1],
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Check the GSTIN", text: "Panda Traders' GSTIN starts with 07 (Delhi). The Punjab customer's starts with 03." },
-            { title: "Raise invoices", text: "CGST + SGST for Delhi customers, IGST for the Punjab customer (Module 6)." },
-            { title: "Record purchases", text: "Including a self-invoice for the legal fees under reverse charge (Module 9)." },
-            { title: "Reconcile with GSTR-2B", text: "The ₹10,000 invoice isn't in GSTR-2B, so its ITC is held until the supplier reports it." },
-          ],
-        },
+    overview(
+      "Module 15 — Final Practical Project",
+      [
+        "Time to put everything together. You'll handle one month of GST for Panda Traders, a fictional trading business in Delhi — from its registration details to the final payment.",
+        "Work through each step yourself before reading the answer on the next screen.",
       ],
-    },
-    {
-      title: "Work out the liability and ITC",
-      blocks: [
-        { type: "heading", text: "Output tax" },
-        {
-          type: "table",
-          headers: ["Supply", "CGST (₹)", "SGST (₹)", "IGST (₹)"],
-          rows: [
-            ["Delhi sales ₹2,50,000", "22,500", "22,500", "—"],
-            ["Punjab sale ₹1,50,000", "—", "—", "27,000"],
-          ],
-          footer: ["Total output tax", "22,500", "22,500", "27,000"],
-          numeric: [1, 2, 3],
-        },
-        { type: "heading", text: "Eligible input tax credit" },
-        {
-          type: "table",
-          headers: ["Source", "CGST (₹)", "SGST (₹)", "IGST (₹)"],
-          rows: [
-            ["Delhi purchases ₹1,20,000", "10,800", "10,800", "—"],
-            ["Haryana purchases ₹80,000", "—", "—", "14,400"],
-            ["Reverse charge on legal fees ₹20,000", "1,800", "1,800", "—"],
-          ],
-          footer: ["Total ITC", "12,600", "12,600", "14,400"],
-          numeric: [1, 2, 3],
-        },
-        {
-          type: "note",
-          text: "The ₹1,800 of GST on the invoice missing from GSTR-2B is left out until it appears. The reverse charge ITC is available because the tax is paid in this month's GSTR-3B.",
-        },
+      [
+        "Read and verify a GSTIN",
+        "Raise intra-state and inter-state invoices",
+        "Decide which ITC can be claimed",
+        "Handle a reverse charge purchase",
+        "Reconcile purchases with GSTR-2B",
+        "Prepare GSTR-1 and GSTR-3B summaries",
+        "Set off ITC, pay the balance and record the entries",
       ],
-    },
-    {
-      title: "Set off ITC and pay the balance",
-      blocks: [
-        {
-          type: "table",
-          headers: ["Tax head", "Output tax (₹)", "ITC used (₹)", "Paid in cash (₹)"],
-          rows: [
-            ["IGST", "27,000", "14,400 (IGST credit)", "12,600"],
-            ["CGST", "22,500", "12,600 (CGST credit)", "9,900"],
-            ["SGST", "22,500", "12,600 (SGST credit)", "9,900"],
-          ],
-          footer: ["Forward charge total", "72,000", "39,600", "32,400"],
-          numeric: [1, 3],
-        },
-        {
-          type: "example",
-          rows: [
-            { label: "Cash for forward charge tax", value: "₹32,400" },
-            { label: "Reverse charge tax (must be paid in cash)", value: "₹3,600" },
-          ],
-          total: { label: "Total cash payment through PMT-06", value: "₹36,000" },
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "GSTR-1 by the 11th", text: "B2B invoices for the Delhi and Punjab customers, the HSN summary and the documents issued." },
-            { title: "GSTR-3B by the 20th", text: "Outward supplies ₹4,00,000; reverse charge supplies ₹20,000; ITC as above; pay ₹36,000 in cash." },
-          ],
-        },
+    ),
+    screen(
+      "Step 1 — The business",
+      p("Panda Traders is a regular GST taxpayer in Delhi trading in office furniture, taxed at an assumed 18%. It files monthly returns."),
+      table(
+        ["GSTIN segment", "Meaning"],
+        [
+          ["07", "State code — Delhi"],
+          ["Next 10 characters", "The business's PAN"],
+          ["13th character", "Entity number for registrations under that PAN in Delhi"],
+          ["Z", "Default character"],
+          ["Last character", "Check digit"],
+        ],
+      ),
+      p("Its Punjab customer's GSTIN starts with 03 — Punjab's State code. Its Haryana supplier's starts with 06."),
+    ),
+    screen(
+      "Step 2 — The month's transactions",
+      table(
+        ["Transaction", "Taxable value (₹)", "Notes"],
+        [
+          ["Sales to customers in Delhi", "2,50,000", "Registered customers"],
+          ["Sale to a customer in Punjab", "1,50,000", "Registered customer"],
+          ["Purchases from a supplier in Delhi", "1,20,000", "In GSTR-2B"],
+          ["Purchases from a supplier in Haryana", "80,000", "In GSTR-2B"],
+          ["Legal fees to an advocate", "20,000", "Reverse charge, paid this month"],
+          ["Purchase from another Delhi supplier", "10,000", "Not in GSTR-2B"],
+        ],
+        { numeric: [1] },
+      ),
+      p("Your task: work out the output tax, eligible ITC, reverse charge tax and the cash payment for the month."),
+    ),
+    screen(
+      "Step 3 — Raise the invoices",
+      table(
+        ["Customer", "Place of supply", "Tax", "Amount"],
+        [
+          ["Delhi customers", "Delhi — same State", "CGST 9% + SGST 9%", "₹22,500 + ₹22,500"],
+          ["Punjab customer", "Punjab — different State", "IGST 18%", "₹27,000"],
+        ],
+      ),
+      p("Each tax invoice shows both GSTINs, HSN codes (at least 4 digits if turnover is up to ₹5 crore), the place of supply and the tax amounts."),
+    ),
+    screen(
+      "Step 4 — Purchases and ITC",
+      table(
+        ["Purchase", "GST", "Eligible this month?"],
+        [
+          ["Delhi supplier ₹1,20,000", "CGST ₹10,800 + SGST ₹10,800", "Yes — in GSTR-2B"],
+          ["Haryana supplier ₹80,000", "IGST ₹14,400", "Yes — in GSTR-2B"],
+          ["Delhi supplier ₹10,000", "CGST ₹900 + SGST ₹900", "No — not in GSTR-2B; hold it"],
+        ],
+      ),
+      tip("Reconciliation", "The ₹10,000 invoice is in the books but missing from GSTR-2B. Hold the ₹1,800 ITC and ask the supplier to report it."),
+    ),
+    screen(
+      "Step 5 — Reverse charge on legal fees",
+      p("Legal services by an advocate to a business are under reverse charge. Panda Traders pays the advocate ₹20,000 and pays the GST itself:"),
+      example(
+        [["CGST under RCM at 9%", "₹1,800"], ["SGST under RCM at 9%", "₹1,800"]],
+        ["RCM tax — paid in cash", "₹3,600"],
+      ),
+      p("Because the tax is paid in this month's GSTR-3B, the ₹3,600 is also eligible ITC this month."),
+    ),
+    screen(
+      "Step 6 — Output tax and ITC totals",
+      table(
+        ["", "CGST", "SGST", "IGST"],
+        [
+          ["Output tax", "₹22,500", "₹22,500", "₹27,000"],
+          ["ITC — Delhi purchases", "₹10,800", "₹10,800", "—"],
+          ["ITC — Haryana purchases", "—", "—", "₹14,400"],
+          ["ITC — RCM legal fees", "₹1,800", "₹1,800", "—"],
+        ],
+        { footer: ["Total ITC", "₹12,600", "₹12,600", "₹14,400"], numeric: [1, 2, 3] },
+      ),
+    ),
+    screen(
+      "Step 7 — Set off and pay",
+      table(
+        ["Tax head", "Output tax", "ITC used", "Paid in cash"],
+        [
+          ["IGST", "₹27,000", "₹14,400 (IGST credit)", "₹12,600"],
+          ["CGST", "₹22,500", "₹12,600 (CGST credit)", "₹9,900"],
+          ["SGST", "₹22,500", "₹12,600 (SGST credit)", "₹9,900"],
+        ],
+        { footer: ["Forward charge total", "₹72,000", "₹39,600", "₹32,400"], numeric: [1, 3] },
+      ),
+      example(
+        [["Cash for forward charge tax", "₹32,400"], ["Reverse charge tax (must be paid in cash)", "₹3,600"]],
+        ["Total cash payment through PMT-06", "₹36,000"],
+      ),
+    ),
+    screen(
+      "Step 8 — The returns",
+      table(
+        ["Return", "What Panda Traders reports", "Due"],
+        [
+          ["GSTR-1", "B2B invoices to Delhi customers (₹2,50,000) and the Punjab customer (₹1,50,000); HSN summary; documents issued", "11th of next month"],
+          ["GSTR-3B", "Outward supplies ₹4,00,000 with tax ₹72,000; RCM supplies ₹20,000 with tax ₹3,600; ITC ₹39,600; cash paid ₹36,000", "20th of next month"],
+        ],
+      ),
+    ),
+    screen(
+      "Step 9 — Journal entries",
+      table(
+        ["Entry", "Debit", "Credit"],
+        [
+          ["Delhi sales", "Customers ₹2,95,000", "Sales ₹2,50,000 · Output CGST ₹22,500 · Output SGST ₹22,500"],
+          ["Punjab sale", "Customer ₹1,77,000", "Sales ₹1,50,000 · Output IGST ₹27,000"],
+          ["Delhi purchases", "Purchases ₹1,20,000 · Input CGST ₹10,800 · Input SGST ₹10,800", "Supplier ₹1,41,600"],
+          ["Haryana purchases", "Purchases ₹80,000 · Input IGST ₹14,400", "Supplier ₹94,400"],
+          ["Purchase not in GSTR-2B", "Purchases ₹10,000 · ITC on hold ₹1,800", "Supplier ₹11,800"],
+          ["Legal fees (RCM)", "Legal fees ₹20,000 · Input CGST ₹1,800 · Input SGST ₹1,800", "Advocate ₹20,000 · CGST payable (RCM) ₹1,800 · SGST payable (RCM) ₹1,800"],
+          ["Set-off and payment", "Output IGST ₹27,000 · Output CGST ₹22,500 · Output SGST ₹22,500 · RCM payable ₹3,600", "Input IGST ₹14,400 · Input CGST ₹12,600 · Input SGST ₹12,600 · Bank ₹36,000"],
+        ],
+      ),
+      note("After the set-off entry, all output, input and RCM ledgers are zero — except ITC on hold, which waits for GSTR-2B."),
+    ),
+    screen(
+      "Project review checklist",
+      bullets(
+        "Did you use CGST + SGST for Delhi customers and IGST for Punjab?",
+        "Did you leave out the ITC on the invoice missing from GSTR-2B?",
+        "Did you pay the RCM tax in cash and claim it as ITC?",
+        "Did you use IGST credit first, and never use CGST credit for SGST?",
+        "Do your GSTR-1 and GSTR-3B figures agree with the books?",
+      ),
+    ),
+    check(
+      15,
+      q("Which tax applies to Panda Traders' sale to the customer in Punjab?", ["CGST + SGST", "IGST", "UTGST", "No tax — it's an export"], 1, "Delhi to Punjab is inter-state."),
+      q("What is the total output tax for the month?", ["₹45,000", "₹63,000", "₹72,000", "₹75,600"], 2, "₹22,500 + ₹22,500 + ₹27,000."),
+      q("Why is the ₹1,800 of GST on the ₹10,000 purchase not claimed this month?", ["It's a blocked credit", "The invoice isn't in GSTR-2B yet", "Purchases from Delhi have no ITC", "It exceeds the ITC limit"], 1, "ITC waits for GSTR-2B."),
+      q("How much IGST must be paid in cash after using IGST credit?", ["₹0", "₹12,600", "₹14,400", "₹27,000"], 1, "₹27,000 − ₹14,400."),
+      q("What is the total cash payment for the month, including reverse charge?", ["₹32,400", "₹34,200", "₹36,000", "₹39,600"], 2, "₹32,400 + ₹3,600."),
+    ),
+    summary(
+      [
+        "Reading GSTINs and State codes",
+        "Choosing CGST + SGST or IGST from the place of supply",
+        "Checking ITC eligibility and GSTR-2B",
+        "Paying reverse charge tax and claiming the credit",
+        "Setting off ITC in the legal order",
+        "Preparing GSTR-1 and GSTR-3B summaries",
+        "Recording the month's GST journal entries",
       ],
-    },
-    {
-      title: "Module 15 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions about the project, then press Check answers. Score at least 4 out of 5 to complete the module and the course.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "Which tax applies to Panda Traders' sale to the customer in Punjab?",
-              options: ["CGST + SGST", "IGST", "UTGST", "No tax — it's an export"],
-              answer: 1,
-              explanation: "Delhi to Punjab is an inter-state supply, so IGST applies.",
-            },
-            {
-              question: "What is the total output tax for the month?",
-              options: ["₹45,000", "₹63,000", "₹72,000", "₹75,600"],
-              answer: 2,
-              explanation: "CGST ₹22,500 + SGST ₹22,500 + IGST ₹27,000 = ₹72,000.",
-            },
-            {
-              question: "Why is the ₹1,800 of GST on the ₹10,000 purchase not claimed this month?",
-              options: [
-                "It's a blocked credit",
-                "The invoice isn't in GSTR-2B yet",
-                "Purchases from Delhi have no ITC",
-                "It exceeds the ITC limit",
-              ],
-              answer: 1,
-              explanation: "ITC is held until the supplier reports the invoice and it appears in GSTR-2B.",
-            },
-            {
-              question: "How much IGST must be paid in cash after using IGST credit?",
-              options: ["₹0", "₹12,600", "₹14,400", "₹27,000"],
-              answer: 1,
-              explanation: "IGST output ₹27,000 minus IGST credit ₹14,400 = ₹12,600.",
-            },
-            {
-              question: "What is the total cash payment for the month, including reverse charge?",
-              options: ["₹32,400", "₹34,200", "₹36,000", "₹39,600"],
-              answer: 2,
-              explanation: "₹32,400 for forward charge tax plus ₹3,600 reverse charge tax, which must be paid in cash = ₹36,000.",
-            },
-          ],
-        },
-      ],
-    },
+      "You've completed a full month of GST compliance. The same steps — invoice, record, reconcile, set off, file and pay — repeat every period.",
+    ),
   ],
 }
 

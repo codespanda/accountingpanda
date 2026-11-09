@@ -52,15 +52,15 @@ function Block({ block, onPass }: { block: LessonBlock; onPass?: () => void }) {
             <thead className="bg-brand-bg">
               <tr>
                 {block.headers.map((h, i) => (
-                  <th key={h} className={cn("px-4 py-3 font-semibold text-brand-heading", align(i))}>
+                  <th key={i} className={cn("px-4 py-3 font-semibold text-brand-heading", align(i))}>
                     {h}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {block.rows.map((row) => (
-                <tr key={row[0]} className="border-t border-gray-100 align-top">
+              {block.rows.map((row, ri) => (
+                <tr key={ri} className="border-t border-gray-100 align-top">
                   {row.map((cell, i) => (
                     <td key={i} className={cn("px-4 py-3 leading-relaxed text-gray-600", align(i))}>
                       {cell}
