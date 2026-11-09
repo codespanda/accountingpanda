@@ -1,5 +1,5 @@
 import type { CourseLessons } from "@/lib/lessonTypes"
-import { bullets, caution, cards, check, compare, example, exercises, mistakes, note, overview, p, q, screen, steps, summary, table, tip } from "@/lib/lessonKit"
+import { bullets, caution, cards, check, compare, example, exercises, mistakes, note, overview, p, q, screen, steps, summary, table, terms, tip } from "@/lib/lessonKit"
 
 // Learn GST in India — lesson screens by module index (0 = Module 1).
 const lessons: CourseLessons = {
@@ -2384,313 +2384,389 @@ const lessons: CourseLessons = {
     ),
   ],
   6: [
-    {
-      title: "What input tax credit is",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Input tax credit (ITC) lets a registered business deduct the GST it paid on eligible business purchases from the GST it owes on its sales. This is how GST avoids tax on tax.",
-        },
-        {
-          type: "example",
-          rows: [
-            { label: "Output GST on sales", value: "₹18,000" },
-            { label: "Less: eligible ITC on purchases", value: "₹12,000" },
-          ],
-          total: { label: "GST payable", value: "₹6,000" },
-        },
-        {
-          type: "note",
-          text: "ITC is available only on purchases used, or intended to be used, in the course or furtherance of business, and only if the legal conditions are met.",
-        },
+    overview(
+      "Module 7 — Input Tax Credit (ITC)",
+      [
+        "Input tax credit is what makes GST a tax on value added, not a tax on tax. It's also where many businesses make costly mistakes. In this module you'll learn when ITC can be claimed, what is blocked, and how credit is used to pay tax.",
       ],
-    },
-    {
-      title: "Conditions for claiming ITC",
-      blocks: [
-        { type: "paragraph", text: "Under Section 16 of the CGST Act, a business can claim ITC only if all of these are met:" },
-        {
-          type: "checklist",
-          title: "ITC conditions",
-          items: [
-            { title: "Tax invoice or debit note", text: "You hold a valid document from a registered supplier." },
-            { title: "Shown in GSTR-2B", text: "The supplier has reported the invoice and it appears in your GSTR-2B." },
-            { title: "Goods or services received", text: "Including goods delivered to a third party on your instructions." },
-            { title: "Tax paid by the supplier", text: "The supplier has actually paid the tax to the Government." },
-            { title: "Return filed", text: "You have filed your own GSTR-3B." },
-          ],
-        },
-        {
-          type: "bullets",
-          items: [
-            "Time limit: ITC must be claimed by 30 November after the end of the financial year, or the date of filing the annual return, if earlier.",
-            "180-day rule: if you don't pay the supplier within 180 days of the invoice date, reverse the ITC with interest, then claim it again once you pay.",
-          ],
-        },
+      [
+        "Explain how ITC removes tax on tax",
+        "List the conditions for claiming ITC",
+        "Apply the time limit and the 180-day payment rule",
+        "Identify blocked credits under Section 17(5)",
+        "Treat ITC on capital goods correctly",
+        "Use ITC in the correct order to pay tax",
       ],
-    },
-    {
-      title: "Blocked credits and capital goods",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Section 17(5) blocks ITC on certain items even when they are used in business. Common examples:",
-        },
-        {
-          type: "bullets",
-          items: [
-            "Motor vehicles for transporting people (with specified exceptions, such as further supply or training).",
-            "Food and beverages, outdoor catering, beauty treatment, health services and cosmetic surgery (unless used for the same kind of taxable supply or required by law).",
-            "Membership of clubs, health and fitness centres.",
-            "Works contracts and goods or services for constructing immovable property — other than plant and machinery.",
-            "Goods lost, stolen, destroyed, written off, or given as gifts or free samples.",
-            "Goods or services used for personal consumption.",
-          ],
-        },
-        { type: "heading", text: "ITC on capital goods" },
-        {
-          type: "paragraph",
-          text: "ITC on eligible capital goods such as machinery and computers is generally available in full when received. But if depreciation is claimed on the GST component under the Income-tax Act, ITC on that tax can't be claimed (Section 16(3)).",
-        },
+    ),
+    screen(
+      "What input tax credit is",
+      p("Input tax credit (ITC) lets a registered business deduct the GST it paid on eligible business purchases from the GST it owes on its sales."),
+      table(
+        ["Stage", "Sale value", "GST charged (18%)", "ITC claimed", "Net GST paid"],
+        [
+          ["Manufacturer", "₹1,00,000", "₹18,000", "₹0", "₹18,000"],
+          ["Wholesaler", "₹1,20,000", "₹21,600", "₹18,000", "₹3,600"],
+          ["Retailer", "₹1,50,000", "₹27,000", "₹21,600", "₹5,400"],
+        ],
+        { footer: ["Total paid to Government", "", "", "", "₹27,000"], numeric: [1, 2, 3, 4] },
+      ),
+      p("The total paid (₹27,000) equals 18% of the final price — each business pays tax only on the value it added."),
+    ),
+    screen(
+      "Inputs, input services and capital goods",
+      terms(
+        ["Inputs", "Goods (other than capital goods) used in business — e.g. raw materials, packing material, stock for resale."],
+        ["Input services", "Services used in business — e.g. rent, accounting fees, advertising, transport."],
+        ["Capital goods", "Goods capitalised in the books and used in business — e.g. machinery, computers, furniture."],
+      ),
+      note("ITC is available only on purchases used, or intended to be used, in the course or furtherance of business."),
+    ),
+    screen(
+      "Conditions for claiming ITC",
+      p("Under Section 16 of the CGST Act, a business can claim ITC only if all of these are met:"),
+      { type: "checklist", title: "ITC conditions", items: [
+        { title: "Tax invoice or debit note", text: "You hold a valid document from a registered supplier." },
+        { title: "Shown in GSTR-2B", text: "The supplier has reported the invoice and it appears in your GSTR-2B." },
+        { title: "Goods or services received", text: "Including goods delivered to a third party on your instructions." },
+        { title: "Tax paid by the supplier", text: "The supplier has actually paid the tax to the Government." },
+        { title: "Return filed", text: "You have filed your own GSTR-3B." },
+      ] },
+      caution("If any one condition is missing — for example, the invoice isn't in GSTR-2B — the credit can't be claimed yet."),
+    ),
+    screen(
+      "Time limit for claiming ITC",
+      p("Under Section 16(4), ITC on an invoice or debit note for a financial year can't be claimed after the earlier of:"),
+      bullets(
+        "30 November following the end of that financial year, or",
+        "The date the annual return for that year is filed.",
+      ),
+      tip("Example", "An invoice dated 15 January 2026 (FY 2025-26) must have its ITC claimed by 30 November 2026 at the latest — earlier if the annual return is filed before then."),
+    ),
+    screen(
+      "The 180-day payment rule",
+      p("If the business doesn't pay the supplier the value plus tax within 180 days from the invoice date, the ITC already claimed must be added back to its tax liability, with interest."),
+      steps(
+        ["Claim ITC", "When the conditions are met."],
+        ["Pay within 180 days", "Value plus tax, to the supplier."],
+        ["If not paid", "Reverse the ITC in GSTR-3B and pay interest."],
+        ["When paid later", "The credit can be claimed again."],
+      ),
+      note("Supplies taxed under reverse charge and certain other cases have their own rules."),
+    ),
+    screen(
+      "Blocked credits — Section 17(5)",
+      p("Some purchases are blocked from ITC even when used in business. Common examples:"),
+      bullets(
+        "Motor vehicles for transporting people with up to 13 seats (including the driver), with exceptions — such as vehicles used for passenger transport or driving training, or resold.",
+        "Food and beverages, outdoor catering, beauty treatment, health services and cosmetic surgery — unless used to make the same kind of taxable supply, or obligatory for employers under law.",
+        "Membership of clubs and health and fitness centres.",
+        "Travel benefits to employees on vacation, such as leave travel.",
+        "Construction of immovable property (other than plant and machinery) on the business's own account.",
+        "Goods lost, stolen, destroyed, written off, or given away as gifts or free samples.",
+        "Goods or services for personal consumption.",
+        "Tax paid under the composition scheme.",
+      ),
+      caution("These are summaries. Check the exact wording of Section 17(5) and its exceptions before deciding."),
+    ),
+    screen(
+      "ITC on capital goods and mixed use",
+      terms(
+        ["Capital goods", "ITC on eligible capital goods such as machinery and computers is generally available in full when received."],
+        ["Depreciation on the tax", "If depreciation is claimed on the GST component under the Income-tax Act, ITC on that tax can't be claimed (Section 16(3)). Claim one or the other."],
+        ["Partly business, partly personal or exempt use", "Only the business share used for taxable supplies is eligible; the rest is reversed under Rules 42 and 43."],
+      ),
+    ),
+    screen(
+      "Using ITC — the order of set-off",
+      p("Section 49(5) fixes how ITC is used against tax payable:"),
+      table(
+        ["Credit of", "Use first against", "Then against", "Never against"],
+        [
+          ["IGST", "IGST", "CGST and SGST/UTGST", "—"],
+          ["CGST", "CGST", "IGST", "SGST/UTGST"],
+          ["SGST/UTGST", "SGST/UTGST", "IGST (only after CGST credit is used up)", "CGST"],
+        ],
+      ),
+      tip("Remember", "IGST credit must be used fully before CGST or SGST credit is used. CGST and SGST credits can never be used for each other."),
+      { type: "link", label: "Official source", text: "CGST Act — Section 49 (CBIC)", href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter10/section49_v1.00.html" },
+    ),
+    screen(
+      "Worked example: set-off",
+      table(
+        ["", "IGST", "CGST", "SGST"],
+        [
+          ["Output tax payable", "₹20,000", "₹30,000", "₹30,000"],
+          ["ITC available", "₹50,000", "₹10,000", "₹10,000"],
+        ],
+        { numeric: [1, 2, 3] },
+      ),
+      steps(
+        ["Use IGST credit against IGST", "₹20,000 used; ₹30,000 IGST credit left."],
+        ["Use the rest of IGST credit against CGST and SGST", "₹15,000 against CGST and ₹15,000 against SGST."],
+        ["Use CGST credit against CGST", "₹30,000 − ₹15,000 − ₹10,000 = ₹5,000 left to pay."],
+        ["Use SGST credit against SGST", "₹30,000 − ₹15,000 − ₹10,000 = ₹5,000 left to pay."],
+      ),
+      example([["Total output tax", "₹80,000"], ["Less: total ITC used", "(₹70,000)"]], ["Cash payable (₹5,000 CGST + ₹5,000 SGST)", "₹10,000"]),
+    ),
+    screen(
+      "Worked example: what can be claimed this month?",
+      table(
+        ["Purchase", "GST", "In GSTR-2B?", "Eligible?"],
+        [
+          ["Raw materials ₹2,00,000", "₹36,000", "Yes", "Yes"],
+          ["Office laptop ₹80,000 (capital good)", "₹14,400", "Yes", "Yes — no depreciation claimed on the tax"],
+          ["Staff lunch ₹10,000", "₹500", "Yes", "No — food and beverages are blocked"],
+          ["Packing material ₹50,000", "₹9,000", "No", "Not yet — wait for it to appear"],
+        ],
+      ),
+      p("ITC claimable this month = ₹36,000 + ₹14,400 = ₹50,400."),
+    ),
+    mistakes(
+      ["Claiming ITC not shown in GSTR-2B", "Wait for the supplier to report the invoice."],
+      ["Claiming blocked credits", "Check every purchase against Section 17(5)."],
+      ["Claiming both ITC and depreciation on the tax", "Section 16(3) allows only one."],
+      ["Missing the time limit", "Claim by 30 November after the year (or the annual return date, if earlier)."],
+      ["Ignoring unpaid suppliers", "Unpaid after 180 days means reversing the ITC with interest."],
+      ["Using CGST credit against SGST", "Never allowed."],
+    ),
+    check(
+      7,
+      q("What does ITC let a business do?", ["Avoid registering", "Deduct GST paid on eligible purchases from GST on its sales", "Skip filing returns", "Charge a lower rate"], 1, "It removes tax on tax."),
+      q("Which is a condition for claiming ITC?", ["The invoice appears in GSTR-2B", "The supplier is in the same State", "The purchase is over ₹50,000", "Payment is made in cash"], 0, "The invoice must be reflected in GSTR-2B."),
+      q("A supplier isn't paid within 180 days of the invoice. What happens?", ["Nothing", "The ITC claimed is added back with interest", "The supplier pays a penalty", "The invoice is cancelled"], 1, "It can be reclaimed once paid."),
+      q("Which purchase is a blocked credit?", ["Raw materials", "An office laptop", "A club membership for staff", "Packing material"], 2, "Club memberships are blocked under Section 17(5)."),
+      q("Which credit must be used first?", ["CGST", "SGST", "IGST", "Any, in any order"], 2, "IGST credit is used fully before CGST or SGST credit."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Value added",
+          ["A wholesaler buys goods for ₹50,000 + 18% GST and sells them for ₹70,000 + 18% GST (both intra-state).", "How much GST does the wholesaler pay in cash?"],
+          ["Output GST = ₹12,600. ITC = ₹9,000.", "Cash payable = ₹3,600 (₹1,800 CGST + ₹1,800 SGST) — 18% of the ₹20,000 value added."],
+        ],
+        [
+          "Exercise 2 — Eligible or blocked?",
+          ["Decide for each: (a) office rent, (b) a gift hamper for a client, (c) accounting software, (d) a car with 5 seats for the director."],
+          ["(a) Eligible. (b) Blocked — goods given as gifts. (c) Eligible. (d) Blocked — passenger vehicle with up to 13 seats, not used for an excepted purpose."],
+        ],
+        [
+          "Exercise 3 — Set-off",
+          ["Output: IGST ₹10,000, CGST ₹8,000, SGST ₹8,000. ITC: IGST ₹4,000, CGST ₹6,000, SGST ₹6,000.", "How much cash is payable?"],
+          ["IGST credit ₹4,000 → IGST; ₹6,000 IGST still payable.", "CGST credit: ₹6,000 → CGST (₹2,000 left to pay). Remaining CGST credit ₹0.", "SGST credit: ₹6,000 → SGST (₹2,000 left to pay).", "Cash: IGST ₹6,000 + CGST ₹2,000 + SGST ₹2,000 = ₹10,000."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "How ITC removes tax on tax across the supply chain",
+        "Inputs, input services and capital goods",
+        "The Section 16 conditions, including GSTR-2B",
+        "The time limit and the 180-day payment rule",
+        "Blocked credits under Section 17(5)",
+        "ITC on capital goods, depreciation and mixed use",
+        "The order of set-off under Section 49(5)",
       ],
-    },
-    {
-      title: "Using ITC — the order of set-off",
-      blocks: [
-        { type: "paragraph", text: "Section 49(5) fixes the order in which ITC is used against tax payable:" },
-        {
-          type: "table",
-          headers: ["Credit of", "Use first against", "Then against", "Never against"],
-          rows: [
-            ["IGST", "IGST", "CGST and SGST/UTGST", "—"],
-            ["CGST", "CGST", "IGST", "SGST/UTGST"],
-            ["SGST/UTGST", "SGST/UTGST", "IGST (only after CGST credit is used up)", "CGST"],
-          ],
-        },
-        {
-          type: "tip",
-          title: "Remember",
-          text: "IGST credit must be used fully before CGST or SGST credit is used. CGST and SGST credits can never be used for each other.",
-        },
-        {
-          type: "link",
-          label: "Official source",
-          text: "CGST Act — Section 49 (CBIC)",
-          href: "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter10/section49_v1.00.html",
-        },
-      ],
-    },
-    {
-      title: "Module 7 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "Output GST is ₹18,000 and eligible ITC is ₹12,000. How much GST is payable?",
-              options: ["₹30,000", "₹18,000", "₹12,000", "₹6,000"],
-              answer: 3,
-              explanation: "₹18,000 − ₹12,000 = ₹6,000.",
-            },
-            {
-              question: "Which is a condition for claiming ITC?",
-              options: [
-                "The supplier is in the same State",
-                "The invoice appears in your GSTR-2B",
-                "The purchase is above ₹50,000",
-                "You paid in cash",
-              ],
-              answer: 1,
-              explanation: "Section 16(2)(aa) requires the supplier to have reported the invoice so that it appears in your GSTR-2B.",
-            },
-            {
-              question: "What happens if you don't pay a supplier within 180 days of the invoice date?",
-              options: [
-                "Nothing",
-                "You reverse the ITC with interest, and can claim it again after paying",
-                "The supplier loses the sale",
-                "You must cancel your registration",
-              ],
-              answer: 1,
-              explanation: "The ITC must be reversed with interest; it can be re-claimed once the supplier is paid.",
-            },
-            {
-              question: "ITC on which of these is generally blocked?",
-              options: ["Raw materials for production", "Office computers", "A club membership for staff", "Goods bought for resale"],
-              answer: 2,
-              explanation: "Section 17(5) blocks ITC on membership of clubs and health and fitness centres.",
-            },
-            {
-              question: "Which credit must be used first?",
-              options: ["CGST", "SGST", "IGST", "Any, in any order"],
-              answer: 2,
-              explanation: "IGST credit must be fully used (against IGST, then CGST and SGST) before CGST or SGST credit.",
-            },
-          ],
-        },
-      ],
-    },
+      "Claim every rupee of ITC you're entitled to — and nothing more. Check the conditions, the blocked list and GSTR-2B before claiming.",
+    ),
   ],
   7: [
-    {
-      title: "Tax invoices — when and what",
-      blocks: [
-        {
-          type: "bullets",
-          items: [
-            "Goods: issue the invoice before or at the time of removal or delivery.",
-            "Services: generally within 30 days of supply.",
-            "Reverse charge purchases from unregistered suppliers: the recipient issues a self-invoice within 30 days of receiving the supply (Rule 47A, from 1 November 2024).",
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Mandatory contents of a tax invoice (Rule 46)",
-          items: [
-            { title: "Supplier details", text: "Name, address and GSTIN" },
-            { title: "Invoice number", text: "Consecutive and unique for the financial year, up to 16 characters" },
-            { title: "Date of issue", text: "The date the invoice is issued" },
-            { title: "Recipient details", text: "Name, address and GSTIN (if registered)" },
-            { title: "HSN or SAC code", text: "At the required number of digits" },
-            { title: "Description, quantity and value", text: "Including taxable value after discounts" },
-            { title: "Tax rate and amount", text: "CGST, SGST/UTGST or IGST shown separately" },
-            { title: "Place of supply", text: "With the State name, for inter-state supplies" },
-            { title: "Reverse charge", text: "Whether tax is payable on reverse charge" },
-            { title: "Signature", text: "Signature or digital signature of the supplier" },
-          ],
-        },
+    overview(
+      "Module 8 — Tax Invoices and GST Documents",
+      [
+        "GST is built on documents. The right document, issued on time with the right details, lets your customer claim ITC and keeps your business compliant. This module covers invoices, credit and debit notes, vouchers, e-invoicing and e-way bills.",
       ],
-    },
-    {
-      title: "Other GST documents",
-      blocks: [
-        {
-          type: "table",
-          headers: ["Document", "When it is used"],
-          rows: [
-            ["Bill of supply", "For exempt supplies, and by composition taxpayers, instead of a tax invoice"],
-            ["Credit note", "To reduce value or tax — for example sales returns, post-supply discounts or overcharging"],
-            ["Debit note", "To increase value or tax — for example undercharging"],
-            ["Delivery challan", "For movement of goods that is not a supply, or not yet one — such as job work or goods sent on approval"],
-            ["Receipt voucher", "When an advance payment is received"],
-            ["Refund voucher", "When an advance is refunded and no supply is made"],
-            ["Payment voucher", "When paying a supplier for supplies taxed under reverse charge"],
-          ],
-        },
-        {
-          type: "note",
-          text: "A credit note must generally be declared by 30 November after the end of the financial year, or the date of filing the annual return, if earlier.",
-        },
+      [
+        "Know when a tax invoice must be issued",
+        "List the mandatory contents of a tax invoice",
+        "Choose between a tax invoice and a bill of supply",
+        "Use credit notes, debit notes, vouchers and delivery challans",
+        "Explain e-invoicing, the IRN and the QR code",
+        "Decide when an e-way bill is needed and how long it's valid",
       ],
-    },
-    {
-      title: "E-invoicing — IRN and QR code",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Businesses whose aggregate turnover has exceeded ₹5 crore in any financial year since 2017-18 must e-invoice. They report B2B invoices, credit and debit notes and exports to the Invoice Registration Portal (IRP), which returns:",
-        },
-        {
-          type: "list",
-          items: [
-            { term: "IRN", text: "a unique Invoice Reference Number." },
-            { term: "Signed QR code", text: "printed on the invoice so it can be verified." },
-          ],
-        },
-        {
-          type: "bullets",
-          items: [
-            "An invoice that should be e-invoiced but isn't reported is not a valid invoice — and the buyer's ITC is at risk.",
-            "Businesses with aggregate turnover of ₹10 crore or more must report invoices to the IRP within 30 days of the invoice date (from 1 April 2025).",
-            "Certain sectors are exempt, such as banking and insurance companies and SEZ units.",
-          ],
-        },
+    ),
+    screen(
+      "When to issue a tax invoice",
+      table(
+        ["Supply", "Time limit (Section 31)"],
+        [
+          ["Goods involving movement", "Before or at the time of removal for delivery"],
+          ["Goods not involving movement", "Before or at the time of delivery or making them available"],
+          ["Services", "Generally within 30 days of supplying the service (45 days for banks and insurers)"],
+        ],
+      ),
+      note("Issuing an invoice late can change the time of supply (Module 6) and attract penalties."),
+    ),
+    screen(
+      "Mandatory contents of a tax invoice (Rule 46)",
+      { type: "checklist", title: "A tax invoice must show", items: [
+        { title: "Supplier details", text: "Name, address and GSTIN" },
+        { title: "Invoice number", text: "Consecutive and unique for the financial year, up to 16 characters" },
+        { title: "Date of issue", text: "The date the invoice is issued" },
+        { title: "Recipient details", text: "Name, address and GSTIN (if registered)" },
+        { title: "HSN or SAC code", text: "At the required number of digits" },
+        { title: "Description, quantity and value", text: "Including taxable value after discounts" },
+        { title: "Tax rate and amount", text: "CGST, SGST/UTGST or IGST shown separately" },
+        { title: "Place of supply", text: "With the State name, for inter-state supplies" },
+        { title: "Reverse charge", text: "Whether tax is payable on reverse charge" },
+        { title: "Signature", text: "Signature or digital signature of the supplier" },
+      ] },
+    ),
+    screen(
+      "Invoice numbering and copies",
+      bullets(
+        "Use one or more series of consecutive numbers, unique within the financial year.",
+        "Numbers can include letters, hyphens and slashes — e.g. MUM/25-26/0142.",
+        "Don't reuse or skip numbers; cancel and keep any spoiled invoice.",
+      ),
+      table(
+        ["Supply", "Copies (Rule 48)"],
+        [
+          ["Goods", "Three: original for the recipient, duplicate for the transporter, triplicate for the supplier"],
+          ["Services", "Two: original for the recipient, duplicate for the supplier"],
+        ],
+      ),
+    ),
+    screen(
+      "Example: a tax invoice",
+      table(
+        ["Field", "Example"],
+        [
+          ["Supplier", "Panda Traders, Mumbai — GSTIN 27ABCDE1234F1Z5"],
+          ["Invoice no. and date", "MUM/26-27/0142 · 6 November 2026"],
+          ["Recipient", "Lotus Retail, Pune — GSTIN 27PQRST5678K1Z2"],
+          ["Item", "Office chairs, HSN 9401 — 10 × ₹4,000 = ₹40,000"],
+          ["CGST 9% / SGST 9%", "₹3,600 / ₹3,600"],
+          ["Total", "₹47,200"],
+          ["Place of supply", "Maharashtra"],
+          ["Reverse charge", "No"],
+        ],
+      ),
+      note("The GSTINs and the 18% rate are illustrative. Both GSTINs start with 27 — Maharashtra's State code — so this is intra-state."),
+    ),
+    screen(
+      "Bill of supply",
+      p("A bill of supply is issued instead of a tax invoice when no GST is charged:"),
+      bullets(
+        "By a registered business making exempt supplies.",
+        "By a composition taxpayer (Module 10), who can't collect GST.",
+      ),
+      p("It shows the supplier, number, date, recipient, description and value — but no tax."),
+      caution("A bill of supply doesn't give the customer any ITC."),
+    ),
+    screen(
+      "Credit notes and debit notes",
+      compare(
+        ["Credit note", "Issued by the supplier to reduce value or tax — e.g. goods returned, a post-supply discount, or overcharging.", ["Reduces the supplier's output tax", "Customer reduces ITC"]],
+        ["Debit note", "Issued by the supplier to increase value or tax — e.g. undercharging on the original invoice.", ["Increases output tax", "Customer can claim extra ITC"]],
+      ),
+      note("A credit note must generally be declared by 30 November after the end of the financial year, or the date of filing the annual return, if earlier (Section 34)."),
+    ),
+    screen(
+      "Vouchers and delivery challans",
+      table(
+        ["Document", "When it is used"],
+        [
+          ["Receipt voucher", "When an advance payment is received"],
+          ["Refund voucher", "When an advance is refunded and no supply is made"],
+          ["Payment voucher", "When paying a supplier for supplies taxed under reverse charge"],
+          ["Delivery challan", "For movement of goods that is not a supply, or not yet one — such as job work or goods sent on approval"],
+          ["Self-invoice", "Issued by the recipient within 30 days for reverse charge purchases from unregistered suppliers (Rule 47A — Module 9)"],
+        ],
+      ),
+    ),
+    screen(
+      "E-invoicing — IRN and QR code",
+      p("Businesses whose aggregate turnover has exceeded ₹5 crore in any financial year since 2017-18 must e-invoice. They report B2B invoices, credit and debit notes and exports to the Invoice Registration Portal (IRP), which returns:"),
+      terms(
+        ["IRN", "A unique Invoice Reference Number."],
+        ["Signed QR code", "Printed on the invoice so it can be verified."],
+      ),
+      bullets(
+        "An invoice that should have been e-invoiced but wasn't is not a valid invoice — the customer can't claim ITC.",
+        "E-invoice data flows automatically into GSTR-1 and can create e-way bills.",
+        "From 1 April 2025, businesses with aggregate turnover of ₹10 crore or more must report invoices to the IRP within 30 days of the invoice date.",
+      ),
+    ),
+    screen(
+      "E-way bills",
+      p("Under Rule 138, an e-way bill is generally needed before moving goods of consignment value exceeding ₹50,000 — whether for a sale, for reasons other than supply, or for inward supply from an unregistered person."),
+      steps(
+        ["Part A", "Enter the invoice details, the parties and the value of goods."],
+        ["Part B", "Enter the transport details, such as the vehicle number."],
+        ["Generate", "Get the e-way bill number (EBN) before the movement starts."],
+      ),
+      table(
+        ["Distance", "Validity (regular cargo)"],
+        [
+          ["Up to 200 km", "1 day"],
+          ["Every further 200 km or part of it", "1 more day"],
+        ],
+      ),
+      caution("Some States set different limits for movement within the State, and certain goods and movements are exempt. Check the applicable rules before moving goods."),
+    ),
+    screen(
+      "Worked example: e-way bill validity",
+      p("Goods worth ₹1,20,000 are sent 450 km by truck."),
+      table(
+        ["Distance", "Days"],
+        [
+          ["First 200 km", "1"],
+          ["Next 200 km (201–400)", "1"],
+          ["Remaining 50 km (part of another 200 km)", "1"],
+        ],
+        { footer: ["Total validity", "3 days"] },
+      ),
+      p("The value is above ₹50,000, so an e-way bill is needed, valid for 3 days."),
+    ),
+    mistakes(
+      ["Reusing or skipping invoice numbers", "Numbers must be consecutive and unique for the year."],
+      ["Missing the customer's GSTIN", "The customer can't claim ITC without it."],
+      ["Issuing a tax invoice for exempt supplies", "Use a bill of supply."],
+      ["Editing an issued invoice", "Use a credit or debit note instead."],
+      ["Not e-invoicing when required", "The invoice isn't valid and the customer loses ITC."],
+      ["Moving goods without an e-way bill", "Goods and vehicles can be detained."],
+    ),
+    check(
+      8,
+      q("Within how long must a tax invoice for services generally be issued?", ["7 days", "15 days", "30 days", "90 days"], 2, "Generally within 30 days of supplying the service."),
+      q("Which document does a composition taxpayer issue?", ["Debit note", "Bill of supply", "Delivery challan", "Payment voucher"], 1, "Composition taxpayers can't collect GST."),
+      q("Which document increases the value or tax on an earlier invoice?", ["Credit note", "Debit note", "Receipt voucher", "Refund voucher"], 1, "Debit notes increase value or tax."),
+      q("Above what aggregate turnover is e-invoicing mandatory?", ["₹40 lakh", "₹1.5 crore", "₹5 crore", "₹100 crore"], 2, "₹5 crore in any year since 2017-18."),
+      q("Goods are moved 450 km. How long is the e-way bill valid?", ["1 day", "2 days", "3 days", "5 days"], 2, "1 day per 200 km or part: 3 days."),
+    ),
+    screen(
+      "Practical exercises",
+      exercises(
+        [
+          "Exercise 1 — Spot the gaps",
+          ["An invoice shows the supplier's name and GSTIN, the date, the customer's name, the items and the total. What's missing for a valid tax invoice to a registered customer?"],
+          ["Invoice number, customer's address and GSTIN, HSN/SAC codes, tax rate and separate tax amounts, place of supply (if inter-state), reverse charge indication and signature."],
+        ],
+        [
+          "Exercise 2 — Choose the document",
+          ["Which document for each: (a) a customer returns goods, (b) an advance is received, (c) goods are sent for job work, (d) an exempt supply?"],
+          ["(a) Credit note. (b) Receipt voucher. (c) Delivery challan. (d) Bill of supply."],
+        ],
+        [
+          "Exercise 3 — E-way bill",
+          ["Goods worth ₹75,000 are moved 610 km. Is an e-way bill needed, and for how long?"],
+          ["Yes — the value exceeds ₹50,000.", "610 km = 200 + 200 + 200 + 10 → 4 days."],
+        ],
+      ),
+    ),
+    summary(
+      [
+        "When tax invoices must be issued for goods and services",
+        "The mandatory contents under Rule 46",
+        "Invoice numbering and copies",
+        "Bills of supply, credit notes and debit notes",
+        "Receipt, refund and payment vouchers, delivery challans and self-invoices",
+        "E-invoicing, the IRN and the QR code",
+        "E-way bills and their validity",
       ],
-    },
-    {
-      title: "E-way bills",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Under Rule 138, an e-way bill is generally needed before moving goods of consignment value exceeding ₹50,000 — whether for a sale, for reasons other than supply, or for inward supply from an unregistered person.",
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Part A", text: "Enter the invoice details, the parties and the value of goods." },
-            { title: "Part B", text: "Enter the transport details, such as the vehicle number." },
-            { title: "Generate", text: "Get the e-way bill number (EBN) before the movement starts." },
-          ],
-        },
-        {
-          type: "table",
-          headers: ["Distance", "Validity (regular cargo)"],
-          rows: [
-            ["Up to 200 km", "1 day"],
-            ["Every further 200 km or part of it", "1 more day"],
-          ],
-        },
-        {
-          type: "caution",
-          text: "Some States set different limits for movement within the State, and certain goods and movements are exempt. Check the applicable rules before moving goods.",
-        },
-      ],
-    },
-    {
-      title: "Module 8 — Knowledge check",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Answer these five questions, then press Check answers. Score at least 4 out of 5 to complete the module.",
-        },
-        {
-          type: "knowledge-check",
-          passCount: 4,
-          questions: [
-            {
-              question: "Within how many days of supply should a service invoice generally be issued?",
-              options: ["7 days", "15 days", "30 days", "90 days"],
-              answer: 2,
-              explanation: "A tax invoice for services is generally issued within 30 days of the supply.",
-            },
-            {
-              question: "Which document does a composition taxpayer issue instead of a tax invoice?",
-              options: ["Debit note", "Bill of supply", "Delivery challan", "Payment voucher"],
-              answer: 1,
-              explanation: "Composition taxpayers and suppliers of exempt supplies issue a bill of supply.",
-            },
-            {
-              question: "A business sends goods to a job worker. Which document accompanies the goods?",
-              options: ["Tax invoice", "Delivery challan", "Receipt voucher", "Credit note"],
-              answer: 1,
-              explanation: "Movement that is not a supply, such as sending goods for job work, is covered by a delivery challan.",
-            },
-            {
-              question: "E-invoicing is mandatory for businesses whose aggregate turnover has exceeded:",
-              options: ["₹40 lakh", "₹1.5 crore", "₹5 crore", "₹100 crore"],
-              answer: 2,
-              explanation: "The current threshold is aggregate turnover above ₹5 crore in any financial year since 2017-18.",
-            },
-            {
-              question: "Goods worth ₹80,000 are being moved 450 km by road. Is an e-way bill needed, and how long is it valid?",
-              options: [
-                "Not needed",
-                "Needed — valid for 1 day",
-                "Needed — valid for 3 days",
-                "Needed — valid for 7 days",
-              ],
-              answer: 2,
-              explanation: "The value exceeds ₹50,000. 450 km = 200 km (1 day) + 200 km (1 day) + 50 km (1 more day) = 3 days.",
-            },
-          ],
-        },
-      ],
-    },
+      "A correct, timely document protects both sides: the supplier stays compliant and the customer can claim ITC.",
+    ),
   ],
   8: [
     {
