@@ -27,6 +27,7 @@ export function KnowledgeCheckQuiz({
   const correctCount = questions.filter((q, i) => answers[i] === q.answer).length
   const scorePct = Math.round((correctCount / questions.length) * 100)
   const passed = scorePct >= passPct
+  const reveal = checked && passed
 
   const select = (qIndex: number, letter: string) => {
     if (checked) return
@@ -63,6 +64,8 @@ export function KnowledgeCheckQuiz({
                 const letter = optionLetter(option)
                 const isSelected = selected === letter
                 const isCorrect = letter === q.answer
+                // The right answer is only revealed once the learner has passed.
+                const showAsAnswer = reveal && isCorrect && !isSelected
 
                 return (
                   <button
@@ -70,24 +73,44 @@ export function KnowledgeCheckQuiz({
                     type="button"
                     onClick={() => select(qIndex, letter)}
                     disabled={checked}
+                    aria-pressed={isSelected}
                     className={cn(
                       "flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors",
                       !checked && !isSelected && "border-gray-100 text-gray-600 hover:bg-brand-bg",
                       !checked && isSelected && "border-brand-green/40 bg-brand-green-light text-brand-heading",
-                      checked && isCorrect && "border-brand-green/40 bg-brand-green-light text-brand-heading",
-                      checked && isSelected && !isCorrect && "border-red-200 bg-red-50 text-brand-heading",
-                      checked && !isSelected && !isCorrect && "border-gray-100 text-gray-400"
+                      checked && isSelected && isCorrect && "border-brand-green bg-brand-green-light text-brand-heading",
+                      checked && isSelected && !isCorrect && "border-red-300 bg-red-50 text-brand-heading",
+                      showAsAnswer && "border-dashed border-brand-green/60 text-brand-heading",
+                      checked && !isSelected && !showAsAnswer && "border-gray-100 text-gray-400"
                     )}
                   >
                     <span>{option}</span>
-                    {checked && isCorrect && <Check className="h-4 w-4 shrink-0 text-brand-green" />}
-                    {checked && isSelected && !isCorrect && (
-                      <X className="h-4 w-4 shrink-0 text-red-500" />
+                    {checked && isSelected && (
+                      <span
+                        className={cn(
+                          "flex shrink-0 items-center gap-1 text-xs font-semibold",
+                          isCorrect ? "text-brand-green" : "text-red-600"
+                        )}
+                      >
+                        Your answer
+                        {isCorrect ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+                      </span>
+                    )}
+                    {showAsAnswer && (
+                      <span className="flex shrink-0 items-center gap-1 text-xs font-semibold text-brand-green">
+                        Correct answer
+                        <Check className="h-4 w-4" />
+                      </span>
                     )}
                   </button>
                 )
               })}
             </div>
+            {checked && !reveal && selected !== q.answer && (
+              <p className="mt-2 text-xs font-medium text-red-700">
+                Not quite — review this topic in the module, then try again.
+              </p>
+            )}
           </div>
         )
       })}

@@ -28,6 +28,7 @@ export function LessonKnowledgeCheck({
   const allAnswered = answeredCount === questions.length
   const correctCount = questions.filter((q, i) => answers[i] === q.answer).length
   const passed = correctCount >= passCount
+  const reveal = checked && passed
 
   const select = (q: number, option: number) => {
     if (checked) return
@@ -65,7 +66,7 @@ export function LessonKnowledgeCheck({
             <p className={cn("text-sm", passed ? "text-bento-forest/80" : "text-red-800")}>
               {passed
                 ? "Well done — you've passed this module. Review the explanations below, then continue."
-                : `You need at least ${passCount} correct to pass. Read the explanations below and try again.`}
+                : `You need at least ${passCount} correct to pass. Questions marked “Not quite” need another look — review the module and try again.`}
             </p>
           </div>
           {passed ? (
@@ -98,6 +99,8 @@ export function LessonKnowledgeCheck({
               {q.options.map((option, oi) => {
                 const isSelected = selected === oi
                 const isAnswer = oi === q.answer
+                // The right answer is only revealed once the learner has passed.
+                const showAsAnswer = reveal && isAnswer && !isSelected
                 return (
                   <button
                     key={option}
@@ -109,25 +112,39 @@ export function LessonKnowledgeCheck({
                       "flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left text-sm transition-colors",
                       !checked && !isSelected && "border-gray-200 text-gray-700 hover:border-brand-green/40 hover:bg-brand-bg",
                       !checked && isSelected && "border-brand-green bg-bento-mint text-brand-heading",
-                      checked && isAnswer && "border-brand-green bg-bento-mint text-brand-heading",
+                      checked && isSelected && isAnswer && "border-brand-green bg-bento-mint text-brand-heading",
                       checked && isSelected && !isAnswer && "border-red-300 bg-red-50 text-brand-heading",
-                      checked && !isSelected && !isAnswer && "border-gray-100 text-gray-400"
+                      showAsAnswer && "border-dashed border-brand-green/60 text-brand-heading",
+                      checked && !isSelected && !showAsAnswer && "border-gray-100 text-gray-400"
                     )}
                   >
                     <span
                       className={cn(
                         "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-bold",
-                        isSelected || (checked && isAnswer)
-                          ? "border-transparent bg-brand-green text-white"
-                          : "border-gray-300 text-gray-500",
+                        isSelected ? "border-transparent bg-brand-green text-white" : "border-gray-300 text-gray-500",
                         checked && isSelected && !isAnswer && "bg-red-500"
                       )}
                     >
                       {LETTERS[oi]}
                     </span>
                     <span className="flex-1">{option}</span>
-                    {checked && isAnswer && <Check className="h-4 w-4 shrink-0 text-brand-green" />}
-                    {checked && isSelected && !isAnswer && <X className="h-4 w-4 shrink-0 text-red-500" />}
+                    {checked && isSelected && (
+                      <span
+                        className={cn(
+                          "flex shrink-0 items-center gap-1 text-xs font-semibold",
+                          isAnswer ? "text-brand-green" : "text-red-600"
+                        )}
+                      >
+                        Your answer
+                        {isAnswer ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+                      </span>
+                    )}
+                    {showAsAnswer && (
+                      <span className="flex shrink-0 items-center gap-1 text-xs font-semibold text-brand-green">
+                        Correct answer
+                        <Check className="h-4 w-4" />
+                      </span>
+                    )}
                   </button>
                 )
               })}
@@ -141,7 +158,7 @@ export function LessonKnowledgeCheck({
                 )}
               >
                 <span className="font-semibold">{correct ? "Correct. " : "Not quite. "}</span>
-                {q.explanation}
+                {correct || reveal ? q.explanation : "Review this topic in the module, then try again."}
               </p>
             )}
           </fieldset>
