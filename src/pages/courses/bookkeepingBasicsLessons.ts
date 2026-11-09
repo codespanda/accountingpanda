@@ -2656,48 +2656,205 @@ Total Assets   No Change`,
   ],
   4: [
     {
-      title: "Module 5 — Receivables and Payables",
+      title: "Module 5 — Cash, Receivables, Payables and Reconciliation",
       blocks: [
+        { type: "h3", text: "Module Overview" },
         {
-          type: "term",
-          term: "Accounts Receivable (AR)",
-          definition: "Money customers owe the business for goods or services already delivered. It is an asset.",
-          examples: [
-            "Invoice sent: debit Accounts Receivable, credit Revenue.",
-            "Customer pays: debit Cash, credit Accounts Receivable.",
-          ],
+          type: "p",
+          text: "Cash is the lifeblood of a business. In this module you'll learn how to track the money coming in from customers, the money going out to suppliers, and how to prove the cash balance in the books is correct.",
         },
+        { type: "h3", text: "By the End of This Module" },
+        { type: "p", text: "You'll be able to:" },
         {
-          type: "term",
-          term: "Accounts Payable (AP)",
-          definition: "Money the business owes suppliers for goods or services already received. It is a liability.",
-          examples: [
-            "Bill received: debit Expense (or asset), credit Accounts Payable.",
-            "Bill paid: debit Accounts Payable, credit Cash.",
+          type: "list",
+          items: [
+            "Record cash and bank transactions",
+            "Manage accounts receivable — invoices and customer payments",
+            "Manage accounts payable — supplier bills and payments",
+            "Read a bank statement",
+            "Prepare a bank reconciliation",
+            "Find and fix common reconciliation differences",
           ],
-        },
-        {
-          type: "note",
-          text: "Review an aged receivables list regularly. The older an unpaid invoice gets, the less likely it is to be collected — follow up early.",
         },
       ],
     },
     {
-      title: "Why the Bank and the Books Differ",
+      title: "Recording Cash and Bank Transactions",
       blocks: [
         {
           type: "p",
-          text: "A bank reconciliation compares your cash account with the bank statement and explains every difference. The two rarely match at first, because of timing and items you haven't recorded yet.",
+          text: "In bookkeeping, “cash” usually means the money in the business bank account as well as any physical cash. Every movement of money is recorded in the Cash account.",
         },
         {
           type: "table",
-          headers: ["Difference", "What it is", "Adjust"],
+          headers: ["Money in (debit Cash)", "Money out (credit Cash)"],
           rows: [
-            ["Outstanding check", "A check you wrote that hasn't cleared the bank yet", "Bank balance (subtract)"],
-            ["Deposit in transit", "Money you deposited that the bank hasn't shown yet", "Bank balance (add)"],
-            ["Bank fee", "A charge on the statement not yet in your books", "Book balance (subtract)"],
-            ["Interest earned", "Interest on the statement not yet in your books", "Book balance (add)"],
-            ["Error", "A wrong amount recorded by you or the bank", "Whichever side made the error"],
+            ["Customer payments", "Supplier payments"],
+            ["Cash sales", "Rent, wages and other expenses"],
+            ["Owner investments", "Owner withdrawals"],
+            ["Loans received", "Loan repayments"],
+            ["Interest earned", "Bank fees"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Many businesses also keep a small petty cash box for minor purchases. It has its own account and is topped up from the bank.",
+        },
+      ],
+    },
+    {
+      title: "Accounts Receivable",
+      blocks: [
+        { type: "h3", text: "Definition" },
+        {
+          type: "p",
+          text: "Accounts receivable (AR) is money customers owe the business for goods or services already delivered. It is a current asset.",
+        },
+        { type: "h3", text: "The Receivables Cycle" },
+        {
+          type: "steps",
+          items: [
+            { title: "Deliver the goods or service", body: "The sale is earned." },
+            { title: "Issue an invoice", body: "Debit Accounts Receivable, credit Revenue." },
+            { title: "Follow up", body: "Remind customers as the due date approaches." },
+            { title: "Receive payment", body: "Debit Cash, credit Accounts Receivable." },
+          ],
+        },
+        { type: "h3", text: "Example — ABC Design Services, November" },
+        {
+          type: "table",
+          headers: ["Date", "Event", "AR balance"],
+          rows: [
+            ["Nov 3", "Invoice #1003 to Lumen Co, $12,000", "$12,000"],
+            ["Nov 10", "Invoice #1004 to Orbit Ltd, $8,000", "$20,000"],
+            ["Nov 20", "Lumen Co pays $12,000", "$8,000"],
+            ["Nov 28", "Orbit Ltd pays $5,000 (part payment)", "$3,000"],
+          ],
+        },
+      ],
+    },
+    {
+      title: "Customer Payments and the AR Aging",
+      blocks: [
+        {
+          type: "p",
+          text: "Each payment must be applied to the invoice it pays. Orbit Ltd's $5,000 part payment leaves $3,000 still open on invoice #1004.",
+        },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$5,000", ""],
+            ["Accounts Receivable — Orbit Ltd", "", "$5,000"],
+          ],
+        },
+        { type: "h3", text: "The AR Aging Report" },
+        {
+          type: "p",
+          text: "An aging report lists what each customer owes, grouped by how long it has been outstanding (e.g. current, 1–30 days, 31–60 days, over 60 days). Older balances need follow-up first.",
+        },
+        {
+          type: "note",
+          text: "The total of the aging report should always equal the Accounts Receivable balance in the general ledger.",
+        },
+      ],
+    },
+    {
+      title: "Accounts Payable",
+      blocks: [
+        { type: "h3", text: "Definition" },
+        {
+          type: "p",
+          text: "Accounts payable (AP) is money the business owes suppliers for goods or services already received. It is a current liability.",
+        },
+        { type: "h3", text: "The Payables Cycle" },
+        {
+          type: "steps",
+          items: [
+            { title: "Receive goods or services", body: "Check they match what was ordered." },
+            { title: "Record the supplier bill", body: "Debit Expense (or Asset), credit Accounts Payable." },
+            { title: "Approve for payment", body: "Someone checks the bill is correct." },
+            { title: "Pay on the due date", body: "Debit Accounts Payable, credit Cash." },
+          ],
+        },
+        { type: "h3", text: "Example — ABC Design Services, November" },
+        {
+          type: "table",
+          headers: ["Date", "Event", "AP balance"],
+          rows: [
+            ["Nov 5", "CloudSoft bill — software subscription, $1,500", "$1,500"],
+            ["Nov 12", "PrintPro bill — printing, $2,200", "$3,700"],
+            ["Nov 25", "CloudSoft paid $1,500", "$2,200"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Pay from the original bill, not from a statement or reminder — it's the easiest way to avoid paying the same bill twice.",
+        },
+      ],
+    },
+    {
+      title: "Reading a Bank Statement",
+      blocks: [
+        { type: "p", text: "ABC Design Services' November bank statement:" },
+        {
+          type: "table",
+          headers: ["Date", "Description", "Withdrawals", "Deposits", "Balance"],
+          rows: [
+            ["Nov 1", "Opening balance", "", "", "$97,800"],
+            ["Nov 15", "Direct debit — internet", "$2,000", "", "$95,800"],
+            ["Nov 20", "Deposit — Lumen Co", "", "$12,000", "$107,800"],
+            ["Nov 25", "Transfer — CloudSoft", "$1,500", "", "$106,300"],
+            ["Nov 30", "Interest earned", "", "$20", "$106,320"],
+            ["Nov 30", "Monthly account fee", "$30", "", "$106,290"],
+          ],
+        },
+        {
+          type: "note",
+          text: "A bank statement is written from the bank's point of view. Your deposit is money the bank owes you, so banks often call deposits “credits” — but in your books, a deposit is a debit to Cash.",
+        },
+      ],
+    },
+    {
+      title: "The Cash Account in the Books",
+      blocks: [
+        { type: "p", text: "ABC Design Services' Cash account for November:" },
+        {
+          type: "table",
+          headers: ["Date", "Description", "Debit", "Credit", "Balance"],
+          rows: [
+            ["Nov 1", "Opening balance", "", "", "$97,800"],
+            ["Nov 15", "Internet direct debit", "", "$2,000", "$95,800"],
+            ["Nov 20", "Lumen Co payment", "$12,000", "", "$107,800"],
+            ["Nov 25", "Paid CloudSoft", "", "$1,500", "$106,300"],
+            ["Nov 28", "Orbit Ltd payment (deposited Nov 30)", "$5,000", "", "$111,300"],
+            ["Nov 30", "Rent — cheque #105", "", "$15,000", "$96,300"],
+          ],
+        },
+        {
+          type: "p",
+          text: "The books show $96,300. The bank shows $106,290. The difference is $9,990 — and the bank reconciliation will explain it.",
+        },
+      ],
+    },
+    {
+      title: "What Is a Bank Reconciliation?",
+      blocks: [
+        { type: "h3", text: "Definition" },
+        {
+          type: "p",
+          text: "A bank reconciliation compares the cash balance in the books with the balance on the bank statement at the same date, and explains every difference.",
+        },
+        { type: "h3", text: "Why Balances Differ" },
+        {
+          type: "table",
+          headers: ["Item", "What it is", "Adjust"],
+          rows: [
+            ["Deposit in transit", "Recorded in the books, not yet on the statement", "Add to bank balance"],
+            ["Outstanding cheque", "Written and recorded, not yet cleared by the bank", "Subtract from bank balance"],
+            ["Bank fee", "On the statement, not yet in the books", "Subtract from book balance"],
+            ["Interest earned", "On the statement, not yet in the books", "Add to book balance"],
+            ["Errors", "Mistakes by the business or the bank", "Correct the side that made the error"],
           ],
         },
       ],
@@ -2705,173 +2862,629 @@ Total Assets   No Change`,
     {
       title: "Preparing a Bank Reconciliation",
       blocks: [
+        { type: "p", text: "Compare the two records line by line. Unmatched items for ABC Design Services:" },
         {
-          type: "p",
-          text: "At March 31, the bank statement shows $9,320 and the cash account in the books shows $8,450.",
+          type: "list",
+          items: [
+            "Orbit Ltd's $5,000 deposit — in the books, not on the statement (deposit in transit)",
+            "Cheque #105 for $15,000 rent — in the books, not yet cleared (outstanding cheque)",
+            "Interest of $20 — on the statement only",
+            "Bank fee of $30 — on the statement only",
+          ],
         },
         {
           type: "table",
           headers: ["Bank side", "Amount", "Book side", "Amount"],
           rows: [
-            ["Balance per bank statement", "$9,320", "Balance per books", "$8,450"],
-            ["Add: deposit in transit", "$400", "Add: interest earned", "$95"],
-            ["Less: outstanding check #1045", "($1,200)", "Less: bank fee", "($25)"],
-            ["Adjusted bank balance", "$8,520", "Adjusted book balance", "$8,520"],
-          ],
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Compare deposits and payments", body: "Tick off each item that appears in both the books and the statement." },
-            { title: "List the unticked items", body: "Decide whether each one is a bank-side or book-side difference." },
-            { title: "Adjust both balances", body: "The adjusted balances must agree." },
-            {
-              title: "Record book-side items",
-              body: "Journalize the items you hadn't recorded:",
-              list: ["Debit Bank Fees $25, credit Cash $25", "Debit Cash $95, credit Interest Income $95"],
-            },
+            ["Balance per bank statement", "$106,290", "Balance per books", "$96,300"],
+            ["Add: deposit in transit", "$5,000", "Add: interest earned", "$20"],
+            ["Less: outstanding cheque #105", "($15,000)", "Less: bank fee", "($30)"],
+            ["Adjusted bank balance", "$96,290", "Adjusted book balance", "$96,290"],
           ],
         },
         {
           type: "note",
-          text: "If the adjusted balances don't agree, look for transposed digits (e.g. $540 vs. $450 — differences divisible by 9 are a clue), duplicates and missing entries.",
+          text: "Both sides agree at $96,290 — the true cash balance at November 30.",
+        },
+      ],
+    },
+    {
+      title: "Recording the Reconciliation Adjustments",
+      blocks: [
+        {
+          type: "p",
+          text: "Only book-side items need journal entries. Bank-side items (deposits in transit and outstanding cheques) will clear on next month's statement by themselves.",
+        },
+        { type: "h3", text: "Bank Fee" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Bank Fees Expense", "$30", ""],
+            ["Cash", "", "$30"],
+          ],
+        },
+        { type: "h3", text: "Interest Earned" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$20", ""],
+            ["Interest Income", "", "$20"],
+          ],
+        },
+        {
+          type: "p",
+          text: "After posting, the Cash account shows $96,300 − $30 + $20 = $96,290, matching the adjusted bank balance.",
+        },
+      ],
+    },
+    {
+      title: "Fixing Common Reconciliation Differences",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            { title: "Check the opening balance", body: "It should equal last month's reconciled balance." },
+            { title: "Look for an item equal to the difference", body: "A single missing transaction often explains it." },
+            { title: "Look for half the difference", body: "An amount entered on the wrong side doubles its effect." },
+            { title: "Check if the difference divides by 9", body: "A transposition — e.g. $540 entered as $450 (difference $90) — always divides by 9." },
+            { title: "Look for duplicates", body: "The same payment recorded twice." },
+            { title: "Check dates", body: "A transaction recorded in the wrong month." },
+          ],
+        },
+        {
+          type: "note",
+          text: "Never force a reconciliation to balance with an unexplained adjustment. Find the cause.",
+        },
+      ],
+    },
+    {
+      title: "Common Mistakes",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            { title: "Recording customer payments as new revenue", body: "Payments reduce Accounts Receivable; revenue was recorded on the invoice." },
+            { title: "Not applying payments to specific invoices", body: "Customer balances and the aging report become wrong." },
+            { title: "Paying bills from statements", body: "This risks duplicate payments." },
+            { title: "Recording outstanding cheques again", body: "They're already in the books — they just haven't cleared." },
+            { title: "Forgetting book-side adjustments", body: "Bank fees and interest must be recorded." },
+            { title: "Reconciling only once a year", body: "Reconcile monthly so errors are found quickly." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical Activity",
+      blocks: [
+        { type: "h3", text: "Scenario" },
+        {
+          type: "p",
+          text: "Bright Solutions' Cash account shows $77,700 at month-end. The bank statement shows $79,490. You find:",
+        },
+        {
+          type: "list",
+          items: [
+            "Deposit in transit: $1,500",
+            "Outstanding cheque: $2,400",
+            "Bank fee on the statement: $15",
+            "Interest on the statement: $5",
+            "A customer's $900 direct payment on the statement, not yet recorded in the books",
+          ],
+        },
+        { type: "h3", text: "Your Task" },
+        { type: "p", text: "Prepare the bank reconciliation and list the journal entries needed." },
+        { type: "h3", text: "Answer" },
+        {
+          type: "table",
+          headers: ["Bank side", "Amount", "Book side", "Amount"],
+          rows: [
+            ["Balance per bank", "$79,490", "Balance per books", "$77,700"],
+            ["Add: deposit in transit", "$1,500", "Add: customer payment", "$900"],
+            ["Less: outstanding cheque", "($2,400)", "Add: interest", "$5"],
+            ["", "", "Less: bank fee", "($15)"],
+            ["Adjusted bank balance", "$78,590", "Adjusted book balance", "$78,590"],
+          ],
+        },
+        {
+          type: "list",
+          items: [
+            "Debit Cash $900, credit Accounts Receivable $900",
+            "Debit Cash $5, credit Interest Income $5",
+            "Debit Bank Fees Expense $15, credit Cash $15",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Quick Test",
+      blocks: [
+        {
+          type: "quiz",
+          question: "A cheque has been written and recorded but hasn't cleared the bank. How is it treated in the reconciliation?",
+          options: [
+            "A. Added to the bank balance",
+            "B. Subtracted from the bank balance",
+            "C. Subtracted from the book balance",
+            "D. Recorded again in the books",
+          ],
+          answer: "B",
         },
       ],
     },
     {
       title: "Knowledge Check",
       blocks: [
+        {
+          type: "p",
+          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
+        },
         {
           type: "knowledge-check",
           passPct: 80,
           questions: [
             {
               question: "What type of account is Accounts Receivable?",
-              options: ["A. Liability", "B. Asset", "C. Expense", "D. Equity"],
+              options: ["A. Current liability", "B. Current asset", "C. Expense", "D. Equity"],
               answer: "B",
             },
             {
-              question: "A supplier bill for $600 of utilities is received, to be paid later. What is the entry?",
-              options: [
-                "A. Debit Cash, credit Utilities",
-                "B. Debit Utilities, credit Accounts Payable",
-                "C. Debit Accounts Payable, credit Utilities",
-                "D. Debit Utilities, credit Accounts Receivable",
-              ],
-              answer: "B",
-            },
-            {
-              question: "How is an outstanding check treated in a bank reconciliation?",
-              options: [
-                "A. Added to the bank balance",
-                "B. Subtracted from the bank balance",
-                "C. Subtracted from the book balance",
-                "D. Ignored",
-              ],
-              answer: "B",
-            },
-            {
-              question: "A $25 bank fee appears on the statement but not in the books. What should you do?",
-              options: [
-                "A. Ask the bank to remove it",
-                "B. Subtract it from the bank balance",
-                "C. Subtract it from the book balance and record it in the books",
-                "D. Add it to the book balance",
-              ],
+              question: "Orbit Ltd pays $5,000 of an $8,000 invoice. How much remains open?",
+              options: ["A. $0", "B. $5,000", "C. $3,000", "D. $8,000"],
               answer: "C",
             },
             {
-              question: "In the example, what is the adjusted cash balance?",
-              options: ["A. $8,450", "B. $8,520", "C. $9,320", "D. $9,720"],
+              question: "A supplier bill is paid. What is the journal entry?",
+              options: [
+                "A. Debit Cash, credit Accounts Payable",
+                "B. Debit Accounts Payable, credit Cash",
+                "C. Debit Expense, credit Accounts Receivable",
+                "D. Debit Revenue, credit Cash",
+              ],
               answer: "B",
             },
+            {
+              question: "How is a deposit in transit treated in a bank reconciliation?",
+              options: [
+                "A. Added to the bank balance",
+                "B. Subtracted from the bank balance",
+                "C. Added to the book balance",
+                "D. Ignored",
+              ],
+              answer: "A",
+            },
+            {
+              question: "$540 was entered as $450. What clue helps find this error?",
+              options: [
+                "A. The difference is divisible by 9",
+                "B. The difference is an even number",
+                "C. The amount ends in zero",
+                "D. There's no clue",
+              ],
+              answer: "A",
+            },
           ],
+        },
+      ],
+    },
+    {
+      title: "Module Summary",
+      blocks: [
+        { type: "p", text: "In this module you learned how to manage and prove the business's cash." },
+        { type: "p", text: "You learned:" },
+        {
+          type: "list",
+          items: [
+            "How to record money in and out of the Cash account",
+            "The receivables cycle and how to apply customer payments",
+            "How to use an AR aging report",
+            "The payables cycle and how to pay suppliers correctly",
+            "How to read a bank statement",
+            "Why bank and book balances differ",
+            "How to prepare a bank reconciliation and record the adjustments",
+            "How to find common reconciliation differences",
+          ],
+        },
+        { type: "h3", text: "Key Concept to Remember" },
+        {
+          type: "note",
+          text: "A monthly bank reconciliation proves the cash figure in the books is real. If you can't explain a difference, keep looking — don't force it.",
         },
       ],
     },
   ],
   5: [
     {
-      title: "Module 6 — The Trial Balance",
+      title: "Module 6 — Trial Balance, Adjustments and Financial Statements",
       blocks: [
+        { type: "h3", text: "Module Overview" },
         {
           type: "p",
-          text: "A trial balance lists every ledger account and its balance at a date, with debit balances in one column and credit balances in the other. If the books follow double entry, the two totals agree.",
+          text: "This is the final module. You'll take ABC Design Services' books from September to November, check them with a trial balance, make the period-end adjustments, and prepare the three main financial statements.",
+        },
+        { type: "h3", text: "By the End of This Module" },
+        { type: "p", text: "You'll be able to:" },
+        {
+          type: "list",
+          items: [
+            "Prepare a trial balance",
+            "Find and correct common errors",
+            "Record accruals, prepayments and depreciation",
+            "Prepare an income statement",
+            "Prepare a balance sheet",
+            "Prepare a simple cash flow statement",
+          ],
+        },
+      ],
+    },
+    {
+      title: "What Is a Trial Balance?",
+      blocks: [
+        { type: "h3", text: "Definition" },
+        {
+          type: "p",
+          text: "A trial balance is a list of every ledger account and its balance at a date, with debit balances in one column and credit balances in the other.",
+        },
+        { type: "h3", text: "Why Prepare One?" },
+        {
+          type: "list",
+          items: [
+            "To check that total debits equal total credits.",
+            "To see every account balance in one place.",
+            "As the starting point for adjustments and the financial statements.",
+          ],
+        },
+        { type: "h3", text: "How to Prepare It" },
+        {
+          type: "steps",
+          items: [
+            { title: "Balance every account", body: "Work out each ledger account's closing balance." },
+            { title: "List the accounts", body: "In chart-of-accounts order: assets, liabilities, equity, revenue, expenses." },
+            { title: "Put each balance in the right column", body: "Debit balances left, credit balances right." },
+            { title: "Total both columns", body: "They should be equal." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Example: ABC Design Services' Trial Balance",
+      blocks: [
+        { type: "p", text: "Trial balance at November 30 (covering September to November), after the bank reconciliation:" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$96,290", ""],
+            ["Accounts Receivable", "$3,000", ""],
+            ["Computer Equipment", "$40,000", ""],
+            ["Accounts Payable", "", "$2,200"],
+            ["Owner's Capital", "", "$120,000"],
+            ["Owner's Drawings", "$2,500", ""],
+            ["Design Revenue", "", "$67,000"],
+            ["Interest Income", "", "$20"],
+            ["Rent Expense", "$30,000", ""],
+            ["Internet Expense", "$4,000", ""],
+            ["Advertising Expense", "$5,000", ""],
+            ["Office Supplies Expense", "$1,200", ""],
+            ["Printing Expense", "$5,700", ""],
+            ["Software Expense", "$1,500", ""],
+            ["Bank Fees Expense", "$30", ""],
+            ["Totals", "$189,220", "$189,220"],
+          ],
+        },
+        {
+          type: "note",
+          text: "The totals agree. Rent Expense covers the September and November payments recorded in this course ($15,000 each).",
+        },
+      ],
+    },
+    {
+      title: "Finding and Correcting Errors",
+      blocks: [
+        { type: "h3", text: "Errors That Unbalance the Trial Balance" },
+        {
+          type: "list",
+          items: [
+            "Only one side of an entry posted",
+            "Amounts copied wrongly to one side (e.g. a transposition)",
+            "A balance placed in the wrong column",
+            "Addition mistakes",
+          ],
+        },
+        { type: "h3", text: "Errors That Don't Unbalance It" },
+        {
+          type: "list",
+          items: [
+            "A transaction left out completely",
+            "Posting to the wrong account (e.g. Internet instead of Advertising)",
+            "The wrong amount used on both sides",
+            "Debit and credit swapped",
+          ],
+        },
+        { type: "h3", text: "Correcting an Error" },
+        {
+          type: "p",
+          text: "A $2,000 advertising bill was posted to Internet Expense. Don't delete it — record a correcting entry:",
         },
         {
           type: "table",
           headers: ["Account", "Debit", "Credit"],
           rows: [
-            ["Cash", "$12,000", ""],
-            ["Accounts Receivable", "$3,000", ""],
-            ["Equipment", "$6,000", ""],
-            ["Accounts Payable", "", "$2,000"],
-            ["Owner's Capital", "", "$15,000"],
-            ["Service Revenue", "", "$9,000"],
-            ["Rent Expense", "$2,500", ""],
-            ["Wages Expense", "$2,500", ""],
-            ["Totals", "$26,000", "$26,000"],
+            ["Advertising Expense", "$2,000", ""],
+            ["Internet Expense", "", "$2,000"],
+          ],
+        },
+      ],
+    },
+    {
+      title: "Why Adjusting Entries Are Needed",
+      blocks: [
+        {
+          type: "p",
+          text: "Day-to-day entries record invoices, bills and payments. But at period end, some revenue and expenses haven't been captured by any document yet. Adjusting entries make sure they appear in the right period.",
+        },
+        {
+          type: "table",
+          headers: ["Adjustment", "What it fixes"],
+          rows: [
+            ["Accrual", "An expense (or revenue) has occurred but hasn't been billed yet"],
+            ["Prepayment", "Something was paid in advance and only part has been used"],
+            ["Depreciation", "A fixed asset has been partly used up"],
           ],
         },
         {
           type: "note",
-          text: "A balanced trial balance doesn't prove the books are correct. Entries posted to the wrong account, or left out entirely, still balance.",
+          text: "Adjusting entries usually don't involve cash. They move amounts between balance sheet and income statement accounts.",
         },
       ],
     },
     {
-      title: "Adjusting Entries",
+      title: "Accruals",
       blocks: [
         {
-          type: "p",
-          text: "At the end of a period, adjusting entries make sure revenue and expenses land in the period they belong to.",
+          type: "term",
+          term: "Accrued expense",
+          definition: "A cost that belongs to this period but hasn't been billed or paid yet.",
+          example: "ABC Design Services used $600 of electricity in November. The bill arrives in December.",
         },
         {
           type: "table",
-          headers: ["Adjustment", "Example", "Entry"],
+          headers: ["Account", "Debit", "Credit"],
           rows: [
-            ["Accrued expense", "Wages earned by staff but not yet paid: $400", "Debit Wages Expense, credit Wages Payable"],
-            ["Prepaid expense", "One month of a 12-month $1,200 insurance policy used: $100", "Debit Insurance Expense, credit Prepaid Insurance"],
-            ["Depreciation", "Equipment of $6,000 with a 5-year life: $100 a month", "Debit Depreciation Expense, credit Accumulated Depreciation"],
-            ["Accrued revenue", "Work done but not yet invoiced", "Debit Accounts Receivable, credit Revenue"],
+            ["Utilities Expense", "$600", ""],
+            ["Accrued Expenses (liability)", "", "$600"],
           ],
         },
         {
           type: "p",
-          text: "For our business, we record two adjustments: $400 of accrued wages and $100 of depreciation.",
+          text: "When the December bill arrives, it's recorded against the accrued liability instead of being counted as a new expense.",
         },
       ],
     },
     {
-      title: "The Financial Statements",
+      title: "Prepayments",
       blocks: [
-        { type: "h3", text: "Income statement — for the month" },
+        {
+          type: "term",
+          term: "Prepaid expense",
+          definition: "A cost paid in advance that covers future periods. The unused part is an asset.",
+          example: "The $1,500 CloudSoft bill is a 12-month subscription starting November 1. Only $125 ($1,500 ÷ 12) belongs to November.",
+        },
+        {
+          type: "p",
+          text: "The whole $1,500 was recorded as Software Expense. Move the unused $1,375 to an asset:",
+        },
         {
           type: "table",
-          headers: ["Item", "Amount"],
+          headers: ["Account", "Debit", "Credit"],
           rows: [
-            ["Service Revenue", "$9,000"],
-            ["Less: Rent Expense", "($2,500)"],
-            ["Less: Wages Expense ($2,500 + $400)", "($2,900)"],
-            ["Less: Depreciation Expense", "($100)"],
-            ["Net Income", "$3,500"],
+            ["Prepaid Software (asset)", "$1,375", ""],
+            ["Software Expense", "", "$1,375"],
           ],
         },
-        { type: "h3", text: "Balance sheet — at month-end" },
+        {
+          type: "note",
+          text: "Each following month, $125 moves from Prepaid Software to Software Expense.",
+        },
+      ],
+    },
+    {
+      title: "Depreciation",
+      blocks: [
+        {
+          type: "term",
+          term: "Depreciation",
+          definition: "Spreading the cost of a fixed asset over the years it's used.",
+          example: "ABC's $40,000 computer equipment will be used for 4 years with no value at the end.",
+        },
+        {
+          type: "table",
+          headers: ["Calculation", "Amount"],
+          rows: [
+            ["Cost ÷ useful life = $40,000 ÷ 4 years", "$10,000 a year"],
+            ["Per month = $10,000 ÷ 12", "about $833"],
+            ["September to November (3 months) = $40,000 ÷ 48 × 3", "$2,500"],
+          ],
+        },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Depreciation Expense", "$2,500", ""],
+            ["Accumulated Depreciation", "", "$2,500"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Accumulated depreciation reduces the equipment's value on the balance sheet: $40,000 − $2,500 = $37,500.",
+        },
+      ],
+    },
+    {
+      title: "The Income Statement",
+      blocks: [
+        {
+          type: "p",
+          text: "The income statement shows revenue and expenses for a period, and the resulting profit or loss.",
+        },
+        { type: "h3", text: "ABC Design Services — September to November" },
+        {
+          type: "table",
+          headers: ["", "Amount"],
+          rows: [
+            ["Design Revenue", "$67,000"],
+            ["Interest Income", "$20"],
+            ["Total Revenue", "$67,020"],
+            ["Rent Expense", "($30,000)"],
+            ["Printing Expense", "($5,700)"],
+            ["Advertising Expense", "($5,000)"],
+            ["Internet Expense", "($4,000)"],
+            ["Depreciation Expense", "($2,500)"],
+            ["Office Supplies Expense", "($1,200)"],
+            ["Utilities Expense", "($600)"],
+            ["Software Expense", "($125)"],
+            ["Bank Fees Expense", "($30)"],
+            ["Total Expenses", "($49,155)"],
+            ["Net Income", "$17,865"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Owner's drawings don't appear here — they aren't an expense.",
+        },
+      ],
+    },
+    {
+      title: "The Balance Sheet",
+      blocks: [
+        {
+          type: "p",
+          text: "The balance sheet shows what the business owns, owes and the owner's equity at one date. It proves the accounting equation.",
+        },
+        { type: "h3", text: "ABC Design Services — at November 30" },
         {
           type: "table",
           headers: ["Assets", "Amount", "Liabilities and Equity", "Amount"],
           rows: [
-            ["Cash", "$12,000", "Accounts Payable", "$2,000"],
-            ["Accounts Receivable", "$3,000", "Wages Payable", "$400"],
-            ["Equipment, net ($6,000 − $100)", "$5,900", "Owner's Capital ($15,000 + $3,500)", "$18,500"],
-            ["Total Assets", "$20,900", "Total Liabilities and Equity", "$20,900"],
+            ["Cash", "$96,290", "Accounts Payable", "$2,200"],
+            ["Accounts Receivable", "$3,000", "Accrued Expenses", "$600"],
+            ["Prepaid Software", "$1,375", "Total Liabilities", "$2,800"],
+            ["Computer Equipment", "$40,000", "Owner's Capital", "$120,000"],
+            ["Less: Accumulated Depreciation", "($2,500)", "Add: Net Income", "$17,865"],
+            ["", "", "Less: Drawings", "($2,500)"],
+            ["", "", "Total Equity", "$135,365"],
+            ["Total Assets", "$138,165", "Total Liabilities and Equity", "$138,165"],
           ],
         },
         {
-          type: "term",
-          term: "Cash flow statement",
-          definition: "Shows where cash came from and where it went, split into operating, investing and financing activities. Profit and cash differ — for example, the $3,000 receivable is revenue but not yet cash.",
+          type: "note",
+          text: "Assets ($138,165) = Liabilities ($2,800) + Owner's Equity ($135,365). The equation balances.",
+        },
+      ],
+    },
+    {
+      title: "The Cash Flow Statement",
+      blocks: [
+        {
+          type: "p",
+          text: "The cash flow statement shows where cash came from and where it went, in three groups: operating, investing and financing.",
+        },
+        { type: "h3", text: "ABC Design Services — September to November" },
+        {
+          type: "table",
+          headers: ["", "Amount"],
+          rows: [
+            ["Cash received from customers", "$64,000"],
+            ["Interest received", "$20"],
+            ["Cash paid for expenses", "($45,230)"],
+            ["Net cash from operating activities", "$18,790"],
+            ["Purchase of computer equipment", "($40,000)"],
+            ["Net cash from investing activities", "($40,000)"],
+            ["Owner's investments", "$120,000"],
+            ["Owner's drawings", "($2,500)"],
+            ["Net cash from financing activities", "$117,500"],
+            ["Net increase in cash", "$96,290"],
+            ["Cash at September 1", "$0"],
+            ["Cash at November 30", "$96,290"],
+          ],
+        },
+        {
+          type: "note",
+          text: "Profit ($17,865) and operating cash ($18,790) differ — for example, depreciation reduced profit but used no cash, and $3,000 of revenue hasn't been collected yet.",
+        },
+      ],
+    },
+    {
+      title: "Common Mistakes",
+      blocks: [
+        {
+          type: "steps",
+          items: [
+            { title: "Assuming a balanced trial balance means no errors", body: "Omissions and wrong-account postings still balance." },
+            { title: "Forgetting adjusting entries", body: "Without accruals, prepayments and depreciation, profit is wrong." },
+            { title: "Including drawings as an expense", body: "Drawings reduce equity, not profit." },
+            { title: "Showing equipment without accumulated depreciation", body: "The balance sheet would overstate assets." },
+            { title: "Confusing profit with cash", body: "A profitable business can still run short of cash." },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Practical Activity",
+      blocks: [
+        { type: "h3", text: "Scenario" },
+        { type: "p", text: "Bright Solutions' account balances at the end of its second month:" },
+        {
+          type: "list",
+          items: [
+            "Cash $77,700",
+            "Equipment $36,800",
+            "Owner's Capital $85,000",
+            "Owner's Drawings $1,000",
+            "Service Revenue $43,500",
+            "Rent Expense $10,000",
+            "Utilities Expense $3,000",
+          ],
+        },
+        { type: "h3", text: "Your Tasks" },
+        {
+          type: "list",
+          items: [
+            "Prepare the trial balance.",
+            "Record depreciation of $600 on the equipment.",
+            "Calculate net income after the adjustment.",
+          ],
+        },
+        { type: "h3", text: "Answer" },
+        {
+          type: "table",
+          headers: ["Account", "Debit", "Credit"],
+          rows: [
+            ["Cash", "$77,700", ""],
+            ["Equipment", "$36,800", ""],
+            ["Owner's Capital", "", "$85,000"],
+            ["Owner's Drawings", "$1,000", ""],
+            ["Service Revenue", "", "$43,500"],
+            ["Rent Expense", "$10,000", ""],
+            ["Utilities Expense", "$3,000", ""],
+            ["Totals", "$128,500", "$128,500"],
+          ],
+        },
+        {
+          type: "p",
+          text: "Depreciation: debit Depreciation Expense $600, credit Accumulated Depreciation $600. Net income = $43,500 − $10,000 − $3,000 − $600 = $29,900.",
+        },
+      ],
+    },
+    {
+      title: "Quick Test",
+      blocks: [
+        {
+          type: "quiz",
+          question: "Equipment costing $40,000 will be used for 4 years with no value at the end. What is the yearly depreciation?",
+          options: ["A. $4,000", "B. $10,000", "C. $2,500", "D. $40,000"],
+          answer: "B",
         },
       ],
     },
@@ -2879,45 +3492,78 @@ Total Assets   No Change`,
       title: "Knowledge Check",
       blocks: [
         {
+          type: "p",
+          text: "Answer all 5 questions, then check your score. You'll need at least 80% to finish the course — if you don't make it, you can retry.",
+        },
+        {
           type: "knowledge-check",
           passPct: 80,
           questions: [
             {
-              question: "What does a balanced trial balance show?",
+              question: "What does a balanced trial balance prove?",
               options: [
-                "A. The books are completely error-free",
+                "A. The books have no errors at all",
                 "B. Total debits equal total credits",
-                "C. The business is profitable",
-                "D. All taxes have been paid",
+                "C. The business made a profit",
+                "D. All customers have paid",
               ],
               answer: "B",
             },
             {
-              question: "Staff have earned $400 of wages that will be paid next month. What is the adjusting entry?",
+              question: "$600 of November electricity will be billed in December. What is the November entry?",
               options: [
-                "A. Debit Wages Payable, credit Cash",
-                "B. Debit Wages Expense, credit Wages Payable",
-                "C. Debit Cash, credit Wages Expense",
-                "D. No entry until paid",
+                "A. No entry until the bill arrives",
+                "B. Debit Utilities Expense, credit Accrued Expenses",
+                "C. Debit Cash, credit Utilities Expense",
+                "D. Debit Prepaid Expenses, credit Cash",
               ],
               answer: "B",
             },
             {
-              question: "Equipment costing $6,000 has a 5-year life and no salvage value. What is monthly straight-line depreciation?",
-              options: ["A. $50", "B. $100", "C. $500", "D. $1,200"],
-              answer: "B",
-            },
-            {
-              question: "In the example, what is net income for the month?",
-              options: ["A. $3,500", "B. $4,000", "C. $6,500", "D. $9,000"],
-              answer: "A",
-            },
-            {
-              question: "Which statement shows assets, liabilities and equity at a point in time?",
-              options: ["A. Income statement", "B. Cash flow statement", "C. Balance sheet", "D. Trial balance"],
+              question: "A $1,500 annual subscription starts November 1. How much is November's expense?",
+              options: ["A. $1,500", "B. $1,375", "C. $125", "D. $150"],
               answer: "C",
             },
+            {
+              question: "Which statement shows assets, liabilities and equity at one date?",
+              options: ["A. Income statement", "B. Balance sheet", "C. Cash flow statement", "D. Trial balance"],
+              answer: "B",
+            },
+            {
+              question: "Why can profit differ from operating cash flow?",
+              options: [
+                "A. Depreciation uses no cash and some revenue isn't collected yet",
+                "B. Profit always equals cash",
+                "C. Drawings are an expense",
+                "D. Equipment purchases are expenses",
+              ],
+              answer: "A",
+            },
           ],
+        },
+      ],
+    },
+    {
+      title: "Module Summary",
+      blocks: [
+        { type: "p", text: "Congratulations — you've completed the full bookkeeping cycle." },
+        { type: "p", text: "You learned:" },
+        {
+          type: "list",
+          items: [
+            "How to prepare a trial balance",
+            "Which errors a trial balance does and doesn't find",
+            "How to record correcting entries",
+            "How to record accruals, prepayments and depreciation",
+            "How to prepare an income statement",
+            "How to prepare a balance sheet",
+            "How to prepare a simple cash flow statement",
+          ],
+        },
+        { type: "h3", text: "Key Concept to Remember" },
+        {
+          type: "note",
+          text: "Record → reconcile → adjust → report. Following this cycle every period turns individual transactions into reliable financial statements.",
         },
       ],
     },
