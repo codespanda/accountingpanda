@@ -137,6 +137,7 @@ const course: CourseDetails = {
   finalExam: "30 questions",
   finalPractical: "Complete bookkeeping for one fictional business for one month.",
   startHref: `${COURSE_PATH}/progress`,
+  video: { src: "/videos/bookkeeping-basics/intro.mp4", title: "Bookkeeping Basics for Beginners — course introduction" },
 }
 
 export function BookkeepingBasicsCourse() {
