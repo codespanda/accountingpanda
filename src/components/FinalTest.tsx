@@ -58,19 +58,23 @@ export function FinalTest({
   path: string
 }) {
   const [unlocked] = useState(() => allModulesCompleted(courseSlug, totalModules))
-  const [attempt, setAttempt] = useState<ExamAttempt | null>(() => getExamAttempt(courseSlug))
+  const [attempt, setAttempt] = useState<ExamAttempt | null>(null)
+  // An attempt left in storage means the last test stopped part-way (page
+  // closed, reloaded or connection lost). It is never resumed: the learner
+  // restarts from the beginning with a new set of questions.
+  const [interrupted, setInterrupted] = useState(() => getExamAttempt(courseSlug) !== null)
   const [result, setResult] = useState<ExamResult | null>(() => getExamResult(courseSlug))
   const [review, setReview] = useState<{ attempt: ExamAttempt; result: ExamResult } | null>(null)
   const [now, setNow] = useState(() => Date.now())
   const [confirmSubmit, setConfirmSubmit] = useState(false)
   const [lastDay, setLastDay] = useState(() => getLastExamDay(courseSlug))
-  // One attempt per calendar day, counted when an attempt is started.
+  // One attempt per calendar day, counted when an attempt is submitted
+  // (or runs out of time). Interrupted attempts don't count.
   const attemptedToday = lastDay === localDay()
 
   const durationSec = questionCount * SECONDS_PER_QUESTION
   const minutes = Math.round(durationSec / 60)
-  // Ignore a stored attempt that no longer matches the question pool.
-  const validAttempt = attempt && pool.length > 0 && attempt.ids.every((id) => id < pool.length) ? attempt : null
+  const validAttempt = attempt && pool.length > 0 ? attempt : null
 
   const submit = useCallback(
     (a: ExamAttempt) => {
@@ -86,6 +90,9 @@ export function FinalTest({
       }
       setResult(saveExamResult(courseSlug, thisResult))
       saveExamAttempt(courseSlug, null)
+      const today = localDay()
+      setLastExamDay(courseSlug, today)
+      setLastDay(today)
       setAttempt(null)
       setReview({ attempt: a, result: thisResult })
       setConfirmSubmit(false)
@@ -97,10 +104,6 @@ export function FinalTest({
   // Tick the clock and submit automatically when time runs out.
   useEffect(() => {
     if (!validAttempt) return
-    if (remainingSeconds(validAttempt) <= 0) {
-      submit(validAttempt)
-      return
-    }
     const timer = window.setInterval(() => {
       setNow(Date.now())
       if (remainingSeconds(validAttempt) <= 0) submit(validAttempt)
@@ -108,11 +111,20 @@ export function FinalTest({
     return () => window.clearInterval(timer)
   }, [validAttempt, submit])
 
+  // Warn before closing or reloading the page during a test.
+  const inProgress = validAttempt !== null
+  useEffect(() => {
+    if (!inProgress) return
+    const warn = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ""
+    }
+    window.addEventListener("beforeunload", warn)
+    return () => window.removeEventListener("beforeunload", warn)
+  }, [inProgress])
+
   const start = () => {
     if (attemptedToday) return
-    const today = localDay()
-    setLastExamDay(courseSlug, today)
-    setLastDay(today)
     const a: ExamAttempt = {
       ids: pickQuestions(pool.length, questionCount),
       answers: {},
@@ -121,18 +133,14 @@ export function FinalTest({
     }
     saveExamAttempt(courseSlug, a)
     setAttempt(a)
+    setInterrupted(false)
     setReview(null)
     setNow(Date.now())
     window.scrollTo({ top: 0 })
   }
 
   const answer = (qi: number, oi: number) => {
-    setAttempt((prev) => {
-      if (!prev) return prev
-      const a = { ...prev, answers: { ...prev.answers, [qi]: oi } }
-      saveExamAttempt(courseSlug, a)
-      return a
-    })
+    setAttempt((prev) => (prev ? { ...prev, answers: { ...prev.answers, [qi]: oi } } : prev))
     setConfirmSubmit(false)
   }
 
@@ -292,6 +300,16 @@ export function FinalTest({
                 </div>
               )}
 
+              {interrupted && !review && (
+                <div role="status" className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-5">
+                  <p className="text-base font-bold text-amber-900">Your previous attempt was interrupted</p>
+                  <p className="mt-1 text-sm text-amber-800">
+                    It wasn't submitted, so it doesn't count. Restart the test from the beginning — you'll get a new set of
+                    questions and the full time.
+                  </p>
+                </div>
+              )}
+
               {!review && (
                 <>
                   <h2 className="text-xl font-bold text-brand-heading">Before you start</h2>
@@ -300,8 +318,8 @@ export function FinalTest({
                     <li>• {minutes} minutes in total — the timer starts when you press Start</li>
                     <li>• Pass mark: {FINAL_TEST_PASS_PCT}%</li>
                     <li>• The test is submitted automatically when time runs out</li>
-                    <li>• If you leave or reload the page, the timer keeps running</li>
-                    <li>• One attempt per day — if you don't pass, you can try again tomorrow with a new set of questions</li>
+                    <li>• If the test stops part-way — for example the page is closed or reloaded, or your connection drops — you can restart it from the beginning with a new set of questions</li>
+                    <li>• One completed attempt per day — if you don't pass, you can try again tomorrow with a new set of questions</li>
                   </ul>
                 </>
               )}
@@ -314,8 +332,8 @@ export function FinalTest({
                   </p>
                 ) : (
                   <Button onClick={start}>
-                    {review || result ? <RotateCcw className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
-                    {review || result ? "Retake the test" : "Start the test"}
+                    {interrupted || review || result ? <RotateCcw className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
+                    {interrupted ? "Restart the test" : review || result ? "Retake the test" : "Start the test"}
                   </Button>
                 )}
                 <Button variant="outline" asChild>
