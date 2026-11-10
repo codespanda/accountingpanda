@@ -250,7 +250,12 @@ const lessons: CourseLessons = {
           ["The balance (about 3.67%)", "The member's EPF account"],
         ],
       ),
-      note("The central government adds 1.16% towards pension on wages up to ₹15,000. EPS eligibility and calculation rules for members above ₹15,000 should be checked against current EPFO guidance."),
+      bullets(
+        "EPS membership is available only to employees whose wages on joining (or on 17 September 2026, for existing staff) don't exceed ₹25,000.",
+        "For members above that — like Karthik — the employer's whole 12% goes to their EPF account.",
+        "The central government adds 1.16% towards pension, still only on wages up to ₹15,000 (at most ₹174 a month).",
+      ),
+      note("Source: EPFO's FAQs on the revised wage ceiling (September 2026)."),
     ),
     screen(
       "October 2026 contributions",
@@ -260,9 +265,9 @@ const lessons: CourseLessons = {
           ["Selvi", "₹14,000", "₹1,680", "₹1,166", "₹514"],
           ["Arun", "₹18,000", "₹2,160", "₹1,499", "₹661"],
           ["Priya", "₹22,000", "₹2,640", "₹1,833", "₹807"],
-          ["Karthik", "₹25,000 (restricted)", "₹3,000", "₹2,083", "₹917"],
+          ["Karthik (not in EPS — wages above ₹25,000)", "₹25,000 (restricted)", "₹3,000", "—", "₹3,000"],
         ],
-        { footer: ["Total", "₹79,000", "₹9,480", "₹6,581", "₹2,899"], numeric: [1, 2, 3, 4] },
+        { footer: ["Total", "₹79,000", "₹9,480", "₹4,498", "₹4,982"], numeric: [1, 2, 3, 4] },
       ),
       p("Contributions are rounded to the nearest rupee."),
     ),
@@ -542,7 +547,7 @@ const lessons: CourseLessons = {
       table(
         ["Claim", "Typical situation"],
         [
-          ["Partial withdrawal (advance)", "Illness, education, marriage, housing — subject to service and amount conditions, simplified in recent reforms"],
+          ["Partial withdrawal (advance)", "Illness, education, marriage, housing — up to 75% of the eligible balance, keeping 25% as a minimum balance, under the revised framework"],
           ["Final settlement", "Retirement, or unemployment for a specified period after leaving"],
           ["Transfer", "Moving to a new employer"],
         ],
@@ -558,7 +563,7 @@ const lessons: CourseLessons = {
           ["Monthly pension", "Members with at least 10 years of eligible service", "From age 58 (reduced pension from 50)"],
           ["Withdrawal benefit", "Members with less than 10 years' service", "On leaving"],
           ["Family pension", "Spouse and children", "On a member's death"],
-          ["EDLI", "Nominee or legal heir", "On a member's death in service"],
+          ["EDLI", "Nominee or legal heir", "On a member's death in service — up to ₹7 lakh"],
         ],
       ),
     ),

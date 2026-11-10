@@ -25,7 +25,7 @@ export default [
   fq("What does Riya (Kolkata, ₹14,000) pay each month?", "₹110", ["₹130", "Nil", "₹200"], "₹10,001–₹15,000 band."),
   fq("What does a West Bengal employee earning ₹50,000 pay each month?", "₹200", ["₹150", "₹300", "₹130"], "Above ₹40,000."),
   fq("What does a Maharashtra man earning ₹9,000 pay each month?", "₹175", ["Nil", "₹200", "₹300"], "₹7,501–₹10,000 band."),
-  fq("From when did Karnataka's ₹25,000 exemption limit apply?", "1 April 2025", ["1 April 2020", "21 November 2025", "1 April 2027"], "Raised from ₹15,000."),
+  fq("From when has Karnataka exempted salaries below ₹25,000 a month?", "1 April 2023", ["1 April 2020", "21 November 2025", "1 April 2027"], "Per the Karnataka PT portal FAQ."),
   fq("What should be kept on file when applying a PT exemption?", "Documentary evidence", ["Nothing", "The employee's GSTIN", "A bank statement only"], "e.g. disability certificate."),
 
   // Module 4
