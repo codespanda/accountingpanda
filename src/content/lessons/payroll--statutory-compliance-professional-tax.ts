@@ -221,7 +221,7 @@ const lessons: CourseLessons = {
         ],
       ),
       p("Bengaluru: Kiran (₹60,000) pays ₹2,500 a year. Divya (₹24,000) pays nothing."),
-      note("Karnataka raised its exemption limit to ₹25,000 from 1 April 2025."),
+      note("Karnataka's exemption for salaries below ₹25,000 a month has applied from 1 April 2023, and the ₹300 February deduction is set by a 2025 notification (Karnataka Commercial Taxes Department)."),
     ),
     screen(
       "West Bengal",
@@ -468,7 +468,7 @@ const lessons: CourseLessons = {
         ["Setting", "Why"],
         [
           ["Work location (state and local body) per employee", "Decides which slab applies"],
-          ["Slab table per state, with effective dates", "Handles changes like Karnataka's 2025 revision"],
+          ["Slab table per state, with effective dates", "Handles changes like Karnataka's February ₹300 rule from 2025"],
           ["Special months (February)", "The ₹300 adjustment"],
           ["Gender and exemption flags", "Maharashtra's women's limit, disability exemptions"],
           ["Half-yearly rules for Tamil Nadu", "Deduct in the right months"],
@@ -534,7 +534,7 @@ const lessons: CourseLessons = {
       q("An employee transfers states mid-year. What's the annual limit?", ["₹2,500 in total", "₹2,500 per state", "₹5,000", "No limit"], 0, "The cap is per person."),
       q("Why include PT in Form 130?", ["It's deductible from salary income", "It's required for GST", "It increases tax", "It's optional decoration"], 0, "For income tax."),
       q("At year end, PT should be reconciled:", ["State by state", "Only in total", "Never", "Only for managers"], 0, "Deductions, challans, returns, books."),
-      q("Which setting handles Karnataka's 2025 slab change?", ["Slab tables with effective dates", "Gender flags", "Bank details", "Leave balances"], 0, "Per state."),
+      q("Which setting handles a state's slab change from a given date?", ["Slab tables with effective dates", "Gender flags", "Bank details", "Leave balances"], 0, "Per state."),
     ),
     screen(
       "Practical exercises",
