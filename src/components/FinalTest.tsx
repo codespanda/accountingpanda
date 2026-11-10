@@ -18,6 +18,7 @@ import {
   type ExamResult,
 } from "@/lib/courseProgress"
 import { FINAL_TEST_PASS_PCT, SECONDS_PER_QUESTION, pickQuestions, shuffledOrder } from "@/lib/finalTest"
+import { assignmentCleared } from "@/lib/assignments"
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"]
 
@@ -44,6 +45,8 @@ export function FinalTest({
   backLabel,
   certificatePath,
   path,
+  assignmentKey,
+  assignmentPath,
 }: {
   courseTitle: string
   /** The course's progress key in local storage. */
@@ -59,8 +62,12 @@ export function FinalTest({
   backLabel: string
   certificatePath: string
   path: string
+  /** Content key of the course's practical assignment, which must be passed first (if the course has one). */
+  assignmentKey?: string
+  assignmentPath?: string
 }) {
   const [unlocked] = useState(() => allModulesCompleted(courseSlug, totalModules))
+  const [assignmentDone] = useState(() => !assignmentKey || assignmentCleared(assignmentKey, courseSlug))
   const [attempt, setAttempt] = useState<ExamAttempt | null>(null)
   // An attempt left in storage means the last test stopped part-way (page
   // closed, reloaded or connection lost). It is never resumed: the learner
@@ -207,6 +214,20 @@ export function FinalTest({
               </p>
               <Button className="mt-6" asChild>
                 <Link to={backTo}>{backLabel}</Link>
+              </Button>
+            </div>
+          ) : !assignmentDone ? (
+            <div className="flex flex-col items-center py-10 text-center">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-bento-mint text-bento-forest">
+                <Lock className="h-5 w-5" />
+              </span>
+              <p className="mt-4 text-lg font-semibold text-brand-heading">Complete the practical assignment first</p>
+              <p className="mt-1 max-w-md text-sm text-gray-500">
+                Work through one month of real-style transactions for {courseTitle}. Score at least 80% on the
+                assignment to unlock the final test.
+              </p>
+              <Button className="mt-6" asChild>
+                <Link to={assignmentPath ?? backTo}>Go to the practical assignment</Link>
               </Button>
             </div>
           ) : !available ? (

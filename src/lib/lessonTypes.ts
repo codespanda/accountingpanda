@@ -69,3 +69,46 @@ export type LessonScreen = { title: string; blocks: LessonBlock[] }
 
 /** A course's lesson screens, keyed by module index (0 = Module 1). */
 export type CourseLessons = Record<number, LessonScreen[]>
+
+/** One task in a course's practical assignment. */
+export type AssignmentTask =
+  | {
+      kind: "number"
+      prompt: string
+      /** The correct figure. */
+      answer: number
+      /** Allowed difference from the answer (default 1). */
+      tolerance?: number
+      /** Shown before the input, e.g. "₹" or "$". */
+      prefix?: string
+      /** Shown after the input, e.g. "%" or "days". */
+      suffix?: string
+      /** Worked solution, revealed after the assignment is passed. */
+      solution: string
+    }
+  | {
+      kind: "choice"
+      prompt: string
+      options: string[]
+      /** Index of the correct option. */
+      answer: number
+      solution: string
+    }
+
+/** An official source a course's figures were checked against. */
+export type OfficialReference = { label: string; url: string; note?: string }
+
+/**
+ * A course's practical assignment: one month of realistic transactions and
+ * tasks the learner works through before the final test.
+ */
+export type PracticalAssignment = {
+  title: string
+  /** e.g. "October 2026" */
+  period: string
+  intro: string
+  /** The month's data — business details, opening balances, transactions. */
+  context: LessonBlock[]
+  tasks: AssignmentTask[]
+  references: OfficialReference[]
+}

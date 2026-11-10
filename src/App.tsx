@@ -17,14 +17,20 @@ import { BusinessFinanceCourses } from "@/pages/BusinessFinanceCourses"
 import { GstIndiaCourse } from "@/pages/courses/GstIndiaCourse"
 import { DataBlogPost } from "@/pages/DataBlogPost"
 import {
+  CatalogAssignmentRoute,
   CatalogCertificateRoute,
   CatalogFinalTestRoute,
   CatalogModuleLessonRoute,
+  GstAssignmentRoute,
   GstCertificateRoute,
   GstFinalTestRoute,
   GstModuleLessonRoute,
 } from "@/pages/courses/CourseModuleRoutes"
-import { BookkeepingBasicsCertificate, BookkeepingBasicsFinalTest } from "@/pages/courses/BookkeepingBasicsFinalTest"
+import {
+  BookkeepingBasicsAssignment,
+  BookkeepingBasicsCertificate,
+  BookkeepingBasicsFinalTest,
+} from "@/pages/courses/BookkeepingBasicsFinalTest"
 import { CatalogCourseDetail } from "@/pages/courses/CatalogCourseDetail"
 import { bookkeepingCourseCatalog } from "@/pages/courses/bookkeepingCourseCatalog"
 import { taxationCourseCatalog } from "@/pages/courses/taxationCourseCatalog"
@@ -182,6 +188,10 @@ function App() {
               path="/learning/bookkeeping/:courseSlug/final-test"
               element={<CatalogFinalTestRoute catalog={bookkeepingCourseCatalog} basePath="/learning/bookkeeping" />}
             />
+            <Route
+              path="/learning/bookkeeping/:courseSlug/assignment"
+              element={<CatalogAssignmentRoute catalog={bookkeepingCourseCatalog} basePath="/learning/bookkeeping" />}
+            />
             <Route path="/learning/taxation" element={<TaxationCourses />} />
             <Route path="/learning/payroll" element={<PayrollCourses />} />
             <Route
@@ -199,6 +209,10 @@ function App() {
             <Route
               path="/learning/payroll/:courseSlug/final-test"
               element={<CatalogFinalTestRoute catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
+            />
+            <Route
+              path="/learning/payroll/:courseSlug/assignment"
+              element={<CatalogAssignmentRoute catalog={payrollCourseCatalog} basePath="/learning/payroll" />}
             />
             <Route path="/learning/excel-for-accountants" element={<ExcelCourses />} />
             <Route
@@ -219,6 +233,10 @@ function App() {
               path="/learning/excel-for-accountants/:courseSlug/final-test"
               element={<CatalogFinalTestRoute catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />}
             />
+            <Route
+              path="/learning/excel-for-accountants/:courseSlug/assignment"
+              element={<CatalogAssignmentRoute catalog={excelCourseCatalog} basePath="/learning/excel-for-accountants" />}
+            />
             <Route path="/learning/business-finance" element={<BusinessFinanceCourses />} />
             <Route
               path="/learning/business-finance/:courseSlug"
@@ -237,6 +255,10 @@ function App() {
             <Route
               path="/learning/business-finance/:courseSlug/final-test"
               element={<CatalogFinalTestRoute catalog={businessFinanceCourseCatalog} basePath="/learning/business-finance" />}
+            />
+            <Route
+              path="/learning/business-finance/:courseSlug/assignment"
+              element={<CatalogAssignmentRoute catalog={businessFinanceCourseCatalog} basePath="/learning/business-finance" />}
             />
             <Route path="/learning/financial-accounting" element={<FinancialAccountingCourses />} />
             <Route
@@ -261,6 +283,10 @@ function App() {
               element={<CatalogFinalTestRoute catalog={financialAccountingCourseCatalog} basePath="/learning/financial-accounting" />}
             />
             <Route
+              path="/learning/financial-accounting/:courseSlug/assignment"
+              element={<CatalogAssignmentRoute catalog={financialAccountingCourseCatalog} basePath="/learning/financial-accounting" />}
+            />
+            <Route
               path="/learning/taxation/learn-gst-in-india"
               element={<GstIndiaCourse />}
             />
@@ -281,6 +307,10 @@ function App() {
               element={<GstFinalTestRoute />}
             />
             <Route
+              path="/learning/taxation/learn-gst-in-india/assignment"
+              element={<GstAssignmentRoute />}
+            />
+            <Route
               path="/learning/taxation/:courseSlug"
               element={
                 <CatalogCourseDetail catalog={taxationCourseCatalog} basePath="/learning/taxation" />
@@ -297,6 +327,10 @@ function App() {
             <Route
               path="/learning/taxation/:courseSlug/final-test"
               element={<CatalogFinalTestRoute catalog={taxationCourseCatalog} basePath="/learning/taxation" />}
+            />
+            <Route
+              path="/learning/taxation/:courseSlug/assignment"
+              element={<CatalogAssignmentRoute catalog={taxationCourseCatalog} basePath="/learning/taxation" />}
             />
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners"
@@ -317,6 +351,10 @@ function App() {
             <Route
               path="/learning/bookkeeping/bookkeeping-basics-for-beginners/final-test"
               element={<BookkeepingBasicsFinalTest />}
+            />
+            <Route
+              path="/learning/bookkeeping/bookkeeping-basics-for-beginners/assignment"
+              element={<BookkeepingBasicsAssignment />}
             />
             <Route path="/certificate" element={<SharedCertificate />} />
             <Route path="/about" element={<About />} />

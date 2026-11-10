@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Award, Check, GraduationCap, Minus, Plus } from "lucide-react"
+import { ArrowRight, Award, Check, ClipboardList, GraduationCap, Lock, Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { getCompletedModules, getExamResult, toggleModule, type ExamResult } from "@/lib/courseProgress"
+import {
+  getAssignmentResult,
+  getCompletedModules,
+  getExamResult,
+  isModuleUnlocked,
+  toggleModule,
+  type AssignmentResult,
+  type ExamResult,
+} from "@/lib/courseProgress"
+import { hasAssignment } from "@/lib/assignments"
 import { lessonKey, useLessons } from "@/lib/lessons"
 
 export type TrackerModule = { title: string; summary: string; topics: string[] }
@@ -25,6 +34,8 @@ export function CourseTracker({
 }) {
   const [completed, setCompleted] = useState<number[]>([])
   const [exam, setExam] = useState<ExamResult | null>(null)
+  const [assignmentResult, setAssignmentResult] = useState<AssignmentResult | null>(null)
+  const withAssignment = hasAssignment(lessonKey(coursePath))
   const [open, setOpen] = useState<number | null>(null)
   const { lessons } = useLessons(lessonKey(coursePath))
   const totalModules = modules.length
@@ -32,6 +43,7 @@ export function CourseTracker({
   useEffect(() => {
     setCompleted(getCompletedModules(progressKey))
     setExam(getExamResult(progressKey))
+    setAssignmentResult(getAssignmentResult(progressKey))
   }, [progressKey])
 
   const completedCount = modules.filter((_, i) => completed.includes(i)).length
@@ -82,6 +94,7 @@ export function CourseTracker({
       <ol className="mt-6 space-y-1">
         {modules.map(({ title, summary, topics }, index) => {
           const done = completed.includes(index)
+          const locked = !isModuleUnlocked(index, completed)
           const expanded = open === index
           const screens = lessons?.[index]
           const label = (
@@ -127,7 +140,18 @@ export function CourseTracker({
                   </button>
                 )}
 
-                {screens ? (
+                {screens && locked ? (
+                  <div
+                    aria-disabled="true"
+                    title={`Complete module ${index} to unlock`}
+                    className="flex flex-1 cursor-not-allowed items-start justify-between gap-3 text-left opacity-60"
+                  >
+                    {label}
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400">
+                      <Lock className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                ) : screens ? (
                   <Link
                     to={`${coursePath}/modules/${index + 1}`}
                     className="flex flex-1 items-start justify-between gap-3 text-left"
@@ -179,6 +203,14 @@ export function CourseTracker({
           text="Your certificate of completion is ready."
           action="View certificate"
         />
+      ) : allDone && withAssignment && !assignmentResult?.passed ? (
+        <CompletionCard
+          to={`${coursePath}/assignment`}
+          title={`You've completed all ${totalModules} modules!`}
+          text="Next, complete the one-month practical assignment. Score 80% to unlock the final test."
+          action="Start the assignment"
+          icon="assignment"
+        />
       ) : allDone ? (
         <CompletionCard
           to={`${coursePath}/final-test`}
@@ -189,21 +221,36 @@ export function CourseTracker({
       ) : (
         <p className="mt-5 flex items-center gap-3 rounded-xl border border-dashed border-gray-200 px-4 py-3 text-sm text-gray-500">
           <Award className="h-4 w-4 shrink-0 text-gray-400" />
-          Complete all {totalModules} modules, then pass the final test, to earn your certificate of completion.
+          {withAssignment
+            ? `Complete all ${totalModules} modules in order, pass the practical assignment, then pass the final test to earn your certificate of completion.`
+            : `Complete all ${totalModules} modules in order, then pass the final test, to earn your certificate of completion.`}
         </p>
       )}
     </div>
   )
 }
 
-function CompletionCard({ to, title, text, action }: { to: string; title: string; text: string; action: string }) {
+function CompletionCard({
+  to,
+  title,
+  text,
+  action,
+  icon = "award",
+}: {
+  to: string
+  title: string
+  text: string
+  action: string
+  icon?: "award" | "assignment"
+}) {
+  const Icon = icon === "assignment" ? ClipboardList : Award
   return (
     <Link
       to={to}
       className="mt-5 flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
     >
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
-        <Award className="h-4 w-4" />
+        <Icon className="h-4 w-4" />
       </span>
       <span className="flex-1">
         <span className="block text-sm font-semibold text-bento-forest">{title}</span>
