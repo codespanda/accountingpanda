@@ -207,3 +207,31 @@ const lastAttemptDayKey = (courseSlug: string) => `course-exam:${courseSlug}:las
 /** The day the learner last started a final test attempt (YYYY-MM-DD). */
 export const getLastExamDay = (courseSlug: string) => readJson<string>(lastAttemptDayKey(courseSlug))
 export const setLastExamDay = (courseSlug: string, day: string) => writeJson(lastAttemptDayKey(courseSlug), day)
+
+/** The learner's practical assignment result. */
+export type AssignmentResult = {
+  correct: number
+  total: number
+  scorePct: number
+  passed: boolean
+  checkedAt: string
+}
+
+const assignmentResultKey = (courseSlug: string) => `course-assignment:${courseSlug}:result`
+const assignmentAnswersKey = (courseSlug: string) => `course-assignment:${courseSlug}:answers`
+
+export const getAssignmentResult = (courseSlug: string) => readJson<AssignmentResult>(assignmentResultKey(courseSlug))
+
+/** Saves an assignment result. A pass is never replaced by a later fail. */
+export function saveAssignmentResult(courseSlug: string, result: AssignmentResult) {
+  const previous = getAssignmentResult(courseSlug)
+  if (previous?.passed && !result.passed) return previous
+  writeJson(assignmentResultKey(courseSlug), result)
+  return result
+}
+
+/** The learner's typed answers, kept so the assignment survives a reload. */
+export const getAssignmentAnswers = (courseSlug: string) =>
+  readJson<Record<number, string>>(assignmentAnswersKey(courseSlug)) ?? {}
+export const saveAssignmentAnswers = (courseSlug: string, answers: Record<number, string>) =>
+  writeJson(assignmentAnswersKey(courseSlug), answers)

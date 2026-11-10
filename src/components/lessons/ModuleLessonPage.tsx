@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import { ArrowLeft, Loader2 } from "lucide-react"
 import { Seo } from "@/components/Seo"
 import { LessonViewer } from "@/components/lessons/LessonViewer"
-import { completeModule, getCompletedModules } from "@/lib/courseProgress"
+import { completeModule, getCompletedModules, isModuleUnlocked } from "@/lib/courseProgress"
 import { lessonKey, useLessons } from "@/lib/lessons"
 
 /** A module's lesson screens on their own page, for any course with lessons. */
@@ -25,10 +25,13 @@ export function ModuleLessonPage({
   const { lessons, loading } = useLessons(lessonKey(coursePath))
   const index = Number(moduleNumber) - 1
   const [completedBefore] = useState(() => getCompletedModules(progressKey).includes(index))
+  // Modules open in order: completed ones can be revisited, and the next one
+  // unlocks only when the module before it is complete.
+  const [unlocked] = useState(() => isModuleUnlocked(index, getCompletedModules(progressKey)))
   const module = modules[index]
   const screens = lessons?.[index]
 
-  if (!module || (!loading && !screens)) return <Navigate to={coursePath} replace />
+  if (!module || !unlocked || (!loading && !screens)) return <Navigate to={coursePath} replace />
 
   const finish = () => {
     completeModule(progressKey, index)

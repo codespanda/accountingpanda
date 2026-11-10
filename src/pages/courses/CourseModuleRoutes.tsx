@@ -4,6 +4,7 @@ import { CourseCertificate } from "@/components/CourseCertificate"
 import { ModuleLessonPage } from "@/components/lessons/ModuleLessonPage"
 import { lessonKey } from "@/lib/lessons"
 import { FinalTest } from "@/components/FinalTest"
+import { PracticalAssignmentPage } from "@/components/PracticalAssignment"
 import { finalTestSize } from "@/lib/finalTest"
 import { useFinalTestQuestions } from "@/lib/finalTestBanks"
 import { trackerModules } from "@/lib/trackerModules"
@@ -92,6 +93,8 @@ export function GstFinalTestRoute() {
       backLabel="Back to Course"
       certificatePath={`${GST_INDIA_COURSE_PATH}/certificate`}
       path={`${GST_INDIA_COURSE_PATH}/final-test`}
+      assignmentKey={lessonKey(GST_INDIA_COURSE_PATH)}
+      assignmentPath={`${GST_INDIA_COURSE_PATH}/assignment`}
     />
   )
 }
@@ -116,6 +119,42 @@ export function CatalogFinalTestRoute({ catalog, basePath }: { catalog: CourseDe
       backLabel="Back to Course"
       certificatePath={`${coursePath}/certificate`}
       path={`${coursePath}/final-test`}
+      assignmentKey={lessonKey(coursePath)}
+      assignmentPath={`${coursePath}/assignment`}
+    />
+  )
+}
+
+/** Practical assignment for Learn GST in India. */
+export function GstAssignmentRoute() {
+  return (
+    <PracticalAssignmentPage
+      courseTitle="Learn GST in India"
+      progressKey="learn-gst-in-india"
+      contentKey={lessonKey(GST_INDIA_COURSE_PATH)}
+      totalModules={gstIndiaModuleSummaries.length}
+      backTo={GST_INDIA_COURSE_PATH}
+      testPath={`${GST_INDIA_COURSE_PATH}/final-test`}
+      path={`${GST_INDIA_COURSE_PATH}/assignment`}
+    />
+  )
+}
+
+/** Practical assignment for any course in a category catalog. */
+export function CatalogAssignmentRoute({ catalog, basePath }: { catalog: CourseDetails[]; basePath: string }) {
+  const { courseSlug } = useParams()
+  const course = catalog.find((c) => c.slug === courseSlug)
+  if (!course) return <Navigate to={basePath} replace />
+  const coursePath = `${basePath}/${course.slug}`
+  return (
+    <PracticalAssignmentPage
+      courseTitle={course.title}
+      progressKey={lessonKey(coursePath)}
+      contentKey={lessonKey(coursePath)}
+      totalModules={course.modules.length}
+      backTo={coursePath}
+      testPath={`${coursePath}/final-test`}
+      path={`${coursePath}/assignment`}
     />
   )
 }

@@ -1,5 +1,6 @@
 import { CourseCertificate } from "@/components/CourseCertificate"
 import { FinalTest } from "@/components/FinalTest"
+import { PracticalAssignmentPage } from "@/components/PracticalAssignment"
 import { finalTestSize } from "@/lib/finalTest"
 import { useFinalTestQuestions } from "@/lib/finalTestBanks"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
@@ -7,9 +8,10 @@ import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCours
 const COURSE_TITLE = "Bookkeeping Basics for Beginners"
 const COURSE_SLUG = "bookkeeping-basics-for-beginners"
 const COURSE_PATH = "/learning/bookkeeping/bookkeeping-basics-for-beginners"
+const CONTENT_KEY = "bookkeeping--bookkeeping-basics-for-beginners"
 
 export function BookkeepingBasicsFinalTest() {
-  const { questions, loading, available } = useFinalTestQuestions("bookkeeping--bookkeeping-basics-for-beginners")
+  const { questions, loading, available } = useFinalTestQuestions(CONTENT_KEY)
   return (
     <FinalTest
       courseTitle={COURSE_TITLE}
@@ -23,6 +25,22 @@ export function BookkeepingBasicsFinalTest() {
       backLabel="Back to Course Progress"
       certificatePath={`${COURSE_PATH}/certificate`}
       path={`${COURSE_PATH}/final-test`}
+      assignmentKey={CONTENT_KEY}
+      assignmentPath={`${COURSE_PATH}/assignment`}
+    />
+  )
+}
+
+export function BookkeepingBasicsAssignment() {
+  return (
+    <PracticalAssignmentPage
+      courseTitle={COURSE_TITLE}
+      progressKey={COURSE_SLUG}
+      contentKey={CONTENT_KEY}
+      totalModules={bookkeepingBasicsModules.length}
+      backTo={`${COURSE_PATH}/progress`}
+      testPath={`${COURSE_PATH}/final-test`}
+      path={`${COURSE_PATH}/assignment`}
     />
   )
 }

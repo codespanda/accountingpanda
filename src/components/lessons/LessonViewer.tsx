@@ -573,3 +573,8 @@ export function LessonViewer({
     </div>
   )
 }
+
+/** Renders a single lesson block outside a lesson (e.g. on the assignment page). */
+export function LessonBlockView({ block }: { block: LessonBlock }) {
+  return <Block block={block} />
+}

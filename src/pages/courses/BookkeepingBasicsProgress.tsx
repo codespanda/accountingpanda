@@ -15,7 +15,9 @@ import { Seo } from "@/components/Seo"
 import { ConsultationLink } from "@/components/ConsultationDialog"
 import { cn } from "@/lib/utils"
 import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCourse"
+import { hasAssignment } from "@/lib/assignments"
 import {
+  getAssignmentResult,
   getCompletedModules,
   getExamResult,
   isModuleCompleted,
@@ -44,12 +46,15 @@ function getNextCourseStartDate() {
 export function BookkeepingBasicsProgress() {
   const [completed, setCompleted] = useState<number[]>([])
   const [examScore, setExamScore] = useState<number | null>(null)
+  const [assignmentPassed, setAssignmentPassed] = useState(false)
+  const needsAssignment = hasAssignment("bookkeeping--bookkeeping-basics-for-beginners") && !assignmentPassed
   const startDate = getNextCourseStartDate()
 
   useEffect(() => {
     setCompleted(getCompletedModules(COURSE_SLUG))
     const exam = getExamResult(COURSE_SLUG)
     setExamScore(exam?.passed ? exam.scorePct : null)
+    setAssignmentPassed(getAssignmentResult(COURSE_SLUG)?.passed === true)
   }, [])
 
   const completedCount = completed.length
@@ -187,7 +192,13 @@ export function BookkeepingBasicsProgress() {
               {/* Completion state */}
               {allDone ? (
                 <Link
-                  to={examScore !== null ? `${COURSE_PATH}/certificate` : `${COURSE_PATH}/final-test`}
+                  to={
+                    examScore !== null
+                      ? `${COURSE_PATH}/certificate`
+                      : needsAssignment
+                        ? `${COURSE_PATH}/assignment`
+                        : `${COURSE_PATH}/final-test`
+                  }
                   className="flex items-center gap-4 rounded-xl border border-brand-green/40 bg-bento-mint p-4 transition-shadow hover:shadow-sm"
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
@@ -202,11 +213,13 @@ export function BookkeepingBasicsProgress() {
                     <p className="text-xs text-bento-forest/80">
                       {examScore !== null
                         ? "Your certificate of completion is ready."
-                        : "Pass the timed final test to earn your certificate of completion."}
+                        : needsAssignment
+                          ? "Next, complete the one-month practical assignment. Score 80% to unlock the final test."
+                          : "Pass the timed final test to earn your certificate of completion."}
                     </p>
                   </div>
                   <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-brand-green">
-                    {examScore !== null ? "View certificate" : "Take the final test"}
+                    {examScore !== null ? "View certificate" : needsAssignment ? "Start the assignment" : "Take the final test"}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </Link>
