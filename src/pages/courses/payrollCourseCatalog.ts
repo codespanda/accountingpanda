@@ -397,21 +397,21 @@ export const payrollCourseCatalog: CourseDetails[] = [
       mod(1, "Bonus and the Code on Wages", [
         "What statutory bonus is and why it exists",
         "From the Payment of Bonus Act, 1965 to the Code on Wages, 2019",
-        "The Code in force from 21 November 2025 — and old rules that continue until new ones are notified",
+        "The Code in force from 21 November 2025 — and the bonus limits notified in August 2026",
         "Which establishments must pay bonus",
         "Employer obligations at a glance",
       ]),
       mod(2, "Eligibility", [
         "At least 30 days' work in the accounting year",
         "Wage limit for eligibility — set by government notification",
-        "₹21,000 a month — the limit under the 2015 amendment, still applied until a new notification",
+        "₹21,000 a month — notified under the Code by S.O. 4711(E), effective 21 November 2025",
         "Employees who are disqualified",
         "Part-year employees and leavers",
       ]),
       mod(3, "Calculating Bonus", [
         "Minimum bonus — 8.33% of wages or ₹100, whichever is higher",
         "Maximum bonus — 20% of wages",
-        "Calculation ceiling — ₹7,000 or the minimum wage, whichever is higher, until a new notification",
+        "Calculation ceiling — ₹7,000 or the minimum wage, whichever is higher (S.O. 4710(E))",
         "“Wages” for bonus under the Code",
         "Proportionate bonus for part of the year",
         "Worked examples",
@@ -451,7 +451,7 @@ export const payrollCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Calculate, pay and record statutory bonus for a fictional company for one accounting year.",
     note:
-      "Under Section 26 of the Code on Wages, 2019, the eligibility wage limit and the calculation ceiling are set by government notification. Until new amounts are notified, the figures from the Payment of Bonus Act (₹21,000 eligibility limit; ₹7,000 or the minimum wage, whichever is higher, as the calculation ceiling) continue to be used. Always confirm current limits with the Ministry of Labour and Employment or your state labour department.",
+      "Under section 26 of the Code on Wages, 2019, the Central Government notified the bonus limits on 25 August 2026: S.O. 4711(E) makes employees drawing wages up to ₹21,000 a month eligible (effective 21 November 2025), and S.O. 4710(E) sets the calculation base at ₹7,000 a month, or the minimum wage if higher. State governments may notify their own limits for establishments in the State sphere — always confirm the current position with the Ministry of Labour and Employment or your state labour department.",
   },
   {
     slug: "statutory-compliance-labour-welfare-fund",
