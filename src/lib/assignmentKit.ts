@@ -29,7 +29,8 @@ export const ASSIGNMENT_PASS_PCT = 80
 
 /** Reads a learner's typed figure: ignores currency symbols, commas, spaces and %. Brackets mean negative. */
 export function parseFigure(raw: string): number | null {
-  const trimmed = raw.trim()
+  // Accept a typographic minus (−) or en dash as a minus sign, and ignore a leading plus.
+  const trimmed = raw.trim().replace(/[−–]/g, "-").replace(/^\+/, "")
   if (!trimmed) return null
   const negative = /^\(.*\)$/.test(trimmed) || /^-/.test(trimmed.replace(/[₹$€£\s]/g, ""))
   const cleaned = trimmed.replace(/[₹$€£,%\s()]/g, "").replace(/^-/, "")
