@@ -41,6 +41,8 @@ export type CourseDetails = {
   note?: string
   /** Optional introduction video shown above the course objective. */
   video?: { src: string; title: string }
+  /** Optional folder under public/ holding module-1.mp4, module-2.mp4, … shown on each module's first screen. */
+  moduleVideos?: string
   /** Where "Start Course" goes once lessons are published; omitted = "Lessons coming soon". */
   startHref?: string
 }

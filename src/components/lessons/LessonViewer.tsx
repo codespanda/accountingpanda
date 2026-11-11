@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { LessonVideo } from "@/components/lessons/LessonVideo"
 import {
   ArrowDown,
   ArrowLeft,
@@ -503,12 +504,15 @@ export function LessonViewer({
   screens,
   onFinish,
   completed = false,
+  video,
 }: {
   screens: LessonScreen[]
   /** Shown as "Mark complete" on the last screen. */
   onFinish?: () => void
   /** The module was completed before, so every screen can be opened. */
   completed?: boolean
+  /** Optional module video shown on the first screen. */
+  video?: { src: string; title: string }
 }) {
   const [page, setPage] = useState(0)
   const [passed, setPassed] = useState<Set<number>>(new Set())
@@ -545,6 +549,11 @@ export function LessonViewer({
         Screen {page + 1} of {screens.length}
       </p>
       <h2 className="mt-1 text-2xl font-bold text-brand-heading sm:text-3xl">{screen.title}</h2>
+      {page === 0 && video && (
+        <div className="mt-6">
+          <LessonVideo src={video.src} title={video.title} label="Watch the module video" />
+        </div>
+      )}
       <div className="mt-6 space-y-5">
         {screen.blocks.map((block, i) => (
           <Block key={`${page}-${i}`} block={block} onPass={handlePass} />

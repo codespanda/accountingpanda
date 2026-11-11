@@ -13,6 +13,7 @@ export function ModuleLessonPage({
   progressKey,
   moduleNumber,
   modules,
+  videoFolder,
 }: {
   courseTitle: string
   coursePath: string
@@ -20,6 +21,8 @@ export function ModuleLessonPage({
   progressKey: string
   moduleNumber: string | undefined
   modules: { title: string; summary: string }[]
+  /** Folder under public/ with module-N.mp4 videos, when the course has them. */
+  videoFolder?: string
 }) {
   const navigate = useNavigate()
   const { lessons, loading } = useLessons(lessonKey(coursePath))
@@ -65,7 +68,17 @@ export function ModuleLessonPage({
       <section className="container-px pt-4">
         <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
           {screens ? (
-            <LessonViewer key={index} screens={screens} onFinish={finish} completed={completedBefore} />
+            <LessonViewer
+              key={index}
+              screens={screens}
+              onFinish={finish}
+              completed={completedBefore}
+              video={
+                videoFolder
+                  ? { src: `${videoFolder}/module-${index + 1}.mp4`, title: `${module.title} — video lesson` }
+                  : undefined
+              }
+            />
           ) : (
             <p className="flex items-center justify-center gap-2 py-16 text-sm text-gray-500">
               <Loader2 className="h-4 w-4 animate-spin" />
