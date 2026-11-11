@@ -37,6 +37,7 @@ export function CatalogModuleLessonRoute({ catalog, basePath }: { catalog: Cours
       progressKey={lessonKey(coursePath)}
       moduleNumber={moduleNumber}
       modules={trackerModules(course.modules)}
+      videoFolder={course.moduleVideos}
     />
   )
 }

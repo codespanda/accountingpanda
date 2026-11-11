@@ -13,6 +13,8 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   {
     slug: "double-entry-bookkeeping-explained",
     title: "Double-Entry Bookkeeping Explained",
+    video: { src: "/videos/double-entry/intro.mp4", title: "Double-Entry Bookkeeping Explained — course introduction" },
+    moduleVideos: "/videos/double-entry",
     summary: "Understand debits, credits, and how every transaction balances.",
     intro:
       "Learn the system behind every set of books — why each transaction has two sides, how debits and credits work, and how to check that everything balances.",
