@@ -842,9 +842,9 @@ export const payrollCourseCatalog: CourseDetails[] = [
       ]),
       mod(2, "Contractor Licensing", [
         "Licence needed for contractors engaging 50 or more contract workers",
-        "All-India licence valid for five years, replacing work-order licences",
+        "Licences valid for five years — state, multi-state or all-India — and work-specific licences",
         "Contractors working across several states",
-        "Deemed licences after the prescribed period",
+        "Applying for, renewing and displaying a licence",
         "Checking a contractor's licence before engagement",
       ]),
       mod(3, "Core and Non-Core Activities", [
