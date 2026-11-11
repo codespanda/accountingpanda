@@ -622,7 +622,7 @@ export const payrollCourseCatalog: CourseDetails[] = [
       ]),
       mod(2, "Registration", [
         "Which establishments must register — employee thresholds by state",
-        "Registration within six months and the Labour Identification Number (Model Bill)",
+        "Registration within 60 days — Form A in Maharashtra",
         "Smaller establishments — intimation instead of registration in some states",
         "Online registration through state labour portals",
         "Renewal, amendments, displaying the certificate and closure",
