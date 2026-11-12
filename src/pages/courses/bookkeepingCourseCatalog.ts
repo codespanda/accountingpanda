@@ -80,6 +80,8 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   {
     slug: "chart-of-accounts-setup",
     title: "Chart of Accounts Setup",
+    video: { src: "/videos/chart-of-accounts/intro.mp4", title: "Chart of Accounts Setup — course introduction" },
+    moduleVideos: "/videos/chart-of-accounts",
     summary: "Build a chart of accounts that fits your business from day one.",
     intro:
       "Design a chart of accounts that is easy to use, gives useful reports, and grows with the business — instead of one that needs fixing later.",
