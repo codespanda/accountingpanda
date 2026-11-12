@@ -1036,6 +1036,7 @@ export const payrollCourseCatalog: CourseDetails[] = [
   {
     slug: "us-payroll",
     title: "US Payroll",
+    image: "assets/course-us-payroll.jpg",
     summary:
       "Run US payroll correctly — FLSA pay rules, Form W-4, federal income tax withholding, FICA, FUTA and SUTA, deposits, Form 941 and W-2s.",
     intro:
@@ -1103,6 +1104,7 @@ export const payrollCourseCatalog: CourseDetails[] = [
   {
     slug: "australia-payroll",
     title: "Australia Payroll",
+    image: "assets/course-australia-payroll.jpg",
     summary:
       "Run Australian payroll — the Fair Work system and awards, PAYG withholding, superannuation, Single Touch Payroll, leave and payroll tax.",
     intro:
@@ -1171,6 +1173,7 @@ export const payrollCourseCatalog: CourseDetails[] = [
   {
     slug: "uae-payroll",
     title: "UAE Payroll",
+    image: "assets/course-uae-payroll.jpg",
     summary:
       "Run payroll in the UAE — the Labour Law, WPS, end-of-service gratuity, leave, overtime, pension for UAE and GCC nationals and unemployment insurance.",
     intro:
