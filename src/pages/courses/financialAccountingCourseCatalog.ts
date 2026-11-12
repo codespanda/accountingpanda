@@ -579,4 +579,348 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
     finalPractical:
       "Apply the five-step model to a fictional company's customer contracts, prepare the revenue entries for the year and draft the revenue note.",
   },
+  {
+    slug: "us-accounting",
+    title: "US Accounting",
+    summary:
+      "Keep books the US way — US GAAP, accrual accounting, sales tax, 1099 contractors, entity types and year-end reporting for small businesses.",
+    intro:
+      "Accounting for a US business follows US GAAP and a tax system built around the entity type. Learn how US books are set up and kept, how sales tax and contractor reporting work, and how the year-end close feeds the business's tax return.",
+    objective:
+      "By the end of this course, learners will set up a US chart of accounts, record transactions on the accrual basis under US GAAP, handle state sales tax and 1099 reporting, recognise how each entity type is taxed, and prepare year-end financial statements for the tax preparer.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "US GAAP and the US Accounting Environment", [
+        "US GAAP and the FASB Accounting Standards Codification",
+        "Who uses US GAAP — and when small businesses use tax-basis reporting",
+        "The fiscal year and the calendar year",
+        "The role of the CPA, enrolled agent and bookkeeper",
+        "Cash vs. accrual basis",
+      ]),
+      mod(2, "Setting Up US Books", [
+        "A US chart of accounts",
+        "Employer Identification Number (EIN) and Form W-9",
+        "Bank and credit card accounts",
+        "Opening balances",
+        "Document retention",
+      ]),
+      mod(3, "Sales Tax", [
+        "Sales tax is set by states and local governments",
+        "Nexus — physical and economic (after Wayfair)",
+        "Collecting, recording and filing sales tax",
+        "Exempt sales and resale certificates",
+        "Sales tax liability accounts",
+      ]),
+      mod(4, "Contractors and Form 1099", [
+        "Employees vs. independent contractors",
+        "Collecting Form W-9",
+        "Form 1099-NEC and 1099-MISC — who gets one",
+        "Reporting thresholds and deadlines",
+        "Backup withholding",
+      ]),
+      mod(5, "Entity Types and Taxes", [
+        "Sole proprietorships and Schedule C",
+        "Partnerships and multi-member LLCs — Form 1065 and K-1s",
+        "S corporations — Form 1120-S and reasonable compensation",
+        "C corporations — Form 1120 and the 21% federal rate",
+        "Owner's draws, distributions and payroll",
+      ]),
+      mod(6, "Year-End Close and Reporting", [
+        "Adjusting entries — accruals, prepaids and depreciation",
+        "Section 179 and bonus depreciation at a glance",
+        "Preparing the income statement and balance sheet",
+        "The year-end package for the tax preparer",
+        "Estimated tax payments",
+      ]),
+    ],
+    assignments: [
+      "Set up a chart of accounts for a US small business",
+      "Record a month of transactions on the accrual basis",
+      "Calculate and record sales tax for multi-state sales",
+      "Decide which contractors need a Form 1099-NEC",
+      "Prepare year-end adjusting entries and statements",
+    ],
+    exercises: "Worked US examples after each module, from sales tax to 1099s and year-end entries.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Keep a month of books for a fictional US small business — transactions, sales tax, contractor payments and month-end statements.",
+    note:
+      "US tax rules, thresholds and forms change, and sales tax rules differ by state. Always check the current IRS guidance and the rules of each state where the business has nexus.",
+  },
+  {
+    slug: "australia-accounting",
+    title: "Australia Accounting",
+    summary:
+      "Keep books for an Australian business — AASB standards, GST and BAS, PAYG, superannuation, company tax and the 30 June year-end.",
+    intro:
+      "Australian businesses report to the ATO through GST, BAS, PAYG and income tax returns, under accounting standards set by the AASB. Learn how to keep compliant books, prepare a BAS and close the financial year.",
+    objective:
+      "By the end of this course, learners will set up books for an Australian business, account for GST and prepare a BAS, record PAYG withholding and instalments, account for superannuation, and complete the 30 June year-end for the tax agent.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "The Australian Accounting Environment", [
+        "AASB standards and general vs. special purpose reporting",
+        "The ATO, ABN and TFN",
+        "Business structures — sole trader, partnership, company and trust",
+        "The 1 July – 30 June financial year",
+        "Record-keeping — five years",
+      ]),
+      mod(2, "GST", [
+        "GST at 10% and registration at $75,000 turnover",
+        "Taxable, GST-free and input-taxed supplies",
+        "Tax invoices and GST credits",
+        "Cash vs. accrual GST accounting",
+        "GST accounts in the ledger",
+      ]),
+      mod(3, "The Business Activity Statement", [
+        "Monthly, quarterly and annual BAS",
+        "Completing the GST labels",
+        "PAYG withholding and PAYG instalments on the BAS",
+        "Lodgment and payment due dates",
+        "Reconciling the BAS to the ledger",
+      ]),
+      mod(4, "Payroll Entries and Superannuation", [
+        "Recording wages and PAYG withholding",
+        "Super guarantee at 12% of ordinary time earnings",
+        "Accruing and paying super",
+        "Single Touch Payroll in the books",
+        "Fringe benefits tax at a glance",
+      ]),
+      mod(5, "Income Tax for Businesses", [
+        "Company tax rates — 25% base rate entities and 30%",
+        "Sole traders, partnerships and trusts",
+        "Depreciation and the instant asset write-off",
+        "Franking credits and dividends",
+        "Tax vs. accounting profit",
+      ]),
+      mod(6, "End of Financial Year", [
+        "EOFY checklist",
+        "Accruals, prepayments and stock counts",
+        "Reconciling GST, PAYG and super",
+        "Preparing financial statements",
+        "The year-end pack for the tax agent",
+      ]),
+    ],
+    assignments: [
+      "Classify supplies as taxable, GST-free or input-taxed",
+      "Prepare a quarterly BAS from the ledger",
+      "Record a payroll with PAYG and super",
+      "Calculate company tax for a base rate entity",
+      "Complete an EOFY checklist",
+    ],
+    exercises: "Worked Australian examples after each module, from GST and BAS to super and year-end.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Keep a quarter's books for a fictional Australian business and prepare its BAS.",
+    note:
+      "GST, PAYG, super and company tax rules are set by Australian law and ATO guidance and change over time. Always check the current ATO guidance before lodging.",
+  },
+  {
+    slug: "uae-accounting",
+    title: "UAE Accounting",
+    summary:
+      "Keep compliant books in the UAE — IFRS, VAT at 5%, Corporate Tax at 9%, free zones, record-keeping and e-invoicing readiness.",
+    intro:
+      "UAE businesses keep IFRS books and comply with VAT and Corporate Tax administered by the Federal Tax Authority. Learn how to set up books, account for VAT, prepare for Corporate Tax and keep the records the FTA expects.",
+    objective:
+      "By the end of this course, learners will keep IFRS-based books for a UAE business, account for VAT and prepare a VAT return, work out Corporate Tax, apply the main free zone and small business rules, and keep compliant records.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "The UAE Accounting Environment", [
+        "IFRS as the accounting framework",
+        "Mainland, free zone and offshore companies",
+        "The Federal Tax Authority and EmaraTax",
+        "Financial years and currency (AED)",
+        "Audit requirements",
+      ]),
+      mod(2, "VAT", [
+        "VAT at 5% — standard, zero-rated and exempt supplies",
+        "Mandatory and voluntary registration thresholds",
+        "Tax invoices and input VAT recovery",
+        "Reverse charge on imports and services",
+        "VAT accounts in the ledger",
+      ]),
+      mod(3, "VAT Returns", [
+        "Tax periods and return deadlines",
+        "Completing the VAT return boxes",
+        "Reconciling VAT to the ledger",
+        "Voluntary disclosures and penalties",
+      ]),
+      mod(4, "Corporate Tax", [
+        "Corporate Tax at 0% and 9%",
+        "Who is a taxable person",
+        "From accounting profit to taxable income",
+        "Small business relief",
+        "Registration, returns and payment",
+      ]),
+      mod(5, "Free Zones and Special Cases", [
+        "Qualifying free zone persons and 0% on qualifying income",
+        "Exempt persons",
+        "Transfer pricing and related parties",
+        "Withholding and other taxes at a glance",
+      ]),
+      mod(6, "Records, E-Invoicing and Year-End", [
+        "Record-keeping periods",
+        "The UAE e-invoicing programme",
+        "Year-end close under IFRS",
+        "Audited financial statements",
+        "UAE compliance checklist",
+      ]),
+    ],
+    assignments: [
+      "Classify supplies for VAT",
+      "Prepare a quarterly VAT return",
+      "Calculate Corporate Tax for a mainland company",
+      "Decide whether a free zone company has qualifying income",
+      "Prepare a year-end compliance checklist",
+    ],
+    exercises: "Worked UAE examples after each module, from VAT to Corporate Tax and free zones.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Keep a quarter's books for a fictional Dubai trading company, prepare its VAT return and estimate its Corporate Tax.",
+    note:
+      "UAE VAT and Corporate Tax rules are set by federal law, Cabinet and Ministerial decisions and FTA guidance, and continue to develop. Always check the latest FTA guidance before filing.",
+  },
+  {
+    slug: "property-accounting-in-india",
+    title: "Property Accounting in India",
+    summary:
+      "Account for real estate in India — rental income, developers' project accounting, Ind AS 115, RERA, GST on property and TDS.",
+    intro:
+      "Property businesses in India — landlords, developers and property managers — face special accounting and tax rules. Learn how to account for rent and property costs, how developers recognise revenue under Ind AS 115 and RERA, and how GST and TDS apply.",
+    objective:
+      "By the end of this course, learners will account for rental property and its income and expenses, apply Ind AS 115 and RERA rules to a real estate project, handle GST and TDS on property transactions, and account for investment property.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "Property Businesses in India", [
+        "Landlords, developers, builders and property managers",
+        "Frameworks — Ind AS and Accounting Standards",
+        "Property as inventory, fixed asset or investment property",
+        "Key documents — sale deeds, agreements and allotment letters",
+      ]),
+      mod(2, "Rental Property Accounting", [
+        "Recording rent and security deposits",
+        "Property tax, maintenance and repairs",
+        "Depreciation of buildings",
+        "Rental income in the income tax return",
+        "TDS on rent",
+      ]),
+      mod(3, "Real Estate Projects and RERA", [
+        "Project registration under RERA",
+        "The 70% designated bank account",
+        "Project cost accounting — land, construction and borrowing costs",
+        "Withdrawals and certification",
+      ]),
+      mod(4, "Revenue Recognition for Developers", [
+        "Ind AS 115 for real estate",
+        "Over time vs. point in time",
+        "Measuring progress",
+        "Customer advances and contract balances",
+      ]),
+      mod(5, "GST and TDS on Property", [
+        "GST on under-construction residential and commercial property",
+        "No GST on completed property sold after the completion certificate",
+        "GST on commercial rent",
+        "TDS on purchase of immovable property",
+        "Stamp duty and registration costs",
+      ]),
+      mod(6, "Investment Property and Reporting", [
+        "Investment property under Ind AS 40",
+        "Fair value disclosure",
+        "Year-end reporting for property businesses",
+        "Property accounting checklist",
+      ]),
+    ],
+    assignments: [
+      "Record a year of rental transactions",
+      "Allocate costs to a real estate project",
+      "Apply Ind AS 115 to flat sales",
+      "Work out GST and TDS on property sales",
+      "Classify property holdings",
+    ],
+    exercises: "Worked examples after each module for landlords and developers.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Account for a fictional developer's project and a landlord's rental portfolio for one month — costs, revenue, GST, TDS and RERA.",
+    note:
+      "Property tax rules, GST rates and RERA requirements are set by central and state law and change over time. The Income-tax Act, 2025 applies from 1 April 2026. Always check the current law and your state's RERA rules.",
+  },
+  {
+    slug: "property-accounting-in-the-us",
+    title: "Property Accounting in the US",
+    summary:
+      "Account for US rental and commercial property — rent rolls, security deposits, trust accounting, depreciation, CAM reconciliations and Schedule E.",
+    intro:
+      "Property owners and managers in the US need accurate books for tenants, owners, lenders and the IRS. Learn how to account for rental income and expenses, hold tenant money correctly, depreciate property and report rental activity.",
+    objective:
+      "By the end of this course, learners will keep books for residential and commercial rental property, manage rent rolls, security deposits and trust accounts, calculate depreciation, prepare CAM reconciliations, and prepare the information for Schedule E and owner statements.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "US Property Accounting Basics", [
+        "Owners, property managers and tenants",
+        "Residential vs. commercial property",
+        "A property chart of accounts",
+        "Accounting by property",
+      ]),
+      mod(2, "Rent, Rent Rolls and Receivables", [
+        "The rent roll",
+        "Recording rent, late fees and concessions",
+        "Prepaid rent and delinquencies",
+        "Lessor accounting under ASC 842 at a glance",
+      ]),
+      mod(3, "Security Deposits and Trust Accounting", [
+        "Security deposits as liabilities",
+        "State rules on holding and returning deposits",
+        "Trust accounts for property managers",
+        "Three-way reconciliation",
+      ]),
+      mod(4, "Property Expenses and Depreciation", [
+        "Repairs vs. improvements",
+        "Depreciation — 27.5 years residential, 39 years commercial",
+        "Land isn't depreciated",
+        "Property taxes and insurance",
+      ]),
+      mod(5, "Commercial Leases and CAM", [
+        "Gross, net and triple-net leases",
+        "Common area maintenance (CAM) estimates",
+        "Year-end CAM reconciliation",
+        "Tenant improvement allowances",
+      ]),
+      mod(6, "Owner Reporting and Taxes", [
+        "Monthly owner statements",
+        "Form 1099-MISC for rents and 1099-NEC for vendors",
+        "Schedule E for rental income",
+        "Like-kind (1031) exchanges at a glance",
+        "Property accounting checklist",
+      ]),
+    ],
+    assignments: [
+      "Build a rent roll",
+      "Record a month of rent and deposits",
+      "Prepare a three-way trust reconciliation",
+      "Calculate depreciation for a rental building",
+      "Prepare a CAM reconciliation",
+    ],
+    exercises: "Worked examples after each module for residential and commercial property.",
+    finalExam: "30 questions",
+    finalPractical:
+      "Keep a month of books for a fictional property manager — rent, deposits, trust reconciliation and owner statements.",
+    note:
+      "Security deposit and trust accounting rules differ by state, and IRS rules on depreciation and rental reporting change. Always check current IRS guidance and your state's landlord-tenant and real estate licensing rules.",
+  },
 ]

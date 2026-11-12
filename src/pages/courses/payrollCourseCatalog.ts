@@ -1033,4 +1033,206 @@ export const payrollCourseCatalog: CourseDetails[] = [
     note:
       "Annual leave rules in this course come from the Occupational Safety, Health and Working Conditions Code, 2020 and the Labour Ministry's guidance; leave for shop and office employees is set by each state's Shops and Establishments Act. Entitlements can differ by state and change through rules and notifications, so always confirm current requirements with the Ministry of Labour and Employment or your state labour department.",
   },
+  {
+    slug: "us-payroll",
+    title: "US Payroll",
+    summary:
+      "Run US payroll correctly — FLSA pay rules, Form W-4, federal income tax withholding, FICA, FUTA and SUTA, deposits, Form 941 and W-2s.",
+    intro:
+      "US payroll combines federal rules from the Department of Labor and the IRS with state income tax and unemployment rules. Learn how to calculate pay and withholding, deposit payroll taxes on time and file the quarterly and annual returns.",
+    objective:
+      "By the end of this course, learners will calculate gross pay and overtime under the FLSA, withhold federal income tax and FICA, calculate employer FUTA and SUTA, follow deposit schedules, and prepare Forms 941, 940 and W-2.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "US Payroll Basics", [
+        "Federal, state and local payroll rules",
+        "Employees vs. contractors",
+        "New-hire paperwork — Form W-4, Form I-9 and new-hire reporting",
+        "Pay frequencies",
+      ]),
+      mod(2, "Gross Pay Under the FLSA", [
+        "Federal minimum wage and state minimums",
+        "Exempt and non-exempt employees",
+        "Overtime at 1.5 times over 40 hours a week",
+        "Salaried and hourly pay calculations",
+      ]),
+      mod(3, "Employee Withholding", [
+        "Federal income tax withholding using Form W-4 and Publication 15-T",
+        "Social Security at 6.2% up to the wage base",
+        "Medicare at 1.45% and Additional Medicare Tax",
+        "State and local income tax",
+        "Pre-tax deductions — 401(k) and Section 125",
+      ]),
+      mod(4, "Employer Payroll Taxes", [
+        "Employer Social Security and Medicare",
+        "FUTA and the state credit",
+        "State unemployment (SUTA)",
+        "Recording payroll journal entries",
+      ]),
+      mod(5, "Deposits and Returns", [
+        "Monthly and semiweekly deposit schedules",
+        "Depositing through EFTPS",
+        "Form 941 quarterly",
+        "Form 940 annually",
+        "Penalties for late deposits",
+      ]),
+      mod(6, "Year-End Payroll", [
+        "Form W-2 and W-3",
+        "Reconciling W-2s to Forms 941",
+        "Year-end checklist",
+        "Records and retention",
+      ]),
+    ],
+    assignments: [
+      "Classify workers as exempt or non-exempt",
+      "Calculate gross pay with overtime",
+      "Calculate employee withholding and net pay",
+      "Calculate employer taxes and record the journal entry",
+      "Prepare a quarterly Form 941 summary",
+    ],
+    exercises: "Worked payroll calculations after each module.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Run a month of payroll for a fictional US company — pay, withholding, employer taxes, deposits and the journal entries.",
+    note:
+      "Wage bases, rates and withholding tables change every year, and state rules differ. Always check the current IRS Publication 15, Publication 15-T and your state's payroll guidance.",
+  },
+  {
+    slug: "australia-payroll",
+    title: "Australia Payroll",
+    summary:
+      "Run Australian payroll — the Fair Work system and awards, PAYG withholding, superannuation, Single Touch Payroll, leave and payroll tax.",
+    intro:
+      "Australian payroll is shaped by the Fair Work Act, modern awards, ATO withholding and super rules, and state payroll tax. Learn how to pay employees correctly, report through Single Touch Payroll and meet super obligations.",
+    objective:
+      "By the end of this course, learners will apply the National Employment Standards and awards, calculate pay and PAYG withholding, calculate and pay superannuation, report through Single Touch Payroll, manage leave and termination pay, and recognise payroll tax and workers' compensation obligations.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "The Australian Payroll Framework", [
+        "The Fair Work Act and the National Employment Standards",
+        "Modern awards and enterprise agreements",
+        "The national minimum wage",
+        "Employees vs. contractors",
+        "Pay slips and record-keeping",
+      ]),
+      mod(2, "Calculating Pay", [
+        "Ordinary hours, penalty rates and overtime",
+        "Allowances",
+        "Full-time, part-time and casual employees",
+        "Salary packaging at a glance",
+      ]),
+      mod(3, "PAYG Withholding", [
+        "Tax file number declarations",
+        "Using the ATO tax tables",
+        "The tax-free threshold",
+        "Study and training support loans",
+        "Reporting and paying withholding",
+      ]),
+      mod(4, "Superannuation", [
+        "Super guarantee at 12% of ordinary time earnings",
+        "Choice of fund and stapled funds",
+        "Paying super on time",
+        "The super guarantee charge",
+      ]),
+      mod(5, "Single Touch Payroll and Leave", [
+        "STP Phase 2 reporting",
+        "Annual leave, personal/carer's leave and long service leave",
+        "Public holidays",
+        "Termination pay",
+        "Finalising STP at year-end",
+      ]),
+      mod(6, "Payroll Tax, Workers' Compensation and Compliance", [
+        "State and territory payroll tax",
+        "Workers' compensation insurance",
+        "Payroll journal entries",
+        "Australian payroll checklist",
+      ]),
+    ],
+    assignments: [
+      "Calculate an employee's pay under an award",
+      "Calculate PAYG withholding using the tax tables",
+      "Calculate super for a quarter",
+      "Calculate termination pay",
+      "Prepare a payroll compliance checklist",
+    ],
+    exercises: "Worked payroll calculations after each module.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Run a month of payroll for a fictional Australian business — pay, PAYG, super and STP.",
+    note:
+      "Award rates, tax tables, super and payroll tax thresholds change, usually from 1 July. Always check Fair Work, ATO and your state revenue office before processing payroll.",
+  },
+  {
+    slug: "uae-payroll",
+    title: "UAE Payroll",
+    summary:
+      "Run payroll in the UAE — the Labour Law, WPS, end-of-service gratuity, leave, overtime, pension for UAE and GCC nationals and unemployment insurance.",
+    intro:
+      "The UAE has no personal income tax, but payroll still has strict rules — wages through the Wage Protection System, end-of-service gratuity, leave and overtime under the Labour Law, and pension contributions for nationals. Learn how to run compliant payroll for a UAE business.",
+    objective:
+      "By the end of this course, learners will apply the UAE Labour Law to pay, overtime and leave, pay salaries through WPS, calculate end-of-service gratuity, handle pension contributions for UAE nationals, and keep payroll records.",
+    level: "Intermediate",
+    duration: "4 Hours",
+    badge: "New",
+    category,
+    modules: [
+      mod(1, "The UAE Payroll Framework", [
+        "Federal Decree-Law No. 33 of 2021 (the Labour Law)",
+        "MOHRE, mainland and free zones",
+        "Employment contracts and basic vs. total salary",
+        "No personal income tax",
+      ]),
+      mod(2, "Pay, Hours and Overtime", [
+        "Working hours and Ramadan hours",
+        "Overtime rates",
+        "Weekly rest and public holidays",
+        "Deductions from wages",
+      ]),
+      mod(3, "The Wage Protection System", [
+        "Paying salaries through WPS",
+        "Salary information files",
+        "Payment deadlines",
+        "Penalties for late payment",
+      ]),
+      mod(4, "Leave", [
+        "Annual leave",
+        "Sick leave",
+        "Maternity and parental leave",
+        "Other leave types",
+        "Leave encashment",
+      ]),
+      mod(5, "End-of-Service Gratuity", [
+        "Who is entitled",
+        "21 days' basic salary for each of the first five years",
+        "30 days for each year after",
+        "The two-year cap",
+        "Accruing gratuity in the books",
+      ]),
+      mod(6, "Pension, Insurance and Records", [
+        "Pension contributions for UAE and GCC nationals",
+        "The Involuntary Loss of Employment scheme",
+        "DIFC and DEWS",
+        "Payroll records and checklist",
+      ]),
+    ],
+    assignments: [
+      "Calculate overtime pay",
+      "Prepare a WPS payroll",
+      "Calculate leave pay and encashment",
+      "Calculate end-of-service gratuity",
+      "Build a UAE payroll checklist",
+    ],
+    exercises: "Worked payroll calculations after each module.",
+    finalExam: "25 questions",
+    finalPractical:
+      "Run a month of payroll for a fictional Dubai company — salaries, overtime, WPS, leave and gratuity accruals.",
+    note:
+      "UAE labour rules come from federal law, Cabinet resolutions and ministerial decisions, and free zones such as DIFC and ADGM have their own employment laws. Always check MOHRE and your free zone authority's current guidance.",
+  },
 ]

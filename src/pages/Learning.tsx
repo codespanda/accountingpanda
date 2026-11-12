@@ -38,14 +38,14 @@ const categories = [
     icon: FileText,
     title: "Financial Accounting",
     body: "Understand financial statements",
-    count: "8 Courses",
+    count: "13 Courses",
     href: "/learning/financial-accounting",
   },
   {
     icon: Users,
     title: "Payroll",
     body: "Payroll processing & compliance",
-    count: "14 Courses",
+    count: "17 Courses",
     href: "/learning/payroll",
   },
   {
