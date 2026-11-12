@@ -44,8 +44,6 @@ const routes = [
   "learning/bookkeeping/accounts-payable-management",
   "learning/bookkeeping/accounts-receivable-and-invoicing",
   "learning/bookkeeping/month-end-close-process",
-  "learning/bookkeeping/quickbooks-for-bookkeepers",
-  "learning/bookkeeping/xero-for-bookkeepers",
   "learning/bookkeeping/payroll-basics-for-bookkeepers",
   "learning/bookkeeping/advanced-bookkeeping-and-adjusting-entries",
   "learning/taxation",
