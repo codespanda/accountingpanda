@@ -12,7 +12,7 @@ export function PayrollCourses() {
       description="Payroll processing & compliance"
       path="/learning/payroll"
       icon={Users}
-      seoDescription="Practical payroll compliance courses for India — EPF, ESI and professional tax, from coverage and contributions to monthly filing."
+      seoDescription="Practical payroll courses for India, the US, Australia and the UAE — statutory compliance, withholding, superannuation, gratuity and year-end filing."
       courses={courses}
     />
   )

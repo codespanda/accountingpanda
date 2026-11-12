@@ -14,7 +14,7 @@ export function FinancialAccountingCourses() {
       description="Understand financial statements"
       path="/learning/financial-accounting"
       icon={FileText}
-      seoDescription="Practical financial accounting courses — prepare and present income statements, balance sheets, cash flow statements and management reports."
+      seoDescription="Practical financial accounting courses — financial statements, analysis, controls and revenue, plus country courses for the US, Australia and the UAE and property accounting in India and the US."
       courses={courses}
     />
   )
