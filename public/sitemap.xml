@@ -141,16 +141,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://accountingpanda.com/learning/bookkeeping/quickbooks-for-bookkeepers/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://accountingpanda.com/learning/bookkeeping/xero-for-bookkeepers/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://accountingpanda.com/learning/bookkeeping/payroll-basics-for-bookkeepers/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -71,20 +71,6 @@ const courses = [
     level: "Intermediate",
   },
   {
-    title: "QuickBooks for Bookkeepers",
-    image: "assets/course-quickbooks.jpg",
-    body: "Hands-on training for day-to-day bookkeeping inside QuickBooks.",
-    duration: "5.0 Hours",
-    level: "Intermediate",
-  },
-  {
-    title: "Xero for Bookkeepers",
-    image: "assets/course-xero.jpg",
-    body: "Hands-on training for day-to-day bookkeeping inside Xero.",
-    duration: "5.0 Hours",
-    level: "Intermediate",
-  },
-  {
     title: "Payroll Basics for Bookkeepers",
     image: "assets/course-payroll.jpg",
     body: "What bookkeepers need to know about processing payroll accurately.",

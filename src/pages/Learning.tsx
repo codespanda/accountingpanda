@@ -31,7 +31,7 @@ const categories = [
     icon: Calculator,
     title: "Bookkeeping",
     body: "Basics to advanced bookkeeping",
-    count: "12 Courses",
+    count: "10 Courses",
     href: "/learning/bookkeeping",
   },
   {
