@@ -582,6 +582,7 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
   {
     slug: "us-accounting",
     title: "US Accounting",
+    image: "assets/course-us-accounting.jpg",
     summary:
       "Keep books the US way — US GAAP, accrual accounting, sales tax, 1099 contractors, entity types and year-end reporting for small businesses.",
     intro:
@@ -653,6 +654,7 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
   {
     slug: "australia-accounting",
     title: "Australia Accounting",
+    image: "assets/course-australia-accounting.jpg",
     summary:
       "Keep books for an Australian business — AASB standards, GST and BAS, PAYG, superannuation, company tax and the 30 June year-end.",
     intro:
@@ -724,6 +726,7 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
   {
     slug: "uae-accounting",
     title: "UAE Accounting",
+    image: "assets/course-uae-accounting.jpg",
     summary:
       "Keep compliant books in the UAE — IFRS, VAT at 5%, Corporate Tax at 9%, free zones, record-keeping and e-invoicing readiness.",
     intro:
@@ -793,6 +796,7 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
   {
     slug: "property-accounting-in-india",
     title: "Property Accounting in India",
+    image: "assets/course-property-india.jpg",
     summary:
       "Account for real estate in India — rental income, developers' project accounting, Ind AS 115, RERA, GST on property and TDS.",
     intro:
@@ -860,6 +864,7 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
   {
     slug: "property-accounting-in-the-us",
     title: "Property Accounting in the US",
+    image: "assets/course-property-us.jpg",
     summary:
       "Account for US rental and commercial property — rent rolls, security deposits, trust accounting, depreciation, CAM reconciliations and Schedule E.",
     intro:
