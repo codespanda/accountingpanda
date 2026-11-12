@@ -687,8 +687,8 @@ export const financialAccountingCourseCatalog: CourseDetails[] = [
       ]),
       mod(4, "Payroll Entries and Superannuation", [
         "Recording wages and PAYG withholding",
-        "Super guarantee at 12% of ordinary time earnings",
-        "Accruing and paying super",
+        "Super guarantee at 12% of qualifying earnings",
+        "Paying super on payday",
         "Single Touch Payroll in the books",
         "Fringe benefits tax at a glance",
       ]),

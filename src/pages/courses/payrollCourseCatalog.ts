@@ -1135,9 +1135,9 @@ export const payrollCourseCatalog: CourseDetails[] = [
         "Reporting and paying withholding",
       ]),
       mod(4, "Superannuation", [
-        "Super guarantee at 12% of ordinary time earnings",
+        "Super guarantee at 12% of qualifying earnings",
         "Choice of fund and stapled funds",
-        "Paying super on time",
+        "Payday Super — paying within 7 business days",
         "The super guarantee charge",
       ]),
       mod(5, "Single Touch Payroll and Leave", [
