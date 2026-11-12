@@ -4,6 +4,18 @@ import { bullets, caution, cards, check, compare, example, exercises, h, journal
 // Learn GST in India — lesson screens by module index (0 = Module 1).
 const lessons: CourseLessons = {
   0: [
+    overview(
+      "Module 1 — Introduction to GST",
+      ["GST is India's main indirect tax on the supply of goods and services. This module explains what it replaced, how it came about and how it works across the country."],
+      [
+        "Explain what an indirect tax is and who bears it",
+        "Name the main taxes GST replaced — and what stays outside GST",
+        "Describe the 101st Constitutional Amendment and GST's launch on 1 July 2017",
+        "Explain the GST Council's role",
+        "Understand destination-based taxation",
+        "Use the official GST Portal run by GSTN",
+      ],
+    ),
     {
       title: "What is an indirect tax?",
       blocks: [
@@ -274,6 +286,13 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    mistakes(
+      ["Treating GST collected as sales revenue", "Output GST is a liability to the government, not income."],
+      ["Thinking GST replaced every indirect tax", "Customs duty continues, and alcohol for human consumption and certain petroleum products remain outside GST."],
+      ["Treating a GST Council recommendation as law", "Rates and rules apply only once they're notified, from the notified date."],
+      ["Assuming tax goes to the state where goods are made", "GST is destination-based — revenue follows the place of consumption."],
+      ["Registering or filing through unofficial websites", "Use only the official GST Portal at www.gst.gov.in."],
+    ),
     {
       title: "Module 1 — Knowledge check",
       blocks: [
@@ -406,8 +425,31 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    summary(
+      [
+        "What an indirect tax is and who bears it",
+        "The taxes GST replaced — and what stays outside",
+        "The 101st Amendment and the launch on 1 July 2017",
+        "The GST Council's role",
+        "Destination-based taxation",
+        "The GST Portal and GSTN",
+      ],
+      "GST is one destination-based tax on supply, collected along the chain with credit for tax already paid.",
+    ),
   ],
   1: [
+    overview(
+      "Module 2 — The GST Structure: CGST, SGST, UTGST and IGST",
+      ["India uses a dual GST model: the Centre and the states both tax the same supply. This module shows which GST applies to a transaction and how to record it."],
+      [
+        "Explain the dual GST model",
+        "Tell CGST, SGST, UTGST and IGST apart",
+        "Decide whether a supply is intra-state or inter-state",
+        "Understand how GST revenue is shared between the Centre and the states",
+        "Know the role of the GST Compensation Cess",
+        "Record GST in journal entries",
+      ],
+    ),
     {
       title: "The dual GST model",
       blocks: [
@@ -623,6 +665,13 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    mistakes(
+      ["Choosing the tax by the customer's address alone", "The place-of-supply rules decide whether a supply is intra-state or inter-state."],
+      ["Charging IGST on an intra-state supply", "Intra-state supplies take CGST plus SGST (or UTGST)."],
+      ["Charging SGST in a Union Territory without a legislature", "Use UTGST there — for example, Chandigarh or Ladakh."],
+      ["Paying tax under the wrong head and expecting it to be moved across", "Wrong-head payments go through the refund route — get the classification right first time."],
+      ["Relying on old cess rates", "Check the latest Compensation Cess notifications before charging any cess."],
+    ),
     {
       title: "Module 2 — Knowledge check",
       blocks: [
@@ -769,8 +818,32 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    summary(
+      [
+        "The dual GST model",
+        "CGST, SGST, UTGST and IGST",
+        "Intra-state vs. inter-state supplies",
+        "How GST revenue is shared between the Centre and the states",
+        "The GST Compensation Cess",
+        "Journal entries for GST",
+      ],
+      "Where the supply takes place decides which GST applies — get the place of supply right and the tax heads follow.",
+    ),
   ],
   2: [
+    overview(
+      "Module 3 — Key Concepts and Terminology",
+      ["GST law uses precise terms, and each one changes how a transaction is taxed. This module explains the words you'll meet on every invoice and return."],
+      [
+        "Explain what counts as a supply",
+        "Tell goods from services",
+        "Understand business, consideration and taxable person",
+        "Calculate aggregate turnover",
+        "Tell composite supplies from mixed supplies",
+        "Read HSN and SAC codes and the 15-digit GSTIN",
+        "Tell exempt, nil-rated, zero-rated and non-GST supplies apart",
+      ],
+    ),
     {
       title: "Meaning and scope of “supply”",
       blocks: [
@@ -1263,6 +1336,13 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    mistakes(
+      ["Working out aggregate turnover state by state", "It's the all-India turnover of all businesses under the same PAN."],
+      ["Treating zero-rated supplies as exempt", "Zero-rated supplies keep input tax credit; exempt supplies don't."],
+      ["Calling every bundle a composite supply", "Only naturally bundled supplies with a principal supply are composite — other bundles are mixed and take the highest rate."],
+      ["Assuming only paid sales are supplies", "Some supplies without consideration, such as certain transfers between related or distinct persons, are supplies too."],
+      ["Misreading a GSTIN", "The first two digits are the state code and the next ten are the PAN."],
+    ),
     {
       title: "Module 3 — Knowledge check",
       blocks: [
@@ -1406,8 +1486,32 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    summary(
+      [
+        "The meaning and scope of supply",
+        "Goods vs. services",
+        "Business, consideration and taxable person",
+        "Aggregate turnover",
+        "Composite and mixed supplies",
+        "HSN and SAC codes and the GSTIN",
+        "Exempt, nil-rated, zero-rated and non-GST supplies",
+      ],
+      "Composite follows the principal supply, mixed takes the highest rate, and zero-rated keeps credit while exempt doesn't — the terms decide the tax.",
+    ),
   ],
   3: [
+    overview(
+      "Module 4 — GST Registration",
+      ["Businesses above a turnover threshold — and some regardless of turnover — must register for GST. This module covers who must register and how to apply, amend and cancel."],
+      [
+        "Decide who must register",
+        "Apply the turnover thresholds for goods, services and special-category states",
+        "Know when registration is compulsory regardless of turnover",
+        "Weigh the pros and cons of voluntary registration",
+        "Prepare documents and apply on the GST Portal",
+        "Amend, cancel and revoke a registration",
+      ],
+    ),
     {
       title: "Who must register for GST?",
       blocks: [
@@ -1873,6 +1977,13 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    mistakes(
+      ["Using the ₹40 lakh threshold for a business that also supplies services", "The goods-only exemption has conditions — a business supplying services generally uses ₹20 lakh."],
+      ["Applying late", "Apply within 30 days of becoming liable to register — casual and non-resident taxable persons apply before starting business."],
+      ["Ignoring compulsory registration", "Some businesses must register whatever their turnover — check the categories first."],
+      ["Treating a submitted application as approved", "Wait for approval — the officer may ask for clarification or documents."],
+      ["Changing registered details without an amendment", "File an amendment application whenever registration details change."],
+    ),
     {
       title: "Module 4 — Knowledge check",
       blocks: [
@@ -2013,6 +2124,17 @@ const lessons: CourseLessons = {
         },
       ],
     },
+    summary(
+      [
+        "Who must register",
+        "Thresholds for goods, services and special-category states",
+        "Compulsory and voluntary registration",
+        "Documents and the step-by-step portal process",
+        "Amending registration details",
+        "Cancellation and revocation",
+      ],
+      "Check liability first — threshold, compulsory categories and timing — then apply on the official portal within 30 days.",
+    ),
   ],
   4: [
     overview(
