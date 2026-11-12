@@ -143,6 +143,8 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   {
     slug: "recording-journal-entries",
     title: "Recording Journal Entries",
+    video: { src: "/videos/recording-journal-entries/intro.mp4", title: "Recording Journal Entries — course introduction" },
+    moduleVideos: "/videos/recording-journal-entries",
     summary: "Practice recording common transactions accurately and consistently.",
     intro:
       "Turn source documents into accurate journal entries — from everyday sales and purchases to compound entries — and post them to the general ledger.",
