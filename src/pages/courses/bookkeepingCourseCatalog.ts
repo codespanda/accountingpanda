@@ -206,6 +206,8 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   },
   {
     slug: "bank-reconciliation-fundamentals",
+    video: { src: "/videos/bank-reconciliation/intro.mp4", title: "Bank Reconciliation Fundamentals — course introduction" },
+    moduleVideos: "/videos/bank-reconciliation",
     title: "Bank Reconciliation Fundamentals",
     summary: "Match bank statements to your books and catch discrepancies early.",
     intro:
