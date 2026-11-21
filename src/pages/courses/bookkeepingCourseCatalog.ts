@@ -13,8 +13,6 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   {
     slug: "double-entry-bookkeeping-explained",
     title: "Double-Entry Bookkeeping Explained",
-    video: { src: "/videos/double-entry/intro.mp4", title: "Double-Entry Bookkeeping Explained — course introduction" },
-    moduleVideos: "/videos/double-entry",
     summary: "Understand debits, credits, and how every transaction balances.",
     intro:
       "Learn the system behind every set of books — why each transaction has two sides, how debits and credits work, and how to check that everything balances.",
@@ -80,8 +78,6 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   {
     slug: "chart-of-accounts-setup",
     title: "Chart of Accounts Setup",
-    video: { src: "/videos/chart-of-accounts/intro.mp4", title: "Chart of Accounts Setup — course introduction" },
-    moduleVideos: "/videos/chart-of-accounts",
     summary: "Build a chart of accounts that fits your business from day one.",
     intro:
       "Design a chart of accounts that is easy to use, gives useful reports, and grows with the business — instead of one that needs fixing later.",
@@ -143,8 +139,6 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   {
     slug: "recording-journal-entries",
     title: "Recording Journal Entries",
-    video: { src: "/videos/recording-journal-entries/intro.mp4", title: "Recording Journal Entries — course introduction" },
-    moduleVideos: "/videos/recording-journal-entries",
     summary: "Practice recording common transactions accurately and consistently.",
     intro:
       "Turn source documents into accurate journal entries — from everyday sales and purchases to compound entries — and post them to the general ledger.",
@@ -206,8 +200,6 @@ export const bookkeepingCourseCatalog: CourseDetails[] = [
   },
   {
     slug: "bank-reconciliation-fundamentals",
-    video: { src: "/videos/bank-reconciliation/intro.mp4", title: "Bank Reconciliation Fundamentals — course introduction" },
-    moduleVideos: "/videos/bank-reconciliation",
     title: "Bank Reconciliation Fundamentals",
     summary: "Match bank statements to your books and catch discrepancies early.",
     intro:
