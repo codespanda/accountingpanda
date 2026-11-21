@@ -32,6 +32,21 @@ const countries = [
     ],
   },
   {
+    label: "UAE",
+    title: "UAE accounting services",
+    image: "assets/uae.jpg",
+    alt: "Burj Khalifa and the Dubai skyline",
+    imagePosition: "object-center",
+    items: [
+      "Bookkeeping and write-up",
+      "Financial statements (IFRS)",
+      "VAT registration and returns",
+      "Corporate Tax registration and returns",
+      "Payroll and WPS",
+      "Free zone compliance support",
+    ],
+  },
+  {
     label: "India",
     title: "Indian accounting services",
     image: "assets/india.jpg",
@@ -52,7 +67,7 @@ export function CountryServices() {
   return (
     <section id="countries" className="mt-12 grid scroll-mt-28 grid-cols-12 gap-4">
       {countries.map((c) => (
-        <div key={c.label} className="col-span-12 flex flex-col overflow-hidden rounded-[28px] bg-white lg:col-span-4">
+        <div key={c.label} className="col-span-12 flex flex-col overflow-hidden rounded-[28px] bg-white md:col-span-6 xl:col-span-3">
           <div className="relative">
             <img src={asset(c.image)} alt={c.alt} className={`block h-[220px] w-full object-cover ${c.imagePosition}`} />
             <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-2 font-display text-sm font-bold text-bento-ink">

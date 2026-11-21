@@ -10,8 +10,8 @@ export function Home() {
   return (
     <div className="bento-container pt-4">
       <Seo
-        title="Outsourced Accounting & Bookkeeping Services for USA, Australia & India"
-        description="AccountingPanda delivers accurate, compliant and scalable outsourced accounting & bookkeeping services for businesses and CPA firms across the USA, Australia and India."
+        title="Outsourced Accounting & Bookkeeping Services for USA, Australia, UAE & India"
+        description="AccountingPanda delivers accurate, compliant and scalable outsourced accounting & bookkeeping services for businesses and CPA firms across the USA, Australia, the UAE and India."
         path="/"
       />
       <Hero />

@@ -15,7 +15,7 @@ import { ConsultationLink } from "@/components/ConsultationDialog"
 
 const stats = [
   { value: "12+", label: "Years Experience" },
-  { value: "3", label: "Countries Covered" },
+  { value: "4", label: "Countries Covered" },
   { value: "24/7", label: "Client Support" },
 ]
 
@@ -47,7 +47,7 @@ export function About() {
     <>
       <Seo
         title="About Us"
-        description="AccountingPanda is an outsourced accounting and bookkeeping partner for businesses and CPA firms across the USA, Australia and India. Learn our story, mission and values."
+        description="AccountingPanda is an outsourced accounting and bookkeeping partner for businesses and CPA firms across the USA, Australia, the UAE and India. Learn our story, mission and values."
         path="/about"
       />
       {/* Hero */}
@@ -62,8 +62,8 @@ export function About() {
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base text-gray-500 lg:mx-0">
               AccountingPanda is an outsourced accounting and bookkeeping
-              partner for businesses and CPA firms across the USA, Australia
-              and India. We handle the numbers with precision, so you can
+              partner for businesses and CPA firms across the USA, Australia,
+              the UAE and India. We handle the numbers with precision, so you can
               focus on running your business.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
@@ -130,7 +130,7 @@ export function About() {
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-gray-500">
               To be the most trusted outsourced accounting partner for
-              businesses and CPA firms across the USA, Australia and India.
+              businesses and CPA firms across the USA, Australia, the UAE and India.
             </p>
           </div>
         </div>

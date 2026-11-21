@@ -14,11 +14,11 @@ const groups: Group[] = [
     items: [
       {
         q: "What services does AccountingPanda offer?",
-        a: "We provide outsourced bookkeeping, financial reporting, bank reconciliation, accounts payable & receivable, and payroll processing for businesses and CPA firms in the USA, Australia and India.",
+        a: "We provide outsourced bookkeeping, financial reporting, bank reconciliation, accounts payable & receivable, and payroll processing for businesses and CPA firms in the USA, Australia, the UAE and India.",
       },
       {
         q: "Which countries do you serve?",
-        a: "We specialize in accounting for the USA (GAAP, sales tax, 1099s), Australia (AASB, BAS, GST, superannuation) and India (Ind AS, GST, TDS, payroll compliance), and support businesses operating across these countries.",
+        a: "We specialize in accounting for the USA (GAAP, sales tax, 1099s), Australia (AASB, BAS, GST, superannuation), the UAE (IFRS, VAT, Corporate Tax, WPS payroll) and India (Ind AS, GST, TDS, payroll compliance), and support businesses operating across these countries.",
       },
       {
         q: "Do you work with CPA and accounting firms, not just businesses?",
