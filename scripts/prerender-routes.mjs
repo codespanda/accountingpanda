@@ -7,8 +7,19 @@
 //
 // Keep this list in sync with the <Route> paths in src/App.tsx and the
 // URLs in public/sitemap.xml.
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs"
-import { join } from "node:path"
+//
+// Public pages are also rendered in headless Chrome, so each index.html holds
+// the page's real content and its own title, description, canonical, Open
+// Graph tags and structured data. Crawlers that don't run JavaScript (Bing,
+// AI crawlers, LinkedIn/Facebook/WhatsApp link previews) then see the actual
+// page. Lesson modules (noindex, unlocked per learner) and the certificate page
+// keep the plain app shell. If Chrome isn't available the shell is used for
+// every route — set PRERENDER_STRICT=1 (as CI does) to fail instead.
+import { execFile } from "node:child_process"
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs"
+import { createServer } from "node:http"
+import { tmpdir } from "node:os"
+import { extname, join, normalize } from "node:path"
 
 const routes = [
   "blog",
@@ -115,6 +126,9 @@ for (const slug of studioSlugs) {
   if (!routes.includes(`blog/${slug}`)) routes.push(`blog/${slug}`)
 }
 
+// Routes that get the plain app shell instead of a rendered page.
+const shellOnly = new Set(["certificate"])
+
 // Course lessons live in src/content/lessons/<category>--<slug>.ts, keyed by
 // module index. Pre-render a page for every module that has lessons.
 const lessonsDir = join(process.cwd(), "src", "content", "lessons")
@@ -126,6 +140,7 @@ if (existsSync(lessonsDir)) {
     for (const [, index] of source.matchAll(/^  (\d+): \[/gm)) {
       const route = `learning/${category}/${slug}/modules/${Number(index) + 1}`
       if (!routes.includes(route)) routes.push(route)
+      shellOnly.add(route)
     }
   }
 }
@@ -147,10 +162,155 @@ if (studioSlugs.length && existsSync(sitemapPath)) {
   writeFileSync(sitemapPath, sitemap)
 }
 
-for (const route of routes) {
-  const dir = join(distDir, route)
-  mkdirSync(dir, { recursive: true })
-  writeFileSync(join(dir, "index.html"), indexHtml)
+// --- Render pages in headless Chrome -------------------------------------
+
+const SITE_URL = "https://accountingpanda.com"
+const strict = process.env.PRERENDER_STRICT === "1"
+
+function findChrome() {
+  const candidates = [
+    process.env.CHROME_PATH,
+    "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+    "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  ]
+  return candidates.find((p) => p && existsSync(p))
 }
 
-console.log(`Prerendered ${routes.length} routes with real index.html files.`)
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript",
+  ".css": "text/css",
+  ".json": "application/json",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".ico": "image/x-icon",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
+  ".txt": "text/plain",
+  ".xml": "application/xml",
+}
+
+/** Serves dist/ with every unknown path falling back to the app shell, like GitHub Pages' 404.html. */
+function startServer() {
+  const server = createServer((req, res) => {
+    const pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname)
+    const file = normalize(join(distDir, pathname))
+    const isFile = file.startsWith(distDir) && extname(file) && existsSync(file)
+    if (isFile && !file.endsWith(".html")) {
+      res.writeHead(200, { "Content-Type": MIME[extname(file).toLowerCase()] ?? "application/octet-stream" })
+      res.end(readFileSync(file))
+    } else {
+      // Always the original shell, never an already-rendered page.
+      res.writeHead(200, { "Content-Type": MIME[".html"] })
+      res.end(indexHtml)
+    }
+  })
+  return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve(server)))
+}
+
+function render(chrome, url, profileDir) {
+  return new Promise((resolve, reject) => {
+    execFile(
+      chrome,
+      [
+        "--headless=new",
+        "--disable-gpu",
+        "--no-sandbox",
+        "--no-first-run",
+        "--disable-extensions",
+        "--hide-scrollbars",
+        "--window-size=1280,900",
+        `--user-data-dir=${profileDir}`,
+        "--virtual-time-budget=10000",
+        "--dump-dom",
+        url,
+      ],
+      { maxBuffer: 32 * 1024 * 1024, timeout: 60_000 },
+      (err, stdout) => (err ? reject(err) : resolve(stdout))
+    )
+  })
+}
+
+/** Checks a rendered page is the route we asked for, then tidies it for serving. */
+function finish(html, route, base) {
+  const canonical = `${SITE_URL}/${route ? `${route}/` : ""}`
+  if (!html.includes(`<link rel="canonical" href="${canonical}">`)) {
+    throw new Error(`canonical isn't ${canonical} (the page may have redirected)`)
+  }
+  if (/<div id="root"><\/div>/.test(html)) throw new Error("the page rendered nothing")
+  const cleaned = html
+    // Vite adds these for lazily loaded chunks while the page runs; the app
+    // adds them again in the visitor's browser when it needs them.
+    .replace(/<link rel="modulepreload"[^>]*>/g, "")
+    // Any other URL pointing at the local render server becomes site-relative.
+    .split(base)
+    .join("")
+  if (cleaned.includes("127.0.0.1")) throw new Error("the page still references the local render server")
+  return `<!doctype html>\n${cleaned.replace(/^<!doctype html>\s*/i, "")}`
+}
+
+function writePage(route, html) {
+  const dir = route ? join(distDir, route) : distDir
+  mkdirSync(dir, { recursive: true })
+  writeFileSync(join(dir, "index.html"), html)
+}
+
+const toRender = ["", ...routes.filter((r) => !shellOnly.has(r))]
+const rendered = new Map()
+const chrome = findChrome()
+
+if (!chrome) {
+  const message = "Chrome wasn't found, so pages use the plain app shell (set CHROME_PATH to enable rendering)."
+  if (strict) throw new Error(message)
+  console.warn(message)
+} else {
+  const server = await startServer()
+  const base = `http://127.0.0.1:${server.address().port}`
+  const failures = []
+  const queue = [...toRender]
+  const worker = async () => {
+    const profileDir = mkdtempSync(join(tmpdir(), "ap-prerender-"))
+    try {
+      for (let route = queue.shift(); route !== undefined; route = queue.shift()) {
+        try {
+          const html = await render(chrome, `${base}/${route ? `${route}/` : ""}`, profileDir)
+          rendered.set(route, finish(html, route, base))
+        } catch (err) {
+          failures.push(`/${route}: ${err.message}`)
+        }
+      }
+    } finally {
+      rmSync(profileDir, { recursive: true, force: true })
+    }
+  }
+  await Promise.all(Array.from({ length: 4 }, worker))
+  server.close()
+  if (failures.length) {
+    const message = `Couldn't render ${failures.length} page(s):\n  ${failures.join("\n  ")}`
+    if (strict) throw new Error(message)
+    console.warn(`${message}\nThose pages use the plain app shell.`)
+  }
+}
+
+// GitHub Pages serves 404.html for unknown paths — it must stay the plain shell.
+writeFileSync(join(distDir, "404.html"), indexHtml)
+for (const route of ["", ...routes]) {
+  if (route === "" && !rendered.has("")) continue // dist/index.html is already the shell
+  writePage(route, rendered.get(route) ?? indexHtml)
+}
+
+console.log(
+  `Wrote ${routes.length + 1} routes: ${rendered.size} rendered with full HTML, ${
+    routes.length + 1 - rendered.size
+  } as the app shell.`
+)

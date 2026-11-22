@@ -1,6 +1,6 @@
 /** Resizes an image file to at most `maxWidth` pixels wide and re-encodes
  * it as a JPEG data URL (transparent areas become white). */
-export function resizeImage(file: File, maxWidth = 1600, quality = 0.85): Promise<string> {
+export function resizeImage(file: File, maxWidth = 1600, quality = 0.8): Promise<string> {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file)
     const img = new Image()

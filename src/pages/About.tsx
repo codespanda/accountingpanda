@@ -77,9 +77,11 @@ export function About() {
           </div>
 
           <img
-            src={asset("assets/panda-hero.png")}
+            src={asset("assets/panda-hero.webp")}
             alt="AccountingPanda mascot working on bookkeeping and financial reports"
-            className="mx-auto w-full max-w-md rounded-[22px]"
+            width={1120}
+            height={747}
+            className="mx-auto h-auto w-full max-w-md rounded-[22px]"
           />
         </div>
       </section>

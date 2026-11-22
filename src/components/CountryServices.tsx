@@ -69,7 +69,13 @@ export function CountryServices() {
       {countries.map((c) => (
         <div key={c.label} className="col-span-12 flex flex-col overflow-hidden rounded-[28px] bg-white md:col-span-6 xl:col-span-3">
           <div className="relative">
-            <img src={asset(c.image)} alt={c.alt} className={`block h-[220px] w-full object-cover ${c.imagePosition}`} />
+            <img
+              src={asset(c.image)}
+              alt={c.alt}
+              loading="lazy"
+              decoding="async"
+              className={`block h-[220px] w-full object-cover ${c.imagePosition}`}
+            />
             <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-2 font-display text-sm font-bold text-bento-ink">
               {c.label}
             </span>

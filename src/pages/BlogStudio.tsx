@@ -141,6 +141,17 @@ const TIME_ZONE = (() => {
 /** Scheduled posts must be at least this far ahead. */
 const MIN_SCHEDULE_LEAD_MS = 5 * 60 * 1000
 
+/** Shorter excerpts make weak search-result descriptions. */
+const MIN_EXCERPT_LENGTH = 70
+
+/** Lowercase, punctuation-free text for comparing an excerpt with the title. */
+function normalizeText(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim()
+}
+
 const emptyDraft = (): Draft => ({
   title: "",
   slug: "",
@@ -619,6 +630,13 @@ export function BlogStudio() {
     !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(draft.slug) && "The URL slug can only use lowercase letters, numbers and hyphens.",
     takenSlugs.has(draft.slug) && "That URL slug is already used by another post.",
     !draft.excerpt.trim() && "Add a short excerpt.",
+    draft.excerpt.trim() &&
+      normalizeText(draft.excerpt) === normalizeText(draft.title) &&
+      "The excerpt repeats the title. Write a one- or two-sentence summary instead — Google shows it in search results.",
+    draft.excerpt.trim() &&
+      normalizeText(draft.excerpt) !== normalizeText(draft.title) &&
+      draft.excerpt.trim().length < MIN_EXCERPT_LENGTH &&
+      `Make the excerpt at least ${MIN_EXCERPT_LENGTH} characters — a one- or two-sentence summary of the post.`,
     !postDate && "Pick a date.",
     scheduling && !publishAtIso && "Pick the date and time to publish.",
     scheduling &&
@@ -1209,8 +1227,9 @@ export function BlogStudio() {
                 className={field}
               />
               <p className="text-xs text-gray-500">
-                Shown on the blog card, under the post title and in search results. Aim for about 160 characters (
-                {draft.excerpt.length} now).
+                Shown on the blog card, under the post title, in search results and in link previews. Summarise the
+                post in one or two sentences — don't repeat the title. Aim for 120–160 characters ({draft.excerpt.length}{" "}
+                now).
               </p>
             </div>
 

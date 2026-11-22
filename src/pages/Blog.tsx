@@ -284,7 +284,15 @@ export function Blog() {
                   className="group flex flex-col overflow-hidden rounded-[22px] transition-shadow"
                 >
                   {post.image ? (
-                    <img src={post.image} alt={post.title} className="block aspect-[16/9] w-full object-cover" />
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      loading="lazy"
+                      decoding="async"
+                      width={1600}
+                      height={900}
+                      className="block aspect-[16/9] h-auto w-full object-cover"
+                    />
                   ) : (
                     <PostImage category={post.category} className="h-44" />
                   )}

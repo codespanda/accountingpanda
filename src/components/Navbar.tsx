@@ -21,8 +21,10 @@ export function Navbar() {
       <div className="relative flex items-center justify-between gap-4 rounded-full bg-white py-2.5 pl-5 pr-2.5">
         <Link to="/" className="flex shrink-0">
           <img
-            src={asset("assets/panda-logo.png")}
+            src={asset("assets/panda-logo.webp")}
             alt="AccountingPanda - Simplifying Numbers, Empowering Growth"
+            width={600}
+            height={200}
             className="block h-11 w-auto"
           />
         </Link>

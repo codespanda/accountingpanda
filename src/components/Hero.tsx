@@ -52,8 +52,11 @@ export function Hero() {
           </span>
         </div>
         <img
-          src={asset("assets/panda-hero.png")}
+          src={asset("assets/panda-hero.webp")}
           alt="AccountingPanda mascot working on bookkeeping and financial reports"
+          width={1120}
+          height={747}
+          fetchPriority="high"
           className="-mx-[4%] block h-auto w-[108%] max-w-none"
         />
       </div>

@@ -187,9 +187,11 @@ export function Learning() {
 
           <div>
             <img
-              src={asset("assets/panda-hero.png")}
+              src={asset("assets/panda-hero.webp")}
               alt="AccountingPanda mascot ready to help you learn accounting"
-              className="mx-auto w-full max-w-[480px] drop-shadow-2xl"
+              width={1120}
+              height={747}
+              className="mx-auto h-auto w-full max-w-[480px] drop-shadow-2xl"
             />
           </div>
         </div>
