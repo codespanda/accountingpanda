@@ -10,6 +10,7 @@ import {
   LogOut,
   PenLine,
   RefreshCw,
+  Search,
   Send,
   ShieldCheck,
   Trash2,
@@ -22,7 +23,16 @@ import { RichTextEditor } from "@/components/RichTextEditor"
 import { Seo } from "@/components/Seo"
 import { cn } from "@/lib/utils"
 import { asset } from "@/lib/asset"
-import { resizeImage } from "@/lib/imageResize"
+import {
+  BODY_IMAGE,
+  COVER_IMAGE,
+  dataUrlBytes,
+  formatBytes,
+  optimizeDataUrl,
+  optimizeImage,
+  type OptimizedImage,
+} from "@/lib/imageResize"
+import { checkBlogSeo, type SeoCheck } from "@/lib/blogSeo"
 import { blogData, countWords, formatPostDate, readTimeFor, slugify, type BlogData } from "@/lib/blogContent"
 import { categories, staticPostSlugs } from "@/pages/blogPostList"
 
@@ -292,6 +302,7 @@ function PublishDialog({
   coverSrc,
   isEdit,
   wasScheduled,
+  seoSummary,
 }: {
   open: boolean
   onClose: () => void
@@ -302,6 +313,8 @@ function PublishDialog({
   isEdit: boolean
   /** Editing a post that's currently scheduled (not yet live). */
   wasScheduled: boolean
+  /** e.g. "9 of 12 checks passed". */
+  seoSummary: string
 }) {
   const ref = useRef<HTMLDialogElement>(null)
   const working = publish.status === "working"
@@ -346,6 +359,7 @@ function PublishDialog({
     ["Read time", post.readTime],
     ["Images in body", bodyImages ? `${bodyImages}${newImages ? ` (${newImages} new)` : ""}` : "None"],
     ["Featured", post.featured ? "Yes — shown at the top of the Blog page" : "No"],
+    ["SEO check", seoSummary],
   ]
 
   return (
@@ -509,6 +523,50 @@ function PublishDialog({
   )
 }
 
+/** Advice on the post's SEO, updated as you type. */
+function SeoPanel({ checks }: { checks: SeoCheck[] }) {
+  const passed = checks.filter((c) => c.status === "good").length
+  const pct = Math.round((passed / checks.length) * 100)
+  return (
+    <section className="container-px pt-4">
+      <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 py-8 sm:px-10 lg:px-14">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-brand-heading">
+            <Search className="h-5 w-5 text-brand-green" />
+            SEO check
+          </h2>
+          <span
+            className={cn(
+              "rounded-full px-3 py-1 text-sm font-bold",
+              pct >= 80 ? "bg-bento-mint text-bento-forest" : "bg-bento-butter text-bento-butter-text"
+            )}
+          >
+            {passed} of {checks.length} passed
+          </span>
+        </div>
+        <p className="mt-1 text-xs text-gray-500">
+          Suggestions to help the post rank and get clicked. They don't stop you publishing.
+        </p>
+        <ul className="mt-4 divide-y divide-gray-100 rounded-xl border border-gray-200">
+          {checks.map((c) => (
+            <li key={c.id} className="flex items-start gap-3 px-4 py-3">
+              {c.status === "good" ? (
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" aria-label="Passed" />
+              ) : (
+                <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-bento-butter-ink" aria-label="Needs work" />
+              )}
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-brand-heading">{c.label}</p>
+                <p className="text-xs leading-relaxed text-gray-600">{c.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
 const field =
   "w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-brand-heading outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20"
 const label = "text-sm font-semibold text-brand-heading"
@@ -520,6 +578,7 @@ export function BlogStudio() {
   const [draft, setDraft] = useState<Draft>(() => ({ ...emptyDraft(), ...load<Partial<Draft>>(DRAFT_KEY, {}) }))
   const [tab, setTab] = useState<"write" | "preview">("write")
   const [imageError, setImageError] = useState("")
+  const [coverInfo, setCoverInfo] = useState<OptimizedImage | null>(null)
   const [publish, setPublish] = useState<PublishState>({ status: "idle" })
   const [published, setPublished] = useState<PublishedList>({ status: "idle" })
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -662,6 +721,14 @@ export function BlogStudio() {
   }
 
   const coverSrc = draft.image ?? (editing ? asset(editing.image) : undefined)
+  const seoChecks = checkBlogSeo({
+    title: draft.title,
+    slug: draft.slug,
+    excerpt: draft.excerpt,
+    body: draft.body,
+    imageAlt: draft.imageAlt,
+  })
+  const seoPassed = seoChecks.filter((c) => c.status === "good").length
 
   const onImage = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -669,7 +736,9 @@ export function BlogStudio() {
     if (!file) return
     setImageError("")
     try {
-      update({ image: await resizeImage(file) })
+      const optimized = await optimizeImage(file, COVER_IMAGE)
+      setCoverInfo(optimized)
+      update({ image: optimized.dataUrl })
     } catch (err) {
       setImageError((err as Error).message)
     }
@@ -724,12 +793,21 @@ export function BlogStudio() {
       // and point the body at its new path.
       let body = post.body
       const inline = [...new Set(body.match(/data:image\/[a-z]+;base64,[A-Za-z0-9+/=]+/g) ?? [])]
-      for (const [n, dataUrl] of inline.entries()) {
+      for (const [n, original] of inline.entries()) {
+        // Images pasted into the editor skip the upload optimiser — optimise
+        // any that are still large or not WebP (GIFs keep their animation).
+        let dataUrl = original
+        const originalMime = original.slice(11, original.indexOf(";"))
+        if (originalMime !== "gif" && (originalMime !== "webp" || dataUrlBytes(original) > BODY_IMAGE.targetBytes)) {
+          step(`Optimising image ${n + 1} of ${inline.length}…`)
+          const optimized = await optimizeDataUrl(original, BODY_IMAGE)
+          if (optimized.bytes < dataUrlBytes(original)) dataUrl = optimized.dataUrl
+        }
         const mime = dataUrl.slice(11, dataUrl.indexOf(";"))
         const ext = mime === "jpeg" ? "jpg" : mime
         const assetPath = editing ? `assets/blog-${slug}-${stamp}-${n + 1}.${ext}` : `assets/blog-${slug}-${n + 1}.${ext}`
         changes.push({ path: `public/${assetPath}`, base64: dataUrl.split(",")[1] })
-        body = body.split(dataUrl).join(assetPath)
+        body = body.split(original).join(assetPath)
       }
 
       // When editing, remove this post's images that are no longer used.
@@ -1246,6 +1324,13 @@ export function BlogStudio() {
                 <input type="file" accept="image/png,image/jpeg,image/webp" onChange={onImage} className="sr-only" />
               </label>
               {imageError && <p className="text-xs text-red-700">{imageError}</p>}
+              {coverInfo && draft.image === coverInfo.dataUrl && (
+                <p className="flex items-center gap-1.5 text-xs font-medium text-bento-forest">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  Optimised: {formatBytes(coverInfo.originalBytes)} → {formatBytes(coverInfo.bytes)} ({coverInfo.width}×
+                  {coverInfo.height} JPEG, camera and location data removed)
+                </p>
+              )}
               <input
                 aria-label="Image description (alt text)"
                 placeholder="Describe the image for screen readers (alt text)"
@@ -1289,6 +1374,8 @@ export function BlogStudio() {
           </div>
         </section>
       )}
+
+      <SeoPanel checks={seoChecks} />
 
       {/* Publish */}
       <section className="container-px pt-4">
@@ -1365,6 +1452,7 @@ export function BlogStudio() {
         coverSrc={coverSrc}
         isEdit={!!editing}
         wasScheduled={!!editing?.scheduled}
+        seoSummary={`${seoPassed} of ${seoChecks.length} checks passed`}
       />
     </>
   )

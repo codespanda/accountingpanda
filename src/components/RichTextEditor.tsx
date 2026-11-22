@@ -23,7 +23,7 @@ import {
   Undo2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { resizeImage } from "@/lib/imageResize"
+import { BODY_IMAGE, formatBytes, optimizeImage } from "@/lib/imageResize"
 import { docToMarkdown, markdownToHtml, safeHref, type DocNode } from "@/lib/markdown"
 
 // A visual editor for blog post bodies. It edits formatted text but reads
@@ -135,9 +135,15 @@ function Toolbar({ editor }: { editor: Editor }) {
     if (!file) return
     setUploading(true)
     try {
-      const src = await resizeImage(file, 1200, 0.82)
-      const alt = window.prompt("Describe this image. It's shown as the caption and read by screen readers.", "") ?? ""
-      c().setImage({ src, alt: alt.trim() }).run()
+      const optimized = await optimizeImage(file, BODY_IMAGE)
+      const alt =
+        window.prompt(
+          `Image optimised: ${formatBytes(optimized.originalBytes)} → ${formatBytes(optimized.bytes)} ` +
+            `(${optimized.width}×${optimized.height} ${optimized.format.toUpperCase()}).\n\n` +
+            "Describe this image. It's shown as the caption, read by screen readers and used by Google Images.",
+          ""
+        ) ?? ""
+      c().setImage({ src: optimized.dataUrl, alt: alt.trim() }).run()
     } catch (err) {
       window.alert((err as Error).message)
     } finally {
