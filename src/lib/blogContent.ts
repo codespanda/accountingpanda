@@ -16,6 +16,11 @@ export type BlogData = {
   featured?: boolean
   /** Post body in Markdown. */
   body: string
+  /**
+   * Only on scheduled posts in src/content/blog-scheduled/: when the post goes
+   * live, as an ISO 8601 timestamp. Removed when it's published.
+   */
+  publishAt?: string
 }
 
 const modules = import.meta.glob<BlogData>("/src/content/blog/*.json", {

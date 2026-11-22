@@ -1,0 +1,44 @@
+name: Publish scheduled blog posts
+
+# Every 15 minutes, move scheduled posts whose time has come into
+# src/content/blog/ and redeploy the site. GitHub may start scheduled runs a
+# few minutes late, so posts usually go live within 15–30 minutes of their time.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: scheduled-posts
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - id: move
+        run: node scripts/publish-scheduled-posts.mjs
+      - if: steps.move.outputs.published != '0'
+        env:
+          TITLES: ${{ steps.move.outputs.titles }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A src/content/blog src/content/blog-scheduled
+          git commit -m "Publish scheduled blog post: $TITLES"
+          git push origin HEAD:main
+          # Pushes made with the workflow token don't trigger other workflows,
+          # so start the deploy explicitly.
+          gh workflow run deploy.yml --ref main

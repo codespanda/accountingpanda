@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import {
+  CalendarClock,
   CheckCircle2,
   ExternalLink,
   Eye,
@@ -33,6 +34,10 @@ import { categories, staticPostSlugs } from "@/pages/blogPostList"
 //
 // Posts published here can also be edited and deleted. The original
 // hand-coded posts live in src/pages/posts and aren't managed here.
+//
+// Posts can also be scheduled: they're committed to src/content/blog-scheduled/
+// with a publishAt time, and the "Publish scheduled blog posts" GitHub workflow
+// moves them into src/content/blog/ and redeploys once that time has passed.
 
 const OWNER = "codespanda"
 /** The only GitHub account allowed to publish from the studio. */
@@ -55,9 +60,16 @@ type Draft = {
   featured: boolean
   body: string
   image: string | null // new cover as a JPEG data URL; null keeps the current one when editing
-  /** Set when editing a published post: its original slug, cover and body. */
-  editing: { slug: string; title: string; image: string; body: string } | null
+  /** Publish later instead of now. */
+  schedule: boolean
+  /** When to publish, as a datetime-local value in this browser's time zone ("2026-11-25T09:00"). */
+  publishAt: string
+  /** Set when editing a published or scheduled post: its original slug, cover and body. */
+  editing: { slug: string; title: string; image: string; body: string; scheduled: boolean } | null
 }
+
+/** A post from the repo, as listed in the studio. */
+type StudioPost = BlogData & { scheduled: boolean }
 
 type Connection =
   | { status: "none" }
@@ -68,14 +80,66 @@ type Connection =
 type PublishState =
   | { status: "idle" }
   | { status: "working"; step: string }
-  | { status: "done"; kind: "published" | "updated" | "deleted"; slug: string; title: string; commitUrl: string }
+  | {
+      status: "done"
+      kind: "published" | "updated" | "scheduled" | "deleted"
+      slug: string
+      title: string
+      commitUrl: string
+      /** ISO time a scheduled post goes live. */
+      publishAt?: string
+    }
   | { status: "error"; message: string }
+
+const pad = (n: number) => String(n).padStart(2, "0")
 
 function today() {
   const d = new Date()
-  const pad = (n: number) => String(n).padStart(2, "0")
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
 }
+
+/** A Date as a datetime-local input value in this browser's time zone. */
+function toLocalInput(d: Date) {
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
+}
+
+/** Tomorrow at 9:00 in this browser's time zone — the default publish time. */
+function defaultPublishAt() {
+  const d = new Date()
+  d.setDate(d.getDate() + 1)
+  d.setHours(9, 0, 0, 0)
+  return toLocalInput(d)
+}
+
+/** "25 Nov 2026, 9:00 am IST" in this browser's locale and time zone. */
+function formatDateTime(iso: string) {
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return iso
+  try {
+    // dateStyle/timeStyle can't be combined with timeZoneName, so spell out the parts.
+    return d.toLocaleString(undefined, {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZoneName: "short",
+    })
+  } catch {
+    return d.toString()
+  }
+}
+
+const TIME_ZONE = (() => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone
+  } catch {
+    return "your local time"
+  }
+})()
+
+/** Scheduled posts must be at least this far ahead. */
+const MIN_SCHEDULE_LEAD_MS = 5 * 60 * 1000
 
 const emptyDraft = (): Draft => ({
   title: "",
@@ -88,15 +152,18 @@ const emptyDraft = (): Draft => ({
   featured: false,
   body: "",
   image: null,
+  schedule: false,
+  publishAt: defaultPublishAt(),
   editing: null,
 })
 
 type PublishedList =
   | { status: "idle" | "loading" }
-  | { status: "ok"; posts: BlogData[] }
+  | { status: "ok"; posts: StudioPost[] }
   | { status: "error"; message: string }
 
 const CONTENT_DIR = "src/content/blog"
+const SCHEDULED_DIR = "src/content/blog-scheduled"
 
 /** Decodes GitHub's base64 file content as UTF-8 text. */
 function decodeBase64Utf8(b64: string) {
@@ -213,6 +280,7 @@ function PublishDialog({
   post,
   coverSrc,
   isEdit,
+  wasScheduled,
 }: {
   open: boolean
   onClose: () => void
@@ -221,9 +289,15 @@ function PublishDialog({
   post: BlogData
   coverSrc?: string
   isEdit: boolean
+  /** Editing a post that's currently scheduled (not yet live). */
+  wasScheduled: boolean
 }) {
   const ref = useRef<HTMLDialogElement>(null)
   const working = publish.status === "working"
+  const scheduling = !!post.publishAt
+  // Editing a scheduled post and publishing it now behaves like a new publish.
+  const goingLiveEarly = isEdit && wasScheduled && !scheduling
+  const updatingLive = isEdit && !wasScheduled
 
   useEffect(() => {
     const dialog = ref.current
@@ -254,6 +328,7 @@ function PublishDialog({
   const finished = publish.status === "done" && publish.kind !== "deleted"
 
   const details: [string, string][] = [
+    ...(scheduling ? ([["Goes live", formatDateTime(post.publishAt!)]] as [string, string][]) : []),
     ["URL", url],
     ["Category", post.category],
     ["Date", formatPostDate(post.date)],
@@ -295,7 +370,7 @@ function PublishDialog({
           <div className="flex flex-col items-center gap-4 py-8 text-center" role="status" aria-live="polite">
             <Loader2 className="h-10 w-10 animate-spin text-brand-green" />
             <h2 id="publish-title" className="text-2xl font-bold">
-              {isEdit ? "Updating your post…" : "Publishing your post…"}
+              {scheduling ? "Scheduling your post…" : updatingLive ? "Updating your post…" : "Publishing your post…"}
             </h2>
             <p className="text-sm text-gray-500">{publish.step}</p>
             <p className="text-xs text-gray-400">Please keep this page open until it finishes.</p>
@@ -306,18 +381,31 @@ function PublishDialog({
               <CheckCircle2 className="h-8 w-8 text-bento-forest" />
             </span>
             <h2 id="publish-title" className="text-[28px] font-bold leading-tight">
-              {publish.kind === "updated" ? "Post updated!" : "Post published!"}
+              {publish.kind === "scheduled"
+                ? "Post scheduled!"
+                : publish.kind === "updated"
+                  ? "Post updated!"
+                  : "Post published!"}
             </h2>
             <p className="max-w-sm text-sm leading-relaxed text-gray-600">
-              The site is rebuilding now. “{publish.title}” will be live in about 2–3 minutes.
+              {publish.kind === "scheduled" && publish.publishAt ? (
+                <>
+                  “{publish.title}” will go live automatically on {formatDateTime(publish.publishAt)} — usually within
+                  15–30 minutes of that time. Until then it stays hidden from the site.
+                </>
+              ) : (
+                <>The site is rebuilding now. “{publish.title}” will be live in about 2–3 minutes.</>
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-2">
-              <Button asChild>
-                <a href={`${SITE}/blog/${publish.slug}/`} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
-                  View post
-                </a>
-              </Button>
+              {publish.kind !== "scheduled" && (
+                <Button asChild>
+                  <a href={`${SITE}/blog/${publish.slug}/`} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="h-4 w-4" />
+                    View post
+                  </a>
+                </Button>
+              )}
               <Button variant="outline" onClick={close}>
                 Done
               </Button>
@@ -342,12 +430,24 @@ function PublishDialog({
         ) : (
           <>
             <h2 id="publish-title" className="pr-10 text-2xl font-bold leading-tight">
-              {isEdit ? "Update this post?" : "Publish this post?"}
+              {scheduling
+                ? isEdit
+                  ? "Update this scheduled post?"
+                  : "Schedule this post?"
+                : goingLiveEarly
+                  ? "Publish this post now?"
+                  : updatingLive
+                    ? "Update this post?"
+                    : "Publish this post?"}
             </h2>
             <p className="mt-1 text-sm text-gray-500">
-              {isEdit
-                ? "Your changes will replace the live version of this post."
-                : "It will appear on the Blog page for everyone."}
+              {scheduling
+                ? `It stays hidden until ${formatDateTime(post.publishAt!)}, then goes live on the Blog page automatically.`
+                : goingLiveEarly
+                  ? "It will appear on the Blog page now instead of waiting for its scheduled time."
+                  : updatingLive
+                    ? "Your changes will replace the live version of this post."
+                    : "It will appear on the Blog page for everyone."}
             </p>
 
             <div className="mt-5 overflow-hidden rounded-[22px] border border-gray-200">
@@ -370,7 +470,7 @@ function PublishDialog({
             {publish.status === "error" && (
               <p className="mt-4 flex items-start gap-2 rounded-xl bg-red-50 px-3.5 py-2.5 text-sm text-red-800">
                 <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
-                {isEdit ? "Updating" : "Publishing"} failed — {publish.message}
+                {scheduling ? "Scheduling" : updatingLive ? "Updating" : "Publishing"} failed — {publish.message}
               </p>
             )}
 
@@ -379,8 +479,16 @@ function PublishDialog({
                 Cancel
               </Button>
               <Button onClick={onConfirm}>
-                <Send className="h-4 w-4" />
-                {publish.status === "error" ? "Try again" : isEdit ? "Update now" : "Publish now"}
+                {scheduling ? <CalendarClock className="h-4 w-4" /> : <Send className="h-4 w-4" />}
+                {publish.status === "error"
+                  ? "Try again"
+                  : scheduling
+                    ? isEdit
+                      ? "Update schedule"
+                      : "Schedule post"
+                    : updatingLive
+                      ? "Update now"
+                      : "Publish now"}
               </Button>
             </div>
           </>
@@ -410,20 +518,33 @@ export function BlogStudio() {
 
   const loadPublished = async (t: string) => {
     setPublished({ status: "loading" })
-    try {
-      const files = await github<{ name: string; path: string; type: string }[]>(
-        t,
-        `/repos/${OWNER}/${REPO}/contents/${CONTENT_DIR}?ref=${BRANCH}`
-      )
-      const posts = await Promise.all(
+    const readDir = async (dir: string, scheduled: boolean): Promise<StudioPost[]> => {
+      let files: { name: string; path: string; type: string }[]
+      try {
+        files = await github(t, `/repos/${OWNER}/${REPO}/contents/${dir}?ref=${BRANCH}`)
+      } catch (err) {
+        // A folder that doesn't exist yet just has no posts.
+        if ((err as Error).message.startsWith("GitHub 404")) return []
+        throw err
+      }
+      return Promise.all(
         files
           .filter((f) => f.type === "file" && f.name.endsWith(".json"))
           .map(async (f) => {
             const file = await github<{ content: string }>(t, `/repos/${OWNER}/${REPO}/contents/${f.path}?ref=${BRANCH}`)
-            return JSON.parse(decodeBase64Utf8(file.content)) as BlogData
+            return { ...(JSON.parse(decodeBase64Utf8(file.content)) as BlogData), scheduled }
           })
       )
-      setPublished({ status: "ok", posts: posts.sort((a, b) => b.date.localeCompare(a.date)) })
+    }
+    try {
+      const [scheduled, live] = await Promise.all([readDir(SCHEDULED_DIR, true), readDir(CONTENT_DIR, false)])
+      setPublished({
+        status: "ok",
+        posts: [
+          ...scheduled.sort((a, b) => (a.publishAt ?? "").localeCompare(b.publishAt ?? "")),
+          ...live.sort((a, b) => b.date.localeCompare(a.date)),
+        ],
+      })
     } catch (err) {
       setPublished({ status: "error", message: (err as Error).message })
     }
@@ -484,12 +605,26 @@ export function BlogStudio() {
   ])
   if (editing) takenSlugs.delete(editing.slug)
   const readTime = readTimeFor(draft.body)
+
+  // A live post can't be scheduled — it's already published.
+  const canSchedule = !editing || editing.scheduled
+  const scheduling = canSchedule && draft.schedule
+  const publishAtMs = scheduling && draft.publishAt ? new Date(draft.publishAt).getTime() : NaN
+  const publishAtIso = Number.isFinite(publishAtMs) ? new Date(publishAtMs).toISOString() : undefined
+  // A scheduled post is dated the day it goes live.
+  const postDate = scheduling && draft.publishAt ? draft.publishAt.slice(0, 10) : draft.date
+
   const problems = [
     !draft.title.trim() && "Add a title.",
     !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(draft.slug) && "The URL slug can only use lowercase letters, numbers and hyphens.",
     takenSlugs.has(draft.slug) && "That URL slug is already used by another post.",
     !draft.excerpt.trim() && "Add a short excerpt.",
-    !draft.date && "Pick a date.",
+    !postDate && "Pick a date.",
+    scheduling && !publishAtIso && "Pick the date and time to publish.",
+    scheduling &&
+      publishAtIso &&
+      publishAtMs < Date.now() + MIN_SCHEDULE_LEAD_MS &&
+      "Pick a publish time at least 5 minutes from now — or switch to Publish now.",
     !draft.image && !editing && "Upload a cover image.",
     countWords(draft.body) < 50 && "Write at least 50 words in the post body.",
   ].filter(Boolean) as string[]
@@ -499,12 +634,13 @@ export function BlogStudio() {
     title: draft.title || "Untitled post",
     excerpt: draft.excerpt,
     category: draft.category,
-    date: draft.date,
+    date: postDate,
     readTime,
     image: editing ? editing.image : `assets/blog-${draft.slug}.jpg`,
     imageAlt: draft.imageAlt || draft.title,
     ...(draft.featured ? { featured: true } : {}),
     body: draft.body,
+    ...(scheduling && publishAtIso ? { publishAt: publishAtIso } : {}),
   }
 
   const coverSrc = draft.image ?? (editing ? asset(editing.image) : undefined)
@@ -537,13 +673,20 @@ export function BlogStudio() {
   const doPublish = async () => {
     if (connection.status !== "ok" || problems.length) return
     const slug = editing ? editing.slug : post.slug
-    const jsonPath = `${CONTENT_DIR}/${slug}.json`
+    const livePath = `${CONTENT_DIR}/${slug}.json`
+    const scheduledPath = `${SCHEDULED_DIR}/${slug}.json`
+    const jsonPath = scheduling ? scheduledPath : livePath
     const step = (s: string) => setPublish({ status: "working", step: s })
     try {
       if (!editing) {
         step("Checking the URL is free…")
-        if (await fileExists(token, jsonPath)) {
+        if ((await fileExists(token, livePath)) || (await fileExists(token, scheduledPath))) {
           throw new Error("A post with this URL slug already exists in the repo. Change the slug.")
+        }
+      } else if (editing.scheduled && !scheduling) {
+        step("Checking the URL is free…")
+        if (await fileExists(token, livePath)) {
+          throw new Error("A live post with this URL slug already exists, so this one can't be published now.")
         }
       }
       // A stamp keeps new image names unique, so browsers don't show cached old images.
@@ -583,14 +726,21 @@ export function BlogStudio() {
 
       const finalPost: BlogData = { ...post, slug, image, body }
       changes.push({ path: jsonPath, text: `${JSON.stringify(finalPost, null, 2)}\n` })
+      // A scheduled post published now moves out of the scheduled folder.
+      if (editing?.scheduled && !scheduling) changes.push({ path: scheduledPath, remove: true })
 
-      const commitUrl = await commitChanges(
-        token,
-        `${editing ? "Update" : "Add"} blog post: ${finalPost.title}`,
-        changes,
-        step
-      )
-      setPublish({ status: "done", kind: editing ? "updated" : "published", slug, title: finalPost.title, commitUrl })
+      const message = scheduling
+        ? `${editing ? "Reschedule" : "Schedule"} blog post for ${finalPost.publishAt}: ${finalPost.title}`
+        : `${editing && !editing.scheduled ? "Update" : "Add"} blog post: ${finalPost.title}`
+      const commitUrl = await commitChanges(token, message, changes, step)
+      setPublish({
+        status: "done",
+        kind: scheduling ? "scheduled" : editing && !editing.scheduled ? "updated" : "published",
+        slug,
+        title: finalPost.title,
+        commitUrl,
+        publishAt: finalPost.publishAt,
+      })
       setDraft(emptyDraft())
       setTab("write")
       void loadPublished(token)
@@ -599,7 +749,7 @@ export function BlogStudio() {
     }
   }
 
-  const startEditing = (p: BlogData) => {
+  const startEditing = (p: StudioPost) => {
     const hasDraft = draft.title.trim() || draft.body.trim()
     const sameEdit = editing?.slug === p.slug
     if (hasDraft && !sameEdit && !window.confirm("Replace the post you're currently writing with this one?")) return
@@ -614,17 +764,21 @@ export function BlogStudio() {
       featured: !!p.featured,
       body: p.body,
       image: null,
-      editing: { slug: p.slug, title: p.title, image: p.image, body: p.body },
+      schedule: p.scheduled,
+      publishAt: p.publishAt ? toLocalInput(new Date(p.publishAt)) : defaultPublishAt(),
+      editing: { slug: p.slug, title: p.title, image: p.image, body: p.body, scheduled: p.scheduled },
     })
     setPublish({ status: "idle" })
     setTab("write")
     window.setTimeout(() => document.getElementById("bs-form")?.scrollIntoView({ behavior: "smooth" }), 50)
   }
 
-  const deletePost = async (p: BlogData) => {
+  const deletePost = async (p: StudioPost) => {
     if (
       !window.confirm(
-        `Delete “${p.title}”?\n\nThis removes the post and its images from the site. It can only be recovered from the GitHub history.`
+        p.scheduled
+          ? `Delete the scheduled post “${p.title}”?\n\nIt won't be published, and its images are removed. It can only be recovered from the GitHub history.`
+          : `Delete “${p.title}”?\n\nThis removes the post and its images from the site. It can only be recovered from the GitHub history.`
       )
     )
       return
@@ -632,7 +786,7 @@ export function BlogStudio() {
     try {
       step("Finding the post's files…")
       const candidates = [
-        `${CONTENT_DIR}/${p.slug}.json`,
+        `${p.scheduled ? SCHEDULED_DIR : CONTENT_DIR}/${p.slug}.json`,
         ...(p.image.startsWith(`assets/blog-${p.slug}`) ? [`public/${p.image}`] : []),
         ...bodyAssets(p.body, p.slug).map((a) => `public/${a}`),
       ]
@@ -744,7 +898,7 @@ export function BlogStudio() {
         <section className="container-px pt-4">
           <div className="mx-auto max-w-4xl rounded-[28px] bg-white px-6 py-8 sm:px-10 lg:px-14">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-lg font-bold text-brand-heading">Published posts</h2>
+              <h2 className="text-lg font-bold text-brand-heading">Published and scheduled posts</h2>
               <Button
                 variant="outline"
                 size="sm"
@@ -756,7 +910,7 @@ export function BlogStudio() {
               </Button>
             </div>
             <p className="mt-1 text-xs text-gray-500">
-              Posts published from this studio. The original posts are built into the site's code, so they aren't
+              Posts published or scheduled from this studio. The original posts are built into the site's code, so they aren't
               listed here.
             </p>
 
@@ -782,6 +936,12 @@ export function BlogStudio() {
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-semibold text-brand-heading">{p.title}</p>
                         <p className="text-xs text-gray-500">
+                          {p.scheduled && p.publishAt ? (
+                            <span className="mr-2 inline-flex items-center gap-1 rounded-full bg-bento-butter px-2 py-0.5 font-semibold text-bento-butter-text">
+                              <CalendarClock className="h-3 w-3" />
+                              Scheduled · {formatDateTime(p.publishAt)}
+                            </span>
+                          ) : null}
                           {p.date} · {p.category}
                           {editing?.slug === p.slug && (
                             <span className="ml-2 rounded-full bg-bento-mint px-2 py-0.5 font-semibold text-bento-forest">
@@ -791,12 +951,14 @@ export function BlogStudio() {
                         </p>
                       </div>
                       <div className="flex shrink-0 gap-1.5">
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={`${SITE}/blog/${p.slug}/`} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4" />
-                            View
-                          </a>
-                        </Button>
+                        {!p.scheduled && (
+                          <Button variant="outline" size="sm" asChild>
+                            <a href={`${SITE}/blog/${p.slug}/`} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="h-4 w-4" />
+                              View
+                            </a>
+                          </Button>
+                        )}
                         <Button
                           variant="outline"
                           size="sm"
@@ -832,10 +994,15 @@ export function BlogStudio() {
               <CheckCircle2 className="h-5 w-5" />
               {publish.kind === "published" && "Published! The site is rebuilding now."}
               {publish.kind === "updated" && "Updated! The site is rebuilding now."}
+              {publish.kind === "scheduled" && "Scheduled!"}
               {publish.kind === "deleted" && `Deleted “${publish.title}”. The site is rebuilding now.`}
             </p>
             <p className="text-sm text-bento-forest/80">
-              {publish.kind === "deleted" ? (
+              {publish.kind === "scheduled" ? (
+                `“${publish.title}” will go live automatically on ${
+                  publish.publishAt ? formatDateTime(publish.publishAt) : "its scheduled time"
+                }, usually within 15–30 minutes of that time`
+              ) : publish.kind === "deleted" ? (
                 "It will disappear from the Blog page in about 2–3 minutes"
               ) : (
                 <>
@@ -968,12 +1135,67 @@ export function BlogStudio() {
                 <input
                   id="bs-date"
                   type="date"
-                  value={draft.date}
+                  value={postDate}
                   onChange={(e) => update({ date: e.target.value })}
-                  className={field}
+                  disabled={scheduling}
+                  className={cn(field, scheduling && "cursor-not-allowed bg-brand-bg text-gray-500")}
                 />
+                {scheduling && <p className="text-xs text-gray-500">Set to the day the post goes live.</p>}
               </div>
             </div>
+
+            {canSchedule && (
+              <fieldset className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4">
+                <legend className={cn(label, "px-1")}>When to publish</legend>
+                <div className="flex flex-wrap gap-2">
+                  {(
+                    [
+                      [false, "Publish now", Send],
+                      [true, "Schedule for later", CalendarClock],
+                    ] as const
+                  ).map(([value, text, Icon]) => (
+                    <label
+                      key={text}
+                      className={cn(
+                        "flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                        draft.schedule === value
+                          ? "border-bento-forest bg-bento-forest text-white"
+                          : "border-gray-200 text-brand-heading hover:bg-brand-bg"
+                      )}
+                    >
+                      <input
+                        type="radio"
+                        name="bs-when"
+                        checked={draft.schedule === value}
+                        onChange={() => update({ schedule: value })}
+                        className="sr-only"
+                      />
+                      <Icon className="h-4 w-4" />
+                      {text}
+                    </label>
+                  ))}
+                </div>
+                {draft.schedule && (
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="bs-publish-at" className="text-sm text-brand-heading">
+                      Publish on
+                    </label>
+                    <input
+                      id="bs-publish-at"
+                      type="datetime-local"
+                      value={draft.publishAt}
+                      min={toLocalInput(new Date(Date.now() + MIN_SCHEDULE_LEAD_MS))}
+                      onChange={(e) => update({ publishAt: e.target.value })}
+                      className={cn(field, "sm:max-w-xs")}
+                    />
+                    <p className="text-xs leading-relaxed text-gray-500">
+                      Time zone: {TIME_ZONE}. The post is saved now but stays hidden, then goes live automatically —
+                      usually within 15–30 minutes of this time. Its images are uploaded straight away.
+                    </p>
+                  </div>
+                )}
+              </fieldset>
+            )}
 
             <div className="flex flex-col gap-2">
               <label htmlFor="bs-excerpt" className={label}>
@@ -1093,10 +1315,22 @@ export function BlogStudio() {
               >
                 {publish.status === "working" ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
+                ) : scheduling ? (
+                  <CalendarClock className="h-4 w-4" />
                 ) : (
                   <Send className="h-4 w-4" />
                 )}
-                {publish.status === "working" ? publish.step : editing ? "Update post" : "Publish"}
+                {publish.status === "working"
+                  ? publish.step
+                  : scheduling
+                    ? editing
+                      ? "Update schedule"
+                      : "Schedule post"
+                    : editing?.scheduled
+                      ? "Publish now"
+                      : editing
+                        ? "Update post"
+                        : "Publish"}
               </Button>
             </div>
           </div>
@@ -1111,6 +1345,7 @@ export function BlogStudio() {
         post={post}
         coverSrc={coverSrc}
         isEdit={!!editing}
+        wasScheduled={!!editing?.scheduled}
       />
     </>
   )
