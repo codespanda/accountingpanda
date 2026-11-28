@@ -25,6 +25,7 @@ export const bookkeepingBasicsModules: CourseModule[] = [
     sections: [
       {
         items: [
+          "Introduction",
           "Lesson 1 — Assets",
           "Lesson 2 — Liabilities",
           "Lesson 3 — Capital and Drawings",

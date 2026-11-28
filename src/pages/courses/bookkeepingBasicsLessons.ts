@@ -221,7 +221,11 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
     },
   ],
   1: [
-    // Module 2 is taught by eight lesson videos, then the knowledge check.
+    // Module 2 is taught by an introduction and eight lesson videos, then the knowledge check.
+    {
+      title: "Introduction — Understanding Accounting Terminology",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-intro.mp4", title: "Module 2 introduction: Understanding Accounting Terminology" }],
+    },
     {
       title: "Lesson 1 — Assets",
       blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-1.mp4", title: "Module 2, Lesson 1: Assets" }],
