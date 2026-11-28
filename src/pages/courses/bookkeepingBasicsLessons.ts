@@ -221,595 +221,209 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
     },
   ],
   1: [
+    // Module 2 is taught by eight lesson videos, then the knowledge check.
     {
-      title: "Module 2 — Understanding the Accounting Equation",
-      blocks: [
-        { type: "h3", text: "Goal" },
-        {
-          type: "p",
-          text: "Learn the foundation behind every accounting transaction and understand how each transaction changes a business's financial position.",
-        },
-        { type: "h3", text: "What You'll Cover" },
-        {
-          type: "list",
-          items: [
-            "Assets",
-            "Liabilities",
-            "Owner's equity",
-            "The accounting equation",
-            "Current assets",
-            "Fixed assets",
-            "Current liabilities",
-            "Long-term liabilities",
-            "Owner's capital",
-            "Drawings",
-            "How transactions affect the accounting equation",
-          ],
-        },
-      ],
+      title: "Lesson 1 — Assets",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-1.mp4", title: "Module 2, Lesson 1: Assets" }],
     },
     {
-      title: "What Is the Accounting Equation?",
-      blocks: [
-        {
-          type: "p",
-          text: "The accounting equation is the foundation of double-entry bookkeeping. It shows the relationship between everything a business owns, everything it owes, and the owner's interest in the business.",
-        },
-        { type: "h3", text: "The Basic Formula" },
-        { type: "note", text: "Assets = Liabilities + Owner's Equity" },
-        {
-          type: "p",
-          text: "The equation must always remain balanced after every business transaction.",
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "Suppose the owner starts a business by investing $100,000." },
-        {
-          type: "list",
-          items: ["Assets = $100,000 cash", "Liabilities = $0", "Owner's Equity = $100,000"],
-        },
-        { type: "p", text: "Therefore:" },
-        { type: "note", text: "$100,000 = $0 + $100,000" },
-        { type: "p", text: "The equation is balanced." },
-      ],
+      title: "Lesson 2 — Liabilities",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-2.mp4", title: "Module 2, Lesson 2: Liabilities" }],
     },
     {
-      title: "Assets",
-      blocks: [
-        {
-          type: "p",
-          text: "An asset is something of value that a business owns or controls and expects to provide future economic benefit.",
-        },
-        { type: "h3", text: "Examples of Assets" },
-        {
-          type: "list",
-          items: [
-            "Cash",
-            "Bank balance",
-            "Accounts receivable",
-            "Inventory",
-            "Office equipment",
-            "Computers",
-            "Furniture",
-            "Vehicles",
-            "Buildings",
-            "Land",
-          ],
-        },
-        { type: "h3", text: "Simple Example" },
-        { type: "p", text: "A business has:" },
-        {
-          type: "table",
-          headers: ["Asset", "Amount"],
-          rows: [
-            ["Cash", "$50,000"],
-            ["Computer", "$40,000"],
-            ["Furniture", "$10,000"],
-            ["Total Assets", "$100,000"],
-          ],
-        },
-        { type: "p", text: "The business has $100,000 worth of assets." },
-      ],
+      title: "Lesson 3 — Capital and Drawings",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-3.mp4", title: "Module 2, Lesson 3: Capital and Drawings" }],
     },
     {
-      title: "Current Assets",
-      blocks: [
-        {
-          type: "p",
-          text: "Current assets are assets that are expected to be converted into cash, sold, or used within the normal operating cycle, generally within one year.",
-        },
-        { type: "h3", text: "Common Current Assets" },
-        {
-          type: "list",
-          items: ["Cash", "Bank balance", "Accounts receivable", "Inventory", "Short-term investments", "Prepaid expenses"],
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "A business has:" },
-        {
-          type: "list",
-          items: ["Cash: $30,000", "Accounts receivable: $20,000", "Inventory: $50,000"],
-        },
-        { type: "note", text: "Total current assets = $100,000" },
-        { type: "h3", text: "Key Point" },
-        {
-          type: "p",
-          text: "Current assets are generally more liquid than fixed assets.",
-        },
-      ],
+      title: "Lesson 4 — Revenue and Income",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-4.mp4", title: "Module 2, Lesson 4: Revenue and Income" }],
     },
     {
-      title: "Fixed Assets",
-      blocks: [
-        {
-          type: "p",
-          text: "Fixed assets, also called non-current assets or property, plant and equipment (PPE), are assets used by a business for a longer period rather than being purchased for immediate resale.",
-        },
-        { type: "h3", text: "Examples" },
-        {
-          type: "list",
-          items: ["Land", "Buildings", "Machinery", "Vehicles", "Furniture", "Computers", "Office equipment"],
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "A company purchases a computer for $60,000 for use in its office." },
-        { type: "p", text: "The computer becomes a business asset." },
-        {
-          type: "p",
-          text: "It is not treated as an expense simply because money was paid for it.",
-        },
-      ],
+      title: "Lesson 5 — Expenses and Expenditure",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-5.mp4", title: "Module 2, Lesson 5: Expenses and Expenditure" }],
     },
     {
-      title: "Liabilities",
-      blocks: [
-        {
-          type: "p",
-          text: "A liability is an amount that a business owes to another person or organization.",
-        },
-        { type: "note", text: "Liabilities are the business's obligations or debts." },
-        { type: "h3", text: "Examples" },
-        {
-          type: "list",
-          items: ["Accounts payable", "Bank loans", "Salaries payable", "Taxes payable", "Rent payable", "Interest payable"],
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "A business purchases equipment for $100,000 on credit." },
-        { type: "p", text: "The business now owes the supplier $100,000." },
-        { type: "p", text: "Therefore:" },
-        { type: "note", text: "Liability = $100,000" },
-      ],
+      title: "Lesson 6 — Debtors and Creditors",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-6.mp4", title: "Module 2, Lesson 6: Debtors and Creditors" }],
     },
     {
-      title: "Current Liabilities",
-      blocks: [
-        {
-          type: "p",
-          text: "Current liabilities are obligations that are generally expected to be paid within one year or the normal operating cycle.",
-        },
-        { type: "h3", text: "Examples" },
-        {
-          type: "list",
-          items: ["Accounts payable", "Short-term loans", "Salaries payable", "Taxes payable", "Rent payable", "Accrued expenses"],
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "A business owes a supplier $25,000 for inventory purchased on credit." },
-        { type: "note", text: "Accounts Payable = $25,000" },
-        { type: "p", text: "This is a current liability." },
-      ],
+      title: "Lesson 7 — Accounts Receivable and Accounts Payable",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-7.mp4", title: "Module 2, Lesson 7: Accounts Receivable and Accounts Payable" }],
     },
     {
-      title: "Long-Term Liabilities",
-      blocks: [
-        {
-          type: "p",
-          text: "Long-term liabilities are obligations that are generally payable beyond one year.",
-        },
-        { type: "h3", text: "Examples" },
-        {
-          type: "list",
-          items: ["Long-term bank loans", "Mortgage loans", "Long-term notes payable", "Certain lease obligations"],
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "A business takes a five-year bank loan of $500,000." },
-        { type: "note", text: "The loan represents a long-term liability." },
-      ],
-    },
-    {
-      title: "Owner's Equity",
-      blocks: [
-        {
-          type: "p",
-          text: "Owner's equity represents the owner's financial interest in the business after liabilities are deducted from assets.",
-        },
-        { type: "h3", text: "Formula" },
-        { type: "note", text: "Owner's Equity = Assets − Liabilities" },
-        { type: "p", text: "For example:" },
-        { type: "list", items: ["Assets = $500,000", "Liabilities = $200,000"] },
-        { type: "p", text: "Therefore:" },
-        { type: "note", text: "Owner's Equity = $500,000 − $200,000 = $300,000" },
-        { type: "p", text: "The owner has $300,000 of equity in the business." },
-      ],
-    },
-    {
-      title: "Owner's Capital",
-      blocks: [
-        {
-          type: "p",
-          text: "Owner's capital represents money or other assets invested by the owner into the business.",
-        },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "The owner invests $200,000 cash to start a business." },
-        { type: "p", text: "The transaction creates:" },
-        { type: "list", items: ["Cash ↑ $200,000", "Owner's Capital ↑ $200,000"] },
-        { type: "p", text: "Accounting equation:" },
-        { type: "note", text: "Assets $200,000 = Liabilities $0 + Owner's Equity $200,000" },
-      ],
-    },
-    {
-      title: "Drawings",
-      blocks: [
-        {
-          type: "p",
-          text: "Drawings are cash or other assets withdrawn by the owner for personal use.",
-        },
-        { type: "p", text: "Drawings reduce owner's equity." },
-        { type: "h3", text: "Example" },
-        { type: "p", text: "The owner withdraws $10,000 from the business bank account for personal expenses." },
-        { type: "p", text: "Impact:" },
-        { type: "list", items: ["Cash ↓ $10,000", "Owner's Equity ↓ $10,000"] },
-        { type: "note", text: "Drawings are not a business expense." },
-      ],
-    },
-    {
-      title: "Understanding the Accounting Equation",
-      blocks: [
-        { type: "p", text: "The equation can be visualized as:" },
-        {
-          type: "ascii",
-          text: `                 ACCOUNTING EQUATION
-
-       ┌─────────────────────────────┐
-       │           ASSETS            │
-       │                             │
-       │     What the business       │
-       │          owns               │
-       └──────────────┬──────────────┘
-                       │
-                       │ =
-                       ▼
-       ┌─────────────────────────────┐
-       │     LIABILITIES +           │
-       │     OWNER'S EQUITY          │
-       │                             │
-       │ What business owes +        │
-       │ owner's interest            │
-       └─────────────────────────────┘`,
-        },
-        { type: "h3", text: "Another Way to Think About It" },
-        { type: "p", text: "Every business's assets have two sources:" },
-        {
-          type: "list",
-          items: [
-            "Money borrowed from others → Liabilities",
-            "Money provided by the owner + accumulated business results → Owner's Equity",
-          ],
-        },
-        { type: "p", text: "Therefore:" },
-        { type: "note", text: "Assets = Sources of Finance" },
-      ],
-    },
-    {
-      title: "How Transactions Affect the Accounting Equation",
-      blocks: [
-        {
-          type: "p",
-          text: "The most important bookkeeping skill is understanding how transactions affect the equation.",
-        },
-        { type: "h3", text: "Transaction 1 — Owner Invests Cash" },
-        { type: "p", text: "Owner invests $100,000." },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["+$100,000", "—", "+$100,000"]],
-        },
-        { type: "p", text: "Equation:" },
-        { type: "note", text: "$100,000 = $0 + $100,000" },
-
-        { type: "h3", text: "Transaction 2 — Purchase Equipment for Cash" },
-        { type: "p", text: "The business purchases equipment for $30,000 cash." },
-        { type: "list", items: ["Equipment ↑ $30,000", "Cash ↓ $30,000"] },
-        { type: "p", text: "Total assets remain unchanged." },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [
-            ["Equipment +$30,000", "—", "—"],
-            ["Cash −$30,000", "", ""],
-          ],
-        },
-        { type: "note", text: "Total assets: No change" },
-
-        { type: "h3", text: "Transaction 3 — Purchase Inventory on Credit" },
-        { type: "p", text: "The business purchases inventory worth $20,000 on credit." },
-        { type: "list", items: ["Inventory ↑ $20,000", "Accounts Payable ↑ $20,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["+$20,000", "+$20,000", "—"]],
-        },
-        { type: "note", text: "Both sides increase by $20,000." },
-
-        { type: "h3", text: "Transaction 4 — Pay Supplier" },
-        { type: "p", text: "The business pays $5,000 to a supplier." },
-        { type: "list", items: ["Cash ↓ $5,000", "Accounts Payable ↓ $5,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["−$5,000", "−$5,000", "—"]],
-        },
-        { type: "note", text: "The equation remains balanced." },
-
-        { type: "h3", text: "Transaction 5 — Earn Revenue in Cash" },
-        { type: "p", text: "The business earns $15,000 cash from providing services." },
-        { type: "list", items: ["Cash ↑ $15,000", "Revenue increases owner's equity ↑ $15,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["+$15,000", "—", "+$15,000"]],
-        },
-
-        { type: "h3", text: "Transaction 6 — Pay Rent" },
-        { type: "p", text: "The business pays $4,000 rent." },
-        { type: "list", items: ["Cash ↓ $4,000", "Expense reduces owner's equity ↓ $4,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["−$4,000", "—", "−$4,000"]],
-        },
-
-        { type: "h3", text: "Transaction 7 — Take a Bank Loan" },
-        { type: "p", text: "The business receives a bank loan of $50,000." },
-        { type: "list", items: ["Cash ↑ $50,000", "Bank Loan Liability ↑ $50,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["+$50,000", "+$50,000", "—"]],
-        },
-
-        { type: "h3", text: "Transaction 8 — Owner Withdraws Cash" },
-        { type: "p", text: "The owner withdraws $5,000 for personal use." },
-        { type: "list", items: ["Cash ↓ $5,000", "Drawings reduce owner's equity ↓ $5,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["−$5,000", "—", "−$5,000"]],
-        },
-
-        { type: "h3", text: "Transaction 9 — Customer Pays Amount Owed" },
-        { type: "p", text: "A customer pays $8,000 that was previously owed." },
-        { type: "list", items: ["Cash ↑ $8,000", "Accounts Receivable ↓ $8,000"] },
-        { type: "note", text: "Both are assets, so total assets do not change." },
-
-        { type: "h3", text: "Transaction 10 — Purchase Office Furniture on Credit" },
-        { type: "p", text: "The business purchases furniture worth $25,000 on credit." },
-        { type: "list", items: ["Furniture ↑ $25,000", "Accounts Payable ↑ $25,000"] },
-        {
-          type: "table",
-          headers: ["Assets", "Liabilities", "Owner's Equity"],
-          rows: [["+$25,000", "+$25,000", "—"]],
-        },
-      ],
-    },
-    {
-      title: "Summary of the 10 Transactions",
-      blocks: [
-        {
-          type: "table",
-          headers: ["#", "Transaction", "Assets", "Liabilities", "Equity"],
-          rows: [
-            ["1", "Owner invests $100,000", "↑ $100,000", "—", "↑ $100,000"],
-            ["2", "Equipment purchased for cash $30,000", "No total change", "—", "—"],
-            ["3", "Inventory purchased on credit $20,000", "↑ $20,000", "↑ $20,000", "—"],
-            ["4", "Supplier paid $5,000", "↓ $5,000", "↓ $5,000", "—"],
-            ["5", "Cash revenue $15,000", "↑ $15,000", "—", "↑ $15,000"],
-            ["6", "Rent paid $4,000", "↓ $4,000", "—", "↓ $4,000"],
-            ["7", "Bank loan $50,000", "↑ $50,000", "↑ $50,000", "—"],
-            ["8", "Owner withdrawal $5,000", "↓ $5,000", "—", "↓ $5,000"],
-            ["9", "Customer pays $8,000", "No total change", "—", "—"],
-            ["10", "Furniture purchased on credit $25,000", "↑ $25,000", "↑ $25,000", "—"],
-          ],
-        },
-      ],
-    },
-    {
-      title: "Practical Activity",
-      blocks: [
-        { type: "h3", text: "Exercise" },
-        {
-          type: "p",
-          text: "Record the following transactions for ABC Services and determine their effect on the accounting equation.",
-        },
-        {
-          type: "steps",
-          items: [
-            { title: "Owner invests $200,000 cash." },
-            { title: "Business purchases a laptop for $50,000 cash." },
-            { title: "Business purchases office supplies worth $10,000 on credit." },
-            { title: "Business receives a bank loan of $100,000." },
-            { title: "Business earns $30,000 cash revenue." },
-            { title: "Business pays $8,000 rent." },
-            { title: "Business pays $5,000 to a supplier." },
-            { title: "Owner withdraws $10,000 for personal use." },
-            { title: "Business purchases furniture for $25,000 on credit." },
-            { title: "Customer pays $12,000 previously owed to the business." },
-          ],
-        },
-        { type: "h3", text: "Student Task" },
-        { type: "p", text: "For each transaction, identify:" },
-        {
-          type: "list",
-          items: [
-            "A. What accounts are affected?",
-            "B. Does each account increase or decrease?",
-            "C. Does the transaction affect Assets, Liabilities, or Owner's Equity?",
-            "D. Is the accounting equation still balanced?",
-          ],
-        },
-      ],
-    },
-    {
-      title: "Key Rules to Remember",
-      blocks: [
-        { type: "h3", text: "Assets" },
-        {
-          type: "list",
-          items: [
-            "Increase → business receives or acquires something of value.",
-            "Decrease → business sells, uses, or gives up an asset.",
-          ],
-        },
-        { type: "h3", text: "Liabilities" },
-        {
-          type: "list",
-          items: [
-            "Increase → business takes on a new obligation.",
-            "Decrease → business pays or settles an obligation.",
-          ],
-        },
-        { type: "h3", text: "Owner's Equity" },
-        {
-          type: "list",
-          items: [
-            "Increase → owner invests capital or business earns profit.",
-            "Decrease → owner makes drawings or business incurs expenses/losses.",
-          ],
-        },
-      ],
-    },
-    {
-      title: "Important Concept: Every Transaction Has Two Sides",
-      blocks: [
-        {
-          type: "p",
-          text: "In double-entry bookkeeping, every transaction affects at least two accounts.",
-        },
-        { type: "p", text: "For example:" },
-        { type: "p", text: "Buy equipment for $40,000 cash" },
-        {
-          type: "ascii",
-          text: `Equipment     +$40,000
-Cash          −$40,000
-----------------------
-Total Assets   No Change`,
-        },
-        { type: "p", text: "The business has simply exchanged one asset for another." },
-        {
-          type: "p",
-          text: "This concept becomes extremely important when learners move from the accounting equation to debits and credits.",
-        },
-      ],
-    },
-    {
-      title: "Visual Learning Diagram",
-      blocks: [
-        {
-          type: "ascii",
-          text: `                         BUSINESS
-                            │
-             ┌──────────────┴──────────────┐
-             │                             │
-          ASSETS                    SOURCES OF ASSETS
-             │                             │
-       ┌─────┴─────┐              ┌───────┴───────┐
-       │           │              │               │
-    Current      Fixed       Liabilities      Owner's Equity
-    Assets       Assets          │               │
-       │           │         ┌────┴────┐      ┌───┴────┐
-       │           │       Current   Long-   Capital  Drawings
-       │           │       Liabilities  term
-       │           │                    │
-       └───────────┴────────────────────┴──────────────┐
-                                                         │
-                         ACCOUNTING EQUATION             │
-                                                         ▼
-                    ASSETS = LIABILITIES + EQUITY`,
-        },
-      ],
-    },
-    {
-      title: "Learning Outcome",
-      blocks: [
-        { type: "p", text: "After completing this module, learners should be able to:" },
-        {
-          type: "list",
-          items: [
-            "Define assets, liabilities, and owner's equity.",
-            "Distinguish between current and fixed assets.",
-            "Distinguish between current and long-term liabilities.",
-            "Explain owner's capital and drawings.",
-            "Apply the accounting equation.",
-            "Identify how transactions affect assets, liabilities, and equity.",
-            "Understand why the accounting equation must always remain balanced.",
-            "Prepare a basic analysis of business transactions.",
-            "Develop the foundation needed to learn debits and credits in the next stage.",
-          ],
-        },
-      ],
-    },
-    {
-      title: "Quick Test",
-      blocks: [
-        {
-          type: "quiz",
-          question: "A business has assets of $500,000 and liabilities of $180,000. What is the owner's equity?",
-          options: ["A. $680,000", "B. $320,000", "C. $180,000", "D. $500,000"],
-          answer: "B",
-        },
-      ],
+      title: "Lesson 8 — Profit, Loss and Financial Position",
+      blocks: [{ type: "video", src: "videos/bookkeeping-basics/m2-lesson-8.mp4", title: "Module 2, Lesson 8: Profit, Loss and Financial Position" }],
     },
     {
       title: "Knowledge Check",
       blocks: [
         {
           type: "p",
-          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
+          text: "Answer all 16 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
         },
         {
           type: "knowledge-check",
           passPct: 80,
           questions: [
             {
-              question: "What is the accounting equation?",
+              question: "In simple words, what are assets?",
               options: [
-                "A. Assets = Liabilities − Owner's Equity",
-                "B. Assets = Liabilities + Owner's Equity",
-                "C. Liabilities = Assets + Owner's Equity",
-                "D. Owner's Equity = Assets + Liabilities",
+                "A. Amounts the business owes to other parties",
+                "B. Resources a business owns or controls that have economic value",
+                "C. Money the owner takes out for personal use",
+                "D. Costs of running the business",
               ],
               answer: "B",
             },
             {
-              question: "Which of these is a current asset?",
-              options: ["A. Land", "B. Building", "C. Accounts Receivable", "D. Machinery"],
-              answer: "C",
-            },
-            {
-              question: "Which of these is a fixed asset?",
-              options: ["A. Cash", "B. Inventory", "C. Office Equipment", "D. Accounts Receivable"],
-              answer: "C",
-            },
-            {
-              question: "What does a drawing do to owner's equity?",
+              question: "A business has cash ₹50,000, bank balance ₹1,00,000, computers ₹80,000, furniture ₹20,000 and inventory ₹40,000. What are its total assets?",
               options: [
-                "A. Increases it",
-                "B. Decreases it",
-                "C. Has no effect on it",
-                "D. Converts it to a liability",
+                "A. ₹2,40,000",
+                "B. ₹1,70,000",
+                "C. ₹2,90,000",
+                "D. ₹3,10,000",
+              ],
+              answer: "C",
+            },
+            {
+              question: "Which of these is a current liability?",
+              options: [
+                "A. GST payable",
+                "B. A long-term bank loan",
+                "C. Debentures payable",
+                "D. A long-term lease liability",
+              ],
+              answer: "A",
+            },
+            {
+              question: "A business owes a bank loan of ₹2,00,000, supplier payables of ₹30,000, electricity of ₹5,000 and salaries of ₹15,000. What are its total liabilities?",
+              options: [
+                "A. ₹2,30,000",
+                "B. ₹2,45,000",
+                "C. ₹2,00,000",
+                "D. ₹2,50,000",
+              ],
+              answer: "D",
+            },
+            {
+              question: "The owner withdraws ₹10,000 from the business bank account for personal expenses. What is the journal entry?",
+              options: [
+                "A. Debit Bank ₹10,000, credit Drawings ₹10,000",
+                "B. Debit Drawings ₹10,000, credit Bank ₹10,000",
+                "C. Debit Capital ₹10,000, credit Bank ₹10,000",
+                "D. Debit Bank ₹10,000, credit Capital ₹10,000",
               ],
               answer: "B",
             },
             {
-              question: "If Assets = $500,000 and Liabilities = $180,000, what is Owner's Equity?",
-              options: ["A. $680,000", "B. $320,000", "C. $180,000", "D. $500,000"],
+              question: "Opening capital is ₹5,00,000, additional capital is ₹50,000 and drawings are ₹20,000. What is the closing capital before profit or loss adjustments?",
+              options: [
+                "A. ₹5,70,000",
+                "B. ₹5,50,000",
+                "C. ₹5,30,000",
+                "D. ₹4,80,000",
+              ],
+              answer: "C",
+            },
+            {
+              question: "For a computer shop, how is interest earned from the bank treated?",
+              options: [
+                "A. As income, but generally not as sales revenue",
+                "B. As sales revenue",
+                "C. As a liability",
+                "D. As owner's capital",
+              ],
+              answer: "A",
+            },
+            {
+              question: "A computer shop has laptop sales ₹1,00,000, accessories sales ₹30,000, repair services ₹10,000 and bank interest ₹2,000. What is its revenue from ordinary business activities?",
+              options: [
+                "A. ₹1,42,000",
+                "B. ₹1,30,000",
+                "C. ₹1,02,000",
+                "D. ₹1,40,000",
+              ],
+              answer: "D",
+            },
+            {
+              question: "Which of these payments is usually recorded as an asset rather than an expense?",
+              options: [
+                "A. Office rent of ₹10,000",
+                "B. Electricity of ₹2,000",
+                "C. A laptop bought for business use for ₹50,000",
+                "D. Staff salary of ₹15,000",
+              ],
+              answer: "C",
+            },
+            {
+              question: "What can expenditure result in?",
+              options: [
+                "A. Either an expense in the Profit and Loss Statement or an asset in the Balance Sheet",
+                "B. Only an expense",
+                "C. Only a liability",
+                "D. Only an increase in capital",
+              ],
+              answer: "A",
+            },
+            {
+              question: "Divyam Associates sells a laptop worth ₹40,000 to ABC Enterprises on credit. Who is the debtor?",
+              options: [
+                "A. Divyam Associates",
+                "B. ABC Enterprises",
+                "C. The bank",
+                "D. Both businesses",
+              ],
               answer: "B",
+            },
+            {
+              question: "A business has ABC Enterprises ₹40,000 receivable, XYZ Distributors ₹60,000 payable and PQR Solutions ₹25,000 receivable. What are its total debtors?",
+              options: [
+                "A. ₹60,000",
+                "B. ₹40,000",
+                "C. ₹1,25,000",
+                "D. ₹65,000",
+              ],
+              answer: "D",
+            },
+            {
+              question: "A US company provides consulting services worth $2,000 on credit. What is the journal entry?",
+              options: [
+                "A. Debit Service Revenue $2,000, credit Accounts Receivable $2,000",
+                "B. Debit Accounts Payable $2,000, credit Service Revenue $2,000",
+                "C. Debit Accounts Receivable $2,000, credit Service Revenue $2,000",
+                "D. Debit Cash $2,000, credit Accounts Receivable $2,000",
+              ],
+              answer: "C",
+            },
+            {
+              question: "What does an Accounts Payable ageing report show?",
+              options: [
+                "A. How long supplier invoices have remained unpaid",
+                "B. How long customer invoices have remained unpaid",
+                "C. The business's total sales for the year",
+                "D. The owner's capital balance",
+              ],
+              answer: "A",
+            },
+            {
+              question: "Total income is ₹1,00,000 and total expenses are ₹1,20,000. What is the result?",
+              options: [
+                "A. Net profit of ₹20,000",
+                "B. Net loss of ₹20,000",
+                "C. Net profit of ₹1,20,000",
+                "D. Neither profit nor loss",
+              ],
+              answer: "B",
+            },
+            {
+              question: "Total assets are ₹5,00,000 and total liabilities are ₹2,00,000. Using the accounting equation, what is the owner's equity?",
+              options: [
+                "A. ₹7,00,000",
+                "B. ₹2,00,000",
+                "C. ₹5,00,000",
+                "D. ₹3,00,000",
+              ],
+              answer: "D",
             },
           ],
         },
