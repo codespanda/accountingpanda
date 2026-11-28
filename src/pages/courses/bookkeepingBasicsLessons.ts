@@ -69,56 +69,151 @@ export const bookkeepingBasicsLessons: Record<number, LessonPage[]> = {
       blocks: [
         {
           type: "p",
-          text: "Answer all 5 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
+          text: "Answer all 14 questions, then check your score. You'll need at least 80% to move on — if you don't make it, you can retry.",
         },
         {
           type: "knowledge-check",
           passPct: 80,
           questions: [
             {
-              question: "What is bookkeeping?",
+              question: "In simple words, what does bookkeeping mean?",
               options: [
-                "A. Preparing business advertisements",
-                "B. Recording and organizing financial transactions",
-                "C. Hiring employees",
-                "D. Selling products",
+                "A. Planning a business's marketing budget",
+                "B. Keeping a proper record of all the money coming into and going out of a business",
+                "C. Deciding the prices of a business's products",
+                "D. Filing a business's legal documents with the government",
               ],
               answer: "B",
             },
             {
-              question: "Which is an example of an asset?",
-              options: ["A. Bank loan", "B. Rent expense", "C. Office equipment", "D. Supplier payable"],
-              answer: "C",
-            },
-            {
-              question: "What is accounts receivable?",
+              question: "Without bookkeeping, what might a business owner not know?",
               options: [
-                "A. Money the business owes suppliers",
-                "B. Money customers owe the business",
-                "C. Employee salaries",
-                "D. Business expenses",
-              ],
-              answer: "B",
-            },
-            {
-              question: "What is accounts payable?",
-              options: [
-                "A. Money customers owe the business",
-                "B. Business revenue",
-                "C. Money the business owes suppliers",
-                "D. Owner investment",
+                "A. The names of their competitors",
+                "B. Which products customers like best",
+                "C. How much the business earns, spends, owns or owes",
+                "D. How many hours employees work",
               ],
               answer: "C",
             },
             {
-              question: "Which system records the two sides of a transaction?",
+              question: "A business has sales of ₹2,00,000 and total expenses of ₹1,50,000 for the month. What is its profit before tax?",
               options: [
-                "A. Single-entry bookkeeping",
-                "B. Double-entry bookkeeping",
-                "C. Cash-only bookkeeping",
-                "D. Personal bookkeeping",
+                "A. ₹50,000",
+                "B. ₹1,50,000",
+                "C. ₹2,00,000",
+                "D. ₹3,50,000",
+              ],
+              answer: "A",
+            },
+            {
+              question: "How does bookkeeping help with customers and suppliers?",
+              options: [
+                "A. It sets the credit limit for every customer",
+                "B. It chooses which suppliers to buy from",
+                "C. It removes the need to send invoices",
+                "D. It shows who owes money to the business and whom the business needs to pay",
+              ],
+              answer: "D",
+            },
+            {
+              question: "Which of these is one of the benefits of bookkeeping?",
+              options: [
+                "A. It guarantees the business makes a profit",
+                "B. It monitors cash and bank balances so cash shortages can be spotted",
+                "C. It means the business never has to file tax returns",
+                "D. It replaces the need for a business plan",
               ],
               answer: "B",
+            },
+            {
+              question: "A business buys a laptop for ₹50,000. Which task is the accountant's rather than the bookkeeper's?",
+              options: [
+                "A. Checking the purchase invoice",
+                "B. Recording the transaction",
+                "C. Deciding the laptop's useful life and depreciation treatment",
+                "D. Updating the supplier and payment records",
+              ],
+              answer: "C",
+            },
+            {
+              question: "Which statement about bookkeeping and accounting is correct?",
+              options: [
+                "A. Bookkeeping records transactions, while accounting analyses financial information",
+                "B. Accounting records transactions, while bookkeeping analyses financial information",
+                "C. They are exactly the same thing",
+                "D. Bookkeeping is only needed by large companies",
+              ],
+              answer: "A",
+            },
+            {
+              question: "What is a business transaction?",
+              options: [
+                "A. Any conversation with a customer",
+                "B. A plan to buy something next year",
+                "C. Any change in the business's staff",
+                "D. An economic event that can be measured in money and affects the business's financial position",
+              ],
+              answer: "D",
+            },
+            {
+              question: "A business sells goods worth ₹25,000 to a customer who will pay next month. What type of transaction is this?",
+              options: [
+                "A. A capital transaction",
+                "B. A credit transaction",
+                "C. A cash transaction",
+                "D. A payment transaction",
+              ],
+              answer: "B",
+            },
+            {
+              question: "A business earns ₹5,000 from laptop repair services. Which type of transaction is this?",
+              options: [
+                "A. Capital",
+                "B. Purchase",
+                "C. Income",
+                "D. Payment",
+              ],
+              answer: "C",
+            },
+            {
+              question: "A business buys furniture for ₹20,000 in cash. How is it recorded in double-entry bookkeeping?",
+              options: [
+                "A. Debit Furniture ₹20,000 and credit Cash ₹20,000",
+                "B. Debit Cash ₹20,000 and credit Furniture ₹20,000",
+                "C. Debit Furniture ₹20,000 only",
+                "D. Credit Cash ₹20,000 only",
+              ],
+              answer: "A",
+            },
+            {
+              question: "Which statement about single-entry bookkeeping is correct?",
+              options: [
+                "A. It is the standard foundation for formal accounting systems",
+                "B. It records every transaction in at least two accounts",
+                "C. It is a simple record of receipts, payments and balances without the full double-entry structure",
+                "D. It is required by law for all companies",
+              ],
+              answer: "C",
+            },
+            {
+              question: "In the bookkeeping cycle, which step comes right after posting to ledgers?",
+              options: [
+                "A. Collecting source documents",
+                "B. Preparing financial reports",
+                "C. Identifying transactions",
+                "D. Preparing a trial balance",
+              ],
+              answer: "D",
+            },
+            {
+              question: "What does reconciling accounts involve?",
+              options: [
+                "A. Comparing accounting records with bank statements and supporting records",
+                "B. Deleting old transactions",
+                "C. Sending invoices to customers",
+                "D. Choosing accounting software",
+              ],
+              answer: "A",
             },
           ],
         },
