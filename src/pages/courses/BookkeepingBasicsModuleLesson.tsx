@@ -10,6 +10,8 @@ import { bookkeepingBasicsModules } from "@/pages/courses/BookkeepingBasicsCours
 import { bookkeepingBasicsLessons, type LessonBlock } from "@/pages/courses/bookkeepingBasicsLessons"
 import { DoubleEntryDemo } from "@/pages/courses/DoubleEntryDemo"
 import { KnowledgeCheckQuiz } from "@/pages/courses/KnowledgeCheckQuiz"
+import { LessonVideo } from "@/components/lessons/LessonVideo"
+import { asset } from "@/lib/asset"
 import {
   getCompletedModules,
   completeModule,
@@ -250,6 +252,8 @@ function LessonBlockView({
       )
     case "p":
       return <p className="mt-3 text-base leading-relaxed text-gray-600">{block.text}</p>
+    case "video":
+      return <LessonVideo src={asset(block.src)} title={block.title} label="Watch the lesson" />
     case "list":
       return <InteractiveChecklist items={block.items} />
     case "note":

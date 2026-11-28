@@ -9,16 +9,13 @@ export const bookkeepingBasicsModules: CourseModule[] = [
     sections: [
       {
         items: [
-          "What is bookkeeping?",
-          "What is accounting?",
-          "Bookkeeping vs. accounting",
-          "Importance of accurate financial records",
-          "Role of a bookkeeper",
-          "Types of bookkeeping — single-entry bookkeeping",
-          "Types of bookkeeping — double-entry bookkeeping",
-          "Manual vs. computerized bookkeeping",
-          "Bookkeeping in small businesses",
-          "Common bookkeeping terminology",
+          "Lesson 1 — What is bookkeeping?",
+          "Lesson 2 — Why is bookkeeping important?",
+          "Lesson 3 — Bookkeeping vs. accounting",
+          "Lesson 4 — Types of business transactions",
+          "Lesson 5 — Types of bookkeeping systems",
+          "Lesson 6 — The bookkeeping process and careers",
+          "Knowledge check",
         ],
       },
     ],
